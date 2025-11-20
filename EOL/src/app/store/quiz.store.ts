@@ -14,6 +14,7 @@ type QuizState = {
     isQuizActive: boolean;
     isQuizFinished: boolean;
     loading: boolean;
+    completedOceans: string[]; // IDs of oceans with perfect score
 };
 
 const initialState: QuizState = {
@@ -25,6 +26,29 @@ const initialState: QuizState = {
     isQuizActive: false,
     isQuizFinished: false,
     loading: false,
+    completedOceans: [],
+};
+
+export const QuizStore = signalStore(
+    { providedIn: 'root' },
+    withState(initialState),
+    withComputed(({ oceans, currentOceanId, currentQuestionIndex, answers, completedOceans }) => ({
+        currentOcean: computed(() => oceans().find((o) => o.id === currentOceanId())),
+        currentQuestion: computed(() => {
+            const ocean = oceans().find((o) => o.id === currentOceanId());
+            return ocean?.quiz[currentQuestionIndex()];
+        }),
+        totalQuestions: computed(() => {
+            const ocean = oceans().find((o) => o.id === currentOceanId());
+            return ocean?.quiz.length || 0;
+        }),
+        progress: computed(() => {
+            const ocean = oceans().find((o) => o.id === currentOceanId());
+            if (!ocean || ocean.quiz.length === 0) return 0;
+            return ((currentQuestionIndex()) / ocean.quiz.length) * 100;
+        }),
+        isOceanCompleted: computed(() => (oceanId: string) => completedOceans().includes(oceanId))
+    })),
     withMethods((store, dataService = inject(DataService)) => ({
         loadOceans: rxMethod<void>(
             pipe(
@@ -61,7 +85,20 @@ const initialState: QuizState = {
             if (nextIndex < store.totalQuestions()) {
                 patchState(store, { currentQuestionIndex: nextIndex });
             } else {
-                patchState(store, { isQuizFinished: true, isQuizActive: false });
+                // Quiz Finished
+                const isPerfect = store.score() === store.totalQuestions();
+                const currentId = store.currentOceanId();
+
+                let newCompleted = store.completedOceans();
+                if (isPerfect && currentId && !newCompleted.includes(currentId)) {
+                    newCompleted = [...newCompleted, currentId];
+                }
+
+                patchState(store, {
+                    isQuizFinished: true,
+                    isQuizActive: false,
+                    completedOceans: newCompleted
+                });
             }
         },
         resetQuiz() {
