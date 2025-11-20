@@ -41,7 +41,9 @@ export class OceanSelectionComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit() {
-    this.store.loadOceans();
+    if (this.store.oceans().length === 0) {
+      this.store.loadOceans();
+    }
   }
 
   selectOcean(id: string) {

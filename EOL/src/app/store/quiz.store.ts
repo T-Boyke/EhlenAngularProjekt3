@@ -54,7 +54,17 @@ export const QuizStore = signalStore(
             pipe(
                 tap(() => patchState(store, { loading: true })),
                 switchMap(() => dataService.getOceans()),
-                tap((oceans) => patchState(store, { oceans, loading: false }))
+                tap((oceans) => {
+                    // Shuffle options for each question
+                    const shuffledOceans = oceans.map(ocean => ({
+                        ...ocean,
+                        quiz: ocean.quiz.map(q => ({
+                            ...q,
+                            options: [...q.options].sort(() => Math.random() - 0.5)
+                        }))
+                    }));
+                    patchState(store, { oceans: shuffledOceans, loading: false });
+                })
             )
         ),
         selectOcean(oceanId: string) {

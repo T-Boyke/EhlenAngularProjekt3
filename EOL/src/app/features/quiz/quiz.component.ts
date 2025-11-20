@@ -38,9 +38,14 @@ import { NgClass } from '@angular/common';
             }
           </div>
 
+          <!-- Progress -->
+          <div class="w-full h-2 bg-white/30 rounded-full overflow-hidden mt-4">
+            <div class="h-full bg-blue-500 transition-all duration-500" [style.width.%]="store.progress()"></div>
+          </div>
+
           <!-- Trivia Card (Feedback) -->
           @if (hasAnswered()) {
-            <div class="w-full p-4 rounded-xl bg-white/40 mt-4 border-l-4 transition-all duration-300"
+            <div class="w-full p-4 rounded-xl bg-white/40 mt-4 border-l-4 transition-all duration-300 animate-slide-up"
                  [ngClass]="isCorrect() ? 'border-green-500' : 'border-red-500'">
               <h3 class="font-bold text-lg mb-2" [ngClass]="isCorrect() ? 'text-green-800' : 'text-red-800'">
                 {{ isCorrect() ? 'Richtig! 🎉' : 'Leider falsch...' }}
@@ -48,11 +53,6 @@ import { NgClass } from '@angular/common';
               <p class="text-slate-800">{{ question.trivia }}</p>
             </div>
           }
-
-          <!-- Progress -->
-          <div class="w-full h-2 bg-white/30 rounded-full overflow-hidden mt-4">
-            <div class="h-full bg-blue-500 transition-all duration-500" [style.width.%]="store.progress()"></div>
-          </div>
         </div>
       }
     </div>
