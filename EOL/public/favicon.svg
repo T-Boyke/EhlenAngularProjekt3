@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="50" fill="#e0f2fe"/>
+  <path d="M20,60 Q35,40 50,60 T80,60" fill="none" stroke="#0284c7" stroke-width="8" stroke-linecap="round"/>
+  <path d="M20,75 Q35,55 50,75 T80,75" fill="none" stroke="#0369a1" stroke-width="8" stroke-linecap="round"/>
+  <text x="50" y="35" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" fill="#0c4a6e">🌊</text>
+</svg>

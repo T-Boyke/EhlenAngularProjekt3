@@ -6,19 +6,32 @@
         "oceanimage": "assets/images/pacific.png",
         "description": "Der größte und tiefste Ozean der Erde.",
         "facts": [
-            "Der Pazifik bedeckt etwa ein Drittel der Erdoberfläche.",
-            "Er ist größer als alle Landflächen der Erde zusammen."
+            "Der Pazifik bedeckt etwa ein Drittel der gesamten Erdoberfläche.",
+            "Er ist größer als alle Landflächen der Erde zusammen.",
+            "Im Pazifik liegt der tiefste Punkt der Erde, der Mariannengraben.",
+            "Der Name 'Pazifik' bedeutet 'friedlich', obwohl es dort oft Stürme gibt.",
+            "Es gibt mehr als 25.000 Inseln im Pazifischen Ozean."
         ],
         "inhabitants": [
             {
                 "name": "Blauwal",
-                "description": "Das größte Tier, das jemals gelebt hat.",
+                "description": "Das größte Tier, das jemals gelebt hat. Es kann bis zu 30 Meter lang werden.",
                 "image": "assets/images/blue_whale.png"
+            },
+            {
+                "name": "Weißer Hai",
+                "description": "Ein großer Raubfisch, der an der Spitze der Nahrungskette steht.",
+                "image": "assets/images/pacific.png"
+            },
+            {
+                "name": "Meeresschildkröte",
+                "description": "Diese Reptilien schwimmen tausende Kilometer durch den Ozean.",
+                "image": "assets/images/pacific.png"
             }
         ],
         "quiz": [
             {
-                "question": "Welcher ist der größte Ozean?",
+                "question": "Welcher ist der größte Ozean der Erde?",
                 "options": [
                     "Pazifik",
                     "Atlantik",
@@ -27,21 +40,125 @@
                 ],
                 "answer": "Pazifik",
                 "quizimage": "assets/images/quiz_pacific.png",
-                "trivia": "Der Pazifik ist so groß, dass alle Kontinente hineinpassen würden!",
-                "prequizdescription": "Lass uns sehen, was du über den Pazifik gelernt hast."
+                "trivia": "Der Pazifik ist so riesig, dass alle Kontinente darin Platz hätten!",
+                "prequizdescription": "Lass uns dein Wissen testen!"
             },
             {
-                "question": "Wie heißt der tiefste Punkt im Pazifik?",
+                "question": "Wie heißt der tiefste Punkt der Erde?",
                 "options": [
                     "Mariannengraben",
-                    "Tongagraben",
+                    "Grand Canyon",
                     "Javagraben",
-                    "Puerto-Rico-Graben"
+                    "Tiefseegraben"
                 ],
                 "answer": "Mariannengraben",
                 "quizimage": "assets/images/quiz_mariana.png",
-                "trivia": "Der Mariannengraben ist tiefer als der Mount Everest hoch ist.",
-                "prequizdescription": "Tief unten im Meer..."
+                "trivia": "Der Mariannengraben ist fast 11 Kilometer tief.",
+                "prequizdescription": "Ganz tief unten..."
+            },
+            {
+                "question": "Was bedeutet der Name 'Pazifik'?",
+                "options": [
+                    "Friedlich",
+                    "Stürmisch",
+                    "Blau",
+                    "Groß"
+                ],
+                "answer": "Friedlich",
+                "quizimage": "assets/images/pacific.png",
+                "trivia": "Ferdinand Magellan nannte ihn so, weil er bei seiner Überquerung ruhiges Wetter hatte.",
+                "prequizdescription": "Ein Name mit Geschichte."
+            },
+            {
+                "question": "Wie viele Inseln gibt es ungefähr im Pazifik?",
+                "options": [
+                    "Über 25.000",
+                    "Etwa 100",
+                    "Genau 5",
+                    "Keine"
+                ],
+                "answer": "Über 25.000",
+                "quizimage": "assets/images/pacific.png",
+                "trivia": "Das sind mehr Inseln als in allen anderen Ozeanen zusammen.",
+                "prequizdescription": "Inselhüpfen!"
+            },
+            {
+                "question": "Welches ist das größte Tier im Pazifik?",
+                "options": [
+                    "Blauwal",
+                    "Elefant",
+                    "Hai",
+                    "Tintenfisch"
+                ],
+                "answer": "Blauwal",
+                "quizimage": "assets/images/blue_whale.png",
+                "trivia": "Ein Blauwal wiegt so viel wie 25 Elefanten!",
+                "prequizdescription": "Ein Riese im Meer."
+            },
+            {
+                "question": "Welcher Kontinent grenzt NICHT an den Pazifik?",
+                "options": [
+                    "Europa",
+                    "Asien",
+                    "Australien",
+                    "Nordamerika"
+                ],
+                "answer": "Europa",
+                "quizimage": "assets/images/pacific.png",
+                "trivia": "Europa liegt am Atlantik, nicht am Pazifik.",
+                "prequizdescription": "Geografie-Check."
+            },
+            {
+                "question": "Was ist das 'Great Barrier Reef'?",
+                "options": [
+                    "Ein Korallenriff",
+                    "Ein Berg",
+                    "Ein Fluss",
+                    "Eine Stadt"
+                ],
+                "answer": "Ein Korallenriff",
+                "quizimage": "assets/images/pacific.png",
+                "trivia": "Es ist das größte Korallenriff der Erde und liegt vor Australien.",
+                "prequizdescription": "Bunte Unterwasserwelt."
+            },
+            {
+                "question": "Vulkane im Pazifik bilden den...",
+                "options": [
+                    "Feuerring",
+                    "Wasserring",
+                    "Goldring",
+                    "Luftring"
+                ],
+                "answer": "Feuerring",
+                "quizimage": "assets/images/pacific.png",
+                "trivia": "Am pazifischen Feuerring gibt es die meisten Vulkane der Erde.",
+                "prequizdescription": "Es wird heiß!"
+            },
+            {
+                "question": "Welche Farbe hat das Wasser oft in der Nähe von Inseln?",
+                "options": [
+                    "Türkis",
+                    "Rot",
+                    "Gelb",
+                    "Lila"
+                ],
+                "answer": "Türkis",
+                "quizimage": "assets/images/pacific.png",
+                "trivia": "Das flache Wasser und der weiße Sand lassen es türkis leuchten.",
+                "prequizdescription": "Farbenfrohes Meer."
+            },
+            {
+                "question": "Kann man den Pazifik von Amerika nach Asien überqueren?",
+                "options": [
+                    "Ja",
+                    "Nein",
+                    "Vielleicht",
+                    "Nur fliegend"
+                ],
+                "answer": "Ja",
+                "quizimage": "assets/images/pacific.png",
+                "trivia": "Schiffe und Flugzeuge überqueren ihn täglich.",
+                "prequizdescription": "Eine lange Reise."
             }
         ]
     },
@@ -52,29 +169,159 @@
         "oceanimage": "assets/images/atlantic.png",
         "description": "Der zweitgrößte Ozean, der Amerika von Europa und Afrika trennt.",
         "facts": [
-            "Der Atlantik wird jedes Jahr etwas breiter.",
-            "Im Atlantik liegt das berühmte Bermudadreieck."
+            "Der Atlantik wird jedes Jahr etwa 2-5 cm breiter.",
+            "Im Atlantik liegt das berühmte Bermudadreieck.",
+            "Er ist salziger als der Pazifik.",
+            "Der Golfstrom ist eine warme Meeresströmung im Atlantik.",
+            "Die Titanic sank im Nordatlantik."
         ],
         "inhabitants": [
             {
                 "name": "Großer Tümmler",
                 "description": "Eine sehr bekannte und verspielte Delfinart.",
                 "image": "assets/images/dolphin.png"
+            },
+            {
+                "name": "Buckelwal",
+                "description": "Bekannt für seine spektakulären Sprünge und Gesänge.",
+                "image": "assets/images/atlantic.png"
+            },
+            {
+                "name": "Kabeljau",
+                "description": "Ein wichtiger Speisefisch, der in kühlen Gewässern lebt.",
+                "image": "assets/images/atlantic.png"
             }
         ],
         "quiz": [
             {
                 "question": "Welcher Ozean liegt zwischen Amerika und Europa?",
                 "options": [
-                    "Pazifik",
                     "Atlantik",
+                    "Pazifik",
                     "Indik",
                     "Arktis"
                 ],
                 "answer": "Atlantik",
                 "quizimage": "assets/images/quiz_atlantic.png",
-                "trivia": "Der Atlantik ist nach Atlas aus der griechischen Mythologie benannt.",
-                "prequizdescription": "Überqueren wir den Atlantik!"
+                "trivia": "Er verbindet die 'Alte Welt' mit der 'Neuen Welt'.",
+                "prequizdescription": "Eine Brücke aus Wasser."
+            },
+            {
+                "question": "Was passiert mit dem Atlantik jedes Jahr?",
+                "options": [
+                    "Er wird breiter",
+                    "Er wird kleiner",
+                    "Er trocknet aus",
+                    "Er gefriert"
+                ],
+                "answer": "Er wird breiter",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Die Kontinentalplatten driften auseinander.",
+                "prequizdescription": "Bewegung im Meer."
+            },
+            {
+                "question": "Wie heißt die berühmte warme Strömung im Atlantik?",
+                "options": [
+                    "Golfstrom",
+                    "Nil",
+                    "Amazonas",
+                    "Jetstream"
+                ],
+                "answer": "Golfstrom",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Der Golfstrom sorgt für mildes Klima in Europa.",
+                "prequizdescription": "Eine Heizung im Meer."
+            },
+            {
+                "question": "Welches berühmte Schiff sank im Atlantik?",
+                "options": [
+                    "Titanic",
+                    "Santa Maria",
+                    "Bismarck",
+                    "Black Pearl"
+                ],
+                "answer": "Titanic",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Sie kollidierte 1912 mit einem Eisberg.",
+                "prequizdescription": "Ein historisches Ereignis."
+            },
+            {
+                "question": "Welches mysteriöse Gebiet liegt im Atlantik?",
+                "options": [
+                    "Bermudadreieck",
+                    "Schwarzes Loch",
+                    "Area 51",
+                    "Atlantis"
+                ],
+                "answer": "Bermudadreieck",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Dort sollen Schiffe und Flugzeuge verschwunden sein.",
+                "prequizdescription": "Rätselhaft..."
+            },
+            {
+                "question": "Welches Tier ist typisch für den Atlantik?",
+                "options": [
+                    "Delfin",
+                    "Löwe",
+                    "Pinguin",
+                    "Koala"
+                ],
+                "answer": "Delfin",
+                "quizimage": "assets/images/dolphin.png",
+                "trivia": "Delfine sind sehr intelligente Meeressäuger.",
+                "prequizdescription": "Ein schlauer Bewohner."
+            },
+            {
+                "question": "Ist der Atlantik salziger als der Pazifik?",
+                "options": [
+                    "Ja",
+                    "Nein",
+                    "Gleich",
+                    "Süßwasser"
+                ],
+                "answer": "Ja",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Durch Verdunstung ist der Salzgehalt im Atlantik höher.",
+                "prequizdescription": "Salzige Angelegenheit."
+            },
+            {
+                "question": "Welcher Kontinent liegt östlich des Atlantiks?",
+                "options": [
+                    "Afrika",
+                    "Südamerika",
+                    "Australien",
+                    "Asien"
+                ],
+                "answer": "Afrika",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Afrika und Europa bilden die Ostgrenze.",
+                "prequizdescription": "Blick nach Osten."
+            },
+            {
+                "question": "Wie heißt das längste Gebirge der Welt (unter Wasser)?",
+                "options": [
+                    "Mittelatlantischer Rücken",
+                    "Alpen",
+                    "Anden",
+                    "Himalaya"
+                ],
+                "answer": "Mittelatlantischer Rücken",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Es verläuft mitten durch den Atlantik.",
+                "prequizdescription": "Berge unter Wasser."
+            },
+            {
+                "question": "Gibt es Eisberge im Atlantik?",
+                "options": [
+                    "Ja, im Norden",
+                    "Nein, nie",
+                    "Nur im Süden",
+                    "Überall"
+                ],
+                "answer": "Ja, im Norden",
+                "quizimage": "assets/images/atlantic.png",
+                "trivia": "Sie kommen von den Gletschern Grönlands.",
+                "prequizdescription": "Vorsicht, kalt!"
             }
         ]
     },
@@ -83,31 +330,161 @@
         "name": "Indischer Ozean",
         "color": "bg-teal-500",
         "oceanimage": "assets/images/indian.png",
-        "description": "Der wärmste Ozean der Welt.",
+        "description": "Der wärmste Ozean der Welt, bekannt für seine Gewürze und Handelsrouten.",
         "facts": [
-            "Der Indische Ozean ist der wärmste Ozean.",
-            "Er grenzt an Asien, Afrika und Australien."
+            "Der Indische Ozean ist der wärmste aller Ozeane.",
+            "Er grenzt an Asien, Afrika und Australien.",
+            "Etwa 40% des weltweiten Erdöls werden hier transportiert.",
+            "Es gibt hier sehr wenige Inseln im Vergleich zum Pazifik.",
+            "Der Dodo lebte auf einer Insel im Indischen Ozean (Mauritius)."
         ],
         "inhabitants": [
             {
                 "name": "Clownfisch",
-                "description": "Ein bunter Fisch, der in Anemonen lebt.",
+                "description": "Ein bunter Fisch, der in Anemonen lebt. Bekannt aus 'Findet Nemo'.",
                 "image": "assets/images/clownfish.png"
+            },
+            {
+                "name": "Mantarochen",
+                "description": "Riesige, sanfte Rochen, die durch das Wasser 'fliegen'.",
+                "image": "assets/images/indian.png"
+            },
+            {
+                "name": "Dugong",
+                "description": "Auch Seekuh genannt, frisst friedlich Seegras.",
+                "image": "assets/images/indian.png"
             }
         ],
         "quiz": [
             {
                 "question": "Welcher Ozean ist der wärmste?",
                 "options": [
-                    "Pazifik",
-                    "Atlantik",
                     "Indik",
-                    "Arktis"
+                    "Pazifik",
+                    "Arktis",
+                    "Atlantik"
                 ],
                 "answer": "Indik",
                 "quizimage": "assets/images/quiz_indian.png",
-                "trivia": "Wegen der Wärme gibt es hier besonders viele Korallenriffe.",
-                "prequizdescription": "Ab ins warme Wasser!"
+                "trivia": "Das warme Wasser ist toll für Korallen, aber schlecht für Sauerstoff.",
+                "prequizdescription": "Warmes Bad."
+            },
+            {
+                "question": "Welches Land gibt dem Ozean seinen Namen?",
+                "options": [
+                    "Indien",
+                    "Indonesien",
+                    "Island",
+                    "Italien"
+                ],
+                "answer": "Indien",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Indien ragt tief in den Ozean hinein.",
+                "prequizdescription": "Namensgeber."
+            },
+            {
+                "question": "Welcher berühmte ausgestorbene Vogel lebte hier?",
+                "options": [
+                    "Dodo",
+                    "Dino",
+                    "Adler",
+                    "Pinguin"
+                ],
+                "answer": "Dodo",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Der Dodo lebte auf Mauritius und konnte nicht fliegen.",
+                "prequizdescription": "Ein Vogel ohne Flügel."
+            },
+            {
+                "question": "Was wird viel über den Indischen Ozean transportiert?",
+                "options": [
+                    "Erdöl",
+                    "Eis",
+                    "Schnee",
+                    "Sand"
+                ],
+                "answer": "Erdöl",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Große Tanker bringen Öl von Arabien in die Welt.",
+                "prequizdescription": "Schwarzes Gold."
+            },
+            {
+                "question": "Welcher Fisch lebt in einer Anemone?",
+                "options": [
+                    "Clownfisch",
+                    "Hai",
+                    "Wal",
+                    "Thunfisch"
+                ],
+                "answer": "Clownfisch",
+                "quizimage": "assets/images/clownfish.png",
+                "trivia": "Sie beschützen sich gegenseitig.",
+                "prequizdescription": "Freunde fürs Leben."
+            },
+            {
+                "question": "Grenzt der Indische Ozean an Amerika?",
+                "options": [
+                    "Nein",
+                    "Ja",
+                    "Nur im Norden",
+                    "Vielleicht"
+                ],
+                "answer": "Nein",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Er liegt auf der anderen Seite der Weltkugel.",
+                "prequizdescription": "Weltkarte im Kopf?"
+            },
+            {
+                "question": "Welche Insel ist ein beliebtes Urlaubsziel im Indik?",
+                "options": [
+                    "Malediven",
+                    "Island",
+                    "Grönland",
+                    "Mallorca"
+                ],
+                "answer": "Malediven",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Die Malediven bestehen aus vielen kleinen Trauminseln.",
+                "prequizdescription": "Urlaubszeit!"
+            },
+            {
+                "question": "Gibt es Pinguine im Indischen Ozean?",
+                "options": [
+                    "Ja, im Süden",
+                    "Nein, nie",
+                    "Nur im Norden",
+                    "Überall"
+                ],
+                "answer": "Ja, im Süden",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Auf Inseln nahe der Antarktis leben Pinguine.",
+                "prequizdescription": "Kalt und warm."
+            },
+            {
+                "question": "Was ist ein Monsun?",
+                "options": [
+                    "Ein Wind",
+                    "Ein Fisch",
+                    "Ein Boot",
+                    "Eine Insel"
+                ],
+                "answer": "Ein Wind",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Der Monsun bringt viel Regen nach Indien.",
+                "prequizdescription": "Wetterkunde."
+            },
+            {
+                "question": "Welches große Tier 'fliegt' durchs Wasser?",
+                "options": [
+                    "Mantarochen",
+                    "Vogel",
+                    "Flugzeug",
+                    "Hund"
+                ],
+                "answer": "Mantarochen",
+                "quizimage": "assets/images/indian.png",
+                "trivia": "Mit ihren großen Flossen sehen sie aus wie Vögel.",
+                "prequizdescription": "Unterwasser-Flieger."
             }
         ]
     },
@@ -118,29 +495,159 @@
         "oceanimage": "assets/images/arctic.png",
         "description": "Der kleinste und kälteste Ozean rund um den Nordpol.",
         "facts": [
-            "Der Arktische Ozean ist der kleinste Ozean.",
-            "Er ist die meiste Zeit des Jahres von Eis bedeckt."
+            "Der Arktische Ozean ist der kleinste der fünf Ozeane.",
+            "Er ist fast das ganze Jahr über von Eis bedeckt.",
+            "Im Winter ist es dort 24 Stunden lang dunkel (Polarnacht).",
+            "Im Sommer geht die Sonne nicht unter (Mitternachtssonne).",
+            "Das Eis der Arktis schmilzt leider durch den Klimawandel."
         ],
         "inhabitants": [
             {
                 "name": "Eisbär",
-                "description": "Der König der Arktis.",
+                "description": "Der König der Arktis. Er jagt auf dem Meereis.",
                 "image": "assets/images/polar_bear.png"
+            },
+            {
+                "name": "Walross",
+                "description": "Ein großes Tier mit langen Stoßzähnen.",
+                "image": "assets/images/arctic.png"
+            },
+            {
+                "name": "Narwal",
+                "description": "Das 'Einhorn des Meeres' mit einem langen Stoßzahn.",
+                "image": "assets/images/arctic.png"
             }
         ],
         "quiz": [
             {
                 "question": "Welches Tier lebt NUR in der Arktis?",
                 "options": [
-                    "Pinguin",
                     "Eisbär",
-                    "Känguru",
-                    "Delfin"
+                    "Pinguin",
+                    "Löwe",
+                    "Elefant"
                 ],
                 "answer": "Eisbär",
                 "quizimage": "assets/images/quiz_polar_bear.png",
-                "trivia": "Eisbären haben schwarze Haut unter ihrem weißen Fell, um Wärme zu speichern.",
-                "prequizdescription": "Zieh dich warm an!"
+                "trivia": "Eisbären fressen Robben und leben auf dem Eis.",
+                "prequizdescription": "Weißer Riese."
+            },
+            {
+                "question": "Was bedeckt den Arktischen Ozean meistens?",
+                "options": [
+                    "Eis",
+                    "Sand",
+                    "Gras",
+                    "Lava"
+                ],
+                "answer": "Eis",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Das Meereis kann mehrere Meter dick sein.",
+                "prequizdescription": "Rutschige Angelegenheit."
+            },
+            {
+                "question": "Wo liegt der Arktische Ozean?",
+                "options": [
+                    "Am Nordpol",
+                    "Am Südpol",
+                    "Am Äquator",
+                    "In Europa"
+                ],
+                "answer": "Am Nordpol",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Er ist der nördlichste Ozean.",
+                "prequizdescription": "Ganz oben."
+            },
+            {
+                "question": "Welcher Wal hat ein 'Horn'?",
+                "options": [
+                    "Narwal",
+                    "Blauwal",
+                    "Orca",
+                    "Pottwal"
+                ],
+                "answer": "Narwal",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Das Horn ist eigentlich ein langer Zahn.",
+                "prequizdescription": "Einhorn im Wasser."
+            },
+            {
+                "question": "Was passiert im Sommer in der Arktis?",
+                "options": [
+                    "Sonne geht nicht unter",
+                    "Es schneit immer",
+                    "Es wird heiß",
+                    "Alles trocknet aus"
+                ],
+                "answer": "Sonne geht nicht unter",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Man nennt das die Mitternachtssonne.",
+                "prequizdescription": "Helle Nächte."
+            },
+            {
+                "question": "Ist der Arktische Ozean groß oder klein?",
+                "options": [
+                    "Der Kleinste",
+                    "Der Größte",
+                    "Mittelgroß",
+                    "Riesig"
+                ],
+                "answer": "Der Kleinste",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Er ist viel kleiner als der Pazifik.",
+                "prequizdescription": "Größenvergleich."
+            },
+            {
+                "question": "Gibt es Pinguine in der Arktis?",
+                "options": [
+                    "Nein",
+                    "Ja",
+                    "Viele",
+                    "Nur im Zoo"
+                ],
+                "answer": "Nein",
+                "quizimage": "assets/images/penguin.png",
+                "trivia": "Pinguine leben auf der Südhalbkugel (Antarktis).",
+                "prequizdescription": "Verwechslungsgefahr!"
+            },
+            {
+                "question": "Wer wohnt am Nordpol (laut Geschichten)?",
+                "options": [
+                    "Weihnachtsmann",
+                    "Osterhase",
+                    "Zahnfee",
+                    "Batman"
+                ],
+                "answer": "Weihnachtsmann",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Aber in echt wohnen dort keine Menschen dauerhaft.",
+                "prequizdescription": "Ho Ho Ho."
+            },
+            {
+                "question": "Welches Tier hat lange Stoßzähne?",
+                "options": [
+                    "Walross",
+                    "Robbe",
+                    "Fisch",
+                    "Möwe"
+                ],
+                "answer": "Walross",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Sie nutzen die Zähne, um sich auf Eisschollen zu ziehen.",
+                "prequizdescription": "Zahnarzttermin?"
+            },
+            {
+                "question": "Warum schmilzt das Eis?",
+                "options": [
+                    "Klimawandel",
+                    "Zu viel Sonne",
+                    "Fische sind heiß",
+                    "Aliens"
+                ],
+                "answer": "Klimawandel",
+                "quizimage": "assets/images/arctic.png",
+                "trivia": "Die Erde wird wärmer, und das Eis schmilzt.",
+                "prequizdescription": "Ein ernstes Thema."
             }
         ]
     },
@@ -149,31 +656,161 @@
         "name": "Südlicher Ozean",
         "color": "bg-indigo-700",
         "oceanimage": "assets/images/southern.png",
-        "description": "Der Ozean, der die Antarktis umgibt.",
+        "description": "Der wilde Ozean, der die Antarktis umgibt.",
         "facts": [
-            "Der Südliche Ozean wurde erst im Jahr 2000 offiziell festgelegt.",
-            "Er ist bekannt für seine starken Stürme."
+            "Der Südliche Ozean wurde erst im Jahr 2000 offiziell als eigener Ozean anerkannt.",
+            "Er umringt den Kontinent Antarktis komplett.",
+            "Hier gibt es die stärksten Winde und höchsten Wellen der Welt.",
+            "Das Wasser ist sehr kalt, aber voller Leben (Krill).",
+            "Eisberge hier können so groß sein wie ganze Städte."
         ],
         "inhabitants": [
             {
                 "name": "Kaiserpinguin",
-                "description": "Die größte Pinguinart der Welt.",
+                "description": "Die größte Pinguinart. Sie brüten im tiefsten Winter auf dem Eis.",
                 "image": "assets/images/penguin.png"
+            },
+            {
+                "name": "Krill",
+                "description": "Kleine Krebstiere, die die Hauptnahrung für viele Wale sind.",
+                "image": "assets/images/southern.png"
+            },
+            {
+                "name": "See-Leopard",
+                "description": "Ein gefährlicher Jäger, der Pinguine frisst.",
+                "image": "assets/images/southern.png"
             }
         ],
         "quiz": [
             {
                 "question": "Was umgibt der Südliche Ozean?",
                 "options": [
-                    "Afrika",
-                    "Australien",
                     "Antarktis",
-                    "Südamerika"
+                    "Australien",
+                    "Afrika",
+                    "Amerika"
                 ],
                 "answer": "Antarktis",
                 "quizimage": "assets/images/quiz_southern.png",
-                "trivia": "Hier leben Pinguine, aber keine Eisbären!",
-                "prequizdescription": "Reise zum Südpol."
+                "trivia": "Er fließt einmal komplett um den Südpol herum.",
+                "prequizdescription": "Rundherum."
+            },
+            {
+                "question": "Welches Tier ist hier der König?",
+                "options": [
+                    "Kaiserpinguin",
+                    "Löwe",
+                    "Tiger",
+                    "Adler"
+                ],
+                "answer": "Kaiserpinguin",
+                "quizimage": "assets/images/penguin.png",
+                "trivia": "Sie überleben extrem kalte Temperaturen.",
+                "prequizdescription": "Majestätisch."
+            },
+            {
+                "question": "Wie ist das Wetter dort oft?",
+                "options": [
+                    "Stürmisch",
+                    "Ruhig",
+                    "Heiß",
+                    "Trocken"
+                ],
+                "answer": "Stürmisch",
+                "quizimage": "assets/images/southern.png",
+                "trivia": "Seefahrer nannten die Breiten 'Brüllende Vierziger'.",
+                "prequizdescription": "Festhalten!"
+            },
+            {
+                "question": "Was fressen die großen Wale hier?",
+                "options": [
+                    "Krill",
+                    "Pizza",
+                    "Algen",
+                    "Sand"
+                ],
+                "answer": "Krill",
+                "quizimage": "assets/images/southern.png",
+                "trivia": "Krill sind winzige Krebse, die in riesigen Schwärmen vorkommen.",
+                "prequizdescription": "Kleines Futter, großer Hunger."
+            },
+            {
+                "question": "Gibt es Eisbären im Südlichen Ozean?",
+                "options": [
+                    "Nein",
+                    "Ja",
+                    "Vielleicht",
+                    "Manchmal"
+                ],
+                "answer": "Nein",
+                "quizimage": "assets/images/polar_bear.png",
+                "trivia": "Eisbären leben nur im Norden (Arktis).",
+                "prequizdescription": "Falscher Pol."
+            },
+            {
+                "question": "Wann wurde er offiziell Ozean genannt?",
+                "options": [
+                    "Im Jahr 2000",
+                    "1900",
+                    "1500",
+                    "2020"
+                ],
+                "answer": "Im Jahr 2000",
+                "quizimage": "assets/images/southern.png",
+                "trivia": "Vorher zählte man ihn zu den anderen Ozeanen.",
+                "prequizdescription": "Ganz neu."
+            },
+            {
+                "question": "Wie groß können Eisberge hier sein?",
+                "options": [
+                    "Wie Städte",
+                    "Wie Autos",
+                    "Wie Bälle",
+                    "Wie Häuser"
+                ],
+                "answer": "Wie Städte",
+                "quizimage": "assets/images/southern.png",
+                "trivia": "Manche sind kilometerlang!",
+                "prequizdescription": "Riesige Eiswürfel."
+            },
+            {
+                "question": "Welcher Kontinent liegt in der Mitte?",
+                "options": [
+                    "Antarktis",
+                    "Europa",
+                    "Asien",
+                    "Afrika"
+                ],
+                "answer": "Antarktis",
+                "quizimage": "assets/images/southern.png",
+                "trivia": "Der kälteste Kontinent der Erde.",
+                "prequizdescription": "Eisiges Zentrum."
+            },
+            {
+                "question": "Wer jagt Pinguine?",
+                "options": [
+                    "See-Leopard",
+                    "Eisbär",
+                    "Hai",
+                    "Hund"
+                ],
+                "answer": "See-Leopard",
+                "quizimage": "assets/images/southern.png",
+                "trivia": "See-Leoparden sind sehr schnelle Robben.",
+                "prequizdescription": "Gefahr im Wasser."
+            },
+            {
+                "question": "Ist das Wasser warm oder kalt?",
+                "options": [
+                    "Sehr kalt",
+                    "Sehr warm",
+                    "Kochend",
+                    "Lauwarm"
+                ],
+                "answer": "Sehr kalt",
+                "quizimage": "assets/images/southern.png",
+                "trivia": "Es ist oft nahe am Gefrierpunkt.",
+                "prequizdescription": "Bibber."
             }
         ]
     }
