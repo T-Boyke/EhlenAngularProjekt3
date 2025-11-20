@@ -25,32 +25,6 @@ const initialState: QuizState = {
     isQuizActive: false,
     isQuizFinished: false,
     loading: false,
-};
-
-export const QuizStore = signalStore(
-    { providedIn: 'root' },
-    withState(initialState),
-    withComputed(({ oceans, currentOceanId, currentQuestionIndex, answers }) => ({
-        currentOcean: computed(() => oceans().find((o) => o.id === currentOceanId)),
-        currentQuestion: computed(() => {
-            const ocean = oceans().find((o) => o.id === currentOceanId);
-            return ocean?.quiz[currentQuestionIndex];
-        }),
-        totalQuestions: computed(() => {
-            const ocean = oceans().find((o) => o.id === currentOceanId);
-            return ocean?.quiz.length || 0;
-        }),
-        progress: computed(() => {
-            const ocean = oceans().find((o) => o.id === currentOceanId);
-            if (!ocean || ocean.quiz.length === 0) return 0;
-            return ((currentQuestionIndex()) / ocean.quiz.length) * 100;
-        }),
-        oceanProgress: computed(() => {
-            // Calculate progress for each ocean based on completed quizzes if we were persisting it
-            // For now, return a map or simple logic
-            return {};
-        })
-    })),
     withMethods((store, dataService = inject(DataService)) => ({
         loadOceans: rxMethod<void>(
             pipe(
