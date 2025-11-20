@@ -1,0 +1,180 @@
+[
+    {
+        "id": "pacific",
+        "name": "Pazifischer Ozean",
+        "color": "bg-blue-500",
+        "oceanimage": "assets/images/pacific.png",
+        "description": "Der größte und tiefste Ozean der Erde.",
+        "facts": [
+            "Der Pazifik bedeckt etwa ein Drittel der Erdoberfläche.",
+            "Er ist größer als alle Landflächen der Erde zusammen."
+        ],
+        "inhabitants": [
+            {
+                "name": "Blauwal",
+                "description": "Das größte Tier, das jemals gelebt hat.",
+                "image": "assets/images/blue_whale.png"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Welcher ist der größte Ozean?",
+                "options": [
+                    "Pazifik",
+                    "Atlantik",
+                    "Indik",
+                    "Arktis"
+                ],
+                "answer": "Pazifik",
+                "quizimage": "assets/images/quiz_pacific.png",
+                "trivia": "Der Pazifik ist so groß, dass alle Kontinente hineinpassen würden!",
+                "prequizdescription": "Lass uns sehen, was du über den Pazifik gelernt hast."
+            },
+            {
+                "question": "Wie heißt der tiefste Punkt im Pazifik?",
+                "options": [
+                    "Mariannengraben",
+                    "Tongagraben",
+                    "Javagraben",
+                    "Puerto-Rico-Graben"
+                ],
+                "answer": "Mariannengraben",
+                "quizimage": "assets/images/quiz_mariana.png",
+                "trivia": "Der Mariannengraben ist tiefer als der Mount Everest hoch ist.",
+                "prequizdescription": "Tief unten im Meer..."
+            }
+        ]
+    },
+    {
+        "id": "atlantic",
+        "name": "Atlantischer Ozean",
+        "color": "bg-cyan-600",
+        "oceanimage": "assets/images/atlantic.png",
+        "description": "Der zweitgrößte Ozean, der Amerika von Europa und Afrika trennt.",
+        "facts": [
+            "Der Atlantik wird jedes Jahr etwas breiter.",
+            "Im Atlantik liegt das berühmte Bermudadreieck."
+        ],
+        "inhabitants": [
+            {
+                "name": "Großer Tümmler",
+                "description": "Eine sehr bekannte und verspielte Delfinart.",
+                "image": "assets/images/dolphin.png"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Welcher Ozean liegt zwischen Amerika und Europa?",
+                "options": [
+                    "Pazifik",
+                    "Atlantik",
+                    "Indik",
+                    "Arktis"
+                ],
+                "answer": "Atlantik",
+                "quizimage": "assets/images/quiz_atlantic.png",
+                "trivia": "Der Atlantik ist nach Atlas aus der griechischen Mythologie benannt.",
+                "prequizdescription": "Überqueren wir den Atlantik!"
+            }
+        ]
+    },
+    {
+        "id": "indian",
+        "name": "Indischer Ozean",
+        "color": "bg-teal-500",
+        "oceanimage": "assets/images/indian.png",
+        "description": "Der wärmste Ozean der Welt.",
+        "facts": [
+            "Der Indische Ozean ist der wärmste Ozean.",
+            "Er grenzt an Asien, Afrika und Australien."
+        ],
+        "inhabitants": [
+            {
+                "name": "Clownfisch",
+                "description": "Ein bunter Fisch, der in Anemonen lebt.",
+                "image": "assets/images/clownfish.png"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Welcher Ozean ist der wärmste?",
+                "options": [
+                    "Pazifik",
+                    "Atlantik",
+                    "Indik",
+                    "Arktis"
+                ],
+                "answer": "Indik",
+                "quizimage": "assets/images/quiz_indian.png",
+                "trivia": "Wegen der Wärme gibt es hier besonders viele Korallenriffe.",
+                "prequizdescription": "Ab ins warme Wasser!"
+            }
+        ]
+    },
+    {
+        "id": "arctic",
+        "name": "Arktischer Ozean",
+        "color": "bg-sky-300",
+        "oceanimage": "assets/images/arctic.png",
+        "description": "Der kleinste und kälteste Ozean rund um den Nordpol.",
+        "facts": [
+            "Der Arktische Ozean ist der kleinste Ozean.",
+            "Er ist die meiste Zeit des Jahres von Eis bedeckt."
+        ],
+        "inhabitants": [
+            {
+                "name": "Eisbär",
+                "description": "Der König der Arktis.",
+                "image": "assets/images/polar_bear.png"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Welches Tier lebt NUR in der Arktis?",
+                "options": [
+                    "Pinguin",
+                    "Eisbär",
+                    "Känguru",
+                    "Delfin"
+                ],
+                "answer": "Eisbär",
+                "quizimage": "assets/images/quiz_polar_bear.png",
+                "trivia": "Eisbären haben schwarze Haut unter ihrem weißen Fell, um Wärme zu speichern.",
+                "prequizdescription": "Zieh dich warm an!"
+            }
+        ]
+    },
+    {
+        "id": "southern",
+        "name": "Südlicher Ozean",
+        "color": "bg-indigo-700",
+        "oceanimage": "assets/images/southern.png",
+        "description": "Der Ozean, der die Antarktis umgibt.",
+        "facts": [
+            "Der Südliche Ozean wurde erst im Jahr 2000 offiziell festgelegt.",
+            "Er ist bekannt für seine starken Stürme."
+        ],
+        "inhabitants": [
+            {
+                "name": "Kaiserpinguin",
+                "description": "Die größte Pinguinart der Welt.",
+                "image": "assets/images/penguin.png"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Was umgibt der Südliche Ozean?",
+                "options": [
+                    "Afrika",
+                    "Australien",
+                    "Antarktis",
+                    "Südamerika"
+                ],
+                "answer": "Antarktis",
+                "quizimage": "assets/images/quiz_southern.png",
+                "trivia": "Hier leben Pinguine, aber keine Eisbären!",
+                "prequizdescription": "Reise zum Südpol."
+            }
+        ]
+    }
+]
