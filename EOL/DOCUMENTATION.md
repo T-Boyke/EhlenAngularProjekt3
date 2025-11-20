@@ -8,8 +8,8 @@ The application follows the **MVVM (Model-View-ViewModel)** architecture pattern
 
 ```mermaid
 graph TD
-    User[User] --> View[View (Components)]
-    View --> ViewModel[ViewModel (SignalStore)]
+    User[User] --> View["View (Components)"]
+    View --> ViewModel["ViewModel (SignalStore)"]
     ViewModel --> Model[Model (Interfaces)]
     ViewModel --> Service[DataService]
     Service --> Data[JSON Data]
