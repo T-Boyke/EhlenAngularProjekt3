@@ -20,7 +20,7 @@ import { NgClass } from '@angular/common';
           <!-- Image Side -->
           <div class="w-full md:w-1/2 h-64 md:h-80 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center">
              <img [src]="currentSlide().image" [alt]="currentSlide().title" class="w-full h-full object-cover"
-                  onerror="this.src='assets/images/pacific.png'">
+                  onerror="this.src='/assets/images/pacific.png'">
           </div>
 
           <!-- Content Side -->

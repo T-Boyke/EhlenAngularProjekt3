@@ -10,11 +10,12 @@ type QuizState = {
     currentOceanId: string | null;
     currentQuestionIndex: number;
     score: number;
-    answers: { questionIndex: number; selectedOption: string; isCorrect: boolean }[];
+    answers: { questionId: string; answer: string; isCorrect: boolean }[];
     isQuizActive: boolean;
     isQuizFinished: boolean;
     loading: boolean;
     completedOceans: string[]; // IDs of oceans with perfect score
+    masterMode: boolean;
 };
 
 const initialState: QuizState = {
@@ -27,27 +28,29 @@ const initialState: QuizState = {
     isQuizFinished: false,
     loading: false,
     completedOceans: [],
+    masterMode: false
 };
 
 export const QuizStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
-    withComputed(({ oceans, currentOceanId, currentQuestionIndex, answers, completedOceans }) => ({
-        currentOcean: computed(() => oceans().find((o) => o.id === currentOceanId())),
+    withComputed((store) => ({
+        currentOcean: computed(() => store.oceans().find(o => o.id === store.currentOceanId())),
         currentQuestion: computed(() => {
-            const ocean = oceans().find((o) => o.id === currentOceanId());
-            return ocean?.quiz[currentQuestionIndex()];
+            const ocean = store.oceans().find(o => o.id === store.currentOceanId());
+            return ocean?.quiz[store.currentQuestionIndex()] || null;
         }),
         totalQuestions: computed(() => {
-            const ocean = oceans().find((o) => o.id === currentOceanId());
+            const ocean = store.oceans().find((o) => o.id === store.currentOceanId());
             return ocean?.quiz.length || 0;
         }),
         progress: computed(() => {
-            const ocean = oceans().find((o) => o.id === currentOceanId());
+            const ocean = store.oceans().find(o => o.id === store.currentOceanId());
             if (!ocean || ocean.quiz.length === 0) return 0;
-            return ((currentQuestionIndex()) / ocean.quiz.length) * 100;
+            return ((store.currentQuestionIndex()) / ocean.quiz.length) * 100;
         }),
-        isOceanCompleted: computed(() => (oceanId: string) => completedOceans().includes(oceanId))
+        isOceanCompleted: computed(() => (oceanId: string) => store.completedOceans().includes(oceanId)),
+        isMasterUnlocked: computed(() => store.completedOceans().length >= 5)
     })),
     withMethods((store, dataService = inject(DataService)) => ({
         loadOceans: rxMethod<void>(
@@ -68,54 +71,83 @@ export const QuizStore = signalStore(
             )
         ),
         selectOcean(oceanId: string) {
-            patchState(store, { currentOceanId: oceanId, currentQuestionIndex: 0, score: 0, answers: [], isQuizActive: false, isQuizFinished: false });
+            patchState(store, { currentOceanId: oceanId, currentQuestionIndex: 0, score: 0, answers: [], isQuizActive: false, isQuizFinished: false, masterMode: false });
         },
         startQuiz() {
-            patchState(store, { isQuizActive: true, currentQuestionIndex: 0, score: 0, answers: [], isQuizFinished: false });
+            patchState(store, { isQuizActive: true, currentQuestionIndex: 0, score: 0, answers: [], isQuizFinished: false, masterMode: false });
         },
-        answerQuestion(selectedOption: string) {
-            const currentQuestion = store.currentQuestion();
-            if (!currentQuestion) return;
+        startMasterQuiz() {
+            const allQuestions = store.oceans().flatMap(o => o.quiz);
+            // Shuffle all questions
+            const shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
 
-            const isCorrect = selectedOption === currentQuestion.answer;
-            const newScore = isCorrect ? store.score() + 1 : store.score();
+            // Create a dummy "Master Ocean" to hold these questions
+            const masterOcean: Ocean = {
+                id: 'master',
+                name: 'Master Quiz',
+                color: 'bg-purple-600',
+                oceanimage: '/assets/images/pacific.png', // Placeholder
+                description: 'Das ultimative Quiz!',
+                facts: [],
+                inhabitants: [],
+                quiz: shuffledQuestions
+            };
 
-            const newAnswers = [
-                ...store.answers(),
-                { questionIndex: store.currentQuestionIndex(), selectedOption, isCorrect }
-            ];
-
+            // We need to temporarily add this master ocean to the store or handle it differently.
+            // Easier approach: Add a 'master' ocean to the oceans array if it doesn't exist, or update it.
+            const oceans = store.oceans().filter(o => o.id !== 'master');
             patchState(store, {
-                score: newScore,
-                answers: newAnswers
+                oceans: [...oceans, masterOcean],
+                currentOceanId: 'master',
+                currentQuestionIndex: 0,
+                score: 0,
+                answers: [],
+                isQuizActive: true,
+                isQuizFinished: false,
+                masterMode: true
             });
         },
-        nextQuestion() {
-            const nextIndex = store.currentQuestionIndex() + 1;
-            if (nextIndex < store.totalQuestions()) {
-                patchState(store, { currentQuestionIndex: nextIndex });
-            } else {
-                // Quiz Finished
-                const isPerfect = store.score() === store.totalQuestions();
-                const currentId = store.currentOceanId();
+        answerQuestion(answer: string) {
+            const currentOcean = store.oceans().find(o => o.id === store.currentOceanId());
+            const currentQuestion = currentOcean?.quiz[store.currentQuestionIndex()];
 
-                let newCompleted = store.completedOceans();
-                if (isPerfect && currentId && !newCompleted.includes(currentId)) {
-                    newCompleted = [...newCompleted, currentId];
-                }
-
-                patchState(store, {
-                    isQuizFinished: true,
-                    isQuizActive: false,
-                    completedOceans: newCompleted
-                });
+            if (currentQuestion) {
+                const isCorrect = answer === currentQuestion.answer;
+                patchState(store, (state) => ({
+                    score: isCorrect ? state.score + 1 : state.score,
+                    answers: [...state.answers, { questionId: currentQuestion.question, answer, isCorrect }]
+                }));
             }
         },
-        resetQuiz() {
+        nextQuestion() {
+            patchState(store, (state) => {
+                const nextIndex = state.currentQuestionIndex + 1;
+                const currentOcean = state.oceans.find(o => o.id === state.currentOceanId);
+
+                // Check if quiz finished
+                if (currentOcean && nextIndex >= currentOcean.quiz.length) {
+                    // If perfect score AND not master mode, mark ocean as completed
+                    if (!state.masterMode && state.score === currentOcean.quiz.length) {
+                        const completed = [...state.completedOceans];
+                        if (!completed.includes(state.currentOceanId!)) {
+                            completed.push(state.currentOceanId!);
+                        }
+                        return { currentQuestionIndex: nextIndex, completedOceans: completed, isQuizActive: false, isQuizFinished: true };
+                    }
+                    return { currentQuestionIndex: nextIndex, isQuizActive: false, isQuizFinished: true }; // End quiz if master mode or not perfect score
+                }
+
+                return { currentQuestionIndex: nextIndex };
+            });
+        },
+        restartQuiz() {
             patchState(store, { currentQuestionIndex: 0, score: 0, answers: [], isQuizActive: true, isQuizFinished: false });
         },
+        resetStore() {
+            patchState(store, initialState);
+        },
         exitQuiz() {
-            patchState(store, { isQuizActive: false, isQuizFinished: false, currentOceanId: null });
+            patchState(store, { isQuizActive: false, isQuizFinished: false, currentOceanId: null, masterMode: false });
         }
     }))
 );

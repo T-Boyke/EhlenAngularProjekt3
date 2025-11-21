@@ -1,10 +1,35 @@
 # Earth Ocean Learning - Documentation
 
-## 1. Architekturentwurf (Architecture Design)
+## 1. Projektübersicht (Project Overview)
 
-The application follows the **MVVM (Model-View-ViewModel)** architecture pattern, adapted for Angular with SignalStore.
+**Earth Ocean Learning** ist eine interaktive Webanwendung für Kinder (7-9 Jahre), die spielerisch Wissen über die Ozeane und ihre Bewohner vermittelt. Die Anwendung kombiniert einen Lernbereich mit einem Quiz-Modus, um das Gelernte zu festigen.
 
-### Architecture Diagram (Mermaid)
+### Hauptfunktionen
+*   **Interaktive Ozean-Karte**: Auswahl der 5 Weltmeere.
+*   **Lernmodus**: Fakten und Bewohner zu jedem Ozean entdecken.
+*   **Quiz-Modus**: Fragen beantworten und Sterne sammeln.
+*   **Master Quiz Modus**: Ein freischaltbares Zeit-Quiz über alle Ozeane (nach Sammeln aller 5 Sterne).
+*   **Fortschrittssystem**: Speicherung des Lernfortschritts (Sterne).
+*   **Responsive Design**: Optimiert für Desktop und Tablet.
+
+---
+
+## 2. Technologiestack (Tech Stack)
+
+*   **Framework**: Angular 21 (Standalone Components)
+*   **State Management**: NgRx SignalStore
+*   **Styling**: Tailwind CSS v4
+*   **Build Tool**: Angular CLI
+*   **Sprache**: TypeScript
+*   **Daten**: JSON (lokal)
+
+---
+
+## 3. Architektur (Architecture)
+
+Die Anwendung folgt dem **MVVM (Model-View-ViewModel)** Muster, angepasst für Angular mit SignalStore.
+
+### Architektur-Diagramm
 
 ```mermaid
 graph TD
@@ -32,7 +57,7 @@ graph TD
     end
 ```
 
-## 2. Komponentendiagramm (Component Diagram)
+### Komponentendiagramm
 
 ```mermaid
 graph TD
@@ -49,94 +74,98 @@ graph TD
     Result --> QuizStore
 ```
 
-## 3. Klassendiagramm (Class Diagram)
+---
 
-```mermaid
-classDiagram
-    class Ocean {
-        +id: string
-        +name: string
-        +facts: string[]
-        +quiz: QuizQuestion[]
-    }
+## 4. Projektstruktur (Project Structure)
 
-    class QuizStore {
-        +oceans: Signal<Ocean[]>
-        +currentOcean: Signal<Ocean>
-        +score: Signal<number>
-        +loadOceans()
-        +startQuiz()
-        +answerQuestion()
-    }
-
-    class DataService {
-        +getOceans(): Observable<Ocean[]>
-    }
-
-    DataService --> Ocean
-    QuizStore --> DataService
+```
+src/
+├── app/
+│   ├── features/           # Feature-Module (Standalone Components)
+│   │   ├── ocean-facts/    # Fakten-Anzeige & Karussell
+│   │   ├── ocean-selection/# Auswahl der Ozeane & Master Quiz Button
+│   │   ├── quiz/           # Quiz-Logik & UI
+│   │   ├── quiz-result/    # Ergebnisanzeige & Zertifikat
+│   │   └── start/          # Startbildschirm
+│   ├── models/             # TypeScript Interfaces (Ocean, QuizQuestion)
+│   ├── services/           # DataService (JSON Fetching)
+│   ├── store/              # QuizStore (State Management)
+│   ├── app.routes.ts       # Routing Konfiguration
+│   └── app.config.ts       # App Konfiguration
+├── assets/
+│   ├── data/               # ocean-data.json (Inhalte)
+│   └── images/             # Bilder für Ozeane & Tiere
+└── styles.css              # Globale Styles & Tailwind Imports
 ```
 
-## 4. Sequenzdiagramm (Sequence Diagram: Quiz Flow)
+---
 
-```mermaid
-sequenceDiagram
-    actor User
-    participant View as QuizComponent
-    participant Store as QuizStore
-    
-    User->>View: Select Option
-    View->>Store: answerQuestion(option)
-    Store->>Store: Update Score & Answers
-    Store-->>View: Update State (Feedback)
-    View->>User: Show Feedback (Trivia)
-    User->>View: Click Next
-    View->>Store: nextQuestion()
-    Store->>Store: Update Index
-    alt Quiz Finished
-        Store-->>View: isQuizFinished = true
-        View->>User: Navigate to Result
-    else Next Question
-        Store-->>View: New Question
-    end
+## 5. Installation & Setup
+
+### Voraussetzungen
+*   Node.js (v18 oder höher)
+*   npm
+
+### Installation
+```bash
+git clone <repository-url>
+cd EOL
+npm install
 ```
 
-## 5. Test Cases
+### Starten (Development)
+```bash
+npm start
+```
+Die Anwendung ist unter `http://localhost:4200` erreichbar.
 
-| ID | Test Case | Preconditions | Steps | Expected Result |
-|----|-----------|---------------|-------|-----------------|
-| TC01 | Start App | App loaded | Open URL | Start screen appears with "Los geht's" button |
-| TC02 | Select Ocean | Start screen | Click "Los geht's", Click Ocean Card | Navigate to Facts, show correct ocean info |
-| TC03 | Start Quiz | Facts screen | Click "Quiz Starten" | Navigate to Quiz, show first question |
-| TC04 | Answer Correct | Quiz screen | Click correct option | Option turns green, trivia appears |
-| TC05 | Answer Wrong | Quiz screen | Click wrong option | Option turns red, correct turns green, trivia appears |
-| TC06 | Finish Quiz | Quiz screen | Answer last question, Click Next | Navigate to Result, show score |
-| TC07 | Perfect Score | Quiz screen | Answer all correctly | Result screen shows confetti and "Fantastisch" |
+---
 
-## 6. Testprotokolle (Test Protocols)
+## 6. Test Cases
 
-*To be filled during manual testing.*
+| ID | Test Case | Vorbedingung | Schritte | Erwartetes Ergebnis |
+|----|-----------|--------------|----------|-------------------|
+| TC01 | App Start | - | URL öffnen | Startbildschirm mit "Los geht's" Button erscheint. |
+| TC02 | Ozean Auswahl | Startbildschirm | Klick "Los geht's" | Ozean-Auswahl mit 5 Karten erscheint. |
+| TC03 | Fakten Ansehen | Ozean-Auswahl | Klick auf Ozean | Fakten-Seite des Ozeans öffnet sich. |
+| TC04 | Quiz Starten | Fakten-Seite | Klick "Quiz Starten" | Quiz beginnt mit erster Frage. |
+| TC05 | Frage Beantworten (Richtig) | Quiz | Richtige Antwort wählen | Option wird grün, Feedback erscheint. |
+| TC06 | Frage Beantworten (Falsch) | Quiz | Falsche Antwort wählen | Option rot, richtige grün, Feedback erscheint. |
+| TC07 | Quiz Beenden | Quiz | Letzte Frage beantworten | Ergebnis-Seite zeigt Score & Stern (bei 100%). |
+| TC08 | Master Quiz Unlock | 5 Sterne gesammelt | Ozean-Auswahl öffnen | "Master Quiz" Button ist aktiv (lila). |
+| TC09 | Master Quiz Timer | Master Quiz | Quiz starten | 5-Sekunden Timer läuft pro Frage. |
 
-| Date | Tester | Test Case | Status | Notes |
-|------|--------|-----------|--------|-------|
-| 2025-11-20 | Dev | TC01 | Pass | - |
-| 2025-11-20 | Dev | TC02 | Pass | - |
-| 2025-11-20 | Dev | TC03 | Pass | - |
+---
 
 ## 7. Benutzerhandbuch (User Manual)
 
-### Starten der Anwendung
-Öffnen Sie die Anwendung in einem modernen Webbrowser. Sie werden vom Startbildschirm begrüßt.
+### 1. Starten
+Öffnen Sie die App im Browser. Klicken Sie auf **"Los geht's"**, um Ihre Reise zu beginnen.
 
-### Ozean Auswählen
-Klicken Sie auf "Los geht's", um zur Ozean-Auswahl zu gelangen. Hier sehen Sie 5 Karten für die verschiedenen Ozeane. Klicken Sie auf eine Karte, um mehr zu erfahren.
+### 2. Ozean Auswählen
+Wählen Sie einen der 5 Ozeane aus. Jeder Ozean hat seine eigene Farbe und Themenwelt.
+*   **Gesperrtes Master Quiz**: Unten sehen Sie das "Ultimative Quiz". Dieses schaltet sich erst frei, wenn Sie in allen 5 Ozeanen einen Stern gesammelt haben.
 
-### Lernen
-Im Lern-Bereich können Sie durch Fakten und Bewohner des Ozeans blättern. Nutzen Sie die Pfeiltasten oder die Schaltflächen auf dem Bildschirm.
+### 3. Lernen & Entdecken
+Auf der Ozean-Seite lernen Sie spannende Fakten und lernen die Bewohner kennen. Nutzen Sie die Pfeile, um durch die Informationen zu blättern.
 
-### Quiz Spielen
-Wenn Sie bereit sind, klicken Sie auf "Quiz Starten". Beantworten Sie die Fragen durch Klicken auf die Antwortmöglichkeiten.
-- **Grün**: Richtig!
-- **Rot**: Leider falsch.
+### 4. Quiz Spielen
+Testen Sie Ihr Wissen!
+*   Beantworten Sie alle Fragen richtig, um einen **Stern** zu erhalten.
+*   Haben Sie einen Fehler gemacht? Kein Problem, versuchen Sie es einfach noch einmal!
 
-Am Ende sehen Sie Ihr Ergebnis. Viel Erfolg!
+### 5. Master Quiz (Experten-Modus)
+Sobald Sie alle 5 Sterne haben:
+*   Klicken Sie auf der Auswahlseite auf **"Ultimatives Quiz Starten"**.
+*   **Achtung**: Hier läuft die Zeit! Sie haben nur 5 Sekunden pro Frage.
+*   Fragen kommen gemischt aus allen Ozeanen.
+*   Am Ende winkt eine spezielle **Urkunde**!
+
+---
+
+## 8. Zukünftige Verbesserungen (Roadmap)
+
+*   [ ] Sound-Effekte & Hintergrundmusik
+*   [ ] Mehrsprachigkeit (i18n)
+*   [ ] PWA Support (Offline-Fähigkeit)
+*   [ ] 3D-Elemente für Ozean-Karten
