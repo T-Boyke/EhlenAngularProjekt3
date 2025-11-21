@@ -33,9 +33,9 @@ Die Anwendung folgt dem **MVVM (Model-View-ViewModel)** Muster, angepasst für A
 
 ```mermaid
 graph TD
-    User[User] --> View[View (Components)]
-    View --> ViewModel[ViewModel (SignalStore)]
-    ViewModel --> Model[Model (Interfaces)]
+    User[User] --> View["View (Components)"]
+    View --> ViewModel["ViewModel (SignalStore)"]
+    ViewModel --> Model["Model (Interfaces)"]
     ViewModel --> Service[DataService]
     Service --> Data[JSON Data]
     
