@@ -149,21 +149,21 @@ Die Kostenplanung basiert auf einem fiktiven internen Verrechnungssatz.
 Der Benutzer (Kind) interagiert primär lesend und spielend mit dem System.
 
 ```mermaid
-usecaseDiagram
-    actor "Kind (User)" as Kind
-    package "Earth Ocean Learning" {
-        usecase "Ozean auswählen" as UC1
-        usecase "Fakten ansehen" as UC2
-        usecase "Quiz spielen" as UC3
-        usecase "Fortschritt einsehen" as UC4
-        usecase "Master-Quiz spielen" as UC5
-    }
+graph LR
+    Kind((Kind / User))
+    subgraph "Earth Ocean Learning"
+        UC1(Ozean auswählen)
+        UC2(Fakten ansehen)
+        UC3(Quiz spielen)
+        UC4(Fortschritt einsehen)
+        UC5(Master-Quiz spielen)
+    end
     Kind --> UC1
     Kind --> UC2
     Kind --> UC3
     Kind --> UC4
     Kind --> UC5
-    UC5 ..> UC4 : include
+    UC5 -.->|include| UC4
 ```
 
 ### 3.2 Architekturentwurf
