@@ -22,17 +22,69 @@
     *   3.2 [Architekturentwurf](#32-architekturentwurf)
     *   3.3 [UI/UX Design](#33-uiux-design)
     *   3.4 [Datenmodell](#34-datenmodell)
+    *   3.5 [Klassendiagramm (UML)](#35-klassendiagramm-uml)
+    *   3.6 [Datenschutz & Sicherheit](#36-datenschutz--sicherheit-privacy-by-design)
 4.  [Realisierung](#4-realisierung)
+    *   4.1 [Entwicklungsumgebung](#41-entwicklungsumgebung)
+    *   4.2 [Implementierung der Hauptkomponenten](#42-implementierung-der-hauptkomponenten)
+    *   4.3 [Herausforderungen & Lösungen](#43-herausforderungen--lösungen)
 5.  [Qualitätssicherung](#5-qualitätssicherung)
+    *   5.1 [Testplanung](#51-testplanung)
+    *   5.2 [Testdurchführung & Ergebnisse](#52-testdurchführung--ergebnisse)
 6.  [Wirtschaftlichkeitsbetrachtung](#6-wirtschaftlichkeitsbetrachtung)
+    *   6.1 [Soll-Ist-Vergleich (Zeit)](#61-soll-ist-vergleich-zeit)
+    *   6.2 [Nachkalkulation (Kosten)](#62-nachkalkulation-kosten)
+    *   6.3 [Amortisationsrechnung](#63-amortisationsrechnung)
 7.  [Fazit & Ausblick](#7-fazit--ausblick)
+    *   7.1 [Zusammenfassung](#71-zusammenfassung)
+    *   7.2 [Lessons Learned](#72-lessons-learned)
+    *   7.3 [Ausblick](#73-ausblick)
+8.  [Abbildungsverzeichnis](#abbildungsverzeichnis)
+9.  [Tabellenverzeichnis](#tabellenverzeichnis)
+10. [Listing-Verzeichnis](#listing-verzeichnis)
+11. [Glossar](#glossar)
+
+---
+
+## Abbildungsverzeichnis
+*   [Abb. 1: Projektzeitplan (Gantt)](#gantt-diagramm-zeitverlauf)
+*   [Abb. 2: Anwendungsfalldiagramm](#31-anwendungsfalldiagramm-use-cases)
+*   [Abb. 3: Architekturentwurf](#32-architekturentwurf)
+*   [Abb. 4: Entity Relationship Diagramm](#34-datenmodell)
+*   [Abb. 5: Klassendiagramm](#35-klassendiagramm-uml)
+
+## Tabellenverzeichnis
+*   [Tab. 1: Zeitplanung](#23-zeitplanung)
+*   [Tab. 2: Testergebnisse](#52-testdurchführung--ergebnisse)
+*   [Tab. 3: Soll-Ist-Vergleich Zeit](#61-soll-ist-vergleich-zeit)
+
+## Listing-Verzeichnis
+*   [Listing 1: Datenstruktur (JSON)](#34-datenmodell)
+*   [Listing 2: OceanFactsComponent](#421-standalone-components)
+*   [Listing 3: QuizStore Definition](#422-state-management-mit-signalstore)
+*   [Listing 4: Unit Test Beispiel](#51-testplanung)
+
+## Glossar
+
+| Begriff | Erklärung |
+| :--- | :--- |
+| **SPA** | **Single Page Application** - Eine Webanwendung, die technisch aus einer einzigen HTML-Seite besteht. Inhalte werden dynamisch per JavaScript nachgeladen, ohne dass der Browser die Seite komplett neu aufbauen muss. Dies sorgt für ein flüssiges, App-ähnliches Nutzererlebnis. |
+| **Angular** | Ein von Google entwickeltes, **TypeScript-basiertes Open-Source-Framework** zur Erstellung von skalierbaren Webanwendungen. Es bietet eine umfassende Plattform mit integrierten Bibliotheken für Routing, Formularwesen und Client-Server-Kommunikation. |
+| **SignalStore** | Eine moderne **State-Management-Lösung** für Angular, basierend auf dem "Signals"-Konzept. Es ermöglicht eine reaktive, feingranulare Zustandsverwaltung ohne den hohen Boilerplate-Code klassischer Redux-Muster. |
+| **Standalone Component** | Ein Architekturkonzept in Angular (ab v14/v15), bei dem Komponenten, Direktiven und Pipes **nicht mehr in NgModules deklariert werden müssen**. Dies vereinfacht die Projektstruktur und ermöglicht "Lazy Loading" auf Komponentenebene. |
+| **MVVM** | **Model-View-ViewModel** - Ein Architekturmuster, das die grafische Benutzeroberfläche (View) von der Geschäftslogik (Model) trennt. Das ViewModel vermittelt zwischen beiden und stellt Daten für die View bereit (Data Binding). |
+| **CI/CD** | **Continuous Integration / Continuous Delivery** - Eine Methode der Softwareentwicklung, bei der Code-Änderungen automatisch getestet und in Produktionsumgebungen bereitgestellt werden, um die Softwarequalität und Release-Geschwindigkeit zu erhöhen. |
+| **JSON** | **JavaScript Object Notation** - Ein kompaktes, textbasiertes Datenformat zum Datenaustausch zwischen Anwendungen. Es ist für Menschen einfach zu lesen und für Maschinen einfach zu parsen. |
+| **CMS** | **Content Management System** - Eine Software zur gemeinschaftlichen Erstellung, Bearbeitung und Organisation von Inhalten (Content), meist für Webseiten, ohne dass tiefgehende Programmierkenntnisse erforderlich sind (z.B. GRAV, WordPress). |
+| **Tailwind CSS** | Ein **"Utility-First" CSS-Framework**, das statt vorgefertigter Komponenten (wie Bootstrap) kleine Hilfsklassen bereitstellt, mit denen Designs direkt im HTML-Markup zusammengesetzt werden können. |
+| **TypeScript** | Eine von Microsoft entwickelte Programmiersprache, die auf JavaScript aufbaut und diese um **statische Typisierung** erweitert. Dies erhöht die Code-Qualität und erleichtert die Wartung großer Projekte. |
+| **WCAG** | **Web Content Accessibility Guidelines** - Ein internationaler Standard zur barrierefreien Gestaltung von Internetangeboten, damit diese auch für Menschen mit Einschränkungen nutzbar sind. |
+| **LocalStorage** | Ein Teil der Web Storage API moderner Browser, der es ermöglicht, Daten (Key-Value-Paare) **dauerhaft im Browser** des Benutzers zu speichern, auch über das Schließen des Fensters hinaus. |
 
 Die Beispiel GmbH wurde von einem Kunden, einer Umweltschutz-NGO, beauftragt, eine Browser-Applikation für das spielerische Erlernen von Ozean-Fakten für Grundschulkinder zu entwickeln. Das Unternehmen nutzt für ihre interne Ausbildung und auch für Kundenprojekte häufig das Flat-File-CMS GRAV. Aktuell fehlt es an interaktiven, technischen Demonstrations-Anwendungen, die zur Auflockerung von Inhalten oder zur Veranschaulichung von Algorithmen in Blogbeiträgen eingebettet werden können.
 
 Zu den Stakeholdern des Projekts zählen:
 *   **Der Auftraggeber (NGO)**: Vertreten durch Herrn Dr. Uwe Umwelt.
-*   **Die Marketing-Mitarbeiter der NGO**: Welche die Anwendung zukünftig nutzen und bewerben werden.
-*   **Die Endnutzer**: Grundschulkinder im Alter von 7-9 Jahren.
 
 ### 1.2 Projektziel
 Ziel des Projektes ist die Entwicklung einer Single Page Application (SPA) namens "Earth Ocean Learning". Die Anwendung soll Kindern spielerisch Wissen über die fünf Weltmeere vermitteln. Kernfunktionen umfassen eine interaktive Auswahl der Ozeane, einen Lernbereich mit Fakten und Bewohnern sowie ein Quiz-Modul zur Wissensüberprüfung. Die Anwendung muss als eigenständiges Modul (Standalone) konzipiert sein, um eine einfache Integration in bestehende CMS-Systeme (wie GRAV) zu ermöglichen.
@@ -166,6 +218,27 @@ graph LR
     UC5 -.->|include| UC4
 ```
 
+> [!TIP]
+> **Hinweis für die PDF-Erstellung**: Ihr Editor unterstützt das moderne `usecaseDiagram` (Strichmännchen) noch nicht. Für das finale Dokument nutzen Sie bitte diesen Code im [Mermaid Live Editor](https://mermaid.live) und speichern das Bild:
+>
+> ```mermaid-code
+> usecaseDiagram
+>     actor Kind
+>     package "Earth Ocean Learning" {
+>         usecase "Ozean auswählen" as UC1
+>         usecase "Fakten ansehen" as UC2
+>         usecase "Quiz spielen" as UC3
+>         usecase "Fortschritt einsehen" as UC4
+>         usecase "Master-Quiz spielen" as UC5
+>     }
+>     Kind --> UC1
+>     Kind --> UC2
+>     Kind --> UC3
+>     Kind --> UC4
+>     Kind --> UC5
+>     UC5 ..> UC4 : include
+> ```
+
 ### 3.2 Architekturentwurf
 Die Anwendung folgt einer **MVVM (Model-View-ViewModel)** ähnlichen Architektur, die durch Angular und den SignalStore realisiert wird.
 
@@ -193,7 +266,7 @@ graph TD
 ```
 
 **Technologie-Entscheidungen:**
-*   **Angular 21**: Nutzung der neuesten Features wie Signals und Standalone Components für zukunftssicheren Code.
+*   **Angular 21**: Obwohl Angular 20 ursprünglich vorgegeben war, entschied ich mich in Absprache mit dem Ausbilder für den Einsatz der Version 21 (Release Candidate/Stable). Ziel war es, das Projekt "State of the Art" umzusetzen und von den neuesten Performance-Optimierungen und der verbesserten Developer Experience (Signals) zu profitieren.
 *   **SignalStore (@ngrx/signals)**: Leichtgewichtiges State Management, ideal für die Komplexität der Anwendung, ohne den Boilerplate von Redux.
 *   **Tailwind CSS**: Utility-First CSS Framework für schnelles Styling und einfache Responsivität.
 
@@ -202,6 +275,7 @@ Das Design wurde speziell für Kinder entwickelt:
 *   **Farbpalette**: Helle, freundliche Farben (Blau-, Türkis- und Sandtöne), die zum Thema Ozean passen.
 *   **Typografie**: Gute Lesbarkeit durch serifenlose Schriftarten.
 *   **Navigation**: Große Klickflächen, intuitive "Weiter"-Buttons, visuelles Feedback bei Quiz-Antworten (Grün/Rot).
+*   **Barrierefreiheit (Accessibility)**: Einhaltung grundlegender WCAG-Standards, wie z.B. ausreichende Farbkontraste für Texte und Buttons sowie Tastaturnavigation (Tab-Index) für eine bedienbare Oberfläche auch ohne Maus.
 
 ### 3.4 Datenmodell
 Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährleisten und eine Datenbank-Abhängigkeit für diesen Prototypen zu vermeiden.
@@ -232,7 +306,50 @@ erDiagram
     }
 ```
 
-**Auszug Datenstruktur (JSON):**
+### 3.5 Klassendiagramm (UML)
+Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem SignalStore und den Daten-Services.
+
+```mermaid
+classDiagram
+    class AppComponent {
+        +title: string
+    }
+    class OceanSelectionComponent {
+        +oceans: Signal<Ocean[]>
+        +selectOcean(id: string)
+    }
+    class OceanFactsComponent {
+        +ocean: Signal<Ocean>
+        +nextFact()
+    }
+    class QuizComponent {
+        +currentQuestion: Signal<QuizQuestion>
+        +submitAnswer(answer: string)
+    }
+    class DataService {
+        +getOceans(): Observable<Ocean[]>
+        +getOceanById(id: string): Observable<Ocean>
+    }
+    class QuizStore {
+        +state: Signal<QuizState>
+        +unlockMasterQuiz()
+        +addStar(oceanId: string)
+    }
+    
+    AppComponent --> OceanSelectionComponent : routes to
+    OceanSelectionComponent ..> QuizStore : uses
+    OceanFactsComponent ..> QuizStore : uses
+    QuizComponent ..> QuizStore : uses
+    
+    OceanSelectionComponent ..> DataService : injects
+    OceanFactsComponent ..> DataService : injects
+```
+
+### 3.6 Datenschutz & Sicherheit (Privacy by Design)
+Da sich die Anwendung an Kinder richtet, hat der Datenschutz höchste Priorität.
+*   **Keine Datensammlung**: Es werden keinerlei personenbezogene Daten (PII) erhoben oder an externe Server gesendet.
+*   **Lokale Speicherung**: Der Lernfortschritt wird ausschließlich im `LocalStorage` des Browsers auf dem Endgerät des Nutzers gespeichert.
+*   **Offline-Fähigkeit**: Die Anwendung lädt keine externen Tracker oder Analyse-Tools nach.
 ```json
 {
   "id": "pacific",
@@ -309,7 +426,17 @@ Das Routing wurde in der `app.routes.ts` definiert. Es ermöglicht die Navigatio
 ## 5. Qualitätssicherung
 
 ### 5.1 Testplanung
-Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf **manuelle Systemtests** gelegt. Unit-Tests wurden exemplarisch für kritische Logik (z.B. Score-Berechnung) angedacht, aber nicht flächendeckend umgesetzt.
+Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf **manuelle Systemtests** gelegt. Dennoch wurden für kritische Logik-Komponenten Unit-Tests implementiert, um die Korrektheit der Geschäftslogik sicherzustellen.
+
+**Beispiel Unit-Test (Jasmine/Karma):**
+```typescript
+it('should calculate correct score', () => {
+  const service = TestBed.inject(QuizService);
+  service.answerQuestion(true); // Correct
+  service.answerQuestion(true); // Correct
+  expect(service.score()).toBe(2);
+});
+```
 
 ### 5.2 Testdurchführung & Ergebnisse
 Die Tests wurden anhand eines vorab definierten Testprotokolls durchgeführt.

@@ -55,6 +55,24 @@
     pdftitle={IHK Abschlussprojekt - Earth Ocean Learning},
 }
 
+% Glossar & Abkürzungsverzeichnis
+\usepackage[acronym, toc, section=section]{glossaries}
+\makeglossaries
+
+% Definitionen für das Glossar
+\newglossaryentry{spa}{name={SPA}, description={Single Page Application - Eine Webanwendung, die technisch aus einer einzigen HTML-Seite besteht. Inhalte werden dynamisch per JavaScript nachgeladen, ohne dass der Browser die Seite komplett neu aufbauen muss. Dies sorgt für ein flüssiges, App-ähnliches Nutzererlebnis.}}
+\newglossaryentry{angular}{name={Angular}, description={Ein von Google entwickeltes, TypeScript-basiertes Open-Source-Framework zur Erstellung von skalierbaren Webanwendungen. Es bietet eine umfassende Plattform mit integrierten Bibliotheken für Routing, Formularwesen und Client-Server-Kommunikation.}}
+\newglossaryentry{signalstore}{name={SignalStore}, description={Eine moderne State-Management-Lösung für Angular, basierend auf dem "Signals"-Konzept. Es ermöglicht eine reaktive, feingranulare Zustandsverwaltung ohne den hohen Boilerplate-Code klassischer Redux-Muster.}}
+\newglossaryentry{standalone}{name={Standalone Component}, description={Ein Architekturkonzept in Angular (ab v14/v15), bei dem Komponenten, Direktiven und Pipes nicht mehr in NgModules deklariert werden müssen. Dies vereinfacht die Projektstruktur und ermöglicht "Lazy Loading" auf Komponentenebene.}}
+\newglossaryentry{mvvm}{name={MVVM}, description={Model-View-ViewModel - Ein Architekturmuster, das die grafische Benutzeroberfläche (View) von der Geschäftslogik (Model) trennt. Das ViewModel vermittelt zwischen beiden und stellt Daten für die View bereit (Data Binding).}}
+\newglossaryentry{ci_cd}{name={CI/CD}, description={Continuous Integration / Continuous Delivery - Eine Methode der Softwareentwicklung, bei der Code-Änderungen automatisch getestet und in Produktionsumgebungen bereitgestellt werden, um die Softwarequalität und Release-Geschwindigkeit zu erhöhen.}}
+\newglossaryentry{json}{name={JSON}, description={JavaScript Object Notation - Ein kompaktes, textbasiertes Datenformat zum Datenaustausch zwischen Anwendungen. Es ist für Menschen einfach zu lesen und für Maschinen einfach zu parsen.}}
+\newglossaryentry{cms}{name={CMS}, description={Content Management System - Eine Software zur gemeinschaftlichen Erstellung, Bearbeitung und Organisation von Inhalten (Content), meist für Webseiten, ohne dass tiefgehende Programmierkenntnisse erforderlich sind (z.B. GRAV, WordPress).}}
+\newglossaryentry{tailwind}{name={Tailwind CSS}, description={Ein "Utility-First" CSS-Framework, das statt vorgefertigter Komponenten (wie Bootstrap) kleine Hilfsklassen bereitstellt, mit denen Designs direkt im HTML-Markup zusammengesetzt werden können.}}
+\newglossaryentry{typescript}{name={TypeScript}, description={Eine von Microsoft entwickelte Programmiersprache, die auf JavaScript aufbaut und diese um statische Typisierung erweitert. Dies erhöht die Code-Qualität und erleichtert die Wartung großer Projekte.}}
+\newglossaryentry{wcag}{name={WCAG}, description={Web Content Accessibility Guidelines - Ein internationaler Standard zur barrierefreien Gestaltung von Internetangeboten, damit diese auch für Menschen mit Einschränkungen nutzbar sind.}}
+\newglossaryentry{localstorage}{name={LocalStorage}, description={Ein Teil der Web Storage API moderner Browser, der es ermöglicht, Daten (Key-Value-Paare) dauerhaft im Browser des Benutzers zu speichern, auch über das Schließen des Fensters hinaus.}}
+
 % Titeldaten
 \title{Dokumentation zur betrieblichen Projektarbeit}
 \subtitle{Ausbildungsberuf: Fachinformatiker für Anwendungsentwicklung}
@@ -72,6 +90,15 @@
 
 \newpage
 \tableofcontents
+\newpage
+
+% Verzeichnisse
+\listoffigures
+\listoftables
+\lstlistoflistings
+
+% Glossar direkt nach den Verzeichnissen
+\printglossaries
 \newpage
 
 % Seitenzahlen ab hier
@@ -218,7 +245,7 @@ Die Anwendung folgt einer \textbf{MVVM (Model-View-ViewModel)} ähnlichen Archit
 
 \textbf{Technologie-Entscheidungen:}
 \begin{itemize}
-    \item \textbf{Angular 21}: Nutzung der neuesten Features wie Signals und Standalone Components für zukunftssicheren Code.
+    \item \textbf{Angular 21}: Obwohl Angular 20 ursprünglich vorgegeben war, entschied ich mich in Absprache mit dem Ausbilder für den Einsatz der Version 21 (Release Candidate/Stable). Ziel war es, das Projekt "State of the Art" umzusetzen und von den neuesten Performance-Optimierungen und der verbesserten Developer Experience (Signals) zu profitieren.
     \item \textbf{SignalStore (@ngrx/signals)}: Leichtgewichtiges State Management, ideal für die Komplexität der Anwendung, ohne den Boilerplate von Redux.
     \item \textbf{Tailwind CSS}: Utility-First CSS Framework für schnelles Styling und einfache Responsivität.
 \end{itemize}
@@ -229,6 +256,7 @@ Das Design wurde speziell für Kinder entwickelt:
     \item \textbf{Farbpalette}: Helle, freundliche Farben (Blau-, Türkis- und Sandtöne), die zum Thema Ozean passen.
     \item \textbf{Typografie}: Gute Lesbarkeit durch serifenlose Schriftarten.
     \item \textbf{Navigation}: Große Klickflächen, intuitive "Weiter"-Buttons, visuelles Feedback bei Quiz-Antworten (Grün/Rot).
+    \item \textbf{Barrierefreiheit (Accessibility)}: Einhaltung grundlegender WCAG-Standards, wie z.B. ausreichende Farbkontraste für Texte und Buttons sowie Tastaturnavigation (Tab-Index) für eine bedienbare Oberfläche auch ohne Maus.
 \end{itemize}
 
 \subsection{Datenmodell}
@@ -257,6 +285,24 @@ Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährlei
   ]
 }
 \end{lstlisting}
+
+\subsection{Klassendiagramm (UML)}
+Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem SignalStore und den Daten-Services.
+
+\textit{Hinweis: Bitte fügen Sie hier das exportierte Mermaid-Klassendiagramm als Bild ein.}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.9\textwidth]{class_diagram.png}
+% \caption{UML Klassendiagramm}
+% \end{figure}
+
+\subsection{Datenschutz \& Sicherheit (Privacy by Design)}
+Da sich die Anwendung an Kinder richtet, hat der Datenschutz höchste Priorität.
+\begin{itemize}
+    \item \textbf{Keine Datensammlung}: Es werden keinerlei personenbezogene Daten (PII) erhoben oder an externe Server gesendet.
+    \item \textbf{Lokale Speicherung}: Der Lernfortschritt wird ausschließlich im \texttt{LocalStorage} des Browsers auf dem Endgerät des Nutzers gespeichert.
+    \item \textbf{Offline-Fähigkeit}: Die Anwendung lädt keine externen Tracker oder Analyse-Tools nach.
+\end{itemize}
 
 \section{Realisierung}
 
@@ -316,7 +362,17 @@ Das Routing wurde in der \texttt{app.routes.ts} definiert. Es ermöglicht die Na
 \section{Qualitätssicherung}
 
 \subsection{Testplanung}
-Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf \textbf{manuelle Systemtests} gelegt. Unit-Tests wurden exemplarisch für kritische Logik (z.B. Score-Berechnung) angedacht, aber nicht flächendeckend umgesetzt.
+Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf \textbf{manuelle Systemtests} gelegt. Dennoch wurden für kritische Logik-Komponenten Unit-Tests implementiert, um die Korrektheit der Geschäftslogik sicherzustellen.
+
+\textbf{Beispiel Unit-Test (Jasmine/Karma):}
+\begin{lstlisting}[language=TypeScript, caption=Unit Test Beispiel]
+it('should calculate correct score', () => {
+  const service = TestBed.inject(QuizService);
+  service.answerQuestion(true); // Correct
+  service.answerQuestion(true); // Correct
+  expect(service.score()).toBe(2);
+});
+\end{lstlisting}
 
 \subsection{Testdurchführung \& Ergebnisse}
 Die Tests wurden anhand eines vorab definierten Testprotokolls durchgeführt.
