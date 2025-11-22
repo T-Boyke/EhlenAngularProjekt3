@@ -150,7 +150,7 @@ Der Benutzer (Kind) interagiert primär lesend und spielend mit dem System.
 
 ```mermaid
 usecaseDiagram
-    actor Kind as "Kind (User)"
+    actor "Kind (User)" as Kind
     package "Earth Ocean Learning" {
         usecase "Ozean auswählen" as UC1
         usecase "Fakten ansehen" as UC2
@@ -163,7 +163,7 @@ usecaseDiagram
     Kind --> UC3
     Kind --> UC4
     Kind --> UC5
-    UC5 ..> UC4 : <<include>> (wenn 5 Sterne)
+    UC5 ..> UC4 : include
 ```
 
 ### 3.2 Architekturentwurf
