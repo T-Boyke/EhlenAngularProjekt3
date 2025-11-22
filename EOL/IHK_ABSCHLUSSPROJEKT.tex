@@ -1,0 +1,420 @@
+\documentclass[11pt, a4paper]{scrartcl}
+
+% Pakete für deutsche Sprache und Umlaute
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% Schriftart: Helvetica (ähnlich Arial) für eine moderne, saubere Optik (oft bevorzugt)
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Zeilenabstand: 1.5-fach (IHK Standard)
+\usepackage[onehalfspacing]{setspace}
+
+% Pakete für Layout und Grafik
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+
+% Pakete für Code-Listings
+\usepackage{listings}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegray},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=blue,
+    pdftitle={IHK Abschlussprojekt - Earth Ocean Learning},
+}
+
+% Titeldaten
+\title{Dokumentation zur betrieblichen Projektarbeit}
+\subtitle{Ausbildungsberuf: Fachinformatiker für Anwendungsentwicklung}
+\author{Earth Ocean Learning}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty} % Keine Seitenzahl auf dem Deckblatt
+
+\section*{Thema der Projektarbeit}
+\textbf{Entwicklung einer interaktiven Webanwendung ("Earth Ocean Learning") zur spielerischen Vermittlung von Ozean-Wissen für Grundschulkinder.}
+
+\newpage
+\tableofcontents
+\newpage
+
+% Seitenzahlen ab hier
+\setcounter{page}{1}
+
+\section{Einleitung}
+
+\subsection{Ausgangssituation \& Projektumfeld}
+Im Rahmen der Umschulung zum Fachinformatiker für Anwendungsentwicklung, erläutert der Autor, welcher bei Herrn Ehlen sein Kurs-Element „Angular“ absolvierte, den Ablauf seines hier folgenden Abschlussprojekts bei einem fiktiven Unternehmen.
+
+Die \textbf{Beispiel GmbH} ist ein etabliertes, mittelständisches IT-Dienstleistungsunternehmen mit Sitz im Herzen von Neuss. Seit ihrer Gründung im Jahr 2025 hat sich die Firma darauf spezialisiert, maßgeschneiderte Webanwendungen und anspruchsvolle CMS-Lösungen für Unternehmenskunden zu entwickeln. 14 Mitarbeiter, bestehend aus Backend- und Frontend-Entwicklern, UI/UX-Designern, Projektmanagern und Content-Spezialisten, sind in der Beispiel GmbH beschäftigt und arbeiten vorwiegend für Kunden aus dem produzierenden Gewerbe, der Logistik und der Edutainment-Branche.
+
+Die Beispiel GmbH wurde von einem Kunden, einer Umweltschutz-NGO, beauftragt, eine Browser-Applikation für das spielerische Erlernen von Ozean-Fakten für Grundschulkinder zu entwickeln. Das Unternehmen nutzt für ihre interne Ausbildung und auch für Kundenprojekte häufig das Flat-File-CMS GRAV. Aktuell fehlt es an interaktiven, technischen Demonstrations-Anwendungen, die zur Auflockerung von Inhalten oder zur Veranschaulichung von Algorithmen in Blogbeiträgen eingebettet werden können.
+
+Zu den Stakeholdern des Projekts zählen:
+\begin{itemize}
+    \item \textbf{Der Auftraggeber (NGO)}: Vertreten durch Herrn Dr. Uwe Umwelt.
+    \item \textbf{Die Marketing-Mitarbeiter der NGO**: Welche die Anwendung zukünftig nutzen und bewerben werden.
+    \item \textbf{Die Endnutzer**: Grundschulkinder im Alter von 7-9 Jahren.
+\end{itemize}
+
+\subsection{Projektziel}
+Ziel des Projektes ist die Entwicklung einer Single Page Application (SPA) namens "Earth Ocean Learning". Die Anwendung soll Kindern spielerisch Wissen über die fünf Weltmeere vermitteln. Kernfunktionen umfassen eine interaktive Auswahl der Ozeane, einen Lernbereich mit Fakten und Bewohnern sowie ein Quiz-Modul zur Wissensüberprüfung. Die Anwendung muss als eigenständiges Modul (Standalone) konzipiert sein, um eine einfache Integration in bestehende CMS-Systeme (wie GRAV) zu ermöglichen.
+
+\subsection{Projektbegründung}
+Die Digitalisierung im Bildungssektor erfordert moderne, webbasierte Lernlösungen, die plattformunabhängig funktionieren. Herkömmliche Lernmaterialien (PDFs, statische Webseiten) bieten oft nicht den nötigen Anreiz für die Zielgruppe (Kinder). Durch den Einsatz moderner Webtechnologien (Angular, SignalStore) soll eine performante, wartbare und zukunftssichere Lösung geschaffen werden, die gleichzeitig als Referenzprojekt für die Beispiel GmbH dient, um die Kompetenz im Bereich "Edutainment" zu unterstreichen.
+
+\section{Projektplanung}
+
+\subsection{Ist-Analyse}
+Zum Zeitpunkt des Projektstarts existiert keine Softwarelösung für den genannten Anwendungsfall. Die Inhalte (Texte, Bilder zu Ozeanen) liegen lediglich in unstrukturierter Form (Textdokumente, Bilddateien) vor. Es gibt keinen bestehenden Codebase, auf dem aufgebaut werden kann ("Greenfield Project").
+
+\textbf{Technische Ausgangslage:}
+\begin{itemize}
+    \item Entwickler-Workstation mit Windows 11 und Rocky Linux 10.
+    \item Zugriff auf Standard-Entwicklungstools (VS Code, GitHub, Node.js, NPM).
+    \item Keine bestehende CI/CD Pipeline für dieses spezifische Projekt.
+\end{itemize}
+
+\subsection{Soll-Konzept}
+Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt:
+
+\textbf{Funktionale Anforderungen:}
+\begin{itemize}
+    \item \textbf{Ozean-Auswahl}: Visuelle Darstellung und Auswahl der 5 Weltmeere.
+    \item \textbf{Lernmodus}: Anzeige von Fakten und Bewohnern pro Ozean (Carousel/Slider).
+    \item \textbf{Quiz-System}: Multiple-Choice Fragen mit direktem Feedback.
+    \item \textbf{Fortschritt}: Speicherung des Lernfortschritts (Sterne-System) im lokalen Browser-Storage (kein Backend-Zwang).
+    \item \textbf{Master-Quiz}: Ein freischaltbarer Modus nach Abschluss aller Ozeane.
+\end{itemize}
+
+\textbf{Nicht-funktionale Anforderungen:}
+\begin{itemize}
+    \item \textbf{Zielgruppe}: Kindgerechtes UI/UX (große Buttons, wenig Text, viel Bild).
+    \item \textbf{Technologie}: Angular 21 (aktuellste Version), Nutzung von Standalone Components.
+    \item \textbf{State Management}: Nutzung von Angular Signals / SignalStore für reaktives Datenmanagement.
+    \item \textbf{Performance}: Kurze Ladezeiten, optimierte Assets.
+    \item \textbf{Responsive Design}: Lauffähig auf Tablets und Desktops.
+\end{itemize}
+
+\subsection{Zeitplanung}
+Der Durchführungszeitraum des Projektes ist vom \textbf{17.11.2025 bis 09.12.2025}.
+Die geplante Gesamtzeit beträgt \textbf{70 Stunden}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Phase} & \textbf{Tätigkeit} & \textbf{Zeit (h)} \\ \hline
+\textbf{1. Analyse \& Planung} & & \textbf{11 h} \\ \hline
+& Ist-Analyse \& Soll-Konzept & 3 h \\ \hline
+& Pflichtenheft \& Fachkonzept & 4 h \\ \hline
+& Wirtschaftlichkeitsbetrachtung & 2 h \\ \hline
+& Zeit- \& Ressourcenplanung & 2 h \\ \hline
+\textbf{2. Entwurf} & & \textbf{12 h} \\ \hline
+& UI/UX Design (Mockups) & 5 h \\ \hline
+& Architektur \& Datenmodell & 4 h \\ \hline
+& Auswahl der Bibliotheken \& Tools & 3 h \\ \hline
+\textbf{3. Implementierung} & & \textbf{28 h} \\ \hline
+& Setup \& Core Components & 2 h \\ \hline
+& Implementierung Core-Komponenten & 6 h \\ \hline
+& Logik (SignalStore) & 8 h \\ \hline
+& UI \& Styling (Tailwind) & 8 h \\ \hline
+& Daten-Integration & 4 h \\ \hline
+\textbf{4. Qualitätssicherung} & & \textbf{9 h} \\ \hline
+& Testfälle erstellen & 3 h \\ \hline
+& Tests \& Bugfixing & 6 h \\ \hline
+\textbf{5. Dokumentation} & & \textbf{10 h} \\ \hline
+& Projektdokumentation & 8 h \\ \hline
+& Benutzerhandbuch & 2 h \\ \hline
+\textbf{Gesamt} & & \textbf{70 h} \\ \hline
+\end{tabular}
+\caption{Zeitplanung}
+\end{table}
+
+\subsubsection*{Gantt-Diagramm}
+\textit{Hinweis: Bitte fügen Sie hier das exportierte Mermaid-Gantt-Diagramm als Bild ein.}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=1.0\textwidth]{gantt_chart.png}
+% \caption{Projektzeitplan}
+% \end{figure}
+
+\subsection{Kostenplanung}
+Die Kostenplanung basiert auf einem fiktiven internen Verrechnungssatz.
+
+\textbf{Personalkosten:}
+\begin{itemize}
+    \item Stundensatz (Auszubildender/Junior): 50,00 €
+    \item Geplante Stunden: 70 h
+    \item \textbf{Summe Personal:} 70 h * 50,00 €/h = \textbf{3.500,00 €}
+\end{itemize}
+
+\textbf{Sachmittelkosten:}
+\begin{itemize}
+    \item Nutzung vorhandener Hardware/Software (anteilig): pauschal 150,00 €
+    \item Lizenzen (Open Source): 0,00 €
+    \item \textbf{Summe Sachmittel:} \textbf{150,00 €}
+\end{itemize}
+
+\textbf{Gesamtkosten (Plan):} \textbf{3.650,00 €}
+
+\section{Analyse \& Entwurf}
+
+\subsection{Anwendungsfalldiagramm (Use Cases)}
+Der Benutzer (Kind) interagiert primär lesend und spielend mit dem System.
+
+\textit{Hinweis: Bitte fügen Sie hier das exportierte Mermaid-Use-Case-Diagramm als Bild ein.}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.8\textwidth]{usecase_diagram.png}
+% \caption{Anwendungsfalldiagramm}
+% \end{figure}
+
+\subsection{Architekturentwurf}
+Die Anwendung folgt einer \textbf{MVVM (Model-View-ViewModel)} ähnlichen Architektur, die durch Angular und den SignalStore realisiert wird.
+
+\textit{Hinweis: Bitte fügen Sie hier das exportierte Mermaid-Architektur-Diagramm als Bild ein.}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.8\textwidth]{architecture_diagram.png}
+% \caption{Architekturentwurf}
+% \end{figure}
+
+\textbf{Technologie-Entscheidungen:}
+\begin{itemize}
+    \item \textbf{Angular 21}: Nutzung der neuesten Features wie Signals und Standalone Components für zukunftssicheren Code.
+    \item \textbf{SignalStore (@ngrx/signals)}: Leichtgewichtiges State Management, ideal für die Komplexität der Anwendung, ohne den Boilerplate von Redux.
+    \item \textbf{Tailwind CSS}: Utility-First CSS Framework für schnelles Styling und einfache Responsivität.
+\end{itemize}
+
+\subsection{UI/UX Design}
+Das Design wurde speziell für Kinder entwickelt:
+\begin{itemize}
+    \item \textbf{Farbpalette}: Helle, freundliche Farben (Blau-, Türkis- und Sandtöne), die zum Thema Ozean passen.
+    \item \textbf{Typografie}: Gute Lesbarkeit durch serifenlose Schriftarten.
+    \item \textbf{Navigation}: Große Klickflächen, intuitive "Weiter"-Buttons, visuelles Feedback bei Quiz-Antworten (Grün/Rot).
+\end{itemize}
+
+\subsection{Datenmodell}
+Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährleisten und eine Datenbank-Abhängigkeit für diesen Prototypen zu vermeiden.
+
+\textit{Hinweis: Bitte fügen Sie hier das exportierte Mermaid-ER-Diagramm als Bild ein.}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.8\textwidth]{er_diagram.png}
+% \caption{Entity Relationship Diagramm}
+% \end{figure}
+
+\textbf{Auszug Datenstruktur (JSON):}
+\begin{lstlisting}[language=json, caption=Auszug ocean-data.json]
+{
+  "id": "pacific",
+  "name": "Pazifischer Ozean",
+  "facts": [ ... ],
+  "inhabitants": [ ... ],
+  "quizQuestions": [
+    {
+      "question": "Wie tief ist der Marianengraben?",
+      "options": ["11.000m", "5.000m", "2.000m", "8.000m"],
+      "correctAnswer": "11.000m"
+    }
+  ]
+}
+\end{lstlisting}
+
+\section{Realisierung}
+
+\subsection{Entwicklungsumgebung}
+Die Entwicklung fand auf einem lokalen Windows-System statt. Folgende Tools kamen zum Einsatz:
+\begin{itemize}
+    \item \textbf{IDE}: Visual Studio Code mit Angular Language Service.
+    \item \textbf{Versionierung}: Git (lokales Repository).
+    \item \textbf{Framework}: Angular CLI Version 21.0.0.
+    \item \textbf{Browser}: Google Chrome (für Debugging und Tests).
+\end{itemize}
+
+\subsection{Implementierung der Hauptkomponenten}
+
+\subsubsection{Standalone Components}
+Das Projekt setzt vollständig auf \textbf{Standalone Components}, um die Komplexität von NgModules zu vermeiden. Ein Beispiel ist die \texttt{OceanFactsComponent}, die alle notwendigen Abhängigkeiten (Imports) direkt im Component-Decorator definiert:
+
+\begin{lstlisting}[language=TypeScript, caption=OceanFactsComponent]
+@Component({
+  selector: 'app-ocean-facts',
+  standalone: true,
+  imports: [CommonModule, NgOptimizedImage],
+  templateUrl: './ocean-facts.component.html',
+  styleUrl: './ocean-facts.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class OceanFactsComponent { ... }
+\end{lstlisting}
+
+\subsubsection{State Management mit SignalStore}
+Für die Verwaltung des Anwendungszustands (z.B. "Welcher Ozean ist gewählt?", "Wie viele Sterne hat der User?") wurde der \textbf{NgRx SignalStore} verwendet. Dies ermöglicht eine reaktive und performante Datenhaltung ohne den Boilerplate klassischer Redux-Lösungen.
+
+Der Store (\texttt{QuizStore}) hält den State und bietet Methoden (\texttt{updaters}) zur Manipulation an:
+
+\begin{lstlisting}[language=TypeScript, caption=QuizStore Definition]
+export const QuizStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withMethods((store) => ({
+    unlockMasterQuiz() {
+      patchState(store, { masterQuizUnlocked: true });
+    },
+    addStar(oceanId: string) {
+      // Logik zum Hinzufügen eines Sterns
+    }
+  }))
+);
+\end{lstlisting}
+
+\subsubsection{Routing \& Navigation}
+Das Routing wurde in der \texttt{app.routes.ts} definiert. Es ermöglicht die Navigation zwischen Startseite, Auswahl, Fakten und Quiz. Parameter (wie die \texttt{id} des Ozeans) werden über die URL übergeben (\texttt{path: 'facts/:id'}) und in den Komponenten ausgelesen.
+
+\subsection{Herausforderungen \& Lösungen}
+\textbf{Herausforderung}: Persistierung des Fortschritts beim Neuladen der Seite.\\
+\textbf{Lösung}: Implementierung eines \texttt{LocalStorageService}, der den State des SignalStores bei jeder Änderung im Browser-Storage speichert und beim Start der App wiederherstellt. Dies stellt sicher, dass gesammelte Sterne nicht verloren gehen.
+
+\section{Qualitätssicherung}
+
+\subsection{Testplanung}
+Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf \textbf{manuelle Systemtests} gelegt. Unit-Tests wurden exemplarisch für kritische Logik (z.B. Score-Berechnung) angedacht, aber nicht flächendeckend umgesetzt.
+
+\subsection{Testdurchführung \& Ergebnisse}
+Die Tests wurden anhand eines vorab definierten Testprotokolls durchgeführt.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{5cm}|p{5cm}|l|}
+\hline
+\textbf{ID} & \textbf{Testfall} & \textbf{Erwartetes Ergebnis} & \textbf{Status} \\ \hline
+TF01 & App-Start & Startbildschirm wird geladen, "Los geht's" Button sichtbar. & OK \\ \hline
+TF02 & Ozean-Auswahl & Klick auf Ozean öffnet korrekte Fakten-Seite. & OK \\ \hline
+TF03 & Quiz-Logik & Richtige Antwort -> Grün, Falsche Antwort -> Rot. & OK \\ \hline
+TF04 & Fortschritt & Nach 10 richtigen Antworten erscheint ein Stern. & OK \\ \hline
+TF05 & Master-Quiz Unlock & Button erst aktiv, wenn 5 Sterne gesammelt. & OK \\ \hline
+TF06 & Responsivität & Layout passt sich auf Tablet-Größe (iPad Air) an. & OK \\ \hline
+\end{tabular}
+\caption{Testergebnisse}
+\end{table}
+
+Alle kritischen Testfälle waren erfolgreich. Kleinere Layout-Fehler (z.B. überlappender Text bei sehr kleinen Bildschirmen) wurden während der Testphase behoben.
+
+\section{Wirtschaftlichkeitsbetrachtung}
+
+\subsection{Soll-Ist-Vergleich (Zeit)}
+Die Projektdurchführung verlief weitgehend nach Plan.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Phase} & \textbf{Geplant (h)} & \textbf{Tatsächlich (h)} & \textbf{Abweichung} \\ \hline
+Analyse \& Planung & 11 & 10 & -1 h \\ \hline
+Entwurf & 12 & 14 & +2 h \\ \hline
+Implementierung & 28 & 29 & +1 h \\ \hline
+Qualitätssicherung & 9 & 8 & -1 h \\ \hline
+Dokumentation & 10 & 9 & -1 h \\ \hline
+\textbf{Gesamt} & \textbf{70 h} & \textbf{70 h} & \textbf{0 h} \\ \hline
+\end{tabular}
+\caption{Soll-Ist-Vergleich Zeit}
+\end{table}
+
+\textbf{Begründung der Abweichungen}:
+\begin{itemize}
+    \item Der Entwurf dauerte etwas länger, da mehrere Iterationen für das kindgerechte Design nötig waren.
+    \item Die Implementierung verzögerte sich leicht durch die Einarbeitung in den neuen SignalStore, konnte aber durch effizienteres Testen wieder ausgeglichen werden.
+\end{itemize}
+
+\subsection{Nachkalkulation (Kosten)}
+Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Kosten den Plankosten.
+
+\begin{itemize}
+    \item \textbf{Personalkosten (Ist)}: 70 h * 50,00 €/h = \textbf{3.500,00 €}
+    \item \textbf{Sachmittel (Ist)}: \textbf{150,00 €}
+    \item \textbf{Gesamtkosten (Ist)}: \textbf{3.650,00 €}
+\end{itemize}
+
+\subsection{Amortisationsrechnung}
+Da es sich um ein internes Projekt bzw. ein Auftragsprojekt für eine NGO handelt, ist eine direkte monetäre Amortisation (ROI) schwer messbar. Der Nutzen liegt primär in:
+\begin{enumerate}
+    \item \textbf{Marketing-Wert}: Die App wird als "Lead-Magnet" auf der Webseite der NGO eingesetzt, um neue Spender zu gewinnen.
+    \item \textbf{Kompetenzaufbau}: Die Beispiel GmbH kann die App als Referenz für "Modern Angular Development" nutzen, was zu neuen Aufträgen führen kann.
+\end{enumerate}
+
+\textbf{Qualitative Bewertung}:
+Wenn durch die App nur 2 neue Kundenprojekte im Jahr gewonnen werden (Deckungsbeitrag je ca. 5.000 €), hat sich die Investition bereits im ersten Jahr amortisiert.
+
+\section{Fazit \& Ausblick}
+
+\subsection{Zusammenfassung}
+Das Projekt "Earth Ocean Learning" wurde erfolgreich und im geplanten Zeitrahmen umgesetzt. Alle funktionalen Anforderungen (Lernmodus, Quiz, Fortschritt) wurden erfüllt. Die Anwendung läuft stabil, ist performant und bietet durch das responsive Design eine gute User Experience auf verschiedenen Endgeräten.
+
+\subsection{Lessons Learned}
+\begin{itemize}
+    \item \textbf{Angular Signals}: Die Nutzung von Signals hat den Code deutlich vereinfacht und lesbarer gemacht im Vergleich zu RxJS-Observables.
+    \item \textbf{Angular Router}: Das Verständnis für Child-Routes und Parameter-Übergabe wurde vertieft.
+    \item \textbf{CSS Flexbox}: Dynamisches Layout und Verankerung von Flex-Boxen für responsive Designs (z.B. Sticky Footer, zentrierte Inhalte) war eine wichtige Lernerfahrung.
+    \item \textbf{Planung ist alles}: Das detaillierte Mockup in der Entwurfsphase hat viel Zeit bei der späteren CSS-Implementierung gespart.
+\end{itemize}
+
+\subsection{Ausblick}
+Für zukünftige Versionen sind folgende Erweiterungen denkbar:
+\begin{itemize}
+    \item \textbf{Sound-Effekte}: Hintergrundmusik und Feedback-Sounds für das Quiz.
+    \item \textbf{Backend-Anbindung}: Speicherung des Fortschritts in einer Datenbank (statt LocalStorage), um geräteübergreifendes Lernen zu ermöglichen.
+    \item \textbf{PWA-Support}: Ausbau zur Progressive Web App, damit die Anwendung auch offline (z.B. auf Tablets in Schulen ohne WLAN) genutzt werden kann.
+    \item \textbf{Mehrsprachigkeit (i18n)}: Übersetzung der Inhalte ins Englische, um eine größere Zielgruppe zu erreichen.
+\end{itemize}
+
+\newpage
+\section*{Selbstständigkeitserklärung}
+Ich versichere hiermit, dass ich die vorliegende Projektarbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Stellen, die anderen Werken wörtlich oder sinngemäß entnommen wurden, sind als solche kenntlich gemacht.
+
+\vspace{2cm}
+
+\noindent
+\begin{tabular}{@{}p{5cm}p{3cm}p{6cm}@{}}
+\hrulefill & & \hrulefill \\
+Ort, Datum & & Unterschrift \\
+\end{tabular}
+
+\end{document}
