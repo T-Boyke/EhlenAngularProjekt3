@@ -351,20 +351,6 @@ export const QuizStore = signalStore(
   }))
 );
 \end{lstlisting}
-
-\subsubsection{Routing \& Navigation}
-Das Routing wurde in der \texttt{app.routes.ts} definiert. Es ermöglicht die Navigation zwischen Startseite, Auswahl, Fakten und Quiz. Parameter (wie die \texttt{id} des Ozeans) werden über die URL übergeben (\texttt{path: 'facts/:id'}) und in den Komponenten ausgelesen.
-
-\subsection{Herausforderungen \& Lösungen}
-\textbf{Herausforderung}: Persistierung des Fortschritts beim Neuladen der Seite.\\
-\textbf{Lösung}: Implementierung eines \texttt{LocalStorageService}, der den State des SignalStores bei jeder Änderung im Browser-Storage speichert und beim Start der App wiederherstellt. Dies stellt sicher, dass gesammelte Sterne nicht verloren gehen.
-
-\section{Qualitätssicherung}
-
-\subsection{Testplanung}
-Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf \textbf{manuelle Systemtests} gelegt. Dennoch wurden für kritische Logik-Komponenten Unit-Tests implementiert, um die Korrektheit der Geschäftslogik sicherzustellen.
-
-\textbf{Beispiel Unit-Test (Jasmine/Karma):}
 \begin{lstlisting}[language=TypeScript, caption=Unit Test Beispiel]
 it('should calculate correct score', () => {
   const service = TestBed.inject(QuizService);

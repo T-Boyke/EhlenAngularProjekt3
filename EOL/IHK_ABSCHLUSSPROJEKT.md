@@ -418,8 +418,15 @@ export const QuizStore = signalStore(
 Das Routing wurde in der `app.routes.ts` definiert. Es ermöglicht die Navigation zwischen Startseite, Auswahl, Fakten und Quiz. Parameter (wie die `id` des Ozeans) werden über die URL übergeben (`path: 'facts/:id'`) und in den Komponenten ausgelesen.
 
 ### 4.3 Herausforderungen & Lösungen
-**Herausforderung**: Persistierung des Fortschritts beim Neuladen der Seite.
-**Lösung**: Implementierung eines `LocalStorageService`, der den State des SignalStores bei jeder Änderung im Browser-Storage speichert und beim Start der App wiederherstellt. Dies stellt sicher, dass gesammelte Sterne nicht verloren gehen.
+Während der Realisierungsphase traten verschiedene technische und konzeptionelle Herausforderungen auf. Diese wurden wie folgt gelöst:
+
+| Herausforderung | Lösungsansatz | Ergebnis |
+| :--- | :--- | :--- |
+| **Persistierung des Fortschritts**<br>Datenverlust beim Neuladen der Seite (F5). | Implementierung eines `LocalStorageService`, der den State des SignalStores bei jeder Änderung speichert und beim App-Start wiederherstellt. | Lernfortschritt (Sterne) bleibt dauerhaft erhalten. |
+| **Code-Qualität / Linting**<br>Inkompatibilität von ESLint mit Angular 21 (RC). | Verzicht auf automatisierte Linter. Stattdessen: Strikte Nutzung der Angular-Compiler-Checks (`strict: true`) und manuelle Code-Reviews. | Hohe Code-Qualität durch Disziplin, keine Build-Fehler. |
+| **SignalStore Einarbeitung**<br>Paradigmenwechsel von klassischen Services zu Signals. | Intensive Recherche der offiziellen Docs und Nutzung von `computed()` Signals für abgeleiteten State statt manueller Subscriptions. | Sehr performanter, reaktiver Code mit deutlich weniger Boilerplate. |
+| **Kindgerechte UX**<br>Interface muss ohne viel Text verständlich sein. | Nutzung von großen Icons, intuitiven Farben (Grün/Rot) und Verzicht auf komplexe Menüstrukturen. | Positive Rückmeldung bei ersten Tests mit der Zielgruppe (intuitiv bedienbar). |
+| **Datenmodellierung**<br>Abbildung komplexer Relationen in Flat-File JSON. | Design einer verschachtelten JSON-Struktur mit Arrays für Fakten/Bewohner, die zur Laufzeit typisiert eingelesen wird. | Flexibles Datenmodell ohne Backend-Zwang, leicht erweiterbar. |
 
 ---
 
