@@ -373,6 +373,7 @@ Das Design wurde speziell für Kinder entwickelt:
 
 Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährleisten und eine Datenbank-Abhängigkeit für diesen Prototypen zu vermeiden.
 
+```mermaid
 classDiagram
     direction TB
     note "JSON Dokumenten-Struktur"
