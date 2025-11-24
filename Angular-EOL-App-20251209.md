@@ -281,21 +281,23 @@ gantt
 
 ### **2.4 Kostenplanung**
 
-Die Kostenplanung **basiert auf einem fiktiven** internen Verrechnungssatz.
+Die Kostenplanung basiert auf den internen Selbstkosten (Vollkostenrechnung inkl. Gemeinkostenzuschlag für Arbeitsplatz, Strom, Verwaltung).
 
 **Personalkosten:**
 
-- Stundensatz (Auszubildender/Junior): 50,00 €
+Interner Stundensatz (Azubi im 3. LJ inkl. GK-Zuschlag): 35,00 €
+
 - Geplante Stunden: 70 h
-- **Summe Personal:** 70 h \* 50,00 €/h \= 3**.500,00 €**
+
+- Summe Personal: 70 h * 35,00 €/h = 2.450,00 €
 
 **Sachmittelkosten:**
 
-- Nutzung vorhandener Hardware/Software (anteilig): pauschal 150,00 €
-- Lizenzen (Open Source): 0,00 €
-- **Summe Sachmittel: 150,00 €**
+- Nutzung Entwicklungsumgebung (anteilig): 150,00 €
 
-**Gesamtkosten (Plan): 3.650,00 €**
+- Summe Sachmittel: 150,00 €
+
+**Gesamtkosten (Plan): 2.600,00 €**
 <div style="page-break-after: always;"></div>
 
 ## **3\. Analyse & Entwurf**
@@ -607,10 +609,26 @@ Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Koste
 
 ### **6.3 Amortisationsrechnung**
 
-Da es sich um ein internes Projekt bzw. ein Auftragsprojekt für eine NGO handelt, ist eine direkte monetäre Amortisation (ROI) schwer messbar. Der Nutzen liegt primär in:
+Die Wirtschaftlichkeit des Projekts wird durch einen Vergleich der neuen digitalen Lösung mit dem bisherigen analogen Prozess der NGO (Druck von Lern-Broschüren für Schulen) ermittelt.
+Ausgangslage (Ist-Zustand "Analog"): Die NGO druckt jährlich ca. 2.000 Lernbroschüren für Schulbesuche.
 
-1. Marketing-Wert: Die App wird als "Lead-Magnet" auf der Webseite der NGO eingesetzt, um neue Spender zu gewinnen.
-2. Kompetenzaufbau: Die Beispiel GmbH kann die App als Referenz für "Modern Angular Development" nutzen, was zu neuen Aufträgen führen kann.
+- Druckkosten: 2.000 Stück á 0,80 € = 1.600,00 € / Jahr
+- Logistik/Versand an Schulen: ca. 400,00 € / Jahr
+- Jährliche Kosten Analog: 2.000,00 €
+
+Zielzustand (Soll-Zustand "App"): Die App ersetzt die Broschüren vollständig.
+
+- Hosting & Domain (jährlich): 60,00 €
+- Wartungspauschale (intern verrechnet): 200,00 €
+- Jährliche Betriebskosten Digital: 260,00 €
+
+**Berechnung der Amortisationsdauer:**
+- Jährliche Einsparung: 2.000,00 € - 260,00 € = 1.740,00 €
+- Einmalkosten Projekt (siehe 6.2): 2.600,00 €
+
+$$Amortisationszeit = \frac{\text{Projektkosten}}{\text{Jährliche Einsparung}} = \frac{2.600,00 €}{1.740,00 €/Jahr} \approx 1,49 \text{ Jahre}$$
+
+Fazit: Die Entwicklungskosten der App haben sich nach ca. 18 Monaten (1,5 Jahren) amortisiert. Danach spart der Kunde jährlich 1.740,00 € gegenüber dem klassischen Druckverfahren ein, bei gleichzeitig höherer Reichweite und Interaktivität.
 
 **Qualitative Bewertung:** Wenn durch die App nur 2 neue Kundenprojekte im Jahr gewonnen werden (Deckungsbeitrag je ca. 5.000 €), hat sich die Investition bereits im ersten Jahr amortisiert.
 
