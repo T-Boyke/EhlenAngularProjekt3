@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:watch": "ng test --watch"
+    "test:watch": "ng test --watch",
+    "lint": "ng lint"
   },
   "prettier": {
     "printWidth": 100,
@@ -30,7 +31,7 @@
     "@angular/forms": "^21.0.0",
     "@angular/platform-browser": "^21.0.0",
     "@angular/router": "^21.0.0",
-    "@ngrx/signals": "^20.1.0",
+    "@ngrx/signals": "^20.0.0-rc.0",
     "@types/canvas-confetti": "^1.9.0",
     "canvas-confetti": "^1.9.4",
     "eslint": "^9.39.1",
