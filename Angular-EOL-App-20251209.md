@@ -579,6 +579,16 @@ Die Tests wurden anhand eines vorab definierten Testprotokolls durchgeführt.
 _Alle kritischen Testfälle waren erfolgreich. Kleinere Layout-Fehler (z.B. überlappender Text bei sehr kleinen Bildschirmen) wurden während der Testphase behoben._
 <div style="page-break-after: always;"></div>
 
+### 5.3 Automatisierte Qualitätssicherung (CI/CD)**
+
+Um eine gleichbleibend hohe Code-Qualität sicherzustellen und "Breaking Changes" frühzeitig zu erkennen, wurde eine CI/CD-Pipeline mittels GitHub Actions implementiert. Diese Pipeline wird bei jedem Push in das Repository (git push) automatisch getriggert und durchläuft folgende Phasen:
+- Clean Install: Installation der Abhängigkeiten in einer sauberen Container-Umgebung (npm ci), um die Reproduzierbarkeit des Builds zu garantieren.
+- Automatisierte Tests: Ausführung der Unit-Tests via Karma/Jasmine im ChromeHeadless-Modus. Schlägt auch nur ein Test fehl, wird der gesamte Build-Prozess abgebrochen.
+- Production Build: Testweise Kompilierung der Anwendung (ng build). Dies stellt sicher, dass der TypeScript-Compiler (AOT) keine Fehler wirft und alle Assets korrekt referenziert sind.
+
+Durch diesen "Quality Gate"-Ansatz wird verhindert, dass fehlerhafter Code in den main-Branch gemergt wird.
+<div style="page-break-after: always;"></div>
+
 ## **6\. Wirtschaftlichkeitsbetrachtung**
 
 ### **6.1 Soll-Ist-Vergleich (Zeit)**
