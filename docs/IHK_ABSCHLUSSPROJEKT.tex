@@ -207,9 +207,9 @@ Die Kostenplanung basiert auf einem fiktiven internen Verrechnungssatz.
 
 \textbf{Personalkosten:}
 \begin{itemize}
-    \item Stundensatz (Auszubildender/Junior): 50,00 €
+    \item Stundensatz (Auszubildender/Junior): 35,00 €
     \item Geplante Stunden: 70 h
-    \item \textbf{Summe Personal:} 70 h * 50,00 €/h = \textbf{3.500,00 €}
+    \item \textbf{Summe Personal:} 70 h * 35,00 €/h = \textbf{2.450,00 €}
 \end{itemize}
 
 \textbf{Sachmittelkosten:}
@@ -219,7 +219,7 @@ Die Kostenplanung basiert auf einem fiktiven internen Verrechnungssatz.
     \item \textbf{Summe Sachmittel:} \textbf{150,00 €}
 \end{itemize}
 
-\textbf{Gesamtkosten (Plan):} \textbf{3.650,00 €}
+\textbf{Gesamtkosten (Plan):} \textbf{2.600,00 €}
 
 \section{Analyse \& Entwurf}
 
@@ -410,17 +410,39 @@ Dokumentation & 10 & 9 & -1 h \\ \hline
 Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Kosten den Plankosten.
 
 \begin{itemize}
-    \item \textbf{Personalkosten (Ist)}: 70 h * 50,00 €/h = \textbf{3.500,00 €}
+    \item \textbf{Personalkosten (Ist)}: 70 h * 35,00 €/h = \textbf{2.450,00 €}
     \item \textbf{Sachmittel (Ist)}: \textbf{150,00 €}
-    \item \textbf{Gesamtkosten (Ist)}: \textbf{3.650,00 €}
+    \item \textbf{Gesamtkosten (Ist)}: \textbf{2.600,00 €}
 \end{itemize}
 
 \subsection{Amortisationsrechnung}
-Da es sich um ein internes Projekt bzw. ein Auftragsprojekt für eine NGO handelt, ist eine direkte monetäre Amortisation (ROI) schwer messbar. Der Nutzen liegt primär in:
-\begin{enumerate}
-    \item \textbf{Marketing-Wert}: Die App wird als "Lead-Magnet" auf der Webseite der NGO eingesetzt, um neue Spender zu gewinnen.
-    \item \textbf{Kompetenzaufbau}: Die Beispiel GmbH kann die App als Referenz für "Modern Angular Development" nutzen, was zu neuen Aufträgen führen kann.
-\end{enumerate}
+Die Wirtschaftlichkeit des Projekts wird durch einen Vergleich der neuen digitalen Lösung mit dem bisherigen analogen Prozess der NGO (Druck von Lern-Broschüren für Schulen) ermittelt.
+
+Ausgangslage (Ist-Zustand "Analog"): Die NGO druckt jährlich ca. 2.000 Lernbroschüren für Schulbesuche.
+\begin{itemize}
+    \item Druckkosten: 2.000 Stück á 0,80 € = 1.600,00 € / Jahr
+    \item Logistik/Versand an Schulen: ca. 400,00 € / Jahr
+    \item Jährliche Kosten Analog: 2.000,00 €
+\end{itemize}
+
+Zielzustand (Soll-Zustand "App"): Die App ersetzt die Broschüren vollständig.
+\begin{itemize}
+    \item Hosting \& Domain (jährlich): 60,00 €
+    \item Wartungspauschale (intern verrechnet): 200,00 €
+    \item Jährliche Betriebskosten Digital: 260,00 €
+\end{itemize}
+
+\textbf{Berechnung der Amortisationsdauer:}
+\begin{itemize}
+    \item Jährliche Einsparung: 2.000,00 € - 260,00 € = 1.740,00 €
+    \item Einmalkosten Projekt (siehe 6.2): 2.600,00 €
+\end{itemize}
+
+\[
+Amortisationszeit = \frac{\text{Projektkosten}}{\text{Jährliche Einsparung}} = \frac{2.600,00 €}{1.740,00 €/Jahr} \approx 1,49 \text{ Jahre}
+\]
+
+Fazit: Die Entwicklungskosten der App haben sich nach ca. 18 Monaten (1,5 Jahren) amortisiert. Danach spart der Kunde jährlich 1.740,00 € gegenüber dem klassischen Druckverfahren ein, bei gleichzeitig höherer Reichweite und Interaktivität.
 
 \textbf{Qualitative Bewertung}:
 Wenn durch die App nur 2 neue Kundenprojekte im Jahr gewonnen werden (Deckungsbeitrag je ca. 5.000 €), hat sich die Investition bereits im ersten Jahr amortisiert.
