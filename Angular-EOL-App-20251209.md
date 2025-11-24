@@ -405,6 +405,7 @@ classDiagram
     OceanDataRoot *-- QuizQuestion : contains (nested)
 
 ```json
+_Da keine relationale Datenbank, sondern eine dokumentenorientierte Speicherung (JSON) verwendet wird, stellt die Abbildung die hierarchische Struktur des JSON-Objekts dar, nicht relationale Tabellenverknüpfungen._
 {
   "id": "pacific",
   "name": "Pazifischer Ozean",
