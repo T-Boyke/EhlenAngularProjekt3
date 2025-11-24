@@ -492,6 +492,8 @@ classDiagram
     OceanSelectionComponent ..> DataService : injects
     OceanFactsComponent ..> DataService : injects
 ```
+
+_Der QuizStore wird im Diagramm abstrahiert als Klasse dargestellt, technisch ist er als funktionaler SignalStore implementiert._
 <div style="page-break-after: always;"></div>
 
 ### **3.6 Datenschutz & Sicherheit (Privacy by Design)**
@@ -649,7 +651,7 @@ Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Koste
 ### **6.3 Amortisationsrechnung**
 
 Die Wirtschaftlichkeit des Projekts wird durch einen Vergleich der neuen digitalen Lösung mit dem bisherigen analogen Prozess der NGO (Druck von Lern-Broschüren für Schulen) ermittelt.
-Ausgangslage (Ist-Zustand "Analog"): Die NGO druckt jährlich ca. 2.000 Lernbroschüren für Schulbesuche.
+Ausgangslage (Ist-Zustand "Analog"): Die NGO druckt jährlich ca. 2.000 Lernbroschüren für Schulbesuche. Hardwarekosten (Tablets) sind in dieser Betrachtung ausgeklammert, da die Schule diese im Rahmen des Digitalpakts bereits angeschafft hat.
 
 - Druckkosten: 2.000 Stück á 0,80 € = 1.600,00 € / Jahr
 - Logistik/Versand an Schulen: ca. 400,00 € / Jahr
