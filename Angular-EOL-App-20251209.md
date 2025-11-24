@@ -32,6 +32,8 @@ Firmenweg 2
 
 41460 Neuss
 
+<div style="page-break-after: always;"></div>
+
 ## **Inhaltsverzeichnis**
 
 [1. Einleitung](#1-einleitung)
@@ -110,6 +112,8 @@ Firmenweg 2
 
 [9. Erklärung](#9-erklärung)
 
+<div style="page-break-after: always;"></div>
+
 ## **Abbildungsverzeichnis**
 
 [Abb. 1: Projektzeitplan (Gantt-Diagramm) (Kapitel 2.3)](#22-zeitplanung-gantt-diagramm)
@@ -141,6 +145,8 @@ Firmenweg 2
 [Listing 3: SignalStore Definition (Kapitel 4.2.2)](#422-state-management-mit-signalstore)
 
 [Listing 4: Unit-Test Beispiel (Kapitel 5.1)](#51-testplanung)
+
+<div style="page-break-after: always;"></div>
 
 ## **Glossar**
 
@@ -180,6 +186,7 @@ Ziel des Projektes ist die Entwicklung einer Single Page Application (SPA) "Eart
 ### **1.3 Projektbegründung**
 
 Die Digitalisierung im Bildungssektor erfordert moderne, webbasierte Lernlösungen, die plattformunabhängig funktionieren. Herkömmliche Lernmaterialien (PDFs, statische Webseiten) bieten oft nicht den nötigen Anreiz für die Zielgruppe (Kinder). Durch den Einsatz moderner Webtechnologien (Angular, SignalStore) soll eine performante, wartbare und zukunftssichere Lösung geschaffen werden, die gleichzeitig als Referenzprojekt für die Beispiel GmbH dient, um die Kompetenz im Bereich "Edutainment" zu unterstreichen.
+<div style="page-break-after: always;"></div>
 
 ## **2\. Projektplanung**
 
@@ -212,6 +219,7 @@ Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt
 - **State Management:** Nutzung von Angular Signals / SignalStore für reaktives Datenmanagement.
 - **Performance:** Kurze Ladezeiten, optimierte Assets.
 - **Responsive Design:** Lauffähig auf Tablets und Desktops.
+<div style="page-break-after: always;"></div>
 
 ### **2.3 Zeitplanung**
 
@@ -242,7 +250,10 @@ Der Durchführungszeitraum des Projektes ist vom 17.11.2025 bis 09.12.2025. Die 
 |                          | _Erstellung Benutzerhandbuch_                   |        _2 h_        |
 | **_Gesamt_**             |                                                 |     **_70 h_**      |
 
+<div style="page-break-after: always;"></div>
+
 ```mermaid
+
 gantt
     title Projektzeitplan Earth Ocean Learning
     dateFormat  YYYY-MM-DD
@@ -285,6 +296,7 @@ Die Kostenplanung **basiert auf einem fiktiven** internen Verrechnungssatz.
 - **Summe Sachmittel: 150,00 €**
 
 **Gesamtkosten (Plan): 3.650,00 €**
+<div style="page-break-after: always;"></div>
 
 ## **3\. Analyse & Entwurf**
 
@@ -309,6 +321,7 @@ graph LR
     Kind --> UC5
     UC5 -.->|include| UC4
 ```
+<div style="page-break-after: always;"></div>
 
 ### **3.2 Architekturentwurf**
 
@@ -342,6 +355,7 @@ graph TD
 **SignalStore (@ngrx/signals):** Leichtgewichtiges State Management, ideal für die Komplexität der Anwendung, ohne den Boilerplate von Redux.
 
 **Tailwind CSS:** Utility-First CSS Framework für schnelles Styling und einfache Responsivität.
+<div style="page-break-after: always;"></div>
 
 ### **3.3 UI/UX Design**
 
@@ -351,6 +365,7 @@ Das Design wurde speziell für Kinder entwickelt:
 - Typografie: Gute Lesbarkeit durch serifenlose Schriftarten.
 - Navigation: Große Knöpfe, intuitive "Weiter"-Buttons, visuelles Feedback bei Quiz-Antworten (Grün/Rot).
 - Barrierefreiheit (Accessibility): Einhaltung grundlegender WCAG-Standards, wie z.B. ausreichende Farbkontraste für Texte und Buttons sowie Tastaturnavigation (Tab-Index) für eine bedienbare Oberfläche auch ohne Maus.
+<div style="page-break-after: always;"></div>
 
 ### **3.4 Datenmodell**
 
@@ -397,6 +412,7 @@ erDiagram
   ]
 }
 ```
+<div style="page-break-after: always;"></div>
 
 ### **3.5 Klassendiagramm (UML)**
 
@@ -437,6 +453,7 @@ classDiagram
     OceanSelectionComponent ..> DataService : injects
     OceanFactsComponent ..> DataService : injects
 ```
+<div style="page-break-after: always;"></div>
 
 ### **3.6 Datenschutz & Sicherheit (Privacy by Design)**
 
@@ -477,6 +494,7 @@ export class OceanFactsComponent { ... }
 ```
 
 _Die OceanFactsComponent, die alle notwendigen Abhängigkeiten (Imports) direkt im Component-Decorator definiert_
+<div style="page-break-after: always;"></div>
 
 #### **4.2.2 State Management mit SignalStore**
 
@@ -502,6 +520,7 @@ _Der Store (QuizStore) hält den State und bietet Methoden (Updaters) zur Manipu
 #### **4.2.3 Routing & Navigation**
 
 Das Routing wurde in der app.routes.ts definiert. Es ermöglicht die Navigation zwischen Startseite, Auswahl, Fakten und Quiz. Parameter (wie die id des Ozeans) werden über die URL übergeben (path: 'facts/:id') und in den Komponenten ausgelesen.
+<div style="page-break-after: always;"></div>
 
 ### **4.3 Herausforderungen & Lösungen**
 
@@ -514,6 +533,7 @@ Während der Realisierungsphase traten verschiedene technische und konzeptionell
 | SignalStore Einarbeitung Paradigmenwechsel von klassischen Services zu Signals. | Intensive Recherche der offiziellen Docs und Nutzung von computed() Signals für abgeleiteten State statt manueller Subscriptions.          | Sehr performanter, reaktiver Code mit deutlich weniger Boilerplate.            |
 | Kindgerechte UX Interface muss ohne viel Text verständlich sein.                | Nutzung von großen Icons, intuitiven Farben (Grün/Rot) und Verzicht auf komplexe Menüstrukturen.                                           | Positive Rückmeldung bei ersten Tests mit der Zielgruppe (intuitiv bedienbar). |
 | Datenmodellierung Abbildung komplexer Relationen in Flat-File JSON.             | Design einer verschachtelten JSON-Struktur mit Arrays für Fakten/Bewohner, die zur Laufzeit typisiert eingelesen wird.                     | Flexibles Datenmodell ohne Backend-Zwang, leicht erweiterbar.                  |
+<div style="page-break-after: always;"></div>
 
 ## **5\. Qualitätssicherung**
 
@@ -546,6 +566,7 @@ Die Tests wurden anhand eines vorab definierten Testprotokolls durchgeführt.
 | **TF06** | Responsivität      | Layout passt sich auf Tablet-Größe (iPad Air) an.           |   OK   |
 
 _Alle kritischen Testfälle waren erfolgreich. Kleinere Layout-Fehler (z.B. überlappender Text bei sehr kleinen Bildschirmen) wurden während der Testphase behoben._
+<div style="page-break-after: always;"></div>
 
 ## **6\. Wirtschaftlichkeitsbetrachtung**
 
@@ -574,6 +595,7 @@ Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Koste
 - Personalkosten (Ist): 70 h \* 50,00 €/h \= 3.500,00 €
 - Sachmittel (Ist): 150,00 €
 - Gesamtkosten (Ist): 3.650,00 €
+<div style="page-break-after: always;"></div>
 
 ### **6.3 Amortisationsrechnung**
 
@@ -596,6 +618,7 @@ Das Projekt "Earth Ocean Learning" wurde erfolgreich und im geplanten Zeitrahmen
 - **Angular Router:** Das Verständnis für Child-Routes und Parameter-Übergabe wurde vertieft.
 - **CSS Flexbox:** Dynamisches Layout und Verankerung von Flex-Boxen für responsive Designs (z.B. Sticky Footer, zentrierte Inhalte) war eine wichtige Lernerfahrung.
 - **Planung ist alles:** Das detaillierte Mockup in der Entwurfsphase hat viel Zeit bei der späteren CSS-Implementierung gespart.
+<div style="page-break-after: always;"></div>
 
 ### **7.3 Ausblick**
 
@@ -605,6 +628,7 @@ Für zukünftige Versionen sind folgende Erweiterungen in der Roadmap:
 - **Backend-Anbindung:** Speicherung des Fortschritts in einer Datenbank (statt LocalStorage), um geräteübergreifendes Lernen zu ermöglichen.
 - **PWA-Support:** Ausbau zur Progressive Web App, damit die Anwendung auch offline (z.B. auf Tablets in Schulen ohne WLAN) genutzt werden kann.
 - **Mehrsprachigkeit (i18n):** Übersetzung der Inhalte ins Englische, um eine größere Zielgruppe zu erreichen.
+<div style="page-break-after: always;"></div>
 
 ## **8\. Anhang**
 
@@ -617,6 +641,7 @@ Der vollständige und kommentierte Quellcode aller Projektdateien, Grafiken, Pro
 **Startbildschirm der Anwendung:**
 
 **Laufende Visualisierung:**
+<div style="page-break-after: always;"></div>
 
 ## **9\. Erklärung**
 
