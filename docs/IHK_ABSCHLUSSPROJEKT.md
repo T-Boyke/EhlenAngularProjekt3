@@ -171,7 +171,7 @@ Firmenweg 2
 
 Im Rahmen der Umschulung zum Fachinformatiker für Anwendungsentwicklung, erläutert der Autor, welcher bei Herrn Ehlen sein Kurs-Element “Angular” absolvierte, den Ablauf seines hier folgenden Abschlussprojekts **bei einem fiktiven** Unternehmen.
 
-Die **Beispiel GmbH** ist ein Start-up, mittelständisches IT-Dienstleistungsunternehmen mit Sitz im Herzen von Neuss. Seit ihrer Gründung im Jahr 2025 hat sich die Firma darauf spezialisiert, maßgeschneiderte Webanwendungen und anspruchsvolle CMS-Lösungen für Unternehmenskunden zu entwickeln. **14 Mitarbeiter**, bestehend aus Backend- und Frontend-Entwicklern, UI/UX-Designern, Projektmanagern und Content-Spezialisten, sind in der Beispiel GmbH beschäftigt und arbeiten vorwiegend für Kunden aus dem produzierenden Gewerbe, der Logistik und der Edutainment-Branche.
+Die **Beispiel GmbH** ist ein ein junges, aufstrebendes IT-Unternehmen mit Sitz im Herzen von Neuss. Seit ihrer Gründung im Jahr 2025 hat sich die Firma darauf spezialisiert, maßgeschneiderte Webanwendungen und anspruchsvolle CMS-Lösungen für Unternehmenskunden zu entwickeln. **14 Mitarbeiter**, bestehend aus Backend- und Frontend-Entwicklern, UI/UX-Designern, Projektmanagern und Content-Spezialisten, sind in der Beispiel GmbH beschäftigt und arbeiten vorwiegend für Kunden aus dem produzierenden Gewerbe, der Logistik und der Edutainment-Branche.
 
 Die Beispiel GmbH wurde von einem Kunden, einer Umweltschutz-NGO, beauftragt, eine Browser Applikation für das spielerische Erlernen von Ozean-Fakten für Grundschulkinder zu entwickeln.
 
@@ -181,11 +181,23 @@ Zu den Stakeholdern des Projekts zählen:
 
 ### **1.2. Projektidee und Zielsetzung**
 
-Ziel des Projektes ist die Entwicklung einer Single Page Application (SPA) "Earth Ocean Learning". Die Anwendung soll Kindern spielerisch Wissen über die fünf Ozeane vermitteln. Kernfunktionen umfassen eine Auswahl der Ozeane, einen Lernbereich mit Informationen sowie ein Quiz-Modul zur Wissensüberprüfung.Optional soll die Anwendung muss als eigenständiges Modul (Standalone) konzipiert sein, um eine einfache Integration in bestehende CMS-Systeme (wie GRAV) zu ermöglichen.
+Ziel des Projektes ist die Entwicklung einer Single Page Application (SPA) "Earth Ocean Learning". Die Anwendung soll Kindern spielerisch Wissen über die fünf Ozeane vermitteln. Kernfunktionen umfassen eine Auswahl der Ozeane, einen Lernbereich mit Informationen sowie ein Quiz-Modul zur Wissensüberprüfung.Die Anwendung muss als eigenständiges Modul (Standalone) konzipiert sein, um eine einfache Integration in bestehende CMS-Systeme (wie GRAV) zu ermöglichen.
 
 ### **1.3 Projektbegründung**
 
 Die Digitalisierung im Bildungssektor erfordert moderne, webbasierte Lernlösungen, die plattformunabhängig funktionieren. Herkömmliche Lernmaterialien (PDFs, statische Webseiten) bieten oft nicht den nötigen Anreiz für die Zielgruppe (Kinder). Durch den Einsatz moderner Webtechnologien (Angular, SignalStore) soll eine performante, wartbare und zukunftssichere Lösung geschaffen werden, die gleichzeitig als Referenzprojekt für die Beispiel GmbH dient, um die Kompetenz im Bereich "Edutainment" zu unterstreichen.
+<div style="page-break-after: always;"></div>
+
+### **1.4 Make-or-Buy Entscheidung**
+Im Vorfeld des Projekts wurde geprüft, ob der Einsatz von Standard-Lösungen (SaaS-Produkte wie Kahoot!, Quizlet oder Moodle) möglich ist (Buy). Die Entscheidung fiel zugunsten einer Eigenentwicklung (Make) aus, da dies eine explizite Vorgabe des Auftraggebers (NGO) war.
+
+Diese Vorgabe wurde durch eine technische Analyse der Beispiel GmbH bestätigt und als wirtschaftlich sinnvoll validiert:
+
+**Datenschutz:** Da die Zielgruppe Kinder (7–9 Jahre) umfasst, forderte die NGO eine Lösung ohne Datenerhebung (No-Tracking) und ohne Benutzerkonten-Zwang. Gängige Markt-Lösungen sammeln oft Metadaten oder erfordern Logins, was den strengen Datenschutzanforderungen der NGO widersprach.
+
+**Offline-Fähigkeit & Integration:** Die Anwendung muss langfristig nahtlos in das bestehende CMS der NGO integrierbar sein und perspektivisch auch offline auf Tablets in Schulen (ohne stabiles WLAN) funktionieren. Eine PWA-fähige Eigenentwicklung auf Basis von Angular erfüllt diese Anforderung besser als webbasierte Abo-Modelle.
+
+**Lizenzkosten vs. Einmalkosten:** Bei der geplanten hohen Nutzerzahl und der Laufzeit über mehrere Jahre sind die einmaligen Entwicklungskosten ("Make") günstiger als die laufenden, nutzerbasierten Lizenzgebühren ("Buy") kommerzieller Bildungsplattformen.
 <div style="page-break-after: always;"></div>
 
 ## **2\. Projektplanung**
@@ -489,7 +501,7 @@ Da sich die Anwendung an Kinder richtet, hat der Datenschutz höchste Priorität
 - Keine Datensammlung: Es werden keinerlei personenbezogene Daten (PII) erhoben oder an externe Server gesendet.
 - Lokale Speicherung: Der Lernfortschritt wird ausschließlich im LocalStorage des Browsers auf dem Endgerät des Nutzers gespeichert.
 - Offline-Fähigkeit: Die Anwendung lädt keine externen Tracker oder Analyse-Tools nach.
-- Offline-Fähigkeit: Die Anwendung lädt keine externen Tracker oder Analyse-Tools nach.
+- Bis auf LocalStorage werden keine Cookies verwendet.
 
 ## **4\. Realisierung**
 
