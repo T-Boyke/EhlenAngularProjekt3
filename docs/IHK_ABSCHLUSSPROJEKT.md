@@ -1,4 +1,4 @@
-**![INNUNG](BITLC.png)**
+**![INNUNG](../BITLC.png)**
 
 Abschlussprüfung “Angular” NE4NE8
 
@@ -22,7 +22,7 @@ Musterstraße 1
 
 Prüfungsnummer: 0001278495
 
-**![BeispielGMBH](BeispielGMBH.png)**
+**![BeispielGMBH](../BeispielGMBH.png)**
 
 Ausbildungsbetrieb:
 
@@ -473,7 +473,7 @@ Da sich die Anwendung an Kinder richtet, hat der Datenschutz höchste Priorität
 - Keine Datensammlung: Es werden keinerlei personenbezogene Daten (PII) erhoben oder an externe Server gesendet.
 - Lokale Speicherung: Der Lernfortschritt wird ausschließlich im LocalStorage des Browsers auf dem Endgerät des Nutzers gespeichert.
 - Offline-Fähigkeit: Die Anwendung lädt keine externen Tracker oder Analyse-Tools nach.
-- _Das Klassendiagramm detailliert die Struktur der JavaScript-Module. Die Hanoi Visualizer-Klasse kapselt die gesamte Canvas-Logik. solver.js stellt eine reine Funktion bereit, während hanoi-main.js als Controller agiert._
+- Offline-Fähigkeit: Die Anwendung lädt keine externen Tracker oder Analyse-Tools nach.
 
 ## **4\. Realisierung**
 
