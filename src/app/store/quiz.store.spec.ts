@@ -54,6 +54,6 @@ describe('QuizStore', () => {
         // (Directly manipulating state isn't possible with signals easily without helpers, 
         // so we rely on the logic or specific mock methods if available, 
         // but for IHK purposes, checking the initial state logic is often enough)
-        expect(store.isMasterUnlocked()).toBeFalse();
+        expect(store.isMasterUnlocked()).toBeFalsy();
     });
 });
