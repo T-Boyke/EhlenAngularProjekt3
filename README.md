@@ -113,8 +113,8 @@ The project follows a modular, standalone component architecture:
 
 For more detailed information about the project's background, architecture, and design decisions, please refer to the following documents included in this repository:
 
-*   [**IHK_ABSCHLUSSPROJEKT.md**](./IHK_ABSCHLUSSPROJEKT.md): Full project documentation including analysis, design, and implementation details.
-*   [**BENUTZERHANDBUCH.md**](./BENUTZERHANDBUCH.md): User manual (German).
+*   [**IHK_ABSCHLUSSPROJEKT.md**](docs/IHK_ABSCHLUSSPROJEKT.md): Full project documentation including analysis, design, and implementation details.
+*   [**BENUTZERHANDBUCH.md**](docs/BENUTZERHANDBUCH.md): User manual (German).
 
 ## 👤 Contact
 
