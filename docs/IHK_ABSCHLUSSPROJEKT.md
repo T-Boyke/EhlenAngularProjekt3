@@ -1,4 +1,4 @@
-**![INNUNG](./BITLC.png)**
+**![INNUNG](./assets/BITLC.png)**
 
 Abschlussprüfung “Angular” NE4NE8
 
@@ -22,7 +22,7 @@ Musterstraße 1
 
 Prüfungsnummer: 0001278495
 
-**![BeispielGMBH](./BeispielGMBH.png)**
+**![BeispielGMBH](./assets/BeispielGMBH.png)**
 
 Ausbildungsbetrieb:
 
