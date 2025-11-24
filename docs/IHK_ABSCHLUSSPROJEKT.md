@@ -327,36 +327,52 @@ graph LR
 
 ### **3.2 Architekturentwurf**
 
+Die Anwendung wurde als reine Single Page Application (SPA) konzipiert, die vollständig im Browser des Clients ausgeführt wird (Client-Side Rendering).
+
+Im Gegensatz zu klassischen Webseiten, die bei jeder Interaktion neu vom Server geladen werden, lädt diese SPA lediglich einmalig die notwendigen Ressourcen (HTML, CSS, JavaScript) und tauscht anschließend Inhalte dynamisch aus. Auf Server-Side Rendering (SSR) wurde nach einer Evaluierung bewusst verzichtet. Da es sich um eine geschlossene Lernanwendung handelt, sind SEO-Optimierungen (Suchmaschinenranking) zweitrangig. Der Verzicht auf SSR reduziert die Komplexität der Infrastruktur drastisch (kein Node.js-Server für den Betrieb nötig) und ermöglicht ein einfaches, kostengünstiges Hosting auf beliebigen statischen Webservern.
+
 ```mermaid
 graph TD
-    subgraph "View (UI)"
-        Comp[Components]
-        Templ[Templates]
+    User((Benutzer))
+    
+    subgraph "Client Browser (SPA)"
+        subgraph "View (UI Layer)"
+            Comp[Standalone Components]
+            Templ[HTML Templates]
+        end
+
+        subgraph "ViewModel (State Layer)"
+            Store[SignalStore]
+        end
+
+        subgraph "Model (Data Layer)"
+            Service[DataService]
+            Interfaces[TypeScript Interfaces]
+        end
     end
 
-    subgraph "ViewModel (State)"
-        Store[SignalStore]
-    end
+    Data[(ocean-data.json)]
 
-    subgraph "Model (Data)"
-        Interfaces[Interfaces]
-        Service[DataService]
-    end
-
-    User((User)) --> Comp
-    Comp --> Store
-    Store --> Service
-    Service --> Interfaces
-    Service -- JSON --> Data[(ocean-data.json)]
+    User -->|Interaktion| Comp
+    Comp -->|liest Signals| Store
+    Store -->|ruft Daten ab| Service
+    Service -->|fetch| Data
+    Service -->|typsicher| Interfaces
 ```
+
+_Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches durch die moderne Angular-Architektur (Signals) effizient umgesetzt wird._
 
 **Technologie-Entscheidungen:**
 
 **Angular 21:** In Absprache mit dem Ausbilder wurde die Entscheidung getroffen, die Version 21 zu verwenden. Ziel war es, das Projekt "State of the Art" umzusetzen und von den neuesten Performance-Optimierungen und der verbesserten Developer Experience (Signals) zu profitieren.
 
-**SignalStore (@ngrx/signals):** Leichtgewichtiges State Management, ideal für die Komplexität der Anwendung, ohne den Boilerplate von Redux.
+**Client-Side Rendering (CSR):** Die Entscheidung für CSR sorgt für ein flüssiges, App-ähnliches Nutzererlebnis ("App-Feel"). Nach dem initialen Laden reagiert die Anwendung sofort auf Benutzereingaben, ohne Wartezeiten durch Server-Roundtrips.
 
-**Tailwind CSS:** Utility-First CSS Framework für schnelles Styling und einfache Responsivität.
+**State Management (SignalStore):** Anstelle von komplexen Lösungen wie Redux/NgRx wurde der leichtgewichtige SignalStore gewählt. Er nutzt die neuen Angular Signals für reaktive Programmierung. Dies ermöglicht eine sehr feingranulare Aktualisierung der Benutzeroberfläche (Fine-Grained Reactivity), was die Performance auf mobilen Endgeräten (Tablets) deutlich verbessert.
+
+**Datenhaltung (Static JSON):** Da die Ozean-Daten statisch sind, werden sie über eine JSON-Datei (assets/data/ocean-data.json) geladen. Dies entkoppelt das Frontend von einem dedizierten Backend und ermöglicht den Offline-Betrieb (vorbereitet für PWA).
+
+**Tailwind CSS:** Ein "Utility-First" CSS-Framework, das es ermöglicht, responsive Designs direkt im HTML-Markup zu erstellen. Dies spart Zeit beim Wechsel zwischen Dateien und garantiert ein konsistentes Designsystem.
 <div style="page-break-after: always;"></div>
 
 ### **3.3 UI/UX Design**
