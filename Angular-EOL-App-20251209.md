@@ -194,7 +194,7 @@ Zum Zeitpunkt des Projektstarts existiert keine Softwarelösung für den genannt
 * Zugriff auf Standard-Entwicklungstools (VS Code, Sublime Text 4 (Build 4200), GitHub, Node.js, NPM.  
 * Keine bestehende CI/CD Pipeline für dieses spezifische Projekt.
 
-### **2.2. Zeitplanung (Gantt-Diagramm)** {#2.2.-zeitplanung-(gantt-diagramm)}
+### **2.2. Zeitplanung (Gantt-Diagramm)**
 
 Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt:
 
@@ -353,7 +353,7 @@ Das Design wurde speziell für Kinder entwickelt:
 * Navigation: Große Knöpfe, intuitive "Weiter"-Buttons, visuelles Feedback bei Quiz-Antworten (Grün/Rot).  
 * Barrierefreiheit (Accessibility): Einhaltung grundlegender WCAG-Standards, wie z.B. ausreichende Farbkontraste für Texte und Buttons sowie Tastaturnavigation (Tab-Index) für eine bedienbare Oberfläche auch ohne Maus.
 
-### **3.4 Datenmodell** {#3.4-datenmodell}
+### **3.4 Datenmodell**
 
 Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährleisten und eine Datenbank-Abhängigkeit für diesen Prototypen zu vermeiden.
 ```mermaid
@@ -381,10 +381,22 @@ erDiagram
         string correctAnswer
     }
 ```
-| {  "id": "pacific",  "name": "Pazifischer Ozean",  "facts": \[ ... \],  "inhabitants": \[ ... \],  "quizQuestions": \[    {      "question": "Wie tief ist der Marianengraben?",      "options": \["11.000m", "5.000m", "2.000m", "8.000m"\],      "correctAnswer": "11.000m"    }  \]} |
-| :---- |
-
-### **3.5 Klassendiagramm (UML)** {#3.5-klassendiagramm-(uml)}
+```json
+{
+  "id": "pacific",
+  "name": "Pazifischer Ozean",
+  "facts": [ ... ],
+  "inhabitants": [ ... ],
+  "quizQuestions": [
+    {
+      "question": "Wie tief ist der Marianengraben?",
+      "options": ["11.000m", "5.000m", "2.000m", "8.000m"],
+      "correctAnswer": "11.000m"
+    }
+  ]
+}
+```
+### **3.5 Klassendiagramm (UML)**
 
 Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem SignalStore und den Daten-Services.
 
@@ -424,7 +436,7 @@ classDiagram
     OceanFactsComponent ..> DataService : injects
 ```
 
-### **3.6 Datenschutz & Sicherheit (Privacy by Design)** {#3.6-datenschutz-&-sicherheit-(privacy-by-design)}
+### **3.6 Datenschutz & Sicherheit (Privacy by Design)**
 
 Da sich die Anwendung an Kinder richtet, hat der Datenschutz höchste Priorität.
 
@@ -433,9 +445,9 @@ Da sich die Anwendung an Kinder richtet, hat der Datenschutz höchste Priorität
 * Offline-Fähigkeit: Die Anwendung lädt keine externen Tracker oder Analyse-Tools nach.  
 * *Das Klassendiagramm detailliert die Struktur der JavaScript-Module. Die Hanoi Visualizer-Klasse kapselt die gesamte Canvas-Logik. solver.js stellt eine reine Funktion bereit, während hanoi-main.js als Controller agiert.*
 
-## **4\. Realisierung** {#4.-realisierung}
+## **4\. Realisierung**
 
-### **4.1 Entwicklungsumgebung** {#4.1-entwicklungsumgebung}
+### **4.1 Entwicklungsumgebung**
 
 Die Entwicklung fand auf einem lokalen Windows-System statt. Folgende Tools kamen zum Einsatz:
 
@@ -444,14 +456,22 @@ Die Entwicklung fand auf einem lokalen Windows-System statt. Folgende Tools kame
 * **Framework:** Angular CLI Version 21.0.0.  
 * **Browser:** Google Chrome (für Debugging und Tests).
 
-### **4.2 Implementierung der Hauptkomponenten** {#4.2-implementierung-der-hauptkomponenten}
-
-#### **4.2.1 Standalone Components** {#4.2.1-standalone-components}
+### **4.2 Implementierung der Hauptkomponenten**
+#### **4.2.1 Standalone Components**
 
 Das Projekt setzt vollständig auf Standalone Components, um die Komplexität von NgModules zu vermeiden. 
 
-| @Component({  selector: 'app-ocean-facts',  standalone: true,  imports: \[CommonModule, NgOptimizedImage\],  templateUrl: './ocean-facts.component.html',  styleUrl: './ocean-facts.component.css',  changeDetection: ChangeDetectionStrategy.OnPush})export class OceanFactsComponent { ... } |
-| :---- |
+```typescript
+@Component({
+  selector: 'app-ocean-facts',
+  standalone: true,
+  imports: [CommonModule, NgOptimizedImage],
+  templateUrl: './ocean-facts.component.html',
+  styleUrl: './ocean-facts.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class OceanFactsComponent { ... }
+```
 
 *Die OceanFactsComponent, die alle notwendigen Abhängigkeiten (Imports) direkt im Component-Decorator definiert*
 
@@ -459,17 +479,29 @@ Das Projekt setzt vollständig auf Standalone Components, um die Komplexität vo
 
 Für die Verwaltung des Anwendungszustands (z.B. "Welcher Ozean ist gewählt?", "Wie viele Sterne hat der User?") wurde der **NgRx SignalStore** verwendet. Dies ermöglicht eine reaktive und performante Datenhaltung ohne den Boilerplate klassischer Redux-Lösungen. 
 
-| *export const QuizStore \= signalStore(  { providedIn: 'root' },  withState(initialState),  withMethods((store) \=\> ({    unlockMasterQuiz() {      patchState(store, { masterQuizUnlocked: true });    },    addStar(oceanId: string) {      // Logik zum Hinzufügen eines Sterns    }  })));* |
-| :---- |
+```typescript
+export const QuizStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withMethods((store) => ({
+    unlockMasterQuiz() {
+      patchState(store, { masterQuizUnlocked: true });
+    },
+    addStar(oceanId: string) {
+      // Logik zum Hinzufügen eines Sterns
+    }
+  }))
+);
+```
 
 *Der Store (QuizStore) hält den State und bietet Methoden (Updaters) zur Manipulation an*
 
-#### **4.2.3 Routing & Navigation** {#4.2.3-routing-&-navigation}
+#### **4.2.3 Routing & Navigation**
 
 Das Routing wurde in der app.routes.ts definiert. Es ermöglicht die Navigation zwischen Startseite, Auswahl, Fakten und Quiz. Parameter (wie die id des Ozeans) werden über die URL übergeben (path: 'facts/:id') und in den Komponenten ausgelesen.
 
 
-### **4.3 Herausforderungen & Lösungen** {#4.3-herausforderungen-&-lösungen}
+### **4.3 Herausforderungen & Lösungen**
 
 Während der Realisierungsphase traten verschiedene technische und konzeptionelle Herausforderungen auf. Diese wurden wie folgt gelöst:
 
@@ -481,16 +513,22 @@ Während der Realisierungsphase traten verschiedene technische und konzeptionell
 | Kindgerechte UX Interface muss ohne viel Text verständlich sein. | Nutzung von großen Icons, intuitiven Farben (Grün/Rot) und Verzicht auf komplexe Menüstrukturen. | Positive Rückmeldung bei ersten Tests mit der Zielgruppe (intuitiv bedienbar). |
 | Datenmodellierung Abbildung komplexer Relationen in Flat-File JSON. | Design einer verschachtelten JSON-Struktur mit Arrays für Fakten/Bewohner, die zur Laufzeit typisiert eingelesen wird. | Flexibles Datenmodell ohne Backend-Zwang, leicht erweiterbar. |
 
-## **5\. Qualitätssicherung** {#5.-qualitätssicherung}
+## **5\. Qualitätssicherung**
 
-### **5.1 Testplanung** {#5.1-testplanung}
+### **5.1 Testplanung**
 
 Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf manuelle Systemtests gelegt. Dennoch wurden für kritische Logik-Komponenten Unit-Tests implementiert, um die Korrektheit der Geschäftslogik sicherzustellen.
 
 **Beispiel Unit-Test (Jasmine/Karma):**
 
-| it('should calculate correct score', () \=\> {  const service \= TestBed.inject(QuizService);  service.answerQuestion(true); *// Correct*  service.answerQuestion(true); *// Correct*  expect(service.score()).toBe(2);}); |
-| :---- |
+```typescript
+it('should calculate correct score', () => {
+  const service = TestBed.inject(QuizService);
+  service.answerQuestion(true); // Correct
+  service.answerQuestion(true); // Correct
+  expect(service.score()).toBe(2);
+});
+```
 
 ### **5.2 Testdurchführung & Ergebnisse**
 
@@ -535,7 +573,7 @@ Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Koste
 * Sachmittel (Ist): 150,00 €  
 * Gesamtkosten (Ist): 3.650,00 €
 
-### **6.3 Amortisationsrechnung** {#6.3-amortisationsrechnung}
+### **6.3 Amortisationsrechnung**
 
 Da es sich um ein internes Projekt bzw. ein Auftragsprojekt für eine NGO handelt, ist eine direkte monetäre Amortisation (ROI) schwer messbar. Der Nutzen liegt primär in:
 
@@ -544,20 +582,19 @@ Da es sich um ein internes Projekt bzw. ein Auftragsprojekt für eine NGO handel
 
 **Qualitative Bewertung:** Wenn durch die App nur 2 neue Kundenprojekte im Jahr gewonnen werden (Deckungsbeitrag je ca. 5.000 €), hat sich die Investition bereits im ersten Jahr amortisiert.
 
-## **7\. Fazit & Ausblick** {#7.-fazit-&-ausblick}
+## **7\. Fazit & Ausblick**
 
-### **7.1 Zusammenfassung** {#7.1-zusammenfassung}
+### **7.1 Zusammenfassung**
 
 Das Projekt "Earth Ocean Learning" wurde erfolgreich und im geplanten Zeitrahmen umgesetzt. Alle funktionalen Anforderungen (Lernmodus, Quiz, Fortschritt) wurden erfüllt. Die Anwendung läuft stabil, ist performant und bietet durch das responsive Design eine gute User Experience auf verschiedenen Endgeräten.
 
-### **7.2 Lessons Learned** {#7.2-lessons-learned}
-
+### **7.2 Lessons Learned**
 * **Angular Signals:** Die Nutzung von Signals hat den Code deutlich vereinfacht und lesbarer gemacht im Vergleich zu RxJS-Observables.  
 * **Angular Router:** Das Verständnis für Child-Routes und Parameter-Übergabe wurde vertieft.  
 * **CSS Flexbox:** Dynamisches Layout und Verankerung von Flex-Boxen für responsive Designs (z.B. Sticky Footer, zentrierte Inhalte) war eine wichtige Lernerfahrung.  
 * **Planung ist alles:** Das detaillierte Mockup in der Entwurfsphase hat viel Zeit bei der späteren CSS-Implementierung gespart.
 
-### **7.3 Ausblick** {#7.3-ausblick}
+### **7.3 Ausblick**
 
 Für zukünftige Versionen sind folgende Erweiterungen in der Roadmap:
 
