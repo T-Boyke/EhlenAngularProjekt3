@@ -2,9 +2,15 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-start',
-    standalone: true,
-    template: `
+  selector: 'app-start',
+  standalone: true,
+  styles: [`
+      :host {
+        display: block;
+        width: 100%;
+      }
+    `],
+  template: `
     <div class="flex items-center justify-center h-screen w-full">
       <div class="glass-card w-full max-w-md text-center animate-fly-in flex flex-col items-center gap-6">
         <!-- Logo Placeholder -->
@@ -27,9 +33,9 @@ import { Router } from '@angular/router';
   `
 })
 export class StartComponent {
-    private router = inject(Router);
+  private router = inject(Router);
 
-    start() {
-        this.router.navigate(['/selection']);
-    }
+  start() {
+    this.router.navigate(['/selection']);
+  }
 }

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@source "../src";
+@source ".";
 
 :root {
   --glass-bg: rgba(255, 255, 255, 0.25);
