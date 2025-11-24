@@ -113,35 +113,35 @@ Firmenweg 2
 
 ## **Abbildungsverzeichnis**
 
-[2.3 Zeitplanung \- Gantt Diagramm 09](#heading=)
+[Abb. 1: Projektzeitplan (Gantt-Diagramm) (Kapitel 2.3)9](#heading=)
 
-[3.1 Anwendungsfalldiagramm (Use Cases)	10](#heading=)
+[Abb. 2: Anwendungsfalldiagramm / Use Cases (Kapitel 3.1)	10](#heading=)
 
-[3.2 Architekturentwurf	11](#heading=)
+[Abb. 3: Architekturentwurf (Kapitel 3.2) 11](#heading=)
 
-[3.4 Datenmodell	13](#heading=)
+[Abb. 4: Entity Relationship Diagramm (Kapitel 3.4)	13](#heading=)
 
-[3.5 Klassendiagramm (UML)	14](#heading=)
+[Abb. 5: Klassendiagramm UML (Kapitel 3.5)	14](#heading=)
 
 ## **Tabellenverzeichnis** {#tabellenverzeichnis}
 
-[2.3 Zeitplanung	08](#heading=)
+[Tab. 1: Zeitplanung und Phasen (Kapitel 2.3)	08](#heading=)
 
-[4.3 Herausforderungen & Lösungen	17](#heading=)
+[Tab. 2: Herausforderungen & Lösungen (Kapitel 4.3)	17](#heading=)
 
-[5.2 Testdurchführung & Ergebnisse	18](#heading=)
+[Tab. 3: Testdurchführung & Ergebnisse (Kapitel 5.2) 18](#heading=)
 
-[6.1 Soll-Ist-Vergleich (Zeit)	19](#heading=)
+[Tab. 4: Soll-Ist-Vergleich Zeit (Kapitel 6.1)	19](#heading=)
 
 ## **Listings** {#listings}
 
-[3.4 Datenmodell 13](#heading=)
+[Listing 1: JSON Datenstruktur (Kapitel 3.4) 13](#heading=)
 
-[4.2.1 Standalone Components 15](#heading=)
+[Listing 2: Standalone Component Definition (Kapitel 4.2.1) 15](#heading=)
 
-[4.2.2 State Management mit SignalStore 16](#heading=)
+[Listing 3: SignalStore Definition (Kapitel 4.2.2) 16](#heading=)
 
-[5.1 Testplanung 18](#heading=)
+[Listing 4: Unit-Test Beispiel (Kapitel 5.1) 18](#heading=)
 
 ## **Glossar**
 
