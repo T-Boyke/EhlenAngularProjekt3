@@ -1,4 +1,4 @@
-**![INNUNG](BITLC.PNG)**
+**![INNUNG](BITLC.png)**
 
 Abschlussprüfung “Angular” NE4NE8
 
