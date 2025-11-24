@@ -243,7 +243,31 @@ Der Durchführungszeitraum des Projektes ist vom 17.11.2025 bis 09.12.2025. Die 
 |  | *Erstellung Benutzerhandbuch* | *2 h* |
 | ***Gesamt*** |  | ***70 h*** |
 
-![gantt    title Projektzeitplan Earth Ocean Learning    dateFormat  YYYY-MM-DD    axisFormat  %d.%m.        section Analyse & Planung    Ist-Analyse & Soll-Konzept       :a1, 2025-11-17, 1d    Pflichtenheft & Fachkonzept      :a2, after a1, 1d    Wirtschaftlichkeitsbetrachtung   :a3, after a2, 1d        section Entwurf    UI/UX Design (Mockups)           :b1, 2025-11-20, 2d    Architektur & Datenmodell        :b2, after b1, 1d        section Implementierung    Setup & Core Components          :c1, 2025-11-23, 2d    Logik (SignalStore)              :c2, after c1, 3d    UI & Styling (Tailwind)          :c3, after c2, 3d    Daten-Integration                :c4, after c3, 1d        section QA & Doku    Tests & Bugfixing                :d1, 2025-12-03, 3d    Dokumentation                    :d2, 2025-12-06, 3d][image3]
+```mermaid
+gantt
+    title Projektzeitplan Earth Ocean Learning
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d.%m.
+    
+    section Analyse & Planung
+    Ist-Analyse & Soll-Konzept       :a1, 2025-11-17, 1d
+    Pflichtenheft & Fachkonzept      :a2, after a1, 1d
+    Wirtschaftlichkeitsbetrachtung   :a3, after a2, 1d
+    
+    section Entwurf
+    UI/UX Design (Mockups)           :b1, 2025-11-20, 2d
+    Architektur & Datenmodell        :b2, after b1, 1d
+    
+    section Implementierung
+    Setup & Core Components          :c1, 2025-11-23, 2d
+    Logik (SignalStore)              :c2, after c1, 3d
+    UI & Styling (Tailwind)          :c3, after c2, 3d
+    Daten-Integration                :c4, after c3, 1d
+    
+    section QA & Doku
+    Tests & Bugfixing                :d1, 2025-12-03, 3d
+    Dokumentation                    :d2, 2025-12-06, 3d
+```
 
 ### **2.4 Kostenplanung**
 
@@ -269,12 +293,48 @@ Die Kostenplanung **basiert auf einem fiktiven** internen Verrechnungssatz.
 
 Der Benutzer (Kind) interagiert primär lesend und spielend mit dem System.
 
-![graph LR    Kind((Kind / User))    subgraph "Earth Ocean Learning"        UC1(Ozean auswählen)        UC2(Fakten ansehen)        UC3(Quiz spielen)        UC4(Fortschritt einsehen)        UC5(Master-Quiz spielen)    end    Kind --\> UC1    Kind --\> UC2    Kind --\> UC3    Kind --\> UC4    Kind --\> UC5    UC5 -.-\>|include| UC4][image4] 
+```mermaid
+graph LR
+    Kind((Kind / User))
+    subgraph "Earth Ocean Learning"
+        UC1(Ozean auswählen)
+        UC2(Fakten ansehen)
+        UC3(Quiz spielen)
+        UC4(Fortschritt einsehen)
+        UC5(Master-Quiz spielen)
+    end
+    Kind --> UC1
+    Kind --> UC2
+    Kind --> UC3
+    Kind --> UC4
+    Kind --> UC5
+    UC5 -.->|include| UC4
+```
 
 ### **3.2 Architekturentwurf**
 
-Die Anwendung folgt einer MVVM (Model-View-ViewModel) ähnlichen Architektur, die durch Angular und den SignalStore realisiert wird.  
-![graph TD    subgraph "View (UI)"        Comp\[Components\]        Templ\[Templates\]    end        subgraph "ViewModel (State)"        Store\[SignalStore\]    end        subgraph "Model (Data)"        Interfaces\[Interfaces\]        Service\[DataService\]    end        User((User)) --\> Comp    Comp --\> Store    Store --\> Service    Service --\> Interfaces    Service -- JSON --\> Data\[(ocean-data.json)\]][image5]
+```mermaid
+graph TD
+    subgraph "View (UI)"
+        Comp[Components]
+        Templ[Templates]
+    end
+    
+    subgraph "ViewModel (State)"
+        Store[SignalStore]
+    end
+    
+    subgraph "Model (Data)"
+        Interfaces[Interfaces]
+        Service[DataService]
+    end
+    
+    User((User)) --> Comp
+    Comp --> Store
+    Store --> Service
+    Service --> Interfaces
+    Service -- JSON --> Data[(ocean-data.json)]
+```
 
 **Technologie-Entscheidungen:**
 
@@ -295,8 +355,32 @@ Das Design wurde speziell für Kinder entwickelt:
 
 ### **3.4 Datenmodell** {#3.4-datenmodell}
 
-Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährleisten und eine Datenbank-Abhängigkeit für diesen Prototypen zu vermeiden.![erDiagram    OCEAN ||--|{ FACT : contains    OCEAN ||--|{ INHABITANT : contains    OCEAN ||--|{ QUIZ\_QUESTION : contains    OCEAN {        string id        string name        string description        string image    }    FACT {        string text    }    INHABITANT {        string name        string image    }    QUIZ\_QUESTION {        string question        string\[\] options        string correctAnswer    }][image6]
+Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährleisten und eine Datenbank-Abhängigkeit für diesen Prototypen zu vermeiden.
+```mermaid
+erDiagram
+    OCEAN ||--|{ FACT : contains
+    OCEAN ||--|{ INHABITANT : contains
+    OCEAN ||--|{ QUIZ_QUESTION : contains
 
+    OCEAN {
+        string id
+        string name
+        string description
+        string image
+    }
+    FACT {
+        string text
+    }
+    INHABITANT {
+        string name
+        string image
+    }
+    QUIZ_QUESTION {
+        string question
+        string[] options
+        string correctAnswer
+    }
+```
 | {  "id": "pacific",  "name": "Pazifischer Ozean",  "facts": \[ ... \],  "inhabitants": \[ ... \],  "quizQuestions": \[    {      "question": "Wie tief ist der Marianengraben?",      "options": \["11.000m", "5.000m", "2.000m", "8.000m"\],      "correctAnswer": "11.000m"    }  \]} |
 | :---- |
 
@@ -304,7 +388,41 @@ Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährlei
 
 Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem SignalStore und den Daten-Services.
 
-![classDiagram    class AppComponent {        +title: string    }    class OceanSelectionComponent {        +oceans: Signal\<Ocean\[\]\>        +selectOcean(id: string)    }    class OceanFactsComponent {        +ocean: Signal\<Ocean\>        +nextFact()    }    class QuizComponent {        +currentQuestion: Signal\<QuizQuestion\>        +submitAnswer(answer: string)    }    class DataService {        +getOceans(): Observable\<Ocean\[\]\>        +getOceanById(id: string): Observable\<Ocean\>    }    class QuizStore {        +state: Signal\<QuizState\>        +unlockMasterQuiz()        +addStar(oceanId: string)    }        AppComponent --\> OceanSelectionComponent : routes to    OceanSelectionComponent ..\> QuizStore : uses    OceanFactsComponent ..\> QuizStore : uses    QuizComponent ..\> QuizStore : uses        OceanSelectionComponent ..\> DataService : injects    OceanFactsComponent ..\> DataService : injects][image7]
+```mermaid
+classDiagram
+    class AppComponent {
+        +title: string
+    }
+    class OceanSelectionComponent {
+        +oceans: Signal<Ocean[]>
+        +selectOcean(id: string)
+    }
+    class OceanFactsComponent {
+        +ocean: Signal<Ocean>
+        +nextFact()
+    }
+    class QuizComponent {
+        +currentQuestion: Signal<QuizQuestion>
+        +submitAnswer(answer: string)
+    }
+    class DataService {
+        +getOceans(): Observable<Ocean[]>
+        +getOceanById(id: string): Observable<Ocean>
+    }
+    class QuizStore {
+        +state: Signal<QuizState>
+        +unlockMasterQuiz()
+        +addStar(oceanId: string)
+    }
+    
+    AppComponent --> OceanSelectionComponent : routes to
+    OceanSelectionComponent ..> QuizStore : uses
+    OceanFactsComponent ..> QuizStore : uses
+    QuizComponent ..> QuizStore : uses
+    
+    OceanSelectionComponent ..> DataService : injects
+    OceanFactsComponent ..> DataService : injects
+```
 
 ### **3.6 Datenschutz & Sicherheit (Privacy by Design)** {#3.6-datenschutz-&-sicherheit-(privacy-by-design)}
 
