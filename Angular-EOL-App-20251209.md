@@ -171,7 +171,7 @@ Firmenweg 2
 
 Im Rahmen der Umschulung zum Fachinformatiker für Anwendungsentwicklung, erläutert der Autor, welcher bei Herrn Ehlen sein Kurs-Element “Angular” absolvierte, den Ablauf seines hier folgenden Abschlussprojekts **bei einem fiktiven** Unternehmen.
 
-Die **Beispiel GmbH** ist ein etabliertes, mittelständisches IT-Dienstleistungsunternehmen mit Sitz im Herzen von Neuss. Seit ihrer Gründung im Jahr 2025 hat sich die Firma darauf spezialisiert, maßgeschneiderte Webanwendungen und anspruchsvolle CMS-Lösungen für Unternehmenskunden zu entwickeln. **14 Mitarbeiter**, bestehend aus Backend- und Frontend-Entwicklern, UI/UX-Designern, Projektmanagern und Content-Spezialisten, sind in der Beispiel GmbH beschäftigt und arbeiten vorwiegend für Kunden aus dem produzierenden Gewerbe, der Logistik und der Edutainment-Branche.
+Die **Beispiel GmbH** ist ein Start-up, mittelständisches IT-Dienstleistungsunternehmen mit Sitz im Herzen von Neuss. Seit ihrer Gründung im Jahr 2025 hat sich die Firma darauf spezialisiert, maßgeschneiderte Webanwendungen und anspruchsvolle CMS-Lösungen für Unternehmenskunden zu entwickeln. **14 Mitarbeiter**, bestehend aus Backend- und Frontend-Entwicklern, UI/UX-Designern, Projektmanagern und Content-Spezialisten, sind in der Beispiel GmbH beschäftigt und arbeiten vorwiegend für Kunden aus dem produzierenden Gewerbe, der Logistik und der Edutainment-Branche.
 
 Die Beispiel GmbH wurde von einem Kunden, einer Umweltschutz-NGO, beauftragt, eine Browser Applikation für das spielerische Erlernen von Ozean-Fakten für Grundschulkinder zu entwickeln.
 
@@ -371,31 +371,38 @@ Das Design wurde speziell für Kinder entwickelt:
 
 Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährleisten und eine Datenbank-Abhängigkeit für diesen Prototypen zu vermeiden.
 
-```mermaid
-erDiagram
-    OCEAN ||--|{ FACT : contains
-    OCEAN ||--|{ INHABITANT : contains
-    OCEAN ||--|{ QUIZ_QUESTION : contains
+classDiagram
+    direction TB
+    note "JSON Dokumenten-Struktur"
+    
+    class OceanDataRoot {
+        +String id
+        +String name
+        +String description
+        +String image
+        +Fact[] facts
+        +Inhabitant[] inhabitants
+        +QuizQuestion[] quizQuestions
+    }
 
-    OCEAN {
-        string id
-        string name
-        string description
-        string image
+    class Fact {
+        +String text
     }
-    FACT {
-        string text
+
+    class Inhabitant {
+        +String name
+        +String image
     }
-    INHABITANT {
-        string name
-        string image
+
+    class QuizQuestion {
+        +String question
+        +String[] options
+        +String correctAnswer
     }
-    QUIZ_QUESTION {
-        string question
-        string[] options
-        string correctAnswer
-    }
-```
+
+    OceanDataRoot *-- Fact : contains (nested)
+    OceanDataRoot *-- Inhabitant : contains (nested)
+    OceanDataRoot *-- QuizQuestion : contains (nested)
 
 ```json
 {
