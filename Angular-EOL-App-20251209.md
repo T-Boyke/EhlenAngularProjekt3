@@ -647,4 +647,4 @@ Der vollständige und kommentierte Quellcode aller Projektdateien, Grafiken, Pro
 
 Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig und ohne fremde Hilfe angefertigt und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe.
 
-Neuss, 13.08.2055 (Unterschrift Tobias Boyke)
+Neuss, 08.12.2025 (Unterschrift Tobias Boyke)
