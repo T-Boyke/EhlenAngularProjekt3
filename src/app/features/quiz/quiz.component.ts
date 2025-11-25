@@ -20,7 +20,7 @@ import { NgClass } from '@angular/common';
           <!-- Image -->
           <div class="w-full h-48 md:h-64 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center">
              <img [src]="question.quizimage" class="w-full h-full object-cover"
-                  (error)="handleMissingImage($event)">
+                  onerror="this.src='/assets/images/pacific.png'">
           </div>
 
           <!-- Question -->
@@ -177,8 +177,5 @@ export class QuizComponent implements OnInit, OnDestroy {
   exitQuiz() {
     this.store.exitQuiz();
     this.router.navigate(['/selection']);
-  }
-  handleMissingImage(event: Event) {
-    (event.target as HTMLImageElement).src = '/assets/images/pacific.png';
   }
 }
