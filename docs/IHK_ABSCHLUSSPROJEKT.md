@@ -384,7 +384,7 @@ _Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches 
 
 **Datenhaltung (Static JSON):** Da die Ozean-Daten statisch sind, werden sie über eine JSON-Datei (assets/data/ocean-data.json) geladen. Dies entkoppelt das Frontend von einem dedizierten Backend und ermöglicht den Offline-Betrieb (vorbereitet für PWA).
 
-**Tailwind CSS:** Ein "Utility-First" CSS-Framework, das es ermöglicht, responsive Designs direkt im HTML-Markup zu erstellen. Dies spart Zeit beim Wechsel zwischen Dateien und garantiert ein konsistentes Designsystem.
+**Tailwind CSS v4:** Ein "Utility-First" CSS-Framework, das es ermöglicht, responsive Designs direkt im HTML-Markup zu erstellen. Dies spart Zeit beim Wechsel zwischen Dateien und garantiert ein konsistentes Designsystem.
 <div style="page-break-after: always;"></div>
 
 ### **3.3 UI/UX Design**
