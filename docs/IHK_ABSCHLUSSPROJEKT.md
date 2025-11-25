@@ -212,7 +212,7 @@ Zum Zeitpunkt des Projektstarts existiert keine Softwarelösung für den genannt
 - Zugriff auf Standard-Entwicklungstools (VS Code, Sublime Text 4 (Build 4200), GitHub, Node.js, NPM.
 - Keine bestehende CI/CD Pipeline für dieses spezifische Projekt.
 
-### **2.2. Zeitplanung (Gantt-Diagramm)**
+### **2.2. Soll-Analyse**
 
 Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt:
 
@@ -384,7 +384,7 @@ _Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches 
 
 **Datenhaltung (Static JSON):** Da die Ozean-Daten statisch sind, werden sie über eine JSON-Datei (assets/data/ocean-data.json) geladen. Dies entkoppelt das Frontend von einem dedizierten Backend und ermöglicht den Offline-Betrieb (vorbereitet für PWA).
 
-**Tailwind CSS:** Ein "Utility-First" CSS-Framework, das es ermöglicht, responsive Designs direkt im HTML-Markup zu erstellen. Dies spart Zeit beim Wechsel zwischen Dateien und garantiert ein konsistentes Designsystem.
+**Tailwind CSS v4:** Ein "Utility-First" CSS-Framework, das es ermöglicht, responsive Designs direkt im HTML-Markup zu erstellen. Dies spart Zeit beim Wechsel zwischen Dateien und garantiert ein konsistentes Designsystem.
 <div style="page-break-after: always;"></div>
 
 ### **3.3 UI/UX Design**
@@ -643,9 +643,9 @@ Die Projektdurchführung verlief weitgehend nach Plan.
 
 Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Kosten den Plankosten.
 
-- Personalkosten (Ist): 70 h \* 50,00 €/h \= 3.500,00 €
+- Personalkosten (Ist): 70 h \* 35,00 €/h \= 2.450,00 €
 - Sachmittel (Ist): 150,00 €
-- Gesamtkosten (Ist): 3.650,00 €
+- Gesamtkosten (Ist): 2.600,00 €
 <div style="page-break-after: always;"></div>
 
 ### **6.3 Amortisationsrechnung**
