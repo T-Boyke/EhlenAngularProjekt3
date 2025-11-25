@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuizStore } from '../../store/quiz.store';
-import { NgClass, DatePipe } from '@angular/common';
+import { QuizService } from '../../store/quiz.store';
+import { DatePipe } from '@angular/common';
 import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-quiz-result',
   standalone: true,
-  imports: [NgClass, DatePipe],
+  imports: [DatePipe],
   template: `
     <div class="min-h-screen w-full flex flex-col items-center justify-center p-4">
       <div class="glass-card w-full max-w-2xl flex flex-col items-center gap-8 animate-pop-in text-center p-8">
@@ -50,7 +50,7 @@ import confetti from 'canvas-confetti';
           <!-- Normal Quiz Result -->
           <h2 class="text-4xl font-bold text-blue-900">Quiz Beendet!</h2>
           
-          <div class="text-6xl font-bold" [ngClass]="isSuccess() ? 'text-green-500' : 'text-blue-500'">
+          <div class="text-6xl font-bold" [class]="isSuccess() ? 'text-green-500' : 'text-blue-500'">
             {{ store.score() }} / {{ store.totalQuestions() }}
           </div>
           
@@ -78,7 +78,7 @@ import confetti from 'canvas-confetti';
   `
 })
 export class QuizResultComponent implements OnInit {
-  store = inject(QuizStore);
+  store = inject(QuizService);
   private router = inject(Router);
   today = new Date();
 

@@ -1,12 +1,12 @@
 import { Component, inject, computed, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuizStore } from '../../store/quiz.store';
-// Removed: import { NgClass } from '@angular/common';
+import { QuizService } from '../../store/quiz.store';
 
 @Component({
   selector: 'app-ocean-facts',
   standalone: true,
-  imports: [], // Removed NgClass from here
+  imports: [], // KORREKTUR: Leeres Array, da NgClass nicht genutzt wird
+  // ... (Rest des Templates bleibt gleich)
   template: `
     <div class="min-h-screen w-full flex flex-col items-center justify-center p-4 relative">
       <button (click)="goBack()" class="absolute top-6 left-6 glass-btn p-3 rounded-full z-10">
@@ -17,8 +17,8 @@ import { QuizStore } from '../../store/quiz.store';
         <div class="glass-card w-full max-w-4xl flex flex-col md:flex-row gap-8 items-center min-h-[400px] animate-pop-in relative">
           
           <div class="w-full md:w-1/2 h-64 md:h-80 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center">
-             <img [src]="currentSlide().image" [alt]="currentSlide().title" class="w-full h-full object-cover"
-                  onerror="this.src='/assets/images/pacific.png'">
+             <img [src]="currentSlide().image" [alt]="currentSlide().title" class="w-full h-full object-cover" fetchpriority="high"
+                  loading="eager" (error)="handleMissingImage($event)">
           </div>
 
           <div class="w-full md:w-1/2 flex flex-col justify-center">
@@ -50,7 +50,7 @@ import { QuizStore } from '../../store/quiz.store';
   `
 })
 export class OceanFactsComponent {
-  store = inject(QuizStore);
+  store = inject(QuizService);
   private router = inject(Router);
 
   slideIndex = signal(0);
@@ -102,7 +102,6 @@ export class OceanFactsComponent {
       if (next === 0 && i === this.slides().length - 1) {
         this.hasViewedAll.set(true);
       }
-      // Also mark as viewed if we reach the last slide
       if (next === this.slides().length - 1) {
         this.hasViewedAll.set(true);
       }
@@ -128,5 +127,9 @@ export class OceanFactsComponent {
   startQuiz() {
     this.store.startQuiz();
     this.router.navigate(['/quiz']);
+  }
+
+  handleMissingImage(event: Event) {
+    (event.target as HTMLImageElement).src = '/assets/images/pacific.png';
   }
 }

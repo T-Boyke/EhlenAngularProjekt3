@@ -27,7 +27,8 @@
             ],
             "styles": [
               "src/styles.css"
-            ]
+            ],
+            "outputPath": "dist/EOL"
           },
           "configurations": {
             "production": {
@@ -64,9 +65,6 @@
             }
           },
           "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
         }
       }
     }
