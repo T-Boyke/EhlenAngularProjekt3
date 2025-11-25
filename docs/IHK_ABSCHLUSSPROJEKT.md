@@ -643,7 +643,7 @@ Die Projektdurchführung verlief weitgehend nach Plan.
 
 Da die Zeitvorgabe exakt eingehalten wurde, entsprechen die tatsächlichen Kosten den Plankosten.
 
-- Personalkosten (Ist): 70 h \* 50,00 €/h \= 3.500,00 €
+- Personalkosten (Ist): 70 h \* 25,00 €/h \= 2.450,00 €
 - Sachmittel (Ist): 150,00 €
 - Gesamtkosten (Ist): 3.650,00 €
 <div style="page-break-after: always;"></div>
