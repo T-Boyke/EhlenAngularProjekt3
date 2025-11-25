@@ -212,7 +212,7 @@ Zum Zeitpunkt des Projektstarts existiert keine Softwarelösung für den genannt
 - Zugriff auf Standard-Entwicklungstools (VS Code, Sublime Text 4 (Build 4200), GitHub, Node.js, NPM.
 - Keine bestehende CI/CD Pipeline für dieses spezifische Projekt.
 
-### **2.2. Zeitplanung (Gantt-Diagramm)**
+### **2.2. Soll-Analyse**
 
 Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt:
 
