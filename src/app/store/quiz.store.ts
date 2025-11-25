@@ -1,153 +1,180 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { Ocean, QuizQuestion } from '../models/ocean.model';
-import { computed, inject } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { Ocean, QuizQuestion } from '../models/ocean.model';
 
-type QuizState = {
-    oceans: Ocean[];
-    currentOceanId: string | null;
-    currentQuestionIndex: number;
-    score: number;
-    answers: { questionId: string; answer: string; isCorrect: boolean }[];
-    isQuizActive: boolean;
-    isQuizFinished: boolean;
-    loading: boolean;
-    completedOceans: string[]; // IDs of oceans with perfect score
-    masterMode: boolean;
-};
+@Injectable({
+  providedIn: 'root'
+})
+export class QuizService { // Umbenannt von QuizStore zu QuizService
+  private dataService = inject(DataService);
 
-const initialState: QuizState = {
-    oceans: [],
-    currentOceanId: null,
-    currentQuestionIndex: 0,
-    score: 0,
-    answers: [],
-    isQuizActive: false,
-    isQuizFinished: false,
-    loading: false,
-    completedOceans: [],
-    masterMode: false
-};
+  // --- State (Writable Signals) ---
+  // Private, damit sie nur durch Methoden geändert werden können (Kapselung)
+  private _oceans = signal<Ocean[]>([]);
+  private _currentOceanId = signal<string | null>(null);
+  private _currentQuestionIndex = signal<number>(0);
+  private _score = signal<number>(0);
+  private _isQuizActive = signal<boolean>(false);
+  private _isQuizFinished = signal<boolean>(false);
+  private _completedOceans = signal<string[]>([]);
+  private _masterMode = signal<boolean>(false);
 
-export const QuizStore = signalStore(
-    { providedIn: 'root' },
-    withState(initialState),
-    withComputed((store) => ({
-        currentOcean: computed(() => store.oceans().find(o => o.id === store.currentOceanId())),
-        currentQuestion: computed(() => {
-            const ocean = store.oceans().find(o => o.id === store.currentOceanId());
-            return ocean?.quiz[store.currentQuestionIndex()] || null;
-        }),
-        totalQuestions: computed(() => {
-            const ocean = store.oceans().find((o) => o.id === store.currentOceanId());
-            return ocean?.quiz.length || 0;
-        }),
-        progress: computed(() => {
-            const ocean = store.oceans().find(o => o.id === store.currentOceanId());
-            if (!ocean || ocean.quiz.length === 0) return 0;
-            return ((store.currentQuestionIndex()) / ocean.quiz.length) * 100;
-        }),
-        isOceanCompleted: computed(() => (oceanId: string) => store.completedOceans().includes(oceanId)),
-        isMasterUnlocked: computed(() => store.completedOceans().length >= 5)
-    })),
-    withMethods((store, dataService = inject(DataService)) => ({
-        loadOceans: rxMethod<void>(
-            pipe(
-                tap(() => patchState(store, { loading: true })),
-                switchMap(() => dataService.getOceans()),
-                tap((oceans) => {
-                    // Shuffle options for each question
-                    const shuffledOceans = oceans.map(ocean => ({
-                        ...ocean,
-                        quiz: ocean.quiz.map(q => ({
-                            ...q,
-                            options: [...q.options].sort(() => Math.random() - 0.5)
-                        }))
-                    }));
-                    patchState(store, { oceans: shuffledOceans, loading: false });
-                })
-            )
-        ),
-        selectOcean(oceanId: string) {
-            patchState(store, { currentOceanId: oceanId, currentQuestionIndex: 0, score: 0, answers: [], isQuizActive: false, isQuizFinished: false, masterMode: false });
-        },
-        startQuiz() {
-            patchState(store, { isQuizActive: true, currentQuestionIndex: 0, score: 0, answers: [], isQuizFinished: false, masterMode: false });
-        },
-        startMasterQuiz() {
-            const allQuestions = store.oceans().flatMap(o => o.quiz);
-            // Shuffle all questions
-            const shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
+  // --- Computed Signals (Selectors) ---
+  // Öffentlich lesbar
+  readonly oceans = this._oceans.asReadonly();
+  readonly currentOceanId = this._currentOceanId.asReadonly();
+  readonly score = this._score.asReadonly();
+  readonly isQuizActive = this._isQuizActive.asReadonly();
+  readonly isQuizFinished = this._isQuizFinished.asReadonly();
+  readonly completedOceans = this._completedOceans.asReadonly();
+  readonly masterMode = this._masterMode.asReadonly();
 
-            // Create a dummy "Master Ocean" to hold these questions
-            const masterOcean: Ocean = {
-                id: 'master',
-                name: 'Master Quiz',
-                color: 'bg-purple-600',
-                oceanimage: '/assets/images/pacific.png', // Placeholder
-                description: 'Das ultimative Quiz!',
-                facts: [],
-                inhabitants: [],
-                quiz: shuffledQuestions
-            };
+  readonly currentOcean = computed(() => 
+    this._oceans().find(o => o.id === this._currentOceanId())
+  );
 
-            // We need to temporarily add this master ocean to the store or handle it differently.
-            // Easier approach: Add a 'master' ocean to the oceans array if it doesn't exist, or update it.
-            const oceans = store.oceans().filter(o => o.id !== 'master');
-            patchState(store, {
-                oceans: [...oceans, masterOcean],
-                currentOceanId: 'master',
-                currentQuestionIndex: 0,
-                score: 0,
-                answers: [],
-                isQuizActive: true,
-                isQuizFinished: false,
-                masterMode: true
-            });
-        },
-        answerQuestion(answer: string) {
-            const currentOcean = store.oceans().find(o => o.id === store.currentOceanId());
-            const currentQuestion = currentOcean?.quiz[store.currentQuestionIndex()];
+  readonly currentQuestion = computed(() => {
+    const ocean = this.currentOcean();
+    return ocean?.quiz[this._currentQuestionIndex()] || null;
+  });
 
-            if (currentQuestion) {
-                const isCorrect = answer === currentQuestion.answer;
-                patchState(store, (state) => ({
-                    score: isCorrect ? state.score + 1 : state.score,
-                    answers: [...state.answers, { questionId: currentQuestion.question, answer, isCorrect }]
-                }));
-            }
-        },
-        nextQuestion() {
-            patchState(store, (state) => {
-                const nextIndex = state.currentQuestionIndex + 1;
-                const currentOcean = state.oceans.find(o => o.id === state.currentOceanId);
+  readonly totalQuestions = computed(() => 
+    this.currentOcean()?.quiz.length || 0
+  );
 
-                // Check if quiz finished
-                if (currentOcean && nextIndex >= currentOcean.quiz.length) {
-                    // If perfect score AND not master mode, mark ocean as completed
-                    if (!state.masterMode && state.score === currentOcean.quiz.length) {
-                        const completed = [...state.completedOceans];
-                        if (!completed.includes(state.currentOceanId!)) {
-                            completed.push(state.currentOceanId!);
-                        }
-                        return { currentQuestionIndex: nextIndex, completedOceans: completed, isQuizActive: false, isQuizFinished: true };
-                    }
-                    return { currentQuestionIndex: nextIndex, isQuizActive: false, isQuizFinished: true }; // End quiz if master mode or not perfect score
-                }
+  readonly progress = computed(() => {
+    const total = this.totalQuestions();
+    if (total === 0) return 0;
+    return (this._currentQuestionIndex() / total) * 100;
+  });
 
-                return { currentQuestionIndex: nextIndex };
-            });
-        },
-        restartQuiz() {
-            patchState(store, { currentQuestionIndex: 0, score: 0, answers: [], isQuizActive: true, isQuizFinished: false });
-        },
-        resetStore() {
-            patchState(store, initialState);
-        },
-        exitQuiz() {
-            patchState(store, { isQuizActive: false, isQuizFinished: false, currentOceanId: null, masterMode: false });
-        }
-    }))
-);
+  readonly isMasterUnlocked = computed(() => 
+    this._completedOceans().length >= 5
+  );
+
+  // Hilfsfunktion für Template-Checks (Factory-Funktion im Template)
+  isOceanCompleted(oceanId: string): boolean {
+    return this._completedOceans().includes(oceanId);
+  }
+
+  // --- Methoden (Actions / Updaters) ---
+
+  loadOceans() {
+    // RxMethod Ersatz: Einfaches Subscribe
+    this.dataService.getOceans().subscribe((oceans) => {
+      const shuffledOceans = oceans.map(ocean => ({
+        ...ocean,
+        quiz: ocean.quiz.map(q => ({
+          ...q,
+          options: [...q.options].sort(() => Math.random() - 0.5)
+        }))
+      }));
+      this._oceans.set(shuffledOceans);
+    });
+  }
+
+  selectOcean(oceanId: string) {
+    this._currentOceanId.set(oceanId);
+    this.resetQuizState();
+  }
+
+  startQuiz() {
+    this._isQuizActive.set(true);
+    this._score.set(0);
+    this._currentQuestionIndex.set(0);
+    this._isQuizFinished.set(false);
+    this._masterMode.set(false);
+  }
+
+  answerQuestion(answer: string) {
+    const question = this.currentQuestion();
+    if (question && answer === question.answer) {
+      this._score.update(s => s + 1);
+    }
+  }
+
+  nextQuestion() {
+    const nextIndex = this._currentQuestionIndex() + 1;
+    const total = this.totalQuestions();
+
+    if (nextIndex >= total) {
+      this.finishQuiz();
+    } else {
+      this._currentQuestionIndex.set(nextIndex);
+    }
+  }
+
+  private finishQuiz() {
+    this._isQuizActive.set(false);
+    this._isQuizFinished.set(true);
+
+    // Wenn perfekter Score und kein Master-Modus -> Stern vergeben
+    if (!this._masterMode() && this._score() === this.totalQuestions()) {
+      const currentId = this._currentOceanId();
+      if (currentId && !this._completedOceans().includes(currentId)) {
+        this._completedOceans.update(list => [...list, currentId]);
+      }
+    }
+  }
+
+  restartQuiz() {
+    this._score.set(0);
+    this._currentQuestionIndex.set(0);
+    this._isQuizActive.set(true);
+    this._isQuizFinished.set(false);
+  }
+
+  exitQuiz() {
+    this._isQuizActive.set(false);
+    this._isQuizFinished.set(false);
+    this._currentOceanId.set(null);
+    this._masterMode.set(false);
+  }
+
+  private resetQuizState() {
+    this._currentQuestionIndex.set(0);
+    this._score.set(0);
+    this._isQuizActive.set(false);
+    this._isQuizFinished.set(false);
+    this._masterMode.set(false);
+  }
+  
+  // Master Quiz Logik hier analog einfügen...
+  startMasterQuiz() {
+    // 1. Alle Fragen aus allen Ozeanen sammeln
+    const allQuestions = this._oceans()
+      .filter(o => o.id !== 'master') // Verhindert Duplikate, falls Master schon existiert
+      .flatMap(o => o.quiz);
+
+    // 2. Fragen mischen (Shuffle)
+    const shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
+
+    // 3. Einen temporären "Master Ocean" erstellen
+    // Das ist ein Trick, damit die bestehende Logik (currentOcean, currentQuestion)
+    // weiter funktioniert, ohne dass wir alles umbauen müssen.
+    const masterOcean: Ocean = {
+      id: 'master',
+      name: 'Ultimatives Quiz',
+      color: 'bg-purple-600',
+      oceanimage: '/assets/images/pacific.png', // Oder ein spezielles Master-Bild
+      description: 'Das ultimative Quiz gegen die Zeit! 🏆',
+      facts: [],
+      inhabitants: [],
+      quiz: shuffledQuestions // Hier sind jetzt ALLE Fragen drin
+    };
+
+    // 4. Den Master-Ocean in die Liste einfügen (oder updaten)
+    this._oceans.update(oceans => {
+      const others = oceans.filter(o => o.id !== 'master');
+      return [...others, masterOcean];
+    });
+
+    // 5. State für den Start setzen
+    this._currentOceanId.set('master');
+    this._currentQuestionIndex.set(0);
+    this._score.set(0);
+    this._isQuizActive.set(true);
+    this._isQuizFinished.set(false);
+    this._masterMode.set(true); // Wichtig für den Timer im Frontend!
+  }
+}
