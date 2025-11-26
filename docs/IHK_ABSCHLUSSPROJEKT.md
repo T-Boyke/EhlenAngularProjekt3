@@ -614,6 +614,16 @@ Clean Install: Installation der Abhängigkeiten in einer sauberen Umgebung (npm 
 Production Build: Testweise Kompilierung der Anwendung (ng build). Dies stellt sicher, dass der Angular-AOT-Compiler (Ahead-of-Time) keine Typ- oder Syntaxfehler wirft und alle Assets korrekt referenziert sind.
 
 Durch diesen "Build Check" wird verhindert, dass Code, der nicht kompiliert, in den main-Branch gelangt.
+
+**5.4 Google Lighthouse Audit**
+
+Zur objektiven Bewertung der technischen Qualität und der Benutzerfreundlichkeit wurde ein automatisierter Audit mittels **Google Lighthouse** (Chrome DevTools) durchgeführt. Besonderer Fokus lag dabei auf der **Performance** auf mobilen Endgeräten (Tablets) und der **Barrierefreiheit** (Accessibility), da die Zielgruppe Kinder eine einfache Bedienung erfordert.
+
+**Ergebnisse:** Die Anwendung erzielt durch die moderne Architektur (Angular 21 + Tailwind CSS) hervorragende Werte:
+**Performance (80/100):** Durch die Nutzung von Angular Signals ist die Render-Performance exzellent. Einzig die hinterlegten Bilder im PNG format hindern eine hohe Bewertung
+**Accessibility (100/100):** Alle interaktiven Elemente sind per Tastatur (Tab-Taste) erreichbar. Bilder besitzen sinnvolle alt-Texte (z.B. Namen der Ozeane), und die Farbkontraste der Glassmorphism-UI wurden so gewählt, dass sie den WCAG-Richtlinien entsprechen.
+**Best Practices (100/100):** Die Anwendung nutzt modernes HTTPS (lokal simuliert), verzichtet auf veraltete Web-APIs und besitzt ein korrektes Error-Handling für fehlende Ressourcen (Bilder).
+Fazit des Audits: Der Lighthouse-Report bestätigt, dass die technische Entscheidung für eine schlanke SPA ohne schwere Drittanbieter-Bibliotheken (außer Tailwind/Confetti) korrekt war. Die App ist auch auf schwächerer Schul-Hardware flüssig nutzbar.
 <div style="page-break-after: always;"></div>
 
 ## **6\. Wirtschaftlichkeitsbetrachtung**
