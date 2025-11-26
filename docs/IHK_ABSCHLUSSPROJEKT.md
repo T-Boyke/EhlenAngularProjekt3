@@ -488,7 +488,7 @@ classDiagram
     QuizService ..> DataService : injects
 ```
 
-_Der QuizStore wird im Diagramm abstrahiert als Klasse dargestellt, technisch ist er als funktionaler SignalStore implementiert._
+_Abb. 5 Das Klassendiagramm zeigt die Architektur der Anwendung, wobei der QuizService als zentraler State-Manager ("Service with Signals") fungiert, auf den die Komponenten zugreifen._
 <div style="page-break-after: always;"></div>
 
 ### **3.6 Datenschutz & Sicherheit (Privacy by Design)**
