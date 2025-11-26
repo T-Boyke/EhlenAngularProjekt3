@@ -126,7 +126,7 @@ Firmenweg 2
 
 [Abb. 5: Klassendiagramm UML (Kapitel 3.5)](#35-klassendiagramm-uml)
 
-## **Tabellenverzeichnis** {#tabellenverzeichnis}
+## **Tabellenverzeichnis**
 
 [Tab. 1: Zeitplanung und Phasen (Kapitel 2.3)](#23-zeitplanung)
 
@@ -136,7 +136,7 @@ Firmenweg 2
 
 [Tab. 4: Soll-Ist-Vergleich Zeit (Kapitel 6.1)](#61-soll-ist-vergleich-zeit)
 
-## **Listings** {#listings}
+## **Listings**
 
 [Listing 1: JSON Datenstruktur (Kapitel 3.4)](#34-datenmodell)
 
