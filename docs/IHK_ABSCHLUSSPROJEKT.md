@@ -76,7 +76,7 @@ Firmenweg 2
 
 [4.2.1 Standalone Components](#421-standalone-components)
 
-[4.2.2 State Management mit SignalService](#422-state-management-mit-signalstore)
+[4.2.2 State Management mit QuizService](#422-state-management-mit-signalstore)
 
 [4.2.3 Routing & Navigation](#423-routing--navigation)
 
@@ -142,7 +142,7 @@ Firmenweg 2
 
 [Listing 2: Standalone Component Definition (Kapitel 4.2.1)](#421-standalone-components)
 
-[Listing 3: SignalService Definition (Kapitel 4.2.2)](#422-state-management-mit-signalservice)
+[Listing 3: QuizService Definition (Kapitel 4.2.2)](#422-state-management-mit-quizservice)
 
 [Listing 4: Unit-Test Beispiel (Kapitel 5.1)](#51-testplanung)
 
@@ -154,7 +154,7 @@ Firmenweg 2
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SPA                  | Single Page Application \- Eine Webanwendung, die technisch aus einer einzigen HTML-Seite besteht. Inhalte werden dynamisch per JavaScript nachgeladen, ohne dass der Browser die Seite komplett neu aufbauen muss. Dies sorgt für ein flüssiges, App-ähnliches Nutzererlebnis. |
 | Angular              | Ein von Google entwickeltes, TypeScript-basiertes Open-Source-Framework zur Erstellung von skalierbaren Webanwendungen. Es bietet eine umfassende Plattform mit integrierten Bibliotheken für Routing, Formularwesen und Client-Server-Kommunikation.                          |
-| SignalService          | Eine moderne State-Management-Lösung für Angular, basierend auf dem "Signals"-Konzept. Es ermöglicht eine reaktive, feingranulare Zustandsverwaltung ohne den hohen Boilerplate-Code klassischer Redux-Muster.                                                                  |
+| Angular Signals          | Eine moderne State-Management-Lösung für Angular, basierend auf dem "Signals"-Konzept. Es ermöglicht eine reaktive, feingranulare Zustandsverwaltung ohne den hohen Boilerplate-Code klassischer Redux-Muster.                                                                  |
 | Standalone Component | Ein Architekturkonzept in Angular, bei dem Komponenten, Direktiven und Pipes nicht mehr in NgModules deklariert werden müssen. Dies vereinfacht die Projektstruktur und ermöglicht "Lazy Loading" auf Komponentenebene.                                                         |
 | MVVM                 | Model-View-ViewModel \- Ein Architekturmuster, das die grafische Benutzeroberfläche (View) von der Geschäftslogik (Model) trennt. Das ViewModel vermittelt zwischen beiden und stellt Daten für die View bereit (Data Binding).                                                 |
 | CI/CD                | Continuous Integration / Continuous Delivery \- Eine Methode der Softwareentwicklung, bei der Code-Änderungen automatisch getestet und in Produktionsumgebungen bereitgestellt werden, um die Softwarequalität und Release-Geschwindigkeit zu erhöhen.                          |
@@ -185,7 +185,7 @@ Ziel des Projektes ist die Entwicklung einer Single Page Application (SPA) "Eart
 
 ### **1.3 Projektbegründung**
 
-Die Digitalisierung im Bildungssektor erfordert moderne, webbasierte Lernlösungen, die plattformunabhängig funktionieren. Herkömmliche Lernmaterialien (PDFs, statische Webseiten) bieten oft nicht den nötigen Anreiz für die Zielgruppe (Kinder). Durch den Einsatz moderner Webtechnologien (Angular, SignalService) soll eine performante, wartbare und zukunftssichere Lösung geschaffen werden, die gleichzeitig als Referenzprojekt für die Beispiel GmbH dient, um die Kompetenz im Bereich "Edutainment" zu unterstreichen.
+Die Digitalisierung im Bildungssektor erfordert moderne, webbasierte Lernlösungen, die plattformunabhängig funktionieren. Herkömmliche Lernmaterialien (PDFs, statische Webseiten) bieten oft nicht den nötigen Anreiz für die Zielgruppe (Kinder). Durch den Einsatz moderner Webtechnologien (Angular, Service with Signals) soll eine performante, wartbare und zukunftssichere Lösung geschaffen werden, die gleichzeitig als Referenzprojekt für die Beispiel GmbH dient, um die Kompetenz im Bereich "Edutainment" zu unterstreichen.
 <div style="page-break-after: always;"></div>
 
 ### **1.4 Make-or-Buy Entscheidung**
@@ -228,7 +228,7 @@ Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt
 
 - **Zielgruppe:** Kindgerechtes UI/UX (große Buttons, wenig Text, viel Bild).
 - **Technologie:** Angular 21 (aktuellste Version), Nutzung von Standalone Components.
-- **State Management:** Nutzung von Angular Signals / SignalService für reaktives Datenmanagement.
+- **State Management:** Nutzung von Angular Signals / QuizService für reaktives Datenmanagement.
 - **Performance:** Kurze Ladezeiten, optimierte Assets.
 - **Responsive Design:** Lauffähig auf Tablets und Desktops.
 <div style="page-break-after: always;"></div>
@@ -251,7 +251,7 @@ Der Durchführungszeitraum des Projektes ist vom 17.11.2025 bis 09.12.2025. Die 
 | _3\. Implementierung_    |                                                 |       _28 h_        |
 |                          | _Aufsetzen der Entwicklungsumgebung_            |        _2 h_        |
 |                          | _Implementierung Core-Komponenten & Routing_    |        _6 h_        |
-|                          | _Implementierung Logik (SignalService, Services)_ |        _8 h_        |
+|                          | _Implementierung Logik (QuizService, Services)_ |        _8 h_        |
 |                          | _Implementierung UI & Styling (Tailwind)_       |        _8 h_        |
 |                          | _Integration der Daten (JSON)_                  |        _4 h_        |
 | _4\. Qualitätssicherung_ |                                                 |        _9 h_        |
@@ -282,7 +282,7 @@ gantt
 
     section Implementierung
     Setup & Core Components          :c1, 2025-11-23, 2d
-    Logik (SignalService)              :c2, after c1, 3d
+    Logik (QuizService)              :c2, after c1, 3d
     UI & Styling (Tailwind)          :c3, after c2, 3d
     Daten-Integration                :c4, after c3, 1d
 
@@ -377,7 +377,7 @@ _Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches 
 
 **Client-Side Rendering (CSR):** Die Entscheidung für CSR sorgt für ein flüssiges, App-ähnliches Nutzererlebnis ("App-Feel"). Nach dem initialen Laden reagiert die Anwendung sofort auf Benutzereingaben, ohne Wartezeiten durch Server-Roundtrips.
 
-**State Management (SignalService):** Anstelle von externen Bibliotheken wurde auf Angular Signals gesetzt. Dies ermöglicht eine sehr feingranulare Aktualisierung der Benutzeroberfläche (Fine-Grained Reactivity), was die Performance auf mobilen Endgeräten (Tablets) deutlich verbessert.
+**State Management (QuizService):** Anstelle von externen Bibliotheken wurde auf Angular Signals gesetzt. Dies ermöglicht eine sehr feingranulare Aktualisierung der Benutzeroberfläche (Fine-Grained Reactivity), was die Performance auf mobilen Endgeräten (Tablets) deutlich verbessert.
 
 **Datenhaltung (Static JSON):** Da die Ozean-Daten statisch sind, werden sie über eine JSON-Datei (assets/data/ocean-data.json) geladen. Dies entkoppelt das Frontend von einem dedizierten Backend und ermöglicht den Offline-Betrieb (vorbereitet für PWA).
 
@@ -449,7 +449,7 @@ _Da keine relationale Datenbank, sondern eine dokumentenorientierte Speicherung 
 
 ### **3.5 Klassendiagramm (UML)**
 
-Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem SignalService und den Daten-Services.
+Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem QuizService und den Daten-Services.
 
 ```mermaid
 classDiagram
@@ -532,7 +532,7 @@ export class OceanFactsComponent { ... }
 _Die OceanFactsComponent, die alle notwendigen Abhängigkeiten (Imports) direkt im Component-Decorator definiert_
 <div style="page-break-after: always;"></div>
 
-#### **4.2.2 State Management mit SignalService**
+#### **4.2.2 State Management via QuizService**
 
 Für die Verwaltung des Anwendungszustands wurde das "Service with Signals"-Pattern verwendet. Dabei handelt es sich um einen Angular Injectable Service, der den Zustand in privaten WritableSignals hält und diese als schreibgeschützte Signals nach außen gibt. Dies ermöglicht eine reaktive Datenhaltung mit Bordmitteln von Angular, ohne die Komplexität externer Bibliotheken.
 
@@ -566,7 +566,7 @@ Während der Realisierungsphase traten verschiedene technische und konzeptionell
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | Persistierung des Fortschritts Datenverlust beim Neuladen der Seite (F5).       | Nutzung eines Angular effect innerhalb des QuizService. Dieser überwacht das completedOceans-Signal und schreibt Änderungen automatisch in den localStorage. Beim App-Start wird der Speicher ausgelesen. | Lernfortschritt (Sterne) bleibt dauerhaft erhalten, auch offline.                       |
 | Code-Qualität / Linting Inkompatibilität von ESLint mit Angular 21 (RC).        | Verzicht auf automatisierte Linter. Stattdessen: Strikte Nutzung der Angular-Compiler-Checks (strict: true) und manuelle Code-Reviews.     | Hohe Code-Qualität durch Disziplin, keine Build-Fehler.                        |
-| SignalService Einarbeitung Paradigmenwechsel von klassischen Services zu Signals. | Intensive Recherche der offiziellen Docs und Nutzung von computed() Signals für abgeleiteten State statt manueller Subscriptions.          | Sehr performanter, reaktiver Code mit deutlich weniger Boilerplate.            |
+| Service with Signals Einarbeitung Paradigmenwechsel von klassischen Services zu Signals. | Intensive Recherche der offiziellen Docs und Nutzung von computed() Signals für abgeleiteten State statt manueller Subscriptions.          | Sehr performanter, reaktiver Code mit deutlich weniger Boilerplate.            |
 | Kindgerechte UX Interface muss ohne viel Text verständlich sein.                | Nutzung von großen Icons, intuitiven Farben (Grün/Rot) und Verzicht auf komplexe Menüstrukturen.                                           | Positive Rückmeldung bei ersten Tests mit der Zielgruppe (intuitiv bedienbar). |
 | Datenmodellierung Abbildung komplexer Relationen in Flat-File JSON.             | Design einer verschachtelten JSON-Struktur mit Arrays für Fakten/Bewohner, die zur Laufzeit typisiert eingelesen wird.                     | Flexibles Datenmodell ohne Backend-Zwang, leicht erweiterbar.                  |
 <div style="page-break-after: always;"></div>
@@ -619,11 +619,12 @@ Durch diesen "Build Check" wird verhindert, dass Code, der nicht kompiliert, in 
 
 Zur objektiven Bewertung der technischen Qualität und der Benutzerfreundlichkeit wurde ein automatisierter Audit mittels **Google Lighthouse** (Chrome DevTools) durchgeführt. Besonderer Fokus lag dabei auf der **Performance** auf mobilen Endgeräten (Tablets) und der **Barrierefreiheit** (Accessibility), da die Zielgruppe Kinder eine einfache Bedienung erfordert.
 
-**Ergebnisse:** Die Anwendung erzielt durch die moderne Architektur (Angular 21 + Tailwind CSS) hervorragende Werte:
-**Performance (80/100):** Durch die Nutzung von Angular Signals ist die Render-Performance exzellent. Einzig die hinterlegten Bilder im PNG format hindern eine hohe Bewertung
-**Accessibility (100/100):** Alle interaktiven Elemente sind per Tastatur (Tab-Taste) erreichbar. Bilder besitzen sinnvolle alt-Texte (z.B. Namen der Ozeane), und die Farbkontraste der Glassmorphism-UI wurden so gewählt, dass sie den WCAG-Richtlinien entsprechen.
-**Best Practices (100/100):** Die Anwendung nutzt modernes HTTPS (lokal simuliert), verzichtet auf veraltete Web-APIs und besitzt ein korrektes Error-Handling für fehlende Ressourcen (Bilder).
-Fazit des Audits: Der Lighthouse-Report bestätigt, dass die technische Entscheidung für eine schlanke SPA ohne schwere Drittanbieter-Bibliotheken (außer Tailwind/Confetti) korrekt war. Die App ist auch auf schwächerer Schul-Hardware flüssig nutzbar.
+**Ergebnisse:**
+Die Anwendung erzielt durch die moderne Architektur (Angular 21 + Tailwind CSS) überzeugende Werte:
+
+* **Performance (80/100):** Durch die Nutzung von Angular Signals ist die Render-Performance exzellent. Einzig die Verwendung von Bildern im PNG-Format (statt WebP) verhindert hier eine Bestnote.
+* **Accessibility (100/100):** Alle interaktiven Elemente sind per Tastatur (Tab-Taste) erreichbar. Bilder besitzen sinnvolle Alt-Texte.
+* **Best Practices (100/100):** Die Anwendung nutzt modernes HTTPS (lokal simuliert) und verzichtet auf veraltete Web-APIs.
 <div style="page-break-after: always;"></div>
 
 ## **6\. Wirtschaftlichkeitsbetrachtung**
@@ -644,7 +645,7 @@ Die Projektdurchführung verlief weitgehend nach Plan.
 **Begründung der Abweichungen:**
 
 - Der Entwurf dauerte etwas länger, da mehrere Iterationen für das kindgerechte Design nötig waren.
-- Die Implementierung verzögerte sich leicht durch die Einarbeitung in den neuen SignalService, konnte aber durch effizienteres Testen wieder ausgeglichen werden.
+- Die Implementierung verzögerte sich leicht durch die Einarbeitung in den neuen Service with Signals, konnte aber durch effizienteres Testen wieder ausgeglichen werden.
 
 ### **6.2 Nachkalkulation (Kosten)**
 
