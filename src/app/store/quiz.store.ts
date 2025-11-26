@@ -1,4 +1,4 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal, effect } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Ocean, QuizQuestion } from '../models/ocean.model';
 
@@ -7,6 +7,7 @@ import { Ocean, QuizQuestion } from '../models/ocean.model';
 })
 export class QuizService { 
   private dataService = inject(DataService);
+  private readonly STORAGE_KEY = 'eol_progress'; // Key für LocalStorage
 
   // --- State (Private) ---
   private _oceans = signal<Ocean[]>([]);
@@ -15,13 +16,14 @@ export class QuizService {
   private _score = signal<number>(0);
   private _isQuizActive = signal<boolean>(false);
   private _isQuizFinished = signal<boolean>(false);
-  private _completedOceans = signal<string[]>([]);
+  
+  // Initialisiere mit leerem Array, wird im Constructor überschrieben
+  private _completedOceans = signal<string[]>([]); 
   private _masterMode = signal<boolean>(false);
 
   // --- Public Readonly Signals ---
   readonly oceans = this._oceans.asReadonly();
   readonly currentOceanId = this._currentOceanId.asReadonly();
-  // KORREKTUR: Dieses Signal fehlte und wird von QuizComponent benötigt
   readonly currentQuestionIndex = this._currentQuestionIndex.asReadonly(); 
   readonly score = this._score.asReadonly();
   readonly isQuizActive = this._isQuizActive.asReadonly();
@@ -51,6 +53,24 @@ export class QuizService {
   readonly isMasterUnlocked = computed(() => 
     this._completedOceans().length >= 5
   );
+
+  constructor() {
+    // 1. Daten aus LocalStorage laden (falls vorhanden)
+    const savedProgress = localStorage.getItem(this.STORAGE_KEY);
+    if (savedProgress) {
+      try {
+        this._completedOceans.set(JSON.parse(savedProgress));
+      } catch (e) {
+        console.error('Fehler beim Laden des Fortschritts', e);
+      }
+    }
+
+    // 2. Automatisch speichern, wenn sich _completedOceans ändert
+    effect(() => {
+      const progress = this._completedOceans();
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(progress));
+    });
+  }
 
   // Methode statt computed Signal
   isOceanCompleted(oceanId: string): boolean {
