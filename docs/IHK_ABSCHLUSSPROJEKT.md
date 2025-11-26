@@ -76,7 +76,7 @@ Firmenweg 2
 
 [4.2.1 Standalone Components](#421-standalone-components)
 
-[4.2.2 State Management mit SignalStore](#422-state-management-mit-signalstore)
+[4.2.2 State Management mit SignalService](#422-state-management-mit-signalstore)
 
 [4.2.3 Routing & Navigation](#423-routing--navigation)
 
@@ -142,7 +142,7 @@ Firmenweg 2
 
 [Listing 2: Standalone Component Definition (Kapitel 4.2.1)](#421-standalone-components)
 
-[Listing 3: SignalStore Definition (Kapitel 4.2.2)](#422-state-management-mit-signalstore)
+[Listing 3: SignalService Definition (Kapitel 4.2.2)](#422-state-management-mit-signalservice)
 
 [Listing 4: Unit-Test Beispiel (Kapitel 5.1)](#51-testplanung)
 
@@ -154,7 +154,7 @@ Firmenweg 2
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SPA                  | Single Page Application \- Eine Webanwendung, die technisch aus einer einzigen HTML-Seite besteht. Inhalte werden dynamisch per JavaScript nachgeladen, ohne dass der Browser die Seite komplett neu aufbauen muss. Dies sorgt für ein flüssiges, App-ähnliches Nutzererlebnis. |
 | Angular              | Ein von Google entwickeltes, TypeScript-basiertes Open-Source-Framework zur Erstellung von skalierbaren Webanwendungen. Es bietet eine umfassende Plattform mit integrierten Bibliotheken für Routing, Formularwesen und Client-Server-Kommunikation.                          |
-| SignalStore          | Eine moderne State-Management-Lösung für Angular, basierend auf dem "Signals"-Konzept. Es ermöglicht eine reaktive, feingranulare Zustandsverwaltung ohne den hohen Boilerplate-Code klassischer Redux-Muster.                                                                  |
+| SignalService          | Eine moderne State-Management-Lösung für Angular, basierend auf dem "Signals"-Konzept. Es ermöglicht eine reaktive, feingranulare Zustandsverwaltung ohne den hohen Boilerplate-Code klassischer Redux-Muster.                                                                  |
 | Standalone Component | Ein Architekturkonzept in Angular, bei dem Komponenten, Direktiven und Pipes nicht mehr in NgModules deklariert werden müssen. Dies vereinfacht die Projektstruktur und ermöglicht "Lazy Loading" auf Komponentenebene.                                                         |
 | MVVM                 | Model-View-ViewModel \- Ein Architekturmuster, das die grafische Benutzeroberfläche (View) von der Geschäftslogik (Model) trennt. Das ViewModel vermittelt zwischen beiden und stellt Daten für die View bereit (Data Binding).                                                 |
 | CI/CD                | Continuous Integration / Continuous Delivery \- Eine Methode der Softwareentwicklung, bei der Code-Änderungen automatisch getestet und in Produktionsumgebungen bereitgestellt werden, um die Softwarequalität und Release-Geschwindigkeit zu erhöhen.                          |
@@ -185,7 +185,7 @@ Ziel des Projektes ist die Entwicklung einer Single Page Application (SPA) "Eart
 
 ### **1.3 Projektbegründung**
 
-Die Digitalisierung im Bildungssektor erfordert moderne, webbasierte Lernlösungen, die plattformunabhängig funktionieren. Herkömmliche Lernmaterialien (PDFs, statische Webseiten) bieten oft nicht den nötigen Anreiz für die Zielgruppe (Kinder). Durch den Einsatz moderner Webtechnologien (Angular, SignalStore) soll eine performante, wartbare und zukunftssichere Lösung geschaffen werden, die gleichzeitig als Referenzprojekt für die Beispiel GmbH dient, um die Kompetenz im Bereich "Edutainment" zu unterstreichen.
+Die Digitalisierung im Bildungssektor erfordert moderne, webbasierte Lernlösungen, die plattformunabhängig funktionieren. Herkömmliche Lernmaterialien (PDFs, statische Webseiten) bieten oft nicht den nötigen Anreiz für die Zielgruppe (Kinder). Durch den Einsatz moderner Webtechnologien (Angular, SignalService) soll eine performante, wartbare und zukunftssichere Lösung geschaffen werden, die gleichzeitig als Referenzprojekt für die Beispiel GmbH dient, um die Kompetenz im Bereich "Edutainment" zu unterstreichen.
 <div style="page-break-after: always;"></div>
 
 ### **1.4 Make-or-Buy Entscheidung**
@@ -228,7 +228,7 @@ Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt
 
 - **Zielgruppe:** Kindgerechtes UI/UX (große Buttons, wenig Text, viel Bild).
 - **Technologie:** Angular 21 (aktuellste Version), Nutzung von Standalone Components.
-- **State Management:** Nutzung von Angular Signals / SignalStore für reaktives Datenmanagement.
+- **State Management:** Nutzung von Angular Signals / SignalService für reaktives Datenmanagement.
 - **Performance:** Kurze Ladezeiten, optimierte Assets.
 - **Responsive Design:** Lauffähig auf Tablets und Desktops.
 <div style="page-break-after: always;"></div>
@@ -251,7 +251,7 @@ Der Durchführungszeitraum des Projektes ist vom 17.11.2025 bis 09.12.2025. Die 
 | _3\. Implementierung_    |                                                 |       _28 h_        |
 |                          | _Aufsetzen der Entwicklungsumgebung_            |        _2 h_        |
 |                          | _Implementierung Core-Komponenten & Routing_    |        _6 h_        |
-|                          | _Implementierung Logik (SignalStore, Services)_ |        _8 h_        |
+|                          | _Implementierung Logik (SignalService, Services)_ |        _8 h_        |
 |                          | _Implementierung UI & Styling (Tailwind)_       |        _8 h_        |
 |                          | _Integration der Daten (JSON)_                  |        _4 h_        |
 | _4\. Qualitätssicherung_ |                                                 |        _9 h_        |
@@ -282,7 +282,7 @@ gantt
 
     section Implementierung
     Setup & Core Components          :c1, 2025-11-23, 2d
-    Logik (SignalStore)              :c2, after c1, 3d
+    Logik (SignalService)              :c2, after c1, 3d
     UI & Styling (Tailwind)          :c3, after c2, 3d
     Daten-Integration                :c4, after c3, 1d
 
@@ -345,31 +345,28 @@ Im Gegensatz zu klassischen Webseiten, die bei jeder Interaktion neu vom Server 
 
 ```mermaid
 graph TD
-    User((Benutzer))
+    User((User)) --> View["View (Components)"]
+    View --> ViewModel["ViewModel (QuizService)"]
+    ViewModel --> Model["Model (Interfaces)"]
+    ViewModel --> Service[DataService]
+    Service --> Data[JSON Data]
     
-    subgraph "Client Browser (SPA)"
-        subgraph "View (UI Layer)"
-            Comp[Standalone Components]
-            Templ[HTML Templates]
-        end
-
-        subgraph "ViewModel (State Layer)"
-            Store[SignalStore]
-        end
-
-        subgraph "Model (Data Layer)"
-            Service[DataService]
-            Interfaces[TypeScript Interfaces]
-        end
+    subgraph "View Layer"
+        StartComponent
+        OceanSelectionComponent
+        OceanFactsComponent
+        QuizComponent
+        QuizResultComponent
     end
 
-    Data[(ocean-data.json)]
+    subgraph "State Management"
+        ViewModel
+    end
 
-    User -->|Interaktion| Comp
-    Comp -->|liest Signals| Store
-    Store -->|ruft Daten ab| Service
-    Service -->|fetch| Data
-    Service -->|typsicher| Interfaces
+    subgraph "Data Layer"
+        Service
+        Model
+    end
 ```
 
 _Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches durch die moderne Angular-Architektur (Signals) effizient umgesetzt wird._
@@ -380,7 +377,7 @@ _Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches 
 
 **Client-Side Rendering (CSR):** Die Entscheidung für CSR sorgt für ein flüssiges, App-ähnliches Nutzererlebnis ("App-Feel"). Nach dem initialen Laden reagiert die Anwendung sofort auf Benutzereingaben, ohne Wartezeiten durch Server-Roundtrips.
 
-**State Management (SignalStore):** Anstelle von komplexen Lösungen wie Redux/NgRx wurde der leichtgewichtige SignalStore gewählt. Er nutzt die neuen Angular Signals für reaktive Programmierung. Dies ermöglicht eine sehr feingranulare Aktualisierung der Benutzeroberfläche (Fine-Grained Reactivity), was die Performance auf mobilen Endgeräten (Tablets) deutlich verbessert.
+**State Management (SignalService):** Anstelle von externen Bibliotheken wurde auf Angular Signals gesetzt. Dies ermöglicht eine sehr feingranulare Aktualisierung der Benutzeroberfläche (Fine-Grained Reactivity), was die Performance auf mobilen Endgeräten (Tablets) deutlich verbessert.
 
 **Datenhaltung (Static JSON):** Da die Ozean-Daten statisch sind, werden sie über eine JSON-Datei (assets/data/ocean-data.json) geladen. Dies entkoppelt das Frontend von einem dedizierten Backend und ermöglicht den Offline-Betrieb (vorbereitet für PWA).
 
@@ -411,30 +408,27 @@ classDiagram
         +String name
         +String description
         +String image
-        +Fact[] facts
+        +String[] facts
         +Inhabitant[] inhabitants
         +QuizQuestion[] quizQuestions
     }
 
-    class Fact {
-        +String text
-    }
-
     class Inhabitant {
         +String name
+        +String description
         +String image
     }
 
     class QuizQuestion {
         +String question
         +String[] options
-        +String correctAnswer
+        +String answer
+        +String trivia
     }
 
-    OceanDataRoot *-- Fact : contains (nested)
     OceanDataRoot *-- Inhabitant : contains (nested)
     OceanDataRoot *-- QuizQuestion : contains (nested)
-
+```
 ```json
 _Da keine relationale Datenbank, sondern eine dokumentenorientierte Speicherung (JSON) verwendet wird, stellt die Abbildung die hierarchische Struktur des JSON-Objekts dar, nicht relationale Tabellenverknüpfungen._
 {
@@ -455,42 +449,43 @@ _Da keine relationale Datenbank, sondern eine dokumentenorientierte Speicherung 
 
 ### **3.5 Klassendiagramm (UML)**
 
-Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem SignalStore und den Daten-Services.
+Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Components, dem SignalService und den Daten-Services.
 
 ```mermaid
 classDiagram
     class AppComponent {
-        +title: string
+        +title: Signal~string~
     }
     class OceanSelectionComponent {
-        +oceans: Signal<Ocean[]>
         +selectOcean(id: string)
+        +startMasterQuiz()
     }
     class OceanFactsComponent {
-        +ocean: Signal<Ocean>
-        +nextFact()
+        +currentSlide: Signal~Slide~
+        +nextSlide()
+        +prevSlide()
     }
     class QuizComponent {
-        +currentQuestion: Signal<QuizQuestion>
-        +submitAnswer(answer: string)
+        +currentQuestion: Signal~QuizQuestion~
+        +selectOption(option: string)
     }
     class DataService {
-        +getOceans(): Observable<Ocean[]>
-        +getOceanById(id: string): Observable<Ocean>
+        +getOceans(): Observable~Ocean[]~
     }
-    class QuizStore {
-        +state: Signal<QuizState>
-        +unlockMasterQuiz()
-        +addStar(oceanId: string)
+    class QuizService {
+        +oceans: Signal~Ocean[]~
+        +score: Signal~number~
+        +completedOceans: Signal~string[]~
+        +startMasterQuiz()
+        +answerQuestion(answer: string)
     }
 
     AppComponent --> OceanSelectionComponent : routes to
-    OceanSelectionComponent ..> QuizStore : uses
-    OceanFactsComponent ..> QuizStore : uses
-    QuizComponent ..> QuizStore : uses
+    OceanSelectionComponent ..> QuizService : injects
+    OceanFactsComponent ..> QuizService : injects
+    QuizComponent ..> QuizService : injects
 
-    OceanSelectionComponent ..> DataService : injects
-    OceanFactsComponent ..> DataService : injects
+    QuizService ..> DataService : injects
 ```
 
 _Der QuizStore wird im Diagramm abstrahiert als Klasse dargestellt, technisch ist er als funktionaler SignalStore implementiert._
@@ -537,23 +532,23 @@ export class OceanFactsComponent { ... }
 _Die OceanFactsComponent, die alle notwendigen Abhängigkeiten (Imports) direkt im Component-Decorator definiert_
 <div style="page-break-after: always;"></div>
 
-#### **4.2.2 State Management mit SignalStore**
+#### **4.2.2 State Management mit SignalService**
 
-Für die Verwaltung des Anwendungszustands (z.B. "Welcher Ozean ist gewählt?", "Wie viele Sterne hat der User?") wurde der **NgRx SignalStore** verwendet. Dies ermöglicht eine reaktive und performante Datenhaltung ohne den Boilerplate klassischer Redux-Lösungen.
+Für die Verwaltung des Anwendungszustands wurde das "Service with Signals"-Pattern verwendet. Dabei handelt es sich um einen Angular Injectable Service, der den Zustand in privaten WritableSignals hält und diese als schreibgeschützte Signals nach außen gibt. Dies ermöglicht eine reaktive Datenhaltung mit Bordmitteln von Angular, ohne die Komplexität externer Bibliotheken.
 
 ```typescript
-export const QuizStore = signalStore(
-  { providedIn: 'root' },
-  withState(initialState),
-  withMethods((store) => ({
-    unlockMasterQuiz() {
-      patchState(store, { masterQuizUnlocked: true });
-    },
-    addStar(oceanId: string) {
-      // Logik zum Hinzufügen eines Sterns
-    },
-  }))
-);
+// Listing 3: Service with Signals Definition (Auszug)
+@Injectable({ providedIn: 'root' })
+export class QuizService {
+  // Private State (Schreibbar)
+  private _score = signal<number>(0);
+  private _completedOceans = signal<string[]>([]);
+// Public API (Read-only) 
+readonly score = this._score.asReadonly(); readonly completedOceans = this._completedOceans.asReadonly();
+// State Mutations via Methoden
+addStar(oceanId: string) { this._completedOceans.update(list => [...list, oceanId]); } }
+
+
 ```
 
 _Der Store (QuizStore) hält den State und bietet Methoden (Updaters) zur Manipulation an_
@@ -569,9 +564,9 @@ Während der Realisierungsphase traten verschiedene technische und konzeptionell
 
 | Herausforderung                                                                 | Lösungsansatz                                                                                                                              | Ergebnis                                                                       |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| Persistierung des Fortschritts Datenverlust beim Neuladen der Seite (F5).       | Implementierung eines LocalStorageService, der den State des SignalStores bei jeder Änderung speichert und beim App-Start wiederherstellt. | Lernfortschritt (Sterne) bleibt dauerhaft erhalten.                            |
+| Persistierung des Fortschritts Datenverlust beim Neuladen der Seite (F5).       | Nutzung eines Angular effect innerhalb des QuizService. Dieser überwacht das completedOceans-Signal und schreibt Änderungen automatisch in den localStorage. Beim App-Start wird der Speicher ausgelesen. | Lernfortschritt (Sterne) bleibt dauerhaft erhalten, auch offline.                       |
 | Code-Qualität / Linting Inkompatibilität von ESLint mit Angular 21 (RC).        | Verzicht auf automatisierte Linter. Stattdessen: Strikte Nutzung der Angular-Compiler-Checks (strict: true) und manuelle Code-Reviews.     | Hohe Code-Qualität durch Disziplin, keine Build-Fehler.                        |
-| SignalStore Einarbeitung Paradigmenwechsel von klassischen Services zu Signals. | Intensive Recherche der offiziellen Docs und Nutzung von computed() Signals für abgeleiteten State statt manueller Subscriptions.          | Sehr performanter, reaktiver Code mit deutlich weniger Boilerplate.            |
+| SignalService Einarbeitung Paradigmenwechsel von klassischen Services zu Signals. | Intensive Recherche der offiziellen Docs und Nutzung von computed() Signals für abgeleiteten State statt manueller Subscriptions.          | Sehr performanter, reaktiver Code mit deutlich weniger Boilerplate.            |
 | Kindgerechte UX Interface muss ohne viel Text verständlich sein.                | Nutzung von großen Icons, intuitiven Farben (Grün/Rot) und Verzicht auf komplexe Menüstrukturen.                                           | Positive Rückmeldung bei ersten Tests mit der Zielgruppe (intuitiv bedienbar). |
 | Datenmodellierung Abbildung komplexer Relationen in Flat-File JSON.             | Design einer verschachtelten JSON-Struktur mit Arrays für Fakten/Bewohner, die zur Laufzeit typisiert eingelesen wird.                     | Flexibles Datenmodell ohne Backend-Zwang, leicht erweiterbar.                  |
 <div style="page-break-after: always;"></div>
@@ -580,7 +575,9 @@ Während der Realisierungsphase traten verschiedene technische und konzeptionell
 
 ### **5.1 Testplanung**
 
-Aufgrund des begrenzten Zeitrahmens und des Fokus auf UI-Interaktion wurde der Schwerpunkt auf manuelle Systemtests gelegt. Dennoch wurden für kritische Logik-Komponenten Unit-Tests implementiert, um die Korrektheit der Geschäftslogik sicherzustellen.
+Aufgrund der Verwendung der neuesten Angular-Version (v21) und damit einhergehender Inkompatibilitäten in der Toolchain war es in diesem Projektzeitraum nicht möglich, Tools wie ESLint, Karma, Jest oder Vitest stabil einzubinden.
+Die Implementierung automatisierter Unit-Tests wurde in der Planungsphase berücksichtigt und evaluiert. Aufgrund des unverhältnismäßig hohen Konfigurationsaufwands bei den genannten Versionskonflikten wurde dieser Ansatz jedoch zugunsten umfassender manueller Black-Box-Tests verworfen. Der Fokus der Qualitätssicherung lag somit vollständig auf funktionalen Systemtests und der Validierung der User Experience.
+
 
 **Beispiel Unit-Test (Jasmine/Karma):**
 
@@ -610,13 +607,13 @@ _Alle kritischen Testfälle waren erfolgreich. Kleinere Layout-Fehler (z.B. übe
 <div style="page-break-after: always;"></div>
 
 ### **5.3 Automatisierte Qualitätssicherung (CI/CD)**
+Um die generelle Lauffähigkeit des Codes sicherzustellen, wurde eine rudimentäre CI-Pipeline implementiert. Diese wird bei jedem Push in das Repository automatisch getriggert und durchläuft folgende Phasen:
 
-Um eine gleichbleibend hohe Code-Qualität sicherzustellen und "Breaking Changes" frühzeitig zu erkennen, wurde eine CI/CD-Pipeline mittels GitHub Actions implementiert. Diese Pipeline wird bei jedem Push in das Repository (git push) automatisch getriggert und durchläuft folgende Phasen:
-- Clean Install: Installation der Abhängigkeiten in einer sauberen Container-Umgebung (npm ci), um die Reproduzierbarkeit des Builds zu garantieren.
-- Automatisierte Tests: Ausführung der Unit-Tests via Karma/Jasmine im ChromeHeadless-Modus. Schlägt auch nur ein Test fehl, wird der gesamte Build-Prozess abgebrochen.
-- Production Build: Testweise Kompilierung der Anwendung (ng build). Dies stellt sicher, dass der TypeScript-Compiler (AOT) keine Fehler wirft und alle Assets korrekt referenziert sind.
+Clean Install: Installation der Abhängigkeiten in einer sauberen Umgebung (npm ci), um die Reproduzierbarkeit zu garantieren.
 
-Durch diesen "Quality Gate"-Ansatz wird verhindert, dass fehlerhafter Code in den main-Branch gemergt wird.
+Production Build: Testweise Kompilierung der Anwendung (ng build). Dies stellt sicher, dass der Angular-AOT-Compiler (Ahead-of-Time) keine Typ- oder Syntaxfehler wirft und alle Assets korrekt referenziert sind.
+
+Durch diesen "Build Check" wird verhindert, dass Code, der nicht kompiliert, in den main-Branch gelangt.
 <div style="page-break-after: always;"></div>
 
 ## **6\. Wirtschaftlichkeitsbetrachtung**
@@ -637,7 +634,7 @@ Die Projektdurchführung verlief weitgehend nach Plan.
 **Begründung der Abweichungen:**
 
 - Der Entwurf dauerte etwas länger, da mehrere Iterationen für das kindgerechte Design nötig waren.
-- Die Implementierung verzögerte sich leicht durch die Einarbeitung in den neuen SignalStore, konnte aber durch effizienteres Testen wieder ausgeglichen werden.
+- Die Implementierung verzögerte sich leicht durch die Einarbeitung in den neuen SignalService, konnte aber durch effizienteres Testen wieder ausgeglichen werden.
 
 ### **6.2 Nachkalkulation (Kosten)**
 
