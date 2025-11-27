@@ -1,126 +1,160 @@
-# 🌍 Earth Ocean Learning (EOL)
+<a name="readme-top"></a>
 
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+<!-- PROJEKT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/T-Boyke/EhlenAngularProjekt3">
+    <img src="public/assets/images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-**Earth Ocean Learning** is an interactive Single Page Application (SPA) designed to teach primary school children about the five world oceans in a playful and engaging way.
+  <h3 align="center">Earth Ocean Learning (EOL)</h3>
 
-This project was developed as a final project for the **IHK Fachinformatiker für Anwendungsentwicklung** certification.
+  <p align="center">
+    Eine interaktive Lern-App für Kinder (7-9 Jahre) zum Entdecken der Weltmeere.
+    <br />
+    <a href="#-demo"><strong>Dokumentation »</strong></a>
+    <br />
+    <br />
+    <a href="#-demo">Live Demo</a>
+    ·
+    <a href="https://github.com/T-Boyke/EhlenAngularProjekt3/issues/new?template=bug_report.md">Bug melden</a>
+    ·
+    <a href="https://github.com/T-Boyke/EhlenAngularProjekt3/issues/new?template=feature_request.md">Feature anfragen</a>
+  </p>
+</div>
 
----
+<!-- INHALTSVERZEICHNIS -->
+<details>
+  <summary>Inhaltsverzeichnis</summary>
+  <ol>
+    <li>
+      <a href="#-über-das-projekt">Über das Projekt</a>
+      <ul>
+        <li><a href="#-technologie-stack">Technologie Stack</a></li>
+        <li><a href="#-projektstruktur">Projektstruktur</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#-getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#voraussetzungen">Voraussetzungen</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#-nutzung">Nutzung</a></li>
+    <li><a href="#-entwicklung--commands">Entwicklung & Commands</a></li>
+    <li><a href="#-lizenz">Lizenz</a></li>
+    <li><a href="#-kontakt--support">Kontakt</a></li>
+  </ol>
+</details>
 
-## 📖 Table of Contents
+<!-- ÜBER DAS PROJEKT -->
+## ℹ️ Über das Projekt
 
-- [About the Project](#-about-the-project)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the App](#running-the-app)
-- [Project Structure](#-project-structure)
-- [Documentation](#-documentation)
-- [Contact](#-contact)
+**Earth Ocean Learning** ist eine interaktive Single Page Application (SPA), die Grundschulkindern die fünf Weltmeere spielerisch näherbringt.
 
----
+Das Projekt wurde als Abschlussarbeit für die **IHK Fachinformatiker für Anwendungsentwicklung** Zertifizierung entwickelt. Es bietet eine kindgerechte Benutzeroberfläche, Gamification-Elemente und legt großen Wert auf Datenschutz (lokale Speicherung).
 
-## 🌊 About the Project
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
-The goal of this project is to provide a modern, web-based learning solution that works platform-independently. Unlike traditional learning materials (PDFs, static sites), EOL offers an interactive experience with:
+### 🛠 Technologie Stack
 
-*   **Child-friendly UI/UX**: Large buttons, intuitive navigation, and visual feedback.
-*   **Gamification**: A star-based reward system to motivate learning.
-*   **Privacy First**: No data collection; all progress is saved locally on the device.
+Dieses Projekt basiert auf folgenden Technologien:
 
-## ✨ Features
+*   [![Angular][Angular.io]][Angular-url] **Angular 21**
+*   [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url] **Tailwind CSS 4**
+*   [![NodeJS][Node.js]][Node-url] **Node.js**
+*   **TypeScript**
+*   **NgRx SignalStore**
 
-*   **🗺️ Ocean Selection**: Interactive selection of the 5 world oceans.
-*   **📚 Learning Mode**: Discover facts and inhabitants for each ocean.
-*   **🧠 Quiz System**: Test your knowledge with multiple-choice questions and immediate feedback.
-*   **⭐ Progress Tracking**: Earn stars for correct answers and unlock achievements.
-*   **🏆 Master Quiz**: A special challenge unlocked after completing all oceans.
-*   **📱 Responsive Design**: Optimized for tablets and desktops.
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
-## 🛠 Tech Stack
+### 📂 Projektstruktur
 
-*   **Framework**: [Angular 21](https://angular.io/)
-*   **Language**: [TypeScript](https://www.typescriptlang.org/)
-*   **State Management**: [NgRx SignalStore](https://ngrx.io/guide/signals)
-*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-*   **Build Tool**: Angular CLI
-*   **Testing**: Karma / Jasmine
+Das Projekt folgt einer modularen Architektur mit Standalone Components:
 
+*   `src/app/features/`: Feature-Module (Ozean-Auswahl, Quiz, etc.)
+*   `src/app/models/`: TypeScript Interfaces und Typen
+*   `src/app/services/`: Services für Daten und Logik
+*   `src/app/store/`: State Management mit SignalStore
+
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
+
+<!-- GETTING STARTED -->
 ## 🚀 Getting Started
 
-Follow these instructions to get a copy of the project up and running on your local machine.
+Folge diesen Schritten, um eine lokale Kopie des Projekts zum Laufen zu bringen.
 
-### Prerequisites
+### Voraussetzungen
 
-*   **Node.js**: You need to have Node.js installed. (Recommended: Latest LTS)
-*   **npm**: Usually comes with Node.js.
+*   **Node.js**: (Empfohlen: Aktuelle LTS Version)
+*   **npm**: Wird normalerweise mit Node.js installiert.
 
 ### Installation
 
-1.  **Clone the repository** (if applicable) or navigate to the project folder.
-2.  **Install dependencies**:
-
-    ```bash
+1.  Repo klonen
+    ```sh
+    git clone https://github.com/T-Boyke/EhlenAngularProjekt3.git
+    ```
+2.  NPM Pakete installieren
+    ```sh
     npm install
     ```
 
-### Running the App
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
-**Development Server:**
+<!-- NUTZUNG -->
+## 💻 Nutzung
 
-Run the following command to start the local development server:
+Starte den Entwicklungsserver:
 
-```bash
+```sh
 ng serve
 ```
 
-Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Navigiere zu `http://localhost:4200/`. Die Anwendung lädt automatisch neu, wenn Quellcode-Dateien geändert werden.
 
-**Build for Production:**
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
-To build the project for production:
+<!-- ENTWICKLUNG -->
+## 👨‍💻 Entwicklung & Commands
 
-```bash
+**Build für Produktion:**
+
+```sh
 ng build
 ```
 
-The build artifacts will be stored in the `dist/` directory.
+Die Artefakte werden im `dist/` Verzeichnis gespeichert.
 
-**Running Tests:**
+**Tests ausführen:**
 
-To execute unit tests:
-
-```bash
+```sh
 ng test
 ```
 
-## 📂 Project Structure
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
-The project follows a modular, standalone component architecture:
+<!-- LIZENZ -->
+## 📝 Lizenz
 
-*   `src/app/features/`: Feature modules and components (Ocean selection, Quiz, etc.).
-*   `src/app/models/`: TypeScript interfaces and types.
-*   `src/app/services/`: Data services and logic.
-*   `src/app/store/`: SignalStore definitions for state management.
+Verteilt unter der MIT Lizenz. Siehe `LICENSE` für weitere Informationen.
 
-## 📚 Documentation
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
-For more detailed information about the project's background, architecture, and design decisions, please refer to the following documents included in this repository:
+<!-- KONTAKT -->
+## 👤 Kontakt & Support
 
-*   [**IHK_ABSCHLUSSPROJEKT.md**](docs/IHK_ABSCHLUSSPROJEKT.md): Full project documentation including analysis, design, and implementation details.
-*   [**BENUTZERHANDBUCH.md**](docs/BENUTZERHANDBUCH.md): User manual (German).
+**T-Boyke** - Developer
 
-## 👤 Contact
+Projektlink: [https://github.com/T-Boyke/EhlenAngularProjekt3](https://github.com/T-Boyke/EhlenAngularProjekt3)
 
-**Developer**: T-Boyke
-**Context**: IHK Abschlussarbeit (Final Project)
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
----
-
-*Generated with ❤️ by Angular CLI & Antigravity*
+<!-- MARKDOWN LINKS & IMAGES -->
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[TailwindCSS.com]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[TailwindCSS-url]: https://tailwindcss.com/
+[Node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
+[Node-url]: https://nodejs.org/
