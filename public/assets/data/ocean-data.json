@@ -21,22 +21,22 @@
             {
                 "name": "Meeresschildkröte",
                 "description": "Sie schwimmen tausende Kilometer durch den Ozean.",
-                "image": "/assets/images/sea_turtle.svg"
+                "image": "/assets/images/sea_turtle.jpg"
             },
             {
                 "name": "Weißer Hai",
                 "description": "Ein großer Raubfisch mit vielen Zähnen.",
-                "image": "/assets/images/great_white_shark.svg"
+                "image": "/assets/images/great_white_shark.jpg"
             },
             {
                 "name": "Riesenkalmar",
                 "description": "Ein geheimnisvoller Bewohner der Tiefsee.",
-                "image": "/assets/images/giant_squid.svg"
+                "image": "/assets/images/giant_squid.jpg"
             },
             {
                 "name": "Clownfisch",
                 "description": "Ein bunter Fisch, der in Anemonen lebt.",
-                "image": "/assets/images/clownfish.svg"
+                "image": "/assets/images/clownfish.jpg"
             }
         ],
         "quiz": [
@@ -127,7 +127,7 @@
                     "Auf Bäumen"
                 ],
                 "answer": "In Anemonen",
-                "quizimage": "/assets/images/clownfish.svg",
+                "quizimage": "/assets/images/clownfish.jpg",
                 "trivia": "Die Anemone schützt den Clownfisch vor Feinden.",
                 "prequizdescription": "Ein bunter Freund."
             },
@@ -194,22 +194,22 @@
             {
                 "name": "Buckelwal",
                 "description": "Bekannt für seine wunderschönen Gesänge.",
-                "image": "/assets/images/humpback_whale.svg"
+                "image": "/assets/images/humpback_whale.jpg"
             },
             {
                 "name": "Kabeljau",
                 "description": "Ein wichtiger Speisefisch im Nordatlantik.",
-                "image": "/assets/images/cod.svg"
+                "image": "/assets/images/cod.jpg"
             },
             {
                 "name": "Lederschildkröte",
                 "description": "Die größte lebende Schildkrötenart.",
-                "image": "/assets/images/leatherback_turtle.svg"
+                "image": "/assets/images/leatherback_turtle.jpg"
             },
             {
                 "name": "Papageientaucher",
                 "description": "Ein Vogel mit einem bunten Schnabel.",
-                "image": "/assets/images/puffin.svg"
+                "image": "/assets/images/puffin.jpg"
             }
         ],
         "quiz": [
@@ -287,7 +287,7 @@
                     "Qualle"
                 ],
                 "answer": "Buckelwal",
-                "quizimage": "/assets/images/humpback_whale.svg",
+                "quizimage": "/assets/images/humpback_whale.jpg",
                 "trivia": "Die Gesänge der Buckelwale können stundenlang dauern.",
                 "prequizdescription": "Musik im Meer."
             },
@@ -300,7 +300,7 @@
                     "Strauß"
                 ],
                 "answer": "Papageientaucher",
-                "quizimage": "/assets/images/puffin.svg",
+                "quizimage": "/assets/images/puffin.jpg",
                 "trivia": "Sie werden auch 'Clowns der Meere' genannt.",
                 "prequizdescription": "Ein bunter Vogel."
             },
@@ -362,27 +362,27 @@
             {
                 "name": "Clownfisch",
                 "description": "Ein bunter Fisch, der in Anemonen lebt.",
-                "image": "/assets/images/clownfish.svg"
+                "image": "/assets/images/clownfish.jpg"
             },
             {
                 "name": "Manta Rochen",
                 "description": "Ein riesiger, sanfter Rochen, der Plankton frisst.",
-                "image": "/assets/images/manta_ray.svg"
+                "image": "/assets/images/manta_ray.jpg"
             },
             {
                 "name": "Dugong",
                 "description": "Eine Seekuh, die Seegras weidet.",
-                "image": "/assets/images/dugong.svg"
+                "image": "/assets/images/dugong.jpg"
             },
             {
                 "name": "Walhai",
                 "description": "Der größte Fisch der Welt.",
-                "image": "/assets/images/whale_shark.svg"
+                "image": "/assets/images/whale_shark.jpg"
             },
             {
                 "name": "Seepferdchen",
                 "description": "Ein kleiner Fisch, der aufrecht schwimmt.",
-                "image": "/assets/images/seahorse.svg"
+                "image": "/assets/images/seahorse.jpg"
             }
         ],
         "quiz": [
@@ -434,7 +434,7 @@
                     "Goldfisch"
                 ],
                 "answer": "Walhai",
-                "quizimage": "/assets/images/whale_shark.svg",
+                "quizimage": "/assets/images/whale_shark.jpg",
                 "trivia": "Trotz seiner Größe frisst der Walhai nur winziges Plankton.",
                 "prequizdescription": "Ein sanfter Riese."
             },
@@ -447,7 +447,7 @@
                     "Algen"
                 ],
                 "answer": "Seegras",
-                "quizimage": "/assets/images/dugong.svg",
+                "quizimage": "/assets/images/dugong.jpg",
                 "trivia": "Dugongs werden auch Seekühe genannt, weil sie wie Kühe grasen.",
                 "prequizdescription": "Vegetarier im Meer."
             },
@@ -460,7 +460,7 @@
                     "Delfin"
                 ],
                 "answer": "Seepferdchen-Papa",
-                "quizimage": "/assets/images/seahorse.svg",
+                "quizimage": "/assets/images/seahorse.jpg",
                 "trivia": "Beim Seepferdchen bekommt das Männchen die Babys!",
                 "prequizdescription": "Verkehrte Welt?"
             },
@@ -499,7 +499,7 @@
                     "Sie springen"
                 ],
                 "answer": "Sie 'fliegen' durchs Wasser",
-                "quizimage": "/assets/images/manta_ray.svg",
+                "quizimage": "/assets/images/manta_ray.jpg",
                 "trivia": "Ihre großen Flossen sehen aus wie Flügel.",
                 "prequizdescription": "Elegant im Wasser."
             },
@@ -535,27 +535,27 @@
             {
                 "name": "Eisbär",
                 "description": "Der König der Arktis, perfekt an die Kälte angepasst.",
-                "image": "/assets/images/polar_bear.svg"
+                "image": "/assets/images/polar_bear.jpg"
             },
             {
                 "name": "Narwal",
                 "description": "Der 'Einhorn des Meeres' mit einem langen Stoßzahn.",
-                "image": "/assets/images/narwhal.svg"
+                "image": "/assets/images/narwhal.jpg"
             },
             {
                 "name": "Walross",
                 "description": "Ein großes Robben-Tier mit langen Stoßzähnen.",
-                "image": "/assets/images/walrus.svg"
+                "image": "/assets/images/walrus.jpg"
             },
             {
                 "name": "Beluga Wal",
                 "description": "Ein weißer Wal, der auch 'Kanarienvogel des Meeres' heißt.",
-                "image": "/assets/images/beluga.svg"
+                "image": "/assets/images/beluga.jpg"
             },
             {
                 "name": "Grönlandwal",
                 "description": "Ein Wal, der über 200 Jahre alt werden kann.",
-                "image": "/assets/images/bowhead_whale.svg"
+                "image": "/assets/images/bowhead_whale.jpg"
             }
         ],
         "quiz": [
@@ -568,7 +568,7 @@
                     "Delfin"
                 ],
                 "answer": "Eisbär",
-                "quizimage": "/assets/images/polar_bear.svg",
+                "quizimage": "/assets/images/polar_bear.jpg",
                 "trivia": "Eisbären haben schwarze Haut unter ihrem weißen Fell, um Wärme zu speichern.",
                 "prequizdescription": "Zieh dich warm an!"
             },
@@ -581,7 +581,7 @@
                     "Stacheln"
                 ],
                 "answer": "Langer Stoßzahn",
-                "quizimage": "/assets/images/narwhal.svg",
+                "quizimage": "/assets/images/narwhal.jpg",
                 "trivia": "Der Stoßzahn ist eigentlich ein verlängerter Zahn.",
                 "prequizdescription": "Ein Fabelwesen?"
             },
@@ -607,7 +607,7 @@
                     "Wegen der Sonne"
                 ],
                 "answer": "Zur Tarnung im Eis",
-                "quizimage": "/assets/images/beluga.svg",
+                "quizimage": "/assets/images/beluga.jpg",
                 "trivia": "Zwischen den Eisschollen ist er so schwer zu sehen.",
                 "prequizdescription": "Weiß auf Weiß."
             },
@@ -633,7 +633,7 @@
                     "Als Antenne"
                 ],
                 "answer": "Um sich aus dem Wasser zu ziehen",
-                "quizimage": "/assets/images/walrus.svg",
+                "quizimage": "/assets/images/walrus.jpg",
                 "trivia": "Sie helfen ihm, auf Eisschollen zu klettern.",
                 "prequizdescription": "Praktische Zähne."
             },
@@ -672,7 +672,7 @@
                     "1000 Jahre"
                 ],
                 "answer": "Über 200 Jahre",
-                "quizimage": "/assets/images/bowhead_whale.svg",
+                "quizimage": "/assets/images/bowhead_whale.jpg",
                 "trivia": "Sie gehören zu den langlebigsten Tieren der Welt.",
                 "prequizdescription": "Ein uralter Riese."
             },
@@ -708,17 +708,17 @@
             {
                 "name": "Kaiserpinguin",
                 "description": "Die größte Pinguinart der Welt, brütet im Winter.",
-                "image": "/assets/images/penguin.svg"
+                "image": "/assets/images/penguin.jpg"
             },
             {
                 "name": "Seeleopard",
                 "description": "Ein gefährlicher Jäger, der Pinguine frisst.",
-                "image": "/assets/images/leopard_seal.svg"
+                "image": "/assets/images/leopard_seal.jpg"
             },
             {
                 "name": "Krill",
                 "description": "Kleine Krebstiere, die Nahrung für viele Wale sind.",
-                "image": "/assets/images/krill.svg"
+                "image": "/assets/images/krill.jpg"
             },
             {
                 "name": "Blauwal",
@@ -728,7 +728,7 @@
             {
                 "name": "Wanderalbatros",
                 "description": "Ein Vogel mit der größten Flügelspannweite der Welt.",
-                "image": "/assets/images/albatross.svg"
+                "image": "/assets/images/albatross.jpg"
             }
         ],
         "quiz": [
@@ -754,7 +754,7 @@
                     "Königspinguin"
                 ],
                 "answer": "Kaiserpinguin",
-                "quizimage": "/assets/images/penguin.svg",
+                "quizimage": "/assets/images/penguin.jpg",
                 "trivia": "Er kann über 1 Meter groß werden.",
                 "prequizdescription": "Majestätisch."
             },
@@ -767,7 +767,7 @@
                     "Algen"
                 ],
                 "answer": "Krill",
-                "quizimage": "/assets/images/krill.svg",
+                "quizimage": "/assets/images/krill.jpg",
                 "trivia": "Er frisst tonnenweise dieser kleinen Krebse.",
                 "prequizdescription": "Großer Hunger."
             },
@@ -806,7 +806,7 @@
                     "Spatz"
                 ],
                 "answer": "Wanderalbatros",
-                "quizimage": "/assets/images/albatross.svg",
+                "quizimage": "/assets/images/albatross.jpg",
                 "trivia": "Seine Flügel können über 3,5 Meter breit sein.",
                 "prequizdescription": "Ein riesiger Segler."
             },
@@ -832,7 +832,7 @@
                     "Schildkröte"
                 ],
                 "answer": "Seeleopard",
-                "quizimage": "/assets/images/leopard_seal.svg",
+                "quizimage": "/assets/images/leopard_seal.jpg",
                 "trivia": "Seeleoparden lauern oft an der Eiskante.",
                 "prequizdescription": "Gefahr im Wasser."
             },
