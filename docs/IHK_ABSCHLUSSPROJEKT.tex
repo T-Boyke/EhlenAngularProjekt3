@@ -1,0 +1,493 @@
+\documentclass[12pt, a4paper, titlepage]{scrartcl}
+
+% -------------------------------------------------------------------
+% P R E A M B L E
+% -------------------------------------------------------------------
+
+% Encoding & Language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% Font: Helvetica (Arial-like) is standard for IHK
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{setspace}
+\onehalfspacing % 1.5 line spacing
+
+% Margins (IHK Standard: Left 2.5cm, Right 2cm, Top/Bottom 2.5cm)
+\usepackage[left=2.5cm, right=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{float}
+
+% Tables
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{ihkblue}{RGB}{0,51,102}
+
+% Code Listings
+\usepackage{listings}
+\lstdefinelanguage{TypeScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, const, let, class, export, boolean, throw, implements, import, this, interface, public, private, protected, readonly, number, string, any, void, extends, constructor},
+  keywordstyle=\color{ihkblue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{codegray}\ttfamily,
+  stringstyle=\color{codepurple}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+  language=TypeScript,
+  backgroundcolor=\color{backcolour},   
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2,
+  frame=single
+}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Header & Footer
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{Tobias Boyke}
+\chead{Earth Ocean Learning}
+\ohead{\today}
+\cfoot{\pagemark}
+\pagestyle{scrheadings}
+
+% Commands for placeholder images
+\newcommand{\placeholderImage}[2]{
+    \begin{figure}[H]
+        \centering
+        \fbox{\begin{minipage}{0.8\textwidth}
+            \centering
+            \vspace{2cm}
+            \textbf{Bildplatzhalter: #1} \\
+            (Bitte Bilddatei einfügen: #2)
+            \vspace{2cm}
+        \end{minipage}}
+        \caption{#1}
+        \label{fig:#2}
+    \end{figure}
+}
+
+% -------------------------------------------------------------------
+% D O C U M E N T
+% -------------------------------------------------------------------
+
+\begin{document}
+
+% --- Deckblatt ---
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo_placeholder.png} % Platzhalter für BitLC/Firmenlogo
+    \vspace{1cm}
+    
+    {\scshape\LARGE Abschlussprojekt Dokumentation \par}
+    \vspace{0.5cm}
+    {\Large Fachinformatiker für Anwendungsentwicklung \par}
+    \vspace{1.5cm}
+    
+    {\huge\bfseries Earth Ocean Learning APP \par}
+    \vspace{0.5cm}
+    {\Large Entwicklung einer kindgerechten Angular SPA zur Vermittlung von Wissen über die 5 Ozeane \par}
+    
+    \vspace{2cm}
+    
+    \begin{tabular}{ll}
+        \textbf{Prüfling:} & Tobias Boyke \\
+        \textbf{Prüfungsnummer:} & 0001278495 \\
+        \textbf{Anschrift:} & Musterstraße 1, 40470 Düsseldorf \\
+        & \\
+        \textbf{Ausbildungsbetrieb:} & Beispiel GmbH \\
+        \textbf{Anschrift:} & Firmenweg 2, 41460 Neuss \\
+        & \\
+        \textbf{Abgabedatum:} & 09.12.2025 \\
+    \end{tabular}
+    
+    \vfill
+    
+    \emph{IHK Mittlerer Niederrhein (Neuss)}
+\end{titlepage}
+
+% --- Verzeichnisse ---
+\pagenumbering{Roman} % Römische Seitenzahlen für Verzeichnisse
+
+\tableofcontents
+\newpage
+\listoffigures
+\listoftables
+\lstlistoflistings
+\newpage
+
+% --- Glossar ---
+\section*{Glossar}
+\addcontentsline{toc}{section}{Glossar}
+\begin{longtable}{p{0.25\textwidth}p{0.7\textwidth}}
+    \toprule
+    \textbf{Begriff} & \textbf{Erklärung} \\
+    \midrule
+    SPA & Single Page Application - Eine Webanwendung, die aus einer einzigen HTML-Seite besteht. Inhalte werden dynamisch nachgeladen. \\
+    Angular & TypeScript-basiertes Open-Source-Framework von Google zur Erstellung skalierbarer Webanwendungen. \\
+    Standalone Component & Architekturkonzept in Angular, bei dem Komponenten ohne NgModules auskommen. \\
+    MVVM & Model-View-ViewModel - Architekturmuster zur Trennung von GUI und Logik. \\
+    CI/CD & Continuous Integration / Continuous Delivery - Automatisierte Tests und Bereitstellung. \\
+    JSON & JavaScript Object Notation - Kompaktes Datenformat. \\
+    CMS & Content Management System. \\
+    Tailwind CSS & Utility-First CSS-Framework. \\
+    TypeScript & Statisch typisierte Erweiterung von JavaScript. \\
+    WCAG & Web Content Accessibility Guidelines - Standard für Barrierefreiheit. \\
+    LocalStorage & Web API zur dauerhaften Speicherung von Daten im Browser. \\
+    \bottomrule
+\end{longtable}
+\newpage
+
+% --- Inhalt ---
+\pagenumbering{arabic} % Arabische Seitenzahlen für den Inhalt
+
+\section{Einleitung}
+
+\subsection{Ausgangssituation}
+Im Rahmen der Umschulung zum Fachinformatiker für Anwendungsentwicklung erläutert der Autor sein Abschlussprojekt bei der fiktiven Firma \textbf{Beispiel GmbH}. Das Unternehmen ist ein junges IT-Unternehmen in Neuss, spezialisiert auf Webanwendungen und CMS-Lösungen. Mit 14 Mitarbeitern bedient es Kunden aus Edutainment, Logistik und Produktion.
+Die Beispiel GmbH wurde von einer Umweltschutz-NGO (vertreten durch Herrn Dr. Uwe Umwelt) beauftragt, eine Browser-Applikation für das spielerische Erlernen von Ozean-Fakten für Grundschulkinder zu entwickeln .
+
+\subsection{Projektidea und Zielsetzung}
+Ziel ist die Entwicklung der Single Page Application (SPA) "Earth Ocean Learning". Kernfunktionen umfassen Ozean-Auswahl, Lernbereich, Quiz-Modul und Fortschrittsspeicherung. Die App muss als Standalone-Modul in CMS-Systeme integrierbar sein .
+
+\subsection{Projektbegründung}
+Moderne Webtechnologien (Angular, Signals) sollen herkömmliche Lernmaterialien ablösen, um Kindern einen modernen Anreiz zu bieten. Das Projekt dient zudem als Referenz im Bereich "Edutainment" .
+
+\subsection{Make-or-Buy Entscheidung}
+Es wurde eine Eigenentwicklung ("Make") gegenüber Standardlösungen ("Buy") bevorzugt. Gründe:
+\begin{itemize}
+    \item \textbf{Datenschutz:} Kein Tracking/Login (No-Tracking) für Kinder gefordert.
+    \item \textbf{Offline-Fähigkeit:} Muss auch ohne stabiles WLAN laufen (PWA-Vorbereitung).
+    \item \textbf{Kosten:} Einmalkosten günstiger als langfristige Lizenzgebühren .
+\end{itemize}
+
+\section{Projektplanung}
+
+\subsection{Ist-Analyse}
+Es existiert keine Softwarelösung ("Greenfield Project"). Inhalte liegen unstrukturiert vor. Es wird eine Standard-Entwicklerumgebung (Windows 11/Rocky Linux, VS Code) genutzt .
+
+\subsection{Soll-Analyse}
+\textbf{Funktionale Anforderungen:}
+\begin{itemize}
+    \item Ozean-Auswahl und Fakten-Anzeige (Carousel).
+    \item Quiz-System mit direktem Feedback.
+    \item Lokale Speicherung des Fortschritts (Sterne-System).
+    \item Master-Quiz (Unlock nach Abschluss aller Ozeane).
+\end{itemize}
+\textbf{Nicht-funktionale Anforderungen:}
+\begin{itemize}
+    \item Kindgerechtes UI/UX.
+    \item Technologie: Angular 21 (Signals), Standalone Components.
+    \item Performance und Responsive Design .
+\end{itemize}
+
+\subsection{Zeitplanung}
+Der Projektzeitraum ist vom 17.11.2025 bis 09.12.2025.
+
+\placeholderImage{Visualisierung der Zeitplanung mittels Gantt-Diagramm}{gantt_chart}
+
+\begin{table}[H]
+\centering
+\caption{Zeitplanung}
+\begin{tabularx}{\textwidth}{lXr}
+\toprule
+\textbf{Phase} & \textbf{Tätigkeit} & \textbf{Zeit (h)} \\
+\midrule
+\textbf{1. Analyse \& Planung} & & \textbf{11 h} \\
+& Ist-Analyse \& Soll-Konzept & 3 h \\
+& Pflichtenheft / Fachkonzept & 4 h \\
+& Wirtschaftlichkeit / Ressourcen & 4 h \\
+\midrule
+\textbf{2. Entwurf} & & \textbf{12 h} \\
+& UI/UX Design (Mockups) & 5 h \\
+& Architektur \& Datenmodell & 4 h \\
+& Auswahl Tools & 3 h \\
+\midrule
+\textbf{3. Implementierung} & & \textbf{28 h} \\
+& Setup Umgebung & 2 h \\
+& Core-Komponenten \& Routing & 6 h \\
+& Logik (QuizService) & 8 h \\
+& UI \& Styling & 8 h \\
+& Daten-Integration & 4 h \\
+\midrule
+\textbf{4. Qualitätssicherung} & & \textbf{9 h} \\
+& Testfälle \& Bugfixing & 9 h \\
+\midrule
+\textbf{5. Dokumentation} & & \textbf{10 h} \\
+\midrule
+\textbf{Gesamt} & & \textbf{70 h} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Kostenplanung}
+Basierend auf einem internen Stundensatz von 35,00 € (Azubi inkl. GK):
+\begin{itemize}
+    \item Personalkosten: 70 h * 35,00 € = 2.450,00 €
+    \item Sachmittel (Entwicklungsumgebung): 150,00 €
+    \item \textbf{Gesamtkosten (Plan): 2.600,00 €} 
+\end{itemize}
+
+\section{Analyse \& Entwurf}
+
+\subsection{Anwendungsfalldiagramm (Use Cases)}
+\placeholderImage{Anwendungsfalldiagramm (Use Cases)}{usecase_diagram}
+
+\subsection{Architekturentwurf}
+Die Anwendung ist eine reine SPA (Client-Side Rendering) ohne Server-Side Rendering (SSR), um Hosting-Kosten zu sparen und App-Feel zu gewährleisten.
+Die Architektur orientiert sich am MVVM-Muster unter Nutzung von Angular Signals (Fine-Grained Reactivity) und JSON als Datenquelle .
+
+\placeholderImage{Architekturentwurf (View Layer, ViewModel, Data Layer)}{architecture_diagram}
+
+\subsection{UI/UX Design}
+Design-Fokus: Helle Farben, große Buttons, wenig Text, Barrierefreiheit (WCAG) .
+\textit{(Siehe Anhang für Mockups)}
+
+\subsection{Datenmodell}
+Die Datenhaltung erfolgt dokumentenorientiert via JSON.
+
+\placeholderImage{Hierarchische Struktur des JSON-Objekts}{datamodel_diagram}
+
+\begin{lstlisting}[caption={Beispiel Datenblock (JSON)}, label={lst:json}]
+{
+  "id": "pacific",
+  "name": "Pazifischer Ozean",
+  "quizQuestions": [
+    {
+      "question": "Wie tief ist der Marianengraben?",
+      "options": ["11.000m", "5.000m", "2.000m"],
+      "correctAnswer": "11.000m"
+    }
+  ]
+}
+\end{lstlisting}
+
+\subsection{Klassendiagramm}
+Das Klassendiagramm zeigt die Abhängigkeiten zwischen Components und dem zentralen \texttt{QuizService}.
+
+\placeholderImage{Klassendiagramm (UML)}{class_diagram}
+
+\subsection{Datenschutz \& Sicherheit}
+Privacy by Design: Keine PII-Erhebung, lokale Speicherung (LocalStorage), kein Tracking .
+
+\section{Realisierung}
+
+\subsection{Entwicklungsumgebung}
+Tools: Visual Studio Code, GitHub, Angular CLI v21, Google Chrome .
+
+\subsection{Implementierung der Hauptkomponenten}
+
+\subsubsection{Standalone Components}
+Verzicht auf NgModules zur Reduktion der Komplexität.
+
+\begin{lstlisting}[caption={Standalone Component Definition}, label={lst:standalone}]
+@Component({
+  selector: 'app-ocean-facts',
+  standalone: true,
+  imports: [CommonModule, NgOptimizedImage],
+  templateUrl: './ocean-facts.component.html',
+  styleUrl: './ocean-facts.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class OceanFactsComponent { ... }
+\end{lstlisting}
+
+\subsubsection{State Management via QuizService}
+Nutzung des "Service with Signals"-Patterns.
+
+\begin{lstlisting}[caption={Service with Signals (Auszug)}, label={lst:signals}]
+@Injectable({ providedIn: 'root' })
+export class QuizService {
+  // Private State
+  private _score = signal<number>(0);
+  private _completedOceans = signal<string[]>([]);
+  
+  // Public API
+  readonly score = this._score.asReadonly();
+  
+  // Mutation
+  addStar(oceanId: string) {
+    this._completedOceans.update(list => [...list, oceanId]);
+  }
+}
+\end{lstlisting}
+
+\subsection{Herausforderungen \& Lösungen}
+\begin{table}[H]
+\caption{Herausforderungen \& Lösungen}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Herausforderung} & \textbf{Lösung} \\
+\midrule
+Persistierung des Fortschritts & Nutzung eines Angular \texttt{effect} im Service, der \texttt{localStorage} automatisch updated. \\
+Linting Inkompatibilität & Verzicht auf ESLint zugunsten strikter Compiler-Checks. \\
+Kindgerechte UX & Große Icons, intuitive Farben, einfache Navigation. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Qualitätssicherung}
+
+\subsection{Testplanung}
+Fokus auf manuellen Black-Box-Tests und funktionalen Systemtests. Automatisierte Unit-Tests (Karma/Jest) wurden aufgrund von Versionskonflikten in Angular 21 verworfen, aber beispielhaft evaluiert .
+
+\begin{lstlisting}[caption={Beispiel Unit-Test}, label={lst:test}]
+it('should calculate correct score', () => {
+  const service = TestBed.inject(QuizService);
+  service.answerQuestion(true);
+  service.answerQuestion(true);
+  expect(service.score()).toBe(2);
+});
+\end{lstlisting}
+
+\subsection{Testdurchführung}
+Alle kritischen Testfälle (TF01 - TF06) waren erfolgreich.
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{llXl}
+\toprule
+ID & Testfall & Erwartung & Status \\
+\midrule
+TF01 & App-Start & Startbildschirm lädt & OK \\
+TF03 & Quiz-Logik & Feedback Grün/Rot & OK \\
+TF04 & Fortschritt & Speicherung LocalStorage & OK \\
+TF05 & Master-Quiz & Unlock bei 5 Sternen & OK \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Google Lighthouse Audit}
+Performance: 80/100 (wegen PNGs), Accessibility: 100/100, Best Practices: 100/100 .
+
+\section{Wirtschaftlichkeitsbetrachtung}
+
+\subsection{Soll-Ist-Vergleich (Zeit \& Kosten)}
+Die geplante Zeit von 70h wurde genau eingehalten. Abweichungen im Entwurf (+2h) wurden durch schnellere QS (-1h) und Doku (-1h) ausgeglichen.
+Die tatsächlichen Kosten belaufen sich auf 2.600,00 € .
+
+\subsection{Amortisationsrechnung}
+Vergleich: Druckkosten Broschüren (Analog) vs. App-Betrieb (Digital).
+\begin{itemize}
+    \item Kosten Analog (Druck/Logistik): 2.000,00 € / Jahr
+    \item Kosten Digital (Hosting/Wartung): 260,00 € / Jahr
+    \item Jährliche Einsparung: 1.740,00 €
+\end{itemize}
+
+\begin{equation}
+Amortisationszeit = \frac{\text{Projektkosten}}{\text{Jährliche Einsparung}} = \frac{2.600,00}{1.740,00} \approx 1,49 \text{ Jahre}
+\end{equation}
+
+Das Projekt amortisiert sich nach ca. 18 Monaten .
+
+\section{Fazit \& Ausblick}
+Das Projekt wurde erfolgreich umgesetzt ("in Time", "in Budget"). Die Entscheidung für Angular Signals und Standalone Components hat sich bezüglich Performance und Code-Qualität ausgezahlt, trotz "Early-Adopter"-Hürden bei Tooling (Linter/Tests).
+\textbf{Ausblick:} Geplante Features für V2.0 sind Sound-Effekte, PWA-Support und Mehrsprachigkeit (i18n).
+Am 09.12.2025 erfolgte die Abnahme ohne Mängel .
+
+\newpage
+\appendix
+\section{Anhang}
+
+\subsection{Verzeichnisstruktur}
+\begin{verbatim}
+/
+├── src/
+│   ├── app/
+│   ├── assets/
+│   └── index.html
+├── angular.json
+├── package.json
+└── README.md
+\end{verbatim}
+
+\subsection{Mockups und Screenshots}
+% Hinweis: Hier müssten die Bilder aus der Quelle [317-321] eingefügt werden.
+\placeholderImage{Startbildschirm (Skizze vs. Umsetzung)}{mockup_start}
+\placeholderImage{Quiz-Bildschirm}{mockup_quiz}
+\placeholderImage{Ergebnis-Bildschirm}{mockup_results}
+
+\subsection{Code-Beispiele (QuizService)}
+\begin{lstlisting}[caption={Vollständiger QuizService Logic}, label={lst:fullservice}, basicstyle=\tiny\ttfamily]
+import { Injectable, computed, inject, signal, effect } from '@angular/core';
+import { DataService } from '../services/data.service';
+import { Ocean } from '../models/ocean.model';
+
+@Injectable({ providedIn: 'root' })
+export class QuizService {
+  private dataService = inject(DataService);
+  private readonly STORAGE_KEY = 'eol_progress';
+
+  // State Signals
+  private _oceans = signal<Ocean[]>([]);
+  private _currentOceanId = signal<string | null>(null);
+  private _score = signal<number>(0);
+  private _completedOceans = signal<string[]>([]);
+  private _masterMode = signal<boolean>(false);
+
+  readonly oceans = this._oceans.asReadonly();
+  readonly isMasterUnlocked = computed(() => this._completedOceans().length >= 5);
+
+  constructor() {
+    const saved = localStorage.getItem(this.STORAGE_KEY);
+    if (saved) this._completedOceans.set(JSON.parse(saved));
+    
+    effect(() => {
+       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this._completedOceans()));
+    });
+  }
+
+  startMasterQuiz() {
+    // Logic to mix all questions
+    this._masterMode.set(true);
+    // ... Implementation details
+  }
+}
+\end{lstlisting}
+
+\subsection{Abnahmeprotokoll}
+\textbf{Datum:} 09.12.2025 \\
+\textbf{Ergebnis:} Mängelfrei abgenommen. \\
+\textbf{Unterschriften:} Tobias Boyke (Auftragnehmer), Dr. Uwe Umwelt (Auftraggeber).
+
+\newpage
+\section{Erklärung}
+Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig und ohne fremde Hilfe angefertigt und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe.
+
+\vspace{3cm}
+\noindent
+\begin{tabular}{lp{2cm}l}
+\cline{1-1} \cline{3-3}
+Ort, Datum & & Unterschrift \\
+Neuss, 08.12.2025 & & Tobias Boyke
+\end{tabular}
+
+\end{document}
