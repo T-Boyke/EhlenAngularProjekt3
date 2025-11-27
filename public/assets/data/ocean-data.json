@@ -21,22 +21,22 @@
             {
                 "name": "Meeresschildkröte",
                 "description": "Sie schwimmen tausende Kilometer durch den Ozean.",
-                "image": "/assets/images/sea_turtle.png"
+                "image": "/assets/images/sea_turtle.svg"
             },
             {
                 "name": "Weißer Hai",
                 "description": "Ein großer Raubfisch mit vielen Zähnen.",
-                "image": "https://placehold.co/600x400?text=Weisser+Hai"
+                "image": "/assets/images/great_white_shark.svg"
             },
             {
                 "name": "Riesenkalmar",
                 "description": "Ein geheimnisvoller Bewohner der Tiefsee.",
-                "image": "https://placehold.co/600x400?text=Riesenkalmar"
+                "image": "/assets/images/giant_squid.svg"
             },
             {
                 "name": "Clownfisch",
                 "description": "Ein bunter Fisch, der in Anemonen lebt.",
-                "image": "https://placehold.co/600x400?text=Clownfisch"
+                "image": "/assets/images/clownfish.svg"
             }
         ],
         "quiz": [
@@ -127,7 +127,7 @@
                     "Auf Bäumen"
                 ],
                 "answer": "In Anemonen",
-                "quizimage": "https://placehold.co/600x400?text=Clownfisch",
+                "quizimage": "/assets/images/clownfish.svg",
                 "trivia": "Die Anemone schützt den Clownfisch vor Feinden.",
                 "prequizdescription": "Ein bunter Freund."
             },
@@ -194,22 +194,22 @@
             {
                 "name": "Buckelwal",
                 "description": "Bekannt für seine wunderschönen Gesänge.",
-                "image": "https://placehold.co/600x400?text=Buckelwal"
+                "image": "/assets/images/humpback_whale.svg"
             },
             {
                 "name": "Kabeljau",
                 "description": "Ein wichtiger Speisefisch im Nordatlantik.",
-                "image": "https://placehold.co/600x400?text=Kabeljau"
+                "image": "/assets/images/cod.svg"
             },
             {
                 "name": "Lederschildkröte",
                 "description": "Die größte lebende Schildkrötenart.",
-                "image": "https://placehold.co/600x400?text=Lederschildkroete"
+                "image": "/assets/images/leatherback_turtle.svg"
             },
             {
                 "name": "Papageientaucher",
                 "description": "Ein Vogel mit einem bunten Schnabel.",
-                "image": "https://placehold.co/600x400?text=Papageientaucher"
+                "image": "/assets/images/puffin.svg"
             }
         ],
         "quiz": [
@@ -287,7 +287,7 @@
                     "Qualle"
                 ],
                 "answer": "Buckelwal",
-                "quizimage": "https://placehold.co/600x400?text=Buckelwal",
+                "quizimage": "/assets/images/humpback_whale.svg",
                 "trivia": "Die Gesänge der Buckelwale können stundenlang dauern.",
                 "prequizdescription": "Musik im Meer."
             },
@@ -300,7 +300,7 @@
                     "Strauß"
                 ],
                 "answer": "Papageientaucher",
-                "quizimage": "https://placehold.co/600x400?text=Papageientaucher",
+                "quizimage": "/assets/images/puffin.svg",
                 "trivia": "Sie werden auch 'Clowns der Meere' genannt.",
                 "prequizdescription": "Ein bunter Vogel."
             },
@@ -362,27 +362,27 @@
             {
                 "name": "Clownfisch",
                 "description": "Ein bunter Fisch, der in Anemonen lebt.",
-                "image": "https://placehold.co/600x400?text=Clownfisch"
+                "image": "/assets/images/clownfish.svg"
             },
             {
                 "name": "Manta Rochen",
                 "description": "Ein riesiger, sanfter Rochen, der Plankton frisst.",
-                "image": "https://placehold.co/600x400?text=Manta+Rochen"
+                "image": "/assets/images/manta_ray.svg"
             },
             {
                 "name": "Dugong",
                 "description": "Eine Seekuh, die Seegras weidet.",
-                "image": "https://placehold.co/600x400?text=Dugong"
+                "image": "/assets/images/dugong.svg"
             },
             {
                 "name": "Walhai",
                 "description": "Der größte Fisch der Welt.",
-                "image": "https://placehold.co/600x400?text=Walhai"
+                "image": "/assets/images/whale_shark.svg"
             },
             {
                 "name": "Seepferdchen",
                 "description": "Ein kleiner Fisch, der aufrecht schwimmt.",
-                "image": "https://placehold.co/600x400?text=Seepferdchen"
+                "image": "/assets/images/seahorse.svg"
             }
         ],
         "quiz": [
@@ -434,7 +434,7 @@
                     "Goldfisch"
                 ],
                 "answer": "Walhai",
-                "quizimage": "https://placehold.co/600x400?text=Walhai",
+                "quizimage": "/assets/images/whale_shark.svg",
                 "trivia": "Trotz seiner Größe frisst der Walhai nur winziges Plankton.",
                 "prequizdescription": "Ein sanfter Riese."
             },
@@ -447,7 +447,7 @@
                     "Algen"
                 ],
                 "answer": "Seegras",
-                "quizimage": "https://placehold.co/600x400?text=Dugong",
+                "quizimage": "/assets/images/dugong.svg",
                 "trivia": "Dugongs werden auch Seekühe genannt, weil sie wie Kühe grasen.",
                 "prequizdescription": "Vegetarier im Meer."
             },
@@ -460,7 +460,7 @@
                     "Delfin"
                 ],
                 "answer": "Seepferdchen-Papa",
-                "quizimage": "https://placehold.co/600x400?text=Seepferdchen",
+                "quizimage": "/assets/images/seahorse.svg",
                 "trivia": "Beim Seepferdchen bekommt das Männchen die Babys!",
                 "prequizdescription": "Verkehrte Welt?"
             },
@@ -499,7 +499,7 @@
                     "Sie springen"
                 ],
                 "answer": "Sie 'fliegen' durchs Wasser",
-                "quizimage": "https://placehold.co/600x400?text=Manta+Rochen",
+                "quizimage": "/assets/images/manta_ray.svg",
                 "trivia": "Ihre großen Flossen sehen aus wie Flügel.",
                 "prequizdescription": "Elegant im Wasser."
             },
@@ -535,27 +535,27 @@
             {
                 "name": "Eisbär",
                 "description": "Der König der Arktis, perfekt an die Kälte angepasst.",
-                "image": "https://placehold.co/600x400?text=Eisbaer"
+                "image": "/assets/images/polar_bear.svg"
             },
             {
                 "name": "Narwal",
                 "description": "Der 'Einhorn des Meeres' mit einem langen Stoßzahn.",
-                "image": "https://placehold.co/600x400?text=Narwal"
+                "image": "/assets/images/narwhal.svg"
             },
             {
                 "name": "Walross",
                 "description": "Ein großes Robben-Tier mit langen Stoßzähnen.",
-                "image": "https://placehold.co/600x400?text=Walross"
+                "image": "/assets/images/walrus.svg"
             },
             {
                 "name": "Beluga Wal",
                 "description": "Ein weißer Wal, der auch 'Kanarienvogel des Meeres' heißt.",
-                "image": "https://placehold.co/600x400?text=Beluga"
+                "image": "/assets/images/beluga.svg"
             },
             {
                 "name": "Grönlandwal",
                 "description": "Ein Wal, der über 200 Jahre alt werden kann.",
-                "image": "https://placehold.co/600x400?text=Groenlandwal"
+                "image": "/assets/images/bowhead_whale.svg"
             }
         ],
         "quiz": [
@@ -568,7 +568,7 @@
                     "Delfin"
                 ],
                 "answer": "Eisbär",
-                "quizimage": "https://placehold.co/600x400?text=Eisbaer",
+                "quizimage": "/assets/images/polar_bear.svg",
                 "trivia": "Eisbären haben schwarze Haut unter ihrem weißen Fell, um Wärme zu speichern.",
                 "prequizdescription": "Zieh dich warm an!"
             },
@@ -581,7 +581,7 @@
                     "Stacheln"
                 ],
                 "answer": "Langer Stoßzahn",
-                "quizimage": "https://placehold.co/600x400?text=Narwal",
+                "quizimage": "/assets/images/narwhal.svg",
                 "trivia": "Der Stoßzahn ist eigentlich ein verlängerter Zahn.",
                 "prequizdescription": "Ein Fabelwesen?"
             },
@@ -607,7 +607,7 @@
                     "Wegen der Sonne"
                 ],
                 "answer": "Zur Tarnung im Eis",
-                "quizimage": "https://placehold.co/600x400?text=Beluga",
+                "quizimage": "/assets/images/beluga.svg",
                 "trivia": "Zwischen den Eisschollen ist er so schwer zu sehen.",
                 "prequizdescription": "Weiß auf Weiß."
             },
@@ -633,7 +633,7 @@
                     "Als Antenne"
                 ],
                 "answer": "Um sich aus dem Wasser zu ziehen",
-                "quizimage": "https://placehold.co/600x400?text=Walross",
+                "quizimage": "/assets/images/walrus.svg",
                 "trivia": "Sie helfen ihm, auf Eisschollen zu klettern.",
                 "prequizdescription": "Praktische Zähne."
             },
@@ -672,7 +672,7 @@
                     "1000 Jahre"
                 ],
                 "answer": "Über 200 Jahre",
-                "quizimage": "https://placehold.co/600x400?text=Groenlandwal",
+                "quizimage": "/assets/images/bowhead_whale.svg",
                 "trivia": "Sie gehören zu den langlebigsten Tieren der Welt.",
                 "prequizdescription": "Ein uralter Riese."
             },
@@ -708,17 +708,17 @@
             {
                 "name": "Kaiserpinguin",
                 "description": "Die größte Pinguinart der Welt, brütet im Winter.",
-                "image": "https://placehold.co/600x400?text=Kaiserpinguin"
+                "image": "/assets/images/penguin.svg"
             },
             {
                 "name": "Seeleopard",
                 "description": "Ein gefährlicher Jäger, der Pinguine frisst.",
-                "image": "https://placehold.co/600x400?text=Seeleopard"
+                "image": "/assets/images/leopard_seal.svg"
             },
             {
                 "name": "Krill",
                 "description": "Kleine Krebstiere, die Nahrung für viele Wale sind.",
-                "image": "https://placehold.co/600x400?text=Krill"
+                "image": "/assets/images/krill.svg"
             },
             {
                 "name": "Blauwal",
@@ -728,7 +728,7 @@
             {
                 "name": "Wanderalbatros",
                 "description": "Ein Vogel mit der größten Flügelspannweite der Welt.",
-                "image": "https://placehold.co/600x400?text=Wanderalbatros"
+                "image": "/assets/images/albatross.svg"
             }
         ],
         "quiz": [
@@ -754,7 +754,7 @@
                     "Königspinguin"
                 ],
                 "answer": "Kaiserpinguin",
-                "quizimage": "https://placehold.co/600x400?text=Kaiserpinguin",
+                "quizimage": "/assets/images/penguin.svg",
                 "trivia": "Er kann über 1 Meter groß werden.",
                 "prequizdescription": "Majestätisch."
             },
@@ -767,7 +767,7 @@
                     "Algen"
                 ],
                 "answer": "Krill",
-                "quizimage": "https://placehold.co/600x400?text=Krill",
+                "quizimage": "/assets/images/krill.svg",
                 "trivia": "Er frisst tonnenweise dieser kleinen Krebse.",
                 "prequizdescription": "Großer Hunger."
             },
@@ -806,7 +806,7 @@
                     "Spatz"
                 ],
                 "answer": "Wanderalbatros",
-                "quizimage": "https://placehold.co/600x400?text=Wanderalbatros",
+                "quizimage": "/assets/images/albatross.svg",
                 "trivia": "Seine Flügel können über 3,5 Meter breit sein.",
                 "prequizdescription": "Ein riesiger Segler."
             },
@@ -832,7 +832,7 @@
                     "Schildkröte"
                 ],
                 "answer": "Seeleopard",
-                "quizimage": "https://placehold.co/600x400?text=Seeleopard",
+                "quizimage": "/assets/images/leopard_seal.svg",
                 "trivia": "Seeleoparden lauern oft an der Eiskante.",
                 "prequizdescription": "Gefahr im Wasser."
             },
