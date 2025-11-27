@@ -130,6 +130,6 @@ export class OceanFactsComponent {
   }
 
   handleMissingImage(event: Event) {
-    (event.target as HTMLImageElement).src = '/assets/images/pacific.png';
+    (event.target as HTMLImageElement).src = '/assets/images/not_found.png';
   }
 }
