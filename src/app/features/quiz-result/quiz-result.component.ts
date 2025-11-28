@@ -8,53 +8,54 @@ import confetti from 'canvas-confetti';
   selector: 'app-quiz-result',
   standalone: true,
   imports: [DatePipe],
+  styleUrl: './quiz-result.component.css',
   template: `
-    <div class="min-h-screen w-full flex flex-col items-center justify-center p-4">
-      <div class="glass-card w-full max-w-2xl flex flex-col items-center gap-8 animate-pop-in text-center p-8">
+    <div class="quiz-result">
+      <div class="quiz-result__card">
         
         @if (store.masterMode()) {
            <!-- Master Quiz Result / Certificate -->
            @if (isSuccess()) {
-             <div class="border-8 border-double border-yellow-400 p-8 rounded-xl bg-white/90 shadow-2xl relative overflow-hidden w-full">
-               <div class="absolute top-0 left-0 w-full h-full bg-[url('/assets/images/pacific.png')] opacity-10 bg-cover"></div>
+             <div class="quiz-result__certificate">
+               <div class="quiz-result__certificate-bg"></div>
                
-               <h1 class="text-4xl md:text-5xl font-serif font-bold text-blue-900 mb-4 relative z-10">URKUNDE</h1>
-               <p class="text-xl text-blue-700 mb-6 relative z-10">Hiermit wird bestätigt, dass</p>
+               <h1 class="quiz-result__certificate-title">URKUNDE</h1>
+               <p class="quiz-result__certificate-subtitle">Hiermit wird bestätigt, dass</p>
                
-               <div class="text-3xl font-bold text-blue-900 border-b-2 border-blue-900 inline-block px-8 py-2 mb-6 relative z-10">
+               <div class="quiz-result__certificate-rank">
                  Meeresforscher
                </div>
                
-               <p class="text-lg text-blue-800 mb-8 relative z-10">
+               <p class="quiz-result__certificate-text">
                  das <strong>Ultimative Ozean-Quiz</strong> erfolgreich bestanden hat!
                </p>
                
-               <div class="flex justify-center gap-4 relative z-10 mb-6">
-                 <span class="text-4xl">⭐</span>
-                 <span class="text-4xl">🐬</span>
-                 <span class="text-4xl">⭐</span>
+               <div class="quiz-result__certificate-icons">
+                 <span class="quiz-result__certificate-icon">⭐</span>
+                 <span class="quiz-result__certificate-icon">🐬</span>
+                 <span class="quiz-result__certificate-icon">⭐</span>
                </div>
                
-               <div class="mt-4 text-sm text-blue-600 relative z-10">
+               <div class="quiz-result__certificate-date">
                  Earth Ocean Learning • {{ today | date:'mediumDate' }}
                </div>
              </div>
            } @else {
-             <h2 class="text-3xl font-bold text-red-600">Oh nein!</h2>
-             <p class="text-xl text-blue-800">Die Zeit war zu knapp oder eine Antwort falsch.</p>
-             <p class="text-lg text-blue-600 mt-4">Du hast {{ store.score() }} von {{ store.totalQuestions() }} Fragen richtig.</p>
-             <p class="text-lg text-blue-600">Versuche es noch einmal!</p>
+             <h2 class="quiz-result__failure-title">Oh nein!</h2>
+             <p class="quiz-result__failure-subtitle">Die Zeit war zu knapp oder eine Antwort falsch.</p>
+             <p class="quiz-result__failure-score">Du hast {{ store.score() }} von {{ store.totalQuestions() }} Fragen richtig.</p>
+             <p class="quiz-result__failure-text">Versuche es noch einmal!</p>
            }
 
         } @else {
           <!-- Normal Quiz Result -->
-          <h2 class="text-4xl font-bold text-blue-900">Quiz Beendet!</h2>
+          <h2 class="quiz-result__title">Quiz Beendet!</h2>
           
-          <div class="text-6xl font-bold" [class]="isSuccess() ? 'text-green-500' : 'text-blue-500'">
+          <div class="quiz-result__score" [class.quiz-result__score--success]="isSuccess()" [class.quiz-result__score--normal]="!isSuccess()">
             {{ store.score() }} / {{ store.totalQuestions() }}
           </div>
           
-          <p class="text-xl text-blue-800">
+          <p class="quiz-result__message">
             @if (isSuccess()) {
               Fantastisch! Du bist ein echter Experte! 🌟
             } @else if (store.score() > store.totalQuestions() / 2) {
@@ -65,11 +66,11 @@ import confetti from 'canvas-confetti';
           </p>
         }
 
-        <div class="flex gap-4 mt-8 w-full justify-center">
-          <button (click)="restart()" class="glass-btn bg-blue-500 text-white hover:bg-blue-600">
+        <div class="quiz-result__actions">
+          <button (click)="restart()" class="quiz-result__restart-btn">
             Nochmal spielen 🔄
           </button>
-          <button (click)="backToSelection()" class="glass-btn">
+          <button (click)="backToSelection()" class="quiz-result__back-btn">
             Zurück zur Auswahl 🗺️
           </button>
         </div>

@@ -1,0 +1,37 @@
+@reference "../../../styles.css";
+
+.start-page {
+  @apply flex items-center justify-center h-screen w-full;
+}
+
+.start-page__card {
+  @apply glass-card w-full max-w-md text-center animate-fly-in flex flex-col items-center gap-6;
+}
+
+.start-page__logo-wrapper {
+  @apply w-32 h-32 rounded-full bg-white/50 flex items-center justify-center shadow-inner mb-2;
+}
+
+.start-page__logo {
+  @apply text-4xl;
+}
+
+.start-page__title {
+  @apply text-4xl font-extrabold text-blue-900 drop-shadow-sm;
+}
+
+.start-page__fact-box {
+  @apply bg-white/30 p-4 rounded-xl w-full;
+}
+
+.start-page__fact-label {
+  @apply text-sm font-semibold text-blue-800 mb-1;
+}
+
+.start-page__fact-text {
+  @apply text-slate-700 italic;
+}
+
+.start-page__button {
+  @apply glass-btn glass-btn-primary text-xl w-full mt-4;
+}

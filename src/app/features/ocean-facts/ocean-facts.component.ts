@@ -5,43 +5,42 @@ import { QuizService } from '../../store/quiz.store';
 @Component({
   selector: 'app-ocean-facts',
   standalone: true,
-  imports: [], // KORREKTUR: Leeres Array, da NgClass nicht genutzt wird
-  // ... (Rest des Templates bleibt gleich)
+  imports: [],
+  styleUrl: './ocean-facts.component.css',
   template: `
-    <div class="min-h-screen w-full flex flex-col items-center justify-center p-4 relative">
-      <button (click)="goBack()" class="absolute top-6 left-6 glass-btn p-3 rounded-full z-10">
+    <div class="ocean-facts">
+      <button (click)="goBack()" class="ocean-facts__back-btn">
         ⬅ Zurück
       </button>
 
       @if (store.currentOcean(); as ocean) {
-        <div class="glass-card w-full max-w-4xl flex flex-col md:flex-row gap-8 items-center min-h-[400px] animate-pop-in relative">
+        <div class="ocean-facts__card">
           
-          <div class="w-full md:w-1/2 h-64 md:h-80 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center">
-             <img [src]="currentSlide().image" [alt]="currentSlide().title" class="w-full h-full object-cover" fetchpriority="high"
+          <div class="ocean-facts__image-wrapper">
+             <img [src]="currentSlide().image" [alt]="currentSlide().title" class="ocean-facts__image" fetchpriority="high"
                   loading="eager" (error)="handleMissingImage($event)">
           </div>
 
-          <div class="w-full md:w-1/2 flex flex-col justify-center">
-            <h2 class="text-3xl font-bold text-blue-900 mb-4">{{ currentSlide().title }}</h2>
-            <p class="text-lg text-slate-800 leading-relaxed">{{ currentSlide().text }}</p>
+          <div class="ocean-facts__content">
+            <h2 class="ocean-facts__title">{{ currentSlide().title }}</h2>
+            <p class="ocean-facts__text">{{ currentSlide().text }}</p>
           </div>
 
-          <div class="absolute bottom-4 right-4 flex gap-4">
-             <button (click)="prevSlide()" class="glass-btn px-4 py-2">◀</button>
-             <button (click)="nextSlide()" class="glass-btn px-4 py-2">▶</button>
+          <div class="ocean-facts__nav">
+             <button (click)="prevSlide()" class="ocean-facts__nav-btn">◀</button>
+             <button (click)="nextSlide()" class="ocean-facts__nav-btn">▶</button>
           </div>
 
-          <div class="absolute bottom-0 left-0 w-full h-2 bg-white/30">
-            <div class="h-full bg-blue-500 transition-all duration-300"
+          <div class="ocean-facts__progress-bar-bg">
+            <div class="ocean-facts__progress-bar"
                  [style.width.%]="((slideIndex() + 1) / slides().length) * 100">
             </div>
           </div>
         </div>
 
-        <div class="mt-8 h-14 flex items-center justify-center transition-all duration-500"
-             [class.opacity-0]="!hasViewedAll()"
-             [class.invisible]="!hasViewedAll()">
-          <button (click)="startQuiz()" class="glass-btn glass-btn-primary text-xl animate-wiggle">
+        <div class="ocean-facts__quiz-btn-wrapper"
+             [class.ocean-facts__quiz-btn-wrapper--hidden]="!hasViewedAll()">
+          <button (click)="startQuiz()" class="ocean-facts__quiz-btn">
             Quiz Starten 🎮
           </button>
         </div>

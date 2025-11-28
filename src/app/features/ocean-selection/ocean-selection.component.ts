@@ -5,51 +5,51 @@ import { QuizService } from '../../store/quiz.store';
 @Component({
   selector: 'app-ocean-selection',
   standalone: true,
-  imports: [], // Keine Imports nötig
+  imports: [],
+  styleUrl: './ocean-selection.component.css',
   template: `
-    <div class="min-h-screen w-full p-8 flex flex-col items-center justify-center overflow-y-auto">
-      <h2 class="text-3xl font-bold text-white mb-8 drop-shadow-md animate-pop-in">Wähle einen Ozean</h2>
+    <div class="ocean-selection">
+      <h2 class="ocean-selection__title">Wähle einen Ozean</h2>
       
-      <div class="flex flex-wrap justify-center gap-8 w-full max-w-7xl">
+      <div class="ocean-selection__grid">
         @for (ocean of store.oceans(); track ocean.id) {
           <div (click)="selectOcean(ocean.id)" 
-               class="glass-card cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-white/40 group relative animate-pop-in w-full sm:w-80 md:w-96"
+               class="ocean-card group"
                [style.animation-delay]="$index * 100 + 'ms'">
             
-            <div class="w-full h-40 rounded-xl overflow-hidden mb-4 bg-white/50 shadow-inner relative">
-               <img [src]="ocean.oceanimage" [alt]="ocean.name" class="w-full h-full object-cover" 
+            <div class="ocean-card__image-wrapper">
+               <img [src]="ocean.oceanimage" [alt]="ocean.name" class="ocean-card__image" 
                     (error)="handleMissingImage($event)">
             </div>
             
-            <h3 class="text-xl font-bold text-blue-900 text-center group-hover:text-blue-700">{{ ocean.name }}</h3>
+            <h3 class="ocean-card__title">{{ ocean.name }}</h3>
 
-            <div class="absolute top-4 right-4 text-2xl transition-colors z-10"
-                 [class.text-yellow-400]="store.isOceanCompleted(ocean.id)"
-                 [class.text-gray-400]="!store.isOceanCompleted(ocean.id)">
+            <div class="ocean-card__star"
+                 [class.ocean-card__star--active]="store.isOceanCompleted(ocean.id)"
+                 [class.ocean-card__star--inactive]="!store.isOceanCompleted(ocean.id)">
               ★
             </div>
           </div>
         }
       </div>
 
-      <div class="mt-12 w-full max-w-md">
+      <div class="ocean-selection__actions">
         <button (click)="startMasterQuiz()"
                 [disabled]="!store.isMasterUnlocked()"
-                [class.opacity-50]="!store.isMasterUnlocked()"
-                [class.cursor-not-allowed]="!store.isMasterUnlocked()"
-                class="w-full py-4 rounded-xl text-2xl font-bold text-white transition-all duration-300 shadow-lg flex items-center justify-center gap-3 relative overflow-hidden group"
-                [class]="store.isMasterUnlocked() ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-105 hover:shadow-purple-500/50' : 'bg-gray-600'">
+                class="master-quiz-btn group"
+                [class.master-quiz-btn--unlocked]="store.isMasterUnlocked()"
+                [class.master-quiz-btn--locked]="!store.isMasterUnlocked()">
           
           @if (store.isMasterUnlocked()) {
-            <span class="animate-pulse">🏆</span> 
+            <span class="master-quiz-btn__icon">🏆</span> 
             <span>ULTIMATIVES QUIZ STARTEN</span>
-            <span class="animate-pulse">🏆</span>
+            <span class="master-quiz-btn__icon">🏆</span>
           } @else {
             <span>🔒 Sammle alle 5 Sterne!</span>
           }
           
           @if (!store.isMasterUnlocked()) {
-            <div class="absolute bottom-0 left-0 h-2 bg-yellow-400 transition-all duration-500"
+            <div class="master-quiz-btn__progress-bar"
                  [style.width.%]="(store.completedOceans().length / 5) * 100"></div>
           }
         </button>

@@ -6,13 +6,14 @@
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-body {
-  @apply bg-gradient-to-br from-cyan-200 via-blue-200 to-indigo-300 min-h-screen font-sans text-slate-800 overflow-hidden;
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-cyan-200 via-blue-200 to-indigo-300 min-h-screen font-sans text-slate-800 overflow-hidden;
+  }
 }
 
-.glass-card {
+@utility glass-card {
   background: var(--glass-bg);
-
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
@@ -20,14 +21,14 @@ body {
   @apply rounded-2xl p-6;
 }
 
-.glass-btn {
+@utility glass-btn {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   @apply px-6 py-3 rounded-full font-bold text-slate-700 transition-all duration-300 hover:bg-white/60 hover:scale-105 active:scale-95 cursor-pointer shadow-lg;
 }
 
-.glass-btn-primary {
+@utility glass-btn-primary {
   @apply bg-blue-500/80 text-white border-blue-400 hover:bg-blue-500;
 }
 
@@ -44,12 +45,7 @@ body {
   }
 }
 
-.animate-fly-in {
-  animation: flyInBottom 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
 @keyframes wiggle {
-
   0%,
   100% {
     transform: rotate(-3deg);
@@ -58,10 +54,6 @@ body {
   50% {
     transform: rotate(3deg);
   }
-}
-
-.animate-wiggle {
-  animation: wiggle 2s ease-in-out infinite;
 }
 
 @keyframes popIn {
@@ -76,10 +68,6 @@ body {
   }
 }
 
-.animate-pop-in {
-  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
 @keyframes slideUp {
   from {
     transform: translateY(20px);
@@ -92,6 +80,18 @@ body {
   }
 }
 
-.animate-slide-up {
+@utility animate-fly-in {
+  animation: flyInBottom 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@utility animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+@utility animate-pop-in {
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@utility animate-slide-up {
   animation: slideUp 0.5s ease-out forwards;
 }

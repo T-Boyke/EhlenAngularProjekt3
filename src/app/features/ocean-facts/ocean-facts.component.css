@@ -1,0 +1,61 @@
+@reference "../../../styles.css";
+
+.ocean-facts {
+  @apply min-h-screen w-full flex flex-col items-center justify-center p-4 relative;
+}
+
+.ocean-facts__back-btn {
+  @apply absolute top-6 left-6 glass-btn p-3 rounded-full z-10;
+}
+
+.ocean-facts__card {
+  @apply glass-card w-full max-w-4xl flex flex-col md:flex-row gap-8 items-center min-h-[400px] animate-pop-in relative;
+}
+
+.ocean-facts__image-wrapper {
+  @apply w-full md:w-1/2 h-64 md:h-80 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center;
+}
+
+.ocean-facts__image {
+  @apply w-full h-full object-cover;
+}
+
+.ocean-facts__content {
+  @apply w-full md:w-1/2 flex flex-col justify-center;
+}
+
+.ocean-facts__title {
+  @apply text-3xl font-bold text-blue-900 mb-4;
+}
+
+.ocean-facts__text {
+  @apply text-lg text-slate-800 leading-relaxed;
+}
+
+.ocean-facts__nav {
+  @apply absolute bottom-4 right-4 flex gap-4;
+}
+
+.ocean-facts__nav-btn {
+  @apply glass-btn px-4 py-2;
+}
+
+.ocean-facts__progress-bar-bg {
+  @apply absolute bottom-0 left-0 w-full h-2 bg-white/30;
+}
+
+.ocean-facts__progress-bar {
+  @apply h-full bg-blue-500 transition-all duration-300;
+}
+
+.ocean-facts__quiz-btn-wrapper {
+  @apply mt-8 h-14 flex items-center justify-center transition-all duration-500;
+}
+
+.ocean-facts__quiz-btn-wrapper--hidden {
+  @apply opacity-0 invisible;
+}
+
+.ocean-facts__quiz-btn {
+  @apply glass-btn glass-btn-primary text-xl animate-wiggle;
+}

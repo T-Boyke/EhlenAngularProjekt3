@@ -4,22 +4,23 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-start',
     standalone: true,
+    styleUrl: './start.component.css',
     template: `
-    <div class="flex items-center justify-center h-screen w-full">
-      <div class="glass-card w-full max-w-md text-center animate-fly-in flex flex-col items-center gap-6">
+    <div class="start-page">
+      <div class="start-page__card">
         <!-- Logo Placeholder -->
-        <div class="w-32 h-32 rounded-full bg-white/50 flex items-center justify-center shadow-inner mb-2">
-          <span class="text-4xl">🌊</span>
+        <div class="start-page__logo-wrapper">
+          <span class="start-page__logo">🌊</span>
         </div>
         
-        <h1 class="text-4xl font-extrabold text-blue-900 drop-shadow-sm">Earth Ocean Learning</h1>
+        <h1 class="start-page__title">Earth Ocean Learning</h1>
         
-        <div class="bg-white/30 p-4 rounded-xl w-full">
-          <p class="text-sm font-semibold text-blue-800 mb-1">Wusstest du, dass...</p>
-          <p class="text-slate-700 italic">...der Ozean mehr als 70% der Erdoberfläche bedeckt?</p>
+        <div class="start-page__fact-box">
+          <p class="start-page__fact-label">Wusstest du, dass...</p>
+          <p class="start-page__fact-text">...der Ozean mehr als 70% der Erdoberfläche bedeckt?</p>
         </div>
 
-        <button (click)="start()" class="glass-btn glass-btn-primary text-xl w-full mt-4">
+        <button (click)="start()" class="start-page__button">
           Los geht's! 🚀
         </button>
       </div>

@@ -6,55 +6,58 @@ import { QuizService } from '../../store/quiz.store';
   selector: 'app-quiz',
   standalone: true,
   imports: [], 
+  styleUrl: './quiz.component.css',
   template: `
-    <div class="min-h-screen w-full flex flex-col items-center justify-start pt-20 md:pt-32 p-4 relative">
+    <div class="quiz">
       
-      <button (click)="exitQuiz()" class="absolute top-6 left-6 glass-btn p-3 rounded-full z-10">
+      <button (click)="exitQuiz()" class="quiz__exit-btn">
         ⬅ Beenden
       </button>
 
       @if (store.currentQuestion(); as question) {
-        <div class="glass-card w-full max-w-3xl flex flex-col items-center gap-6 animate-pop-in relative">
+        <div class="quiz__card">
           
-          <div class="w-full h-48 md:h-64 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center">
-             <img [src]="question.quizimage" class="w-full h-full object-cover"
+          <div class="quiz__image-wrapper">
+             <img [src]="question.quizimage" class="quiz__image"
                   fetchpriority="high" 
                   loading="eager"
                   (error)="handleMissingImage($event)">
           </div>
 
-          <h2 class="text-2xl font-bold text-blue-900 text-center">{{ question.question }}</h2>
+          <h2 class="quiz__question">{{ question.question }}</h2>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          <div class="quiz__options-grid">
             @for (option of question.options; track $index) {
               <button (click)="selectOption(option)" 
                       [disabled]="selectedOption() !== null" 
-                      class="glass-btn text-lg w-full transition-all duration-300"
+                      class="quiz__option-btn"
                       [class]="getOptionClass(option)">
                 {{ option }}
               </button>
             }
           </div>
 
-          <div class="w-full h-2 bg-white/30 rounded-full overflow-hidden mt-4">
-            <div class="h-full bg-blue-500 transition-all duration-500" [style.width.%]="store.progress()"></div>
+          <div class="quiz__progress-bg">
+            <div class="quiz__progress-bar" [style.width.%]="store.progress()"></div>
           </div>
 
           @if (store.masterMode() && !selectedOption()) {
-            <div class="absolute top-4 right-4 text-2xl font-bold text-blue-700 bg-white/70 px-4 py-2 rounded-lg shadow-md animate-pulse"
-                 [class.text-red-600]="timeLeft() <= 2">
+            <div class="quiz__timer"
+                 [class.quiz__timer--critical]="timeLeft() <= 2">
               {{ timeLeft() }}s
             </div>
           }
 
           @if (showFeedback()) {
-            <div class="w-full p-4 rounded-xl bg-white/40 mt-4 border-l-4 transition-all duration-300 animate-slide-up"
-                 [class]="isCorrect() ? 'border-green-500' : 'border-red-500'">
-              <h3 class="font-bold text-lg mb-2" 
-                  [class]="isCorrect() ? 'text-green-800' : 'text-red-800'">
+            <div class="quiz__feedback"
+                 [class.quiz__feedback--correct]="isCorrect()"
+                 [class.quiz__feedback--wrong]="!isCorrect()">
+              <h3 class="quiz__feedback-title" 
+                  [class.quiz__feedback-title--correct]="isCorrect()"
+                  [class.quiz__feedback-title--wrong]="!isCorrect()">
                 {{ isCorrect() ? 'Richtig! 🎉' : 'Leider falsch...' }}
               </h3>
-              <p class="text-slate-800">{{ question.trivia }}</p>
+              <p class="quiz__feedback-text">{{ question.trivia }}</p>
             </div>
           }
         </div>
