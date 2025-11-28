@@ -10,13 +10,13 @@ export interface QuizQuestion {
   answer: string;
   quizimage: string;
   trivia: string;
-  prequizdescription: string;
+  // prequizdescription: string;
 }
 
 export interface Ocean {
   id: string;
   name: string;
-  color: string;
+  // color: string;
   oceanimage: string;
   description: string;
   facts: string[];
