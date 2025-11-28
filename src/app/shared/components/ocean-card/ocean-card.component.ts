@@ -42,6 +42,7 @@ interface Ocean {
               class="ocean-card__image" 
               fill
               [priority]="priority"
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 20vw"
               appImageFallback>
       </div>
       

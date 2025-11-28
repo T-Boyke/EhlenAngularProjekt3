@@ -26,7 +26,7 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
           <app-ocean-card 
             [ocean]="ocean"
             [isCompleted]="store.isOceanCompleted(ocean.id)"
-            [priority]="$index < 2"
+            [priority]="$index < 4"
             (select)="selectOcean($event)"
             [style.animation-delay]="$index * 100 + 'ms'">
           </app-ocean-card>
