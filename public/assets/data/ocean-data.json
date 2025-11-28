@@ -3,7 +3,7 @@
         "id": "pacific",
         "name": "Pazifischer Ozean",
         "color": "bg-blue-500",
-        "oceanimage": "/assets/images/pacific.png",
+        "oceanimage": "/assets/images/pacific1.webp",
         "description": "Der größte und tiefste Ozean der Erde.",
         "facts": [
             "Der Pazifik bedeckt etwa ein Drittel der Erdoberfläche.",
@@ -16,27 +16,27 @@
             {
                 "name": "Blauwal",
                 "description": "Das größte Tier, das jemals gelebt hat.",
-                "image": "/assets/images/blue_whale.png"
+                "image": "/assets/images/blue_whale.webp"
             },
             {
                 "name": "Meeresschildkröte",
                 "description": "Sie schwimmen tausende Kilometer durch den Ozean.",
-                "image": "/assets/images/sea_turtle.jpg"
+                "image": "/assets/images/sea_turtle.webp"
             },
             {
                 "name": "Weißer Hai",
                 "description": "Ein großer Raubfisch mit vielen Zähnen.",
-                "image": "/assets/images/great_white_shark.jpg"
+                "image": "/assets/images/great_white_shark.webp"
             },
             {
                 "name": "Riesenkalmar",
                 "description": "Ein geheimnisvoller Bewohner der Tiefsee.",
-                "image": "/assets/images/giant_squid.jpg"
+                "image": "/assets/images/giant_squid.webp"
             },
             {
                 "name": "Clownfisch",
                 "description": "Ein bunter Fisch, der in Anemonen lebt.",
-                "image": "/assets/images/clownfish.jpg"
+                "image": "/assets/images/clownfish.webp"
             }
         ],
         "quiz": [
@@ -49,7 +49,7 @@
                     "Arktis"
                 ],
                 "answer": "Pazifik",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific3.webp",
                 "trivia": "Der Pazifik ist so groß, dass alle Kontinente hineinpassen würden!",
                 "prequizdescription": "Lass uns sehen, was du über den Pazifik gelernt hast."
             },
@@ -62,7 +62,7 @@
                     "Puerto-Rico-Graben"
                 ],
                 "answer": "Mariannengraben",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific4.webp",
                 "trivia": "Der Mariannengraben ist tiefer als der Mount Everest hoch ist.",
                 "prequizdescription": "Tief unten im Meer..."
             },
@@ -75,7 +75,7 @@
                     "Riesig"
                 ],
                 "answer": "Friedlich",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific5.webp",
                 "trivia": "Der Entdecker Magellan nannte ihn so, weil die See sehr ruhig war.",
                 "prequizdescription": "Ein schöner Name..."
             },
@@ -88,7 +88,7 @@
                     "Keine"
                 ],
                 "answer": "Über 25.000",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific2.webp",
                 "trivia": "Das sind mehr Inseln als in allen anderen Ozeanen zusammen!",
                 "prequizdescription": "Inselhüpfen!"
             },
@@ -101,7 +101,7 @@
                     "Eisbär"
                 ],
                 "answer": "Blauwal",
-                "quizimage": "/assets/images/blue_whale.png",
+                "quizimage": "/assets/images/blue_whale.webp",
                 "trivia": "Ein Blauwal kann so schwer wie 30 Elefanten sein.",
                 "prequizdescription": "Ein Gigant der Meere."
             },
@@ -114,7 +114,7 @@
                     "Eine Insel"
                 ],
                 "answer": "Vulkangürtel",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific2.webp",
                 "trivia": "Hier gibt es die meisten Vulkane und Erdbeben der Welt.",
                 "prequizdescription": "Heiß und gefährlich!"
             },
@@ -127,7 +127,7 @@
                     "Auf Bäumen"
                 ],
                 "answer": "In Anemonen",
-                "quizimage": "/assets/images/clownfish.jpg",
+                "quizimage": "/assets/images/clownfish.webp",
                 "trivia": "Die Anemone schützt den Clownfisch vor Feinden.",
                 "prequizdescription": "Ein bunter Freund."
             },
@@ -140,7 +140,7 @@
                     "Nordamerika"
                 ],
                 "answer": "Europa",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific.webp",
                 "trivia": "Europa grenzt an den Atlantik, aber nicht an den Pazifik.",
                 "prequizdescription": "Geografie-Check!"
             },
@@ -153,7 +153,7 @@
                     "Eine Stadt"
                 ],
                 "answer": "Ein Korallenriff",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific.webp",
                 "trivia": "Es ist das größte Korallenriff der Erde und liegt vor Australien.",
                 "prequizdescription": "Bunt und lebendig."
             },
@@ -166,7 +166,7 @@
                     "Ebbe"
                 ],
                 "answer": "Tsunami",
-                "quizimage": "/assets/images/pacific.png",
+                "quizimage": "/assets/images/pacific.webp",
                 "trivia": "Tsunamis können riesige Schäden anrichten.",
                 "prequizdescription": "Vorsicht, Welle!"
             }
@@ -176,7 +176,7 @@
         "id": "atlantic",
         "name": "Atlantischer Ozean",
         "color": "bg-cyan-600",
-        "oceanimage": "/assets/images/atlantic.png",
+        "oceanimage": "/assets/images/atlantic1.webp",
         "description": "Der zweitgrößte Ozean, der Amerika von Europa und Afrika trennt.",
         "facts": [
             "Der Atlantik wird jedes Jahr etwas breiter.",
@@ -189,27 +189,27 @@
             {
                 "name": "Großer Tümmler",
                 "description": "Eine sehr bekannte und verspielte Delfinart.",
-                "image": "/assets/images/dolphin.png"
+                "image": "/assets/images/dolphin.webp"
             },
             {
                 "name": "Buckelwal",
                 "description": "Bekannt für seine wunderschönen Gesänge.",
-                "image": "/assets/images/humpback_whale.jpg"
+                "image": "/assets/images/humpback_whale.webp"
             },
             {
                 "name": "Kabeljau",
                 "description": "Ein wichtiger Speisefisch im Nordatlantik.",
-                "image": "/assets/images/cod.jpg"
+                "image": "/assets/images/cod.webp"
             },
             {
                 "name": "Lederschildkröte",
                 "description": "Die größte lebende Schildkrötenart.",
-                "image": "/assets/images/leatherback_turtle.jpg"
+                "image": "/assets/images/leatherback_turtle.webp"
             },
             {
                 "name": "Papageientaucher",
                 "description": "Ein Vogel mit einem bunten Schnabel.",
-                "image": "/assets/images/puffin.jpg"
+                "image": "/assets/images/puffin.webp"
             }
         ],
         "quiz": [
@@ -222,7 +222,7 @@
                     "Arktis"
                 ],
                 "answer": "Atlantik",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic2.webp",
                 "trivia": "Der Atlantik ist nach Atlas aus der griechischen Mythologie benannt.",
                 "prequizdescription": "Überqueren wir den Atlantik!"
             },
@@ -235,7 +235,7 @@
                     "Er friert zu"
                 ],
                 "answer": "Er wird breiter",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic3.webp",
                 "trivia": "Er wächst etwa 2-5 cm pro Jahr, weil sich die Kontinente verschieben.",
                 "prequizdescription": "Bewegung im Meer."
             },
@@ -248,7 +248,7 @@
                     "Black Pearl"
                 ],
                 "answer": "Titanic",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic4.webp",
                 "trivia": "Die Titanic stieß 1912 mit einem Eisberg zusammen.",
                 "prequizdescription": "Ein trauriges Ereignis."
             },
@@ -261,7 +261,7 @@
                     "Ein Fluss"
                 ],
                 "answer": "Eine warme Meeresströmung",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic5.webp",
                 "trivia": "Der Golfstrom sorgt dafür, dass es in Europa milder ist.",
                 "prequizdescription": "Wärme für Europa."
             },
@@ -274,7 +274,7 @@
                     "Schwarzes Loch"
                 ],
                 "answer": "Bermudadreieck",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic1.webp",
                 "trivia": "Hier sollen angeblich Schiffe und Flugzeuge verschwunden sein.",
                 "prequizdescription": "Mysteriös..."
             },
@@ -287,7 +287,7 @@
                     "Qualle"
                 ],
                 "answer": "Buckelwal",
-                "quizimage": "/assets/images/humpback_whale.jpg",
+                "quizimage": "/assets/images/humpback_whale.webp",
                 "trivia": "Die Gesänge der Buckelwale können stundenlang dauern.",
                 "prequizdescription": "Musik im Meer."
             },
@@ -300,7 +300,7 @@
                     "Strauß"
                 ],
                 "answer": "Papageientaucher",
-                "quizimage": "/assets/images/puffin.jpg",
+                "quizimage": "/assets/images/puffin.webp",
                 "trivia": "Sie werden auch 'Clowns der Meere' genannt.",
                 "prequizdescription": "Ein bunter Vogel."
             },
@@ -313,7 +313,7 @@
                     "Er ist süß"
                 ],
                 "answer": "Ja",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic1.webp",
                 "trivia": "Der Atlantik hat den höchsten Salzgehalt aller Ozeane.",
                 "prequizdescription": "Salzige Angelegenheit."
             },
@@ -326,7 +326,7 @@
                     "Europa"
                 ],
                 "answer": "Australien",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic3.webp",
                 "trivia": "Australien liegt zwischen Indik und Pazifik.",
                 "prequizdescription": "Wo sind wir?"
             },
@@ -339,7 +339,7 @@
                     "Himalaya"
                 ],
                 "answer": "Mittelatlantischer Rücken",
-                "quizimage": "/assets/images/atlantic.png",
+                "quizimage": "/assets/images/atlantic2.webp",
                 "trivia": "Er verläuft mitten durch den Atlantik.",
                 "prequizdescription": "Berge unter Wasser."
             }
@@ -349,7 +349,7 @@
         "id": "indian",
         "name": "Indischer Ozean",
         "color": "bg-teal-500",
-        "oceanimage": "/assets/images/indian.png",
+        "oceanimage": "/assets/images/indian1.webp",
         "description": "Der wärmste Ozean der Welt.",
         "facts": [
             "Der Indische Ozean ist der wärmste Ozean.",
@@ -362,27 +362,27 @@
             {
                 "name": "Clownfisch",
                 "description": "Ein bunter Fisch, der in Anemonen lebt.",
-                "image": "/assets/images/clownfish.jpg"
+                "image": "/assets/images/clownfish.webp"
             },
             {
                 "name": "Manta Rochen",
                 "description": "Ein riesiger, sanfter Rochen, der Plankton frisst.",
-                "image": "/assets/images/manta_ray.jpg"
+                "image": "/assets/images/manta_ray.webp"
             },
             {
                 "name": "Dugong",
                 "description": "Eine Seekuh, die Seegras weidet.",
-                "image": "/assets/images/dugong.jpg"
+                "image": "/assets/images/dugong.webp"
             },
             {
                 "name": "Walhai",
                 "description": "Der größte Fisch der Welt.",
-                "image": "/assets/images/whale_shark.jpg"
+                "image": "/assets/images/whale_shark.webp"
             },
             {
                 "name": "Seepferdchen",
                 "description": "Ein kleiner Fisch, der aufrecht schwimmt.",
-                "image": "/assets/images/seahorse.jpg"
+                "image": "/assets/images/seahorse.webp"
             }
         ],
         "quiz": [
@@ -395,7 +395,7 @@
                     "Arktis"
                 ],
                 "answer": "Indik",
-                "quizimage": "/assets/images/indian.png",
+                "quizimage": "/assets/images/indian2.webp",
                 "trivia": "Wegen der Wärme gibt es hier besonders viele Korallenriffe.",
                 "prequizdescription": "Ab ins warme Wasser!"
             },
@@ -408,7 +408,7 @@
                     "Europa"
                 ],
                 "answer": "Asien",
-                "quizimage": "/assets/images/indian.png",
+                "quizimage": "/assets/images/indian3.webp",
                 "trivia": "Indien, ein Land in Asien, gab dem Ozean seinen Namen.",
                 "prequizdescription": "Blick nach Norden."
             },
@@ -421,7 +421,7 @@
                     "Ein Schiff"
                 ],
                 "answer": "Ein Windsystem",
-                "quizimage": "/assets/images/indian.png",
+                "quizimage": "/assets/images/indian4.webp",
                 "trivia": "Der Monsun bringt viel Regen nach Indien.",
                 "prequizdescription": "Wind und Wetter."
             },
@@ -434,7 +434,7 @@
                     "Goldfisch"
                 ],
                 "answer": "Walhai",
-                "quizimage": "/assets/images/whale_shark.jpg",
+                "quizimage": "/assets/images/whale_shark.webp",
                 "trivia": "Trotz seiner Größe frisst der Walhai nur winziges Plankton.",
                 "prequizdescription": "Ein sanfter Riese."
             },
@@ -447,7 +447,7 @@
                     "Algen"
                 ],
                 "answer": "Seegras",
-                "quizimage": "/assets/images/dugong.jpg",
+                "quizimage": "/assets/images/dugong.webp",
                 "trivia": "Dugongs werden auch Seekühe genannt, weil sie wie Kühe grasen.",
                 "prequizdescription": "Vegetarier im Meer."
             },
@@ -460,7 +460,7 @@
                     "Delfin"
                 ],
                 "answer": "Seepferdchen-Papa",
-                "quizimage": "/assets/images/seahorse.jpg",
+                "quizimage": "/assets/images/seahorse.webp",
                 "trivia": "Beim Seepferdchen bekommt das Männchen die Babys!",
                 "prequizdescription": "Verkehrte Welt?"
             },
@@ -473,7 +473,7 @@
                     "Hawaii"
                 ],
                 "answer": "Madagaskar",
-                "quizimage": "/assets/images/indian.png",
+                "quizimage": "/assets/images/indian5.webp",
                 "trivia": "Madagaskar ist bekannt für seine Lemuren.",
                 "prequizdescription": "Insel-Raten."
             },
@@ -486,7 +486,7 @@
                     "Eis"
                 ],
                 "answer": "Gewürze",
-                "quizimage": "/assets/images/indian.png",
+                "quizimage": "/assets/images/indian1.webp",
                 "trivia": "Pfeffer, Zimt und Nelken kamen so nach Europa.",
                 "prequizdescription": "Ein duftender Ozean."
             },
@@ -499,7 +499,7 @@
                     "Sie springen"
                 ],
                 "answer": "Sie 'fliegen' durchs Wasser",
-                "quizimage": "/assets/images/manta_ray.jpg",
+                "quizimage": "/assets/images/manta_ray.webp",
                 "trivia": "Ihre großen Flossen sehen aus wie Flügel.",
                 "prequizdescription": "Elegant im Wasser."
             },
@@ -512,7 +512,7 @@
                     "Viel größer"
                 ],
                 "answer": "Nein",
-                "quizimage": "/assets/images/indian.png",
+                "quizimage": "/assets/images/indian1.webp",
                 "trivia": "Der Indik ist der drittgrößte Ozean, nach Pazifik und Atlantik.",
                 "prequizdescription": "Größenvergleich."
             }
@@ -522,7 +522,7 @@
         "id": "arctic",
         "name": "Arktischer Ozean",
         "color": "bg-sky-300",
-        "oceanimage": "/assets/images/arctic.png",
+        "oceanimage": "/assets/images/arctic1.webp",
         "description": "Der kleinste und kälteste Ozean rund um den Nordpol.",
         "facts": [
             "Der Arktische Ozean ist der kleinste Ozean.",
@@ -535,27 +535,27 @@
             {
                 "name": "Eisbär",
                 "description": "Der König der Arktis, perfekt an die Kälte angepasst.",
-                "image": "/assets/images/polar_bear.jpg"
+                "image": "/assets/images/polar_bear.webp"
             },
             {
                 "name": "Narwal",
                 "description": "Der 'Einhorn des Meeres' mit einem langen Stoßzahn.",
-                "image": "/assets/images/narwhal.jpg"
+                "image": "/assets/images/narwhal.webp"
             },
             {
                 "name": "Walross",
                 "description": "Ein großes Robben-Tier mit langen Stoßzähnen.",
-                "image": "/assets/images/walrus.jpg"
+                "image": "/assets/images/walrus.webp"
             },
             {
                 "name": "Beluga Wal",
                 "description": "Ein weißer Wal, der auch 'Kanarienvogel des Meeres' heißt.",
-                "image": "/assets/images/beluga.jpg"
+                "image": "/assets/images/beluga.webp"
             },
             {
                 "name": "Grönlandwal",
                 "description": "Ein Wal, der über 200 Jahre alt werden kann.",
-                "image": "/assets/images/bowhead_whale.jpg"
+                "image": "/assets/images/bowhead_whale.webp"
             }
         ],
         "quiz": [
@@ -568,7 +568,7 @@
                     "Delfin"
                 ],
                 "answer": "Eisbär",
-                "quizimage": "/assets/images/polar_bear.jpg",
+                "quizimage": "/assets/images/polar_bear.webp",
                 "trivia": "Eisbären haben schwarze Haut unter ihrem weißen Fell, um Wärme zu speichern.",
                 "prequizdescription": "Zieh dich warm an!"
             },
@@ -581,7 +581,7 @@
                     "Stacheln"
                 ],
                 "answer": "Langer Stoßzahn",
-                "quizimage": "/assets/images/narwhal.jpg",
+                "quizimage": "/assets/images/narwhal.webp",
                 "trivia": "Der Stoßzahn ist eigentlich ein verlängerter Zahn.",
                 "prequizdescription": "Ein Fabelwesen?"
             },
@@ -594,7 +594,7 @@
                     "Ostsee"
                 ],
                 "answer": "Nordpolarmeer",
-                "quizimage": "/assets/images/arctic.png",
+                "quizimage": "/assets/images/arctic2.webp",
                 "trivia": "Er liegt rund um den Nordpol.",
                 "prequizdescription": "Ein anderer Name."
             },
@@ -607,7 +607,7 @@
                     "Wegen der Sonne"
                 ],
                 "answer": "Zur Tarnung im Eis",
-                "quizimage": "/assets/images/beluga.jpg",
+                "quizimage": "/assets/images/beluga.webp",
                 "trivia": "Zwischen den Eisschollen ist er so schwer zu sehen.",
                 "prequizdescription": "Weiß auf Weiß."
             },
@@ -620,7 +620,7 @@
                     "Die Bären schlafen"
                 ],
                 "answer": "Die Sonne geht nicht auf",
-                "quizimage": "/assets/images/arctic.png",
+                "quizimage": "/assets/images/arctic3.webp",
                 "trivia": "Es herrscht die Polarnacht, es bleibt dunkel.",
                 "prequizdescription": "Dunkle Zeiten."
             },
@@ -633,7 +633,7 @@
                     "Als Antenne"
                 ],
                 "answer": "Um sich aus dem Wasser zu ziehen",
-                "quizimage": "/assets/images/walrus.jpg",
+                "quizimage": "/assets/images/walrus.webp",
                 "trivia": "Sie helfen ihm, auf Eisschollen zu klettern.",
                 "prequizdescription": "Praktische Zähne."
             },
@@ -646,7 +646,7 @@
                     "Indik"
                 ],
                 "answer": "Arktischer Ozean",
-                "quizimage": "/assets/images/arctic.png",
+                "quizimage": "/assets/images/arctic4.webp",
                 "trivia": "Er ist zwar der kleinste, aber sehr wichtig für das Klima.",
                 "prequizdescription": "Klein aber oho."
             },
@@ -659,7 +659,7 @@
                     "Nur im Sommer"
                 ],
                 "answer": "Nein",
-                "quizimage": "/assets/images/arctic.png",
+                "quizimage": "/assets/images/arctic5.webp",
                 "trivia": "Pinguine leben auf der Südhalbkugel, Eisbären auf der Nordhalbkugel.",
                 "prequizdescription": "Bären oder Vögel?"
             },
@@ -672,7 +672,7 @@
                     "1000 Jahre"
                 ],
                 "answer": "Über 200 Jahre",
-                "quizimage": "/assets/images/bowhead_whale.jpg",
+                "quizimage": "/assets/images/bowhead_whale.webp",
                 "trivia": "Sie gehören zu den langlebigsten Tieren der Welt.",
                 "prequizdescription": "Ein uralter Riese."
             },
@@ -685,7 +685,7 @@
                     "Gras"
                 ],
                 "answer": "Meereis",
-                "quizimage": "/assets/images/arctic.png",
+                "quizimage": "/assets/images/arctic1.webp",
                 "trivia": "Durch den Klimawandel schmilzt dieses Eis leider immer mehr.",
                 "prequizdescription": "Eine weiße Decke."
             }
@@ -695,7 +695,7 @@
         "id": "southern",
         "name": "Südlicher Ozean",
         "color": "bg-indigo-700",
-        "oceanimage": "/assets/images/southern.png",
+        "oceanimage": "/assets/images/southern1.webp",
         "description": "Der Ozean, der die Antarktis umgibt.",
         "facts": [
             "Der Südliche Ozean wurde erst im Jahr 2000 offiziell festgelegt.",
@@ -708,27 +708,27 @@
             {
                 "name": "Kaiserpinguin",
                 "description": "Die größte Pinguinart der Welt, brütet im Winter.",
-                "image": "/assets/images/penguin.jpg"
+                "image": "/assets/images/penguin.webp"
             },
             {
                 "name": "Seeleopard",
                 "description": "Ein gefährlicher Jäger, der Pinguine frisst.",
-                "image": "/assets/images/leopard_seal.jpg"
+                "image": "/assets/images/leopard_seal.webp"
             },
             {
                 "name": "Krill",
                 "description": "Kleine Krebstiere, die Nahrung für viele Wale sind.",
-                "image": "/assets/images/krill.jpg"
+                "image": "/assets/images/krill.webp"
             },
             {
                 "name": "Blauwal",
                 "description": "Kommt im Sommer hierher, um Krill zu fressen.",
-                "image": "/assets/images/blue_whale.png"
+                "image": "/assets/images/blue_whale.webp"
             },
             {
                 "name": "Wanderalbatros",
                 "description": "Ein Vogel mit der größten Flügelspannweite der Welt.",
-                "image": "/assets/images/albatross.jpg"
+                "image": "/assets/images/albatross.webp"
             }
         ],
         "quiz": [
@@ -741,7 +741,7 @@
                     "Südamerika"
                 ],
                 "answer": "Antarktis",
-                "quizimage": "/assets/images/southern.png",
+                "quizimage": "/assets/images/southern2.webp",
                 "trivia": "Hier leben Pinguine, aber keine Eisbären!",
                 "prequizdescription": "Reise zum Südpol."
             },
@@ -754,7 +754,7 @@
                     "Königspinguin"
                 ],
                 "answer": "Kaiserpinguin",
-                "quizimage": "/assets/images/penguin.jpg",
+                "quizimage": "/assets/images/penguin.webp",
                 "trivia": "Er kann über 1 Meter groß werden.",
                 "prequizdescription": "Majestätisch."
             },
@@ -767,7 +767,7 @@
                     "Algen"
                 ],
                 "answer": "Krill",
-                "quizimage": "/assets/images/krill.jpg",
+                "quizimage": "/assets/images/krill.webp",
                 "trivia": "Er frisst tonnenweise dieser kleinen Krebse.",
                 "prequizdescription": "Großer Hunger."
             },
@@ -780,7 +780,7 @@
                     "2020"
                 ],
                 "answer": "Im Jahr 2000",
-                "quizimage": "/assets/images/southern.png",
+                "quizimage": "/assets/images/southern3.webp",
                 "trivia": "Er ist der jüngste der fünf Ozeane.",
                 "prequizdescription": "Ganz neu auf der Karte."
             },
@@ -793,7 +793,7 @@
                     "Trocken"
                 ],
                 "answer": "Stürmisch",
-                "quizimage": "/assets/images/southern.png",
+                "quizimage": "/assets/images/southern4.webp",
                 "trivia": "Seefahrer fürchten die 'Brüllenden Vierziger' Breitengrade.",
                 "prequizdescription": "Halt dich fest!"
             },
@@ -806,7 +806,7 @@
                     "Spatz"
                 ],
                 "answer": "Wanderalbatros",
-                "quizimage": "/assets/images/albatross.jpg",
+                "quizimage": "/assets/images/albatross.webp",
                 "trivia": "Seine Flügel können über 3,5 Meter breit sein.",
                 "prequizdescription": "Ein riesiger Segler."
             },
@@ -819,7 +819,7 @@
                     "Eine Wolke"
                 ],
                 "answer": "Ein Stück Gletscher im Meer",
-                "quizimage": "/assets/images/southern.png",
+                "quizimage": "/assets/images/southern5.webp",
                 "trivia": "Nur ein kleiner Teil des Eisbergs schaut aus dem Wasser.",
                 "prequizdescription": "Vorsicht, kalt!"
             },
@@ -832,7 +832,7 @@
                     "Schildkröte"
                 ],
                 "answer": "Seeleopard",
-                "quizimage": "/assets/images/leopard_seal.jpg",
+                "quizimage": "/assets/images/leopard_seal.webp",
                 "trivia": "Seeleoparden lauern oft an der Eiskante.",
                 "prequizdescription": "Gefahr im Wasser."
             },
@@ -845,7 +845,7 @@
                     "Afrika"
                 ],
                 "answer": "Antarktis",
-                "quizimage": "/assets/images/southern.png",
+                "quizimage": "/assets/images/southern1.webp",
                 "trivia": "Die Antarktis ist der kälteste Kontinent der Erde.",
                 "prequizdescription": "Ganz unten."
             },
@@ -858,7 +858,7 @@
                     "Es friert immer"
                 ],
                 "answer": "Wegen dem Salz",
-                "quizimage": "/assets/images/southern.png",
+                "quizimage": "/assets/images/southern.webp",
                 "trivia": "Salzwasser gefriert erst bei etwa -1,8 Grad Celsius.",
                 "prequizdescription": "Chemie im Meer."
             }
