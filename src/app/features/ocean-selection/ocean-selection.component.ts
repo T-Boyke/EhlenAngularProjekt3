@@ -1,11 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../store/quiz.store';
+import { OceanCardComponent } from '../../shared/components/ocean-card/ocean-card.component';
+import { ProgressBarComponent } from '../../shared/components/progress-bar/progress-bar.component';
 
+/**
+ * Ocean Selection Page
+ * 
+ * @description
+ * Hauptseite zur Auswahl der Ozeane.
+ * Zeigt eine Liste aller verfügbaren Ozeane als Karten an.
+ * Ermöglicht den Start des Master-Quiz, wenn alle Ozeane erkundet wurden.
+ */
 @Component({
   selector: 'app-ocean-selection',
   standalone: true,
-  imports: [],
+  imports: [OceanCardComponent, ProgressBarComponent],
   styleUrl: './ocean-selection.component.css',
   template: `
     <div class="ocean-selection">
@@ -13,23 +23,12 @@ import { QuizService } from '../../store/quiz.store';
       
       <div class="ocean-selection__grid">
         @for (ocean of store.oceans(); track ocean.id) {
-          <div (click)="selectOcean(ocean.id)" 
-               class="ocean-card group"
-               [style.animation-delay]="$index * 100 + 'ms'">
-            
-            <div class="ocean-card__image-wrapper">
-               <img [src]="ocean.oceanimage" [alt]="ocean.name" class="ocean-card__image" 
-                    (error)="handleMissingImage($event)">
-            </div>
-            
-            <h3 class="ocean-card__title">{{ ocean.name }}</h3>
-
-            <div class="ocean-card__star"
-                 [class.ocean-card__star--active]="store.isOceanCompleted(ocean.id)"
-                 [class.ocean-card__star--inactive]="!store.isOceanCompleted(ocean.id)">
-              ★
-            </div>
-          </div>
+          <app-ocean-card 
+            [ocean]="ocean"
+            [isCompleted]="store.isOceanCompleted(ocean.id)"
+            (select)="selectOcean($event)"
+            [style.animation-delay]="$index * 100 + 'ms'">
+          </app-ocean-card>
         }
       </div>
 
@@ -49,8 +48,9 @@ import { QuizService } from '../../store/quiz.store';
           }
           
           @if (!store.isMasterUnlocked()) {
-            <div class="master-quiz-btn__progress-bar"
-                 [style.width.%]="(store.completedOceans().length / 5) * 100"></div>
+            <div class="absolute bottom-0 left-0 w-full">
+               <app-progress-bar [progress]="(store.completedOceans().length / 5) * 100"></app-progress-bar>
+            </div>
           }
         </button>
       </div>
@@ -61,25 +61,32 @@ export class OceanSelectionComponent implements OnInit {
   store = inject(QuizService);
   private router = inject(Router);
 
+  /**
+   * Initialisiert die Komponente.
+   * Lädt die Ozeane, falls noch nicht vorhanden.
+   */
   ngOnInit() {
     if (this.store.oceans().length === 0) {
       this.store.loadOceans();
     }
   }
 
+  /**
+   * Wählt einen Ozean aus und navigiert zur Fakten-Seite.
+   * @param id Die ID des gewählten Ozeans.
+   */
   selectOcean(id: string) {
     this.store.selectOcean(id);
     this.router.navigate(['/facts', id]);
   }
 
+  /**
+   * Startet das Master-Quiz, wenn freigeschaltet.
+   */
   startMasterQuiz() {
     if (this.store.isMasterUnlocked()) {
       this.store.startMasterQuiz();
       this.router.navigate(['/quiz']);
     }
-  }
-
-  handleMissingImage(event: Event) {
-    (event.target as HTMLImageElement).src = '/assets/images/pacific.png';
   }
 }
