@@ -6,7 +6,7 @@ import { Ocean } from '../models/ocean.model';
 @Injectable({
     providedIn: 'root'
 })
-export class DataService {
+export class OceanDataService {
     private http = inject(HttpClient);
     private dataUrl = 'assets/data/ocean-data.json';
 

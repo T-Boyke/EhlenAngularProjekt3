@@ -1,5 +1,5 @@
 import { Injectable, computed, inject, signal, effect, Signal } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { OceanDataService } from '../services/ocean.data.service';
 import { Ocean } from '../models/ocean.model';
 
 const MASTER_OCEAN_TEMPLATE: Partial<Ocean> = {
@@ -15,7 +15,7 @@ const MASTER_OCEAN_TEMPLATE: Partial<Ocean> = {
   providedIn: 'root'
 })
 export class QuizStore { // <--- Hier geändert von QuizService zu QuizStore
-  private readonly dataService = inject(DataService);
+  private readonly oceanDataService = inject(OceanDataService);
   private readonly STORAGE_KEY = 'eol_progress';
 
   // --- State ---
@@ -89,7 +89,8 @@ export class QuizStore { // <--- Hier geändert von QuizService zu QuizStore
   }
 
   loadOceans(): void {
-    this.dataService.getOceans().subscribe({
+    // UPDATE: Aufruf über neuen Variablennamen
+    this.oceanDataService.getOceans().subscribe({
       next: (oceans) => {
         const shuffledOceans = oceans.map(ocean => ({
           ...ocean,
