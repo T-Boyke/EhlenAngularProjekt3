@@ -37,6 +37,7 @@ interface Ocean {
       
       <!-- Bild Container -->
       <div class="ocean-card__image-wrapper relative">
+        @if (ocean) {
          <img [ngSrc]="ocean.oceanimage" 
               [alt]="ocean.name" 
               class="ocean-card__image" 
@@ -44,6 +45,7 @@ interface Ocean {
               [priority]="priority"
               sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 20vw"
               appImageFallback>
+        }
       </div>
       
       <!-- Titel -->
