@@ -65,7 +65,7 @@ Dieses Projekt basiert auf folgenden Technologien:
 *   [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url] **Tailwind CSS 4**
 *   [![NodeJS][Node.js]][Node-url] **Node.js**
 *   **TypeScript**
-*   **NgRx SignalStore**
+*   **Angular with Signals**
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
