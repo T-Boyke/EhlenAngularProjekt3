@@ -37,19 +37,17 @@ interface Ocean {
       
       <!-- Bild Container -->
       <div class="ocean-card__image-wrapper relative">
-        @if (ocean) {
-         <img [ngSrc]="ocean.oceanimage" 
-              [alt]="ocean.name" 
+         <img [ngSrc]="ocean?.oceanimage || ''" 
+              [alt]="ocean?.name || ''" 
               class="ocean-card__image" 
               fill
               [priority]="priority"
               sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 20vw"
               appImageFallback>
-        }
       </div>
       
       <!-- Titel -->
-      <h3 class="ocean-card__title">{{ ocean.name }}</h3>
+      <h3 class="ocean-card__title">{{ ocean?.name }}</h3>
 
       <!-- Status Stern -->
       <div class="ocean-card__star"
@@ -91,6 +89,8 @@ export class OceanCardComponent {
    * Feuert das select Event.
    */
   onSelect() {
-    this.select.emit(this.ocean.id);
+    if (this.ocean) {
+      this.select.emit(this.ocean.id);
+    }
   }
 }

@@ -1,11 +1,12 @@
 import { Component, inject, signal, effect, computed, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../store/quiz.store';
+import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [],
+  imports: [ImageFallbackDirective],
   styleUrl: './quiz.component.css',
   template: `
     <div class="quiz">
@@ -21,7 +22,7 @@ import { QuizService } from '../../store/quiz.store';
              <img [src]="question.quizimage" class="quiz__image"
                   fetchpriority="high" 
                   loading="eager"
-                  (error)="handleMissingImage($event)">
+                  appImageFallback>
           </div>
 
           <h2 class="quiz__question">{{ question.question }}</h2>
@@ -175,10 +176,5 @@ export class QuizComponent implements OnInit, OnDestroy {
   exitQuiz() {
     this.store.exitQuiz();
     this.router.navigate(['/selection']);
-  }
-
-  // NEU: Methode hinzugefügt
-  handleMissingImage(event: Event) {
-    (event.target as HTMLImageElement).src = '/assets/images/pacific.png';
   }
 }

@@ -18,7 +18,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 export class ImageFallbackDirective {
     /**
      * Der Pfad zum Fallback-Bild.
-     * Standard: '/assets/images/pacific.png'
+     * Standard: '/assets/images/not_found.webp'
      */
     @Input() appImageFallback: string = '/assets/images/not_found.webp';
 

@@ -1,11 +1,12 @@
 import { Component, inject, computed, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../store/quiz.store';
+import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
 
 @Component({
   selector: 'app-ocean-facts',
   standalone: true,
-  imports: [],
+  imports: [ImageFallbackDirective],
   styleUrl: './ocean-facts.component.css',
   template: `
     <div class="ocean-facts">
@@ -18,7 +19,7 @@ import { QuizService } from '../../store/quiz.store';
           
           <div class="ocean-facts__image-wrapper">
              <img [src]="currentSlide().image" [alt]="currentSlide().title" class="ocean-facts__image" fetchpriority="high"
-                  loading="eager" (error)="handleMissingImage($event)">
+                  loading="eager" appImageFallback>
           </div>
 
           <div class="ocean-facts__content">
@@ -126,9 +127,5 @@ export class OceanFactsComponent {
   startQuiz() {
     this.store.startQuiz();
     this.router.navigate(['/quiz']);
-  }
-
-  handleMissingImage(event: Event) {
-    (event.target as HTMLImageElement).src = '/assets/images/not_found.webp';
   }
 }

@@ -12,10 +12,10 @@ import { CommonModule } from '@angular/common';
  * <app-progress-bar [progress]="50"></app-progress-bar>
  */
 @Component({
-    selector: 'app-progress-bar',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-progress-bar',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
     <div class="progress-container w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 overflow-hidden">
       <div class="progress-fill h-2.5 rounded-full transition-all duration-500"
            [style.width.%]="progress"
@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     :host {
       display: block;
       width: 100%;
@@ -31,15 +31,15 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class ProgressBarComponent {
-    /**
-     * Der Fortschritt in Prozent (0-100).
-     * @required
-     */
-    @Input({ required: true }) progress: number = 0;
+  /**
+   * Der Fortschritt in Prozent (0-100).
+   * @required
+   */
+  @Input({ required: true }) progress: number = 0;
 
-    /**
-     * Die Farbe des Fortschrittsbalkens.
-     * Standard ist Gelb (#FACC15 - Tailwind yellow-400).
-     */
-    @Input() color: string = '#FACC15';
+  /**
+   * Die Farbe des Fortschrittsbalkens.
+   * Standard ist Gelb (#FACC15 - Tailwind yellow-400).
+   */
+  @Input() color: string = '#FACC15';
 }
