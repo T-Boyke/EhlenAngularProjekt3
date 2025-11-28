@@ -11,38 +11,63 @@
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "maximumWarning": "500kB",
-      "maximumError": "1MB"
-    },
-    {
-      "type": "anyComponentStyle",
-      "maximumWarning": "20kB",
-      "maximumError": "40kB"
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "baseHref": "./",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "outputPath": "dist/EOL"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "20kB",
+                  "maximumError": "40kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "EOL:build:production"
+            },
+            "development": {
+              "buildTarget": "EOL:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
     }
-  ],
-  "outputHashing": "all"
-},
-"development": {
-  "optimization": false,
-  "extractLicenses": false,
-  "sourceMap": true
-}
-},
-"defaultConfiguration": "production"
-},
-"serve": {
-"builder": "@angular/build:dev-server",
-"configurations": {
-"production": {
-  "buildTarget": "EOL:build:production"
-},
-"development": {
-  "buildTarget": "EOL:build:development"
-}
-},
-"defaultConfiguration": "development"
-}
-}
-}
-}
+  }
 }

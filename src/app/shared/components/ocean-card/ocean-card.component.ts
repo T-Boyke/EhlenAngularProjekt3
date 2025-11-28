@@ -1,4 +1,3 @@
-```typescript
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageFallbackDirective } from '../../directives/image-fallback.directive';
@@ -32,28 +31,27 @@ interface Ocean {
     standalone: true,
     imports: [CommonModule, ImageFallbackDirective],
     template: `
-    < div(click)="onSelect()"
-class="ocean-card group" >
+    <div (click)="onSelect()" class="ocean-card group">
+      
+      <!-- Bild Container -->
+      <div class="ocean-card__image-wrapper">
+         <img [src]="ocean.oceanimage" 
+              [alt]="ocean.name" 
+              class="ocean-card__image" 
+              appImageFallback>
+      </div>
+      
+      <!-- Titel -->
+      <h3 class="ocean-card__title">{{ ocean.name }}</h3>
 
-    <!--Bild Container-- >
-        <div class="ocean-card__image-wrapper" >
-            <img[src]="ocean.oceanimage"
-            [alt] = "ocean.name"
-class="ocean-card__image"
-appImageFallback >
-    </div>
-
-    < !--Titel -->
-        <h3 class="ocean-card__title" > {{ ocean.name }}</h3>
-
-            < !--Status Stern-- >
-                <div class="ocean-card__star"
-                [class.ocean - card__star--active]="isCompleted"
-                [class.ocean - card__star--inactive]="!isCompleted" >
+      <!-- Status Stern -->
+      <div class="ocean-card__star"
+           [class.ocean-card__star--active]="isCompleted"
+           [class.ocean-card__star--inactive]="!isCompleted">
         ★
-</div>
+      </div>
     </div>
-        `,
+  `,
     styleUrls: [] // Styles kommen aus globalen Blöcken (src/styles/blocks/_cards.css)
 })
 export class OceanCardComponent {
@@ -83,4 +81,3 @@ export class OceanCardComponent {
         this.select.emit(this.ocean.id);
     }
 }
-```

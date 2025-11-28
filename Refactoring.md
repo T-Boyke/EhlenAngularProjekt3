@@ -18,15 +18,15 @@ Die App kann nun einfach als Ordner in das Grav CMS kopiert werden und funktioni
 ## 2. CSS Refactoring (BEM & Global Styles)
 
 ### Was wurde gemacht?
-Wir haben die Styles für die Ozean-Karten (`.ocean-card`) aus der `ocean-selection.component.css` entfernt und in eine neue, globale Datei `src/styles/blocks/_cards.css` verschoben.
+Wir haben die Styles für die Ozean-Karten (`.ocean-card`) aus der `ocean-selection.component.css` entfernt und als globalen Block in `src/styles.css` definiert (ursprünglich geplant als separate Datei, aber zur Build-Stabilität inline behalten).
 
 ### Warum wurde es gemacht?
-Vorher waren die Styles fest mit einer einzigen Komponente verbunden. Wenn wir die Karten an anderer Stelle (z.B. in einer Übersicht oder Suche) nutzen wollten, hätten wir den Code kopieren müssen.
+Vorher waren die Styles fest mit einer einzigen Komponente verbunden. Wenn wir die Karten an anderer Stelle nutzen wollten, hätten wir den Code kopieren müssen.
 
 ### Vorteil für das Projekt
 - **Wiederverwendbarkeit:** Die Karten sehen überall gleich aus.
 - **Wartbarkeit:** Änderungen am Design müssen nur noch an einer Stelle gemacht werden.
-- **Übersichtlichkeit:** Die Komponenten-Dateien sind kleiner und aufgeräumter.
+- **Stabilität:** Durch die zentrale Definition in `styles.css` werden Probleme mit Import-Reihenfolgen vermieden.
 
 ---
 
