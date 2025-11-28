@@ -1,50 +1,134 @@
 @import "tailwindcss";
 
-/**
- * Block: Ocean Card
- * @description
- * Globale Styles für Karten-Komponenten im BEM-Design.
- * Diese Styles werden wiederverwendet für Ozean-Auswahl und ähnliche UI-Elemente.
- */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
 
-/* .ocean-card */
+@layer base {
+    body {
+        @apply bg-gradient-to-br from-cyan-200 via-blue-200 to-indigo-300 min-h-screen font-sans text-slate-800 overflow-hidden;
+    }
+}
+
+@utility glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    @apply rounded-2xl p-6;
+}
+
+@utility glass-btn {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    @apply px-6 py-3 rounded-full font-bold text-slate-700 transition-all duration-300 hover:bg-white/60 hover:scale-105 active:scale-95 cursor-pointer shadow-lg;
+}
+
+@utility glass-btn-primary {
+    @apply bg-blue-500/80 text-white border-blue-400 hover:bg-blue-500;
+}
+
+/* Animations */
+@keyframes flyInBottom {
+    from {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@utility animate-fly-in {
+    animation: flyInBottom 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@utility animate-wiggle {
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+@utility animate-pop-in {
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@utility animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+/* Block: Ocean Card (Inlined from blocks/_cards.css due to build issues) */
 .ocean-card {
-  /* Glass effect styles */
-  background: var(--glass-bg, rgba(255, 255, 255, 0.25));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.3));
-  box-shadow: var(--glass-shadow, 0 8px 32px 0 rgba(31, 38, 135, 0.37));
+    /* Glass effect styles */
+    background: var(--glass-bg, rgba(255, 255, 255, 0.25));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.3));
+    box-shadow: var(--glass-shadow, 0 8px 32px 0 rgba(31, 38, 135, 0.37));
 
-  @apply rounded-2xl p-6 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-white/40 relative animate-pop-in w-full sm:w-80 md:w-96;
+    @apply rounded-2xl p-6 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-white/40 relative animate-pop-in w-full sm:w-80 md:w-96;
 }
 
-/* .ocean-card__image-wrapper */
 .ocean-card__image-wrapper {
-  @apply w-full h-40 rounded-xl overflow-hidden mb-4 bg-white/50 shadow-inner relative;
+    @apply w-full h-40 rounded-xl overflow-hidden mb-4 bg-white/50 shadow-inner relative;
 }
 
-/* .ocean-card__image */
 .ocean-card__image {
-  @apply w-full h-full object-cover;
+    @apply w-full h-full object-cover;
 }
 
-/* .ocean-card__title */
 .ocean-card__title {
-  @apply text-xl font-bold text-blue-900 text-center group-hover:text-blue-700;
+    @apply text-xl font-bold text-blue-900 text-center group-hover:text-blue-700;
 }
 
-/* .ocean-card__star */
 .ocean-card__star {
-  @apply absolute top-4 right-4 text-2xl transition-colors z-10;
+    @apply absolute top-4 right-4 text-2xl transition-colors z-10;
 }
 
-/* .ocean-card__star--active */
 .ocean-card__star--active {
-  @apply text-yellow-400;
+    @apply text-yellow-400;
 }
 
-/* .ocean-card__star--inactive */
 .ocean-card__star--inactive {
-  @apply text-gray-400;
+    @apply text-gray-400;
 }
