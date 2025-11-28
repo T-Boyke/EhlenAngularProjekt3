@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, HostListener } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../store/quiz.store';
 import { OceanCardComponent } from '../../shared/components/ocean-card/ocean-card.component';
@@ -21,7 +21,6 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
     <div class="ocean-selection">
       <h2 class="ocean-selection__title">Wähle einen Ozean</h2>
       
-      
       <div class="ocean-selection__grid">
         @for (ocean of store.oceans(); track ocean.id) {
           <app-ocean-card 
@@ -29,8 +28,6 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
             [isCompleted]="store.isOceanCompleted(ocean.id)"
             [priority]="$index < 4"
             (select)="selectOcean($event)"
-            [class.ring-4]="focusedIndex() === $index"
-            [class.ring-blue-400]="focusedIndex() === $index"
             [style.animation-delay]="$index * 100 + 'ms'">
           </app-ocean-card>
         }
@@ -91,32 +88,6 @@ export class OceanSelectionComponent implements OnInit {
     if (this.store.isMasterUnlocked()) {
       this.store.startMasterQuiz();
       this.router.navigate(['/quiz']);
-    }
-  }
-  focusedIndex = signal(0);
-
-  @HostListener('window:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    const oceans = this.store.oceans();
-    if (oceans.length === 0) return;
-
-    switch (event.key) {
-      case 'ArrowRight':
-        this.focusedIndex.update(i => (i + 1) % oceans.length);
-        break;
-      case 'ArrowLeft':
-        this.focusedIndex.update(i => (i - 1 + oceans.length) % oceans.length);
-        break;
-      case 'ArrowDown':
-        // Assuming 3 columns on desktop, simplified logic
-        this.focusedIndex.update(i => Math.min(i + 3, oceans.length - 1));
-        break;
-      case 'ArrowUp':
-        this.focusedIndex.update(i => Math.max(i - 3, 0));
-        break;
-      case 'Enter':
-        this.selectOcean(oceans[this.focusedIndex()].id);
-        break;
     }
   }
 }

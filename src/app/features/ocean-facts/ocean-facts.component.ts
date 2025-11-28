@@ -1,4 +1,4 @@
-import { Component, inject, computed, signal, HostListener } from '@angular/core';
+import { Component, inject, computed, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../store/quiz.store';
 
@@ -116,16 +116,16 @@ export class OceanFactsComponent {
     this.slideIndex.set(index);
     if (index === this.slides().length - 1) {
       this.hasViewedAll.set(true);
-      break;
-      case 'Escape':
-      this.goBack();
-      break;
-      case ' ': // Space key
-      if (this.hasViewedAll()) {
-        this.startQuiz();
-      }
-      break;
     }
+  }
+
+  goBack() {
+    this.router.navigate(['/selection']);
+  }
+
+  startQuiz() {
+    this.store.startQuiz();
+    this.router.navigate(['/quiz']);
   }
 
   handleMissingImage(event: Event) {

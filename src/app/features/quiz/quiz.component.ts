@@ -1,4 +1,4 @@
-import { Component, inject, signal, effect, computed, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, inject, signal, effect, computed, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../store/quiz.store';
 
@@ -22,6 +22,22 @@ import { QuizService } from '../../store/quiz.store';
                   fetchpriority="high" 
                   loading="eager"
                   (error)="handleMissingImage($event)">
+          </div>
+
+          <h2 class="quiz__question">{{ question.question }}</h2>
+
+          <div class="quiz__options-grid">
+            @for (option of question.options; track $index) {
+              <button (click)="selectOption(option)" 
+                      [disabled]="selectedOption() !== null" 
+                      class="quiz__option-btn"
+                      [class]="getOptionClass(option)">
+                {{ option }}
+              </button>
+            }
+          </div>
+
+          <div class="quiz__progress-bg">
             <div class="quiz__progress-bar" [style.width.%]="store.progress()"></div>
           </div>
 
@@ -149,45 +165,20 @@ export class QuizComponent implements OnInit, OnDestroy {
     }
   }
 
-}
-
-focusedOptionIndex = signal<number | null>(null);
-
-@HostListener('window:keydown', ['$event'])
-handleKeyboardEvent(event: KeyboardEvent) {
-  const question = this.store.currentQuestion();
-  if (!question || this.selectedOption()) return;
-
-  const optionsCount = question.options.length;
-
-  switch (event.key) {
-    case 'ArrowDown':
-    case 'ArrowRight':
-      event.preventDefault(); // Prevent scrolling
-      this.focusedOptionIndex.update(i => {
-        if (i === null) return 0;
-        return (i + 1) % optionsCount;
-      });
-      break;
-    case 'ArrowUp':
-    case 'ArrowLeft':
-      event.preventDefault(); // Prevent scrolling
-      this.focusedOptionIndex.update(i => {
-        if (i === null) return optionsCount - 1;
-        return (i - 1 + optionsCount) % optionsCount;
-      });
-      break;
-    case 'Enter':
-      const idx = this.focusedOptionIndex();
-      if (idx !== null) {
-        this.selectOption(question.options[idx]);
-      }
-      break;
+  nextQuestion() {
+    this.selectedOption.set(null);
+    this.isCorrect.set(null);
+    this.showFeedback.set(false);
+    this.store.nextQuestion();
   }
-}
 
-// NEU: Methode hinzugefügt
-handleMissingImage(event: Event) {
-  (event.target as HTMLImageElement).src = '/assets/images/pacific.png';
-}
+  exitQuiz() {
+    this.store.exitQuiz();
+    this.router.navigate(['/selection']);
+  }
+
+  // NEU: Methode hinzugefügt
+  handleMissingImage(event: Event) {
+    (event.target as HTMLImageElement).src = '/assets/images/pacific.png';
+  }
 }
