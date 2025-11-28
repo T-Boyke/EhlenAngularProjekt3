@@ -116,7 +116,7 @@ export class QuizService {
       id: 'master',
       name: 'Ultimatives Quiz',
       color: 'bg-purple-600',
-      oceanimage: '/assets/images/pacific.png',
+      oceanimage: '/assets/images/master.webp',
       description: 'Das ultimative Quiz gegen die Zeit! 🏆',
       facts: [],
       inhabitants: [],
