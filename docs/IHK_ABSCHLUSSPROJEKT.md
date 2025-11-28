@@ -252,7 +252,31 @@ Es soll eine Webanwendung entwickelt werden, die folgende Anforderungen erfüllt
 
 ### **2.3 Zeitplanung** {#2.3-zeitplanung}
 
-### ![gantt    title Projektzeitplan Earth Ocean Learning    dateFormat  YYYY-MM-DD    axisFormat  %d.%m.    section Analyse & Planung    Ist-Analyse & Soll-Konzept       :a1, 2025-11-17, 1d    Pflichtenheft & Fachkonzept      :a2, after a1, 1d    Wirtschaftlichkeitsbetrachtung   :a3, after a2, 1d    section Entwurf    UI/UX Design (Mockups)           :b1, 2025-11-20, 2d    Architektur & Datenmodell        :b2, after b1, 1d    section Implementierung    Setup & Core Components          :c1, 2025-11-23, 2d    Logik (SignalService)              :c2, after c1, 3d    UI & Styling (Tailwind)          :c3, after c2, 3d    Daten-Integration                :c4, after c3, 1d    section QA & Doku    Tests & Bugfixing                :d1, 2025-12-03, 3d    Dokumentation                    :d2, 2025-12-06, 3d][image3]
+```mermaid
+gantt
+    title Projektzeitplan Earth Ocean Learning
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d.%m.
+
+    section Analyse & Planung
+    Ist-Analyse & Soll-Konzept       :a1, 2025-11-17, 1d
+    Pflichtenheft & Fachkonzept      :a2, after a1, 1d
+    Wirtschaftlichkeitsbetrachtung   :a3, after a2, 1d
+
+    section Entwurf
+    UI/UX Design (Mockups)           :b1, 2025-11-20, 2d
+    Architektur & Datenmodell        :b2, after b1, 1d
+
+    section Implementierung
+    Setup & Core Components          :c1, 2025-11-23, 2d
+    Logik (QuizService)              :c2, after c1, 3d
+    UI & Styling (Tailwind)          :c3, after c2, 3d
+    Daten-Integration                :c4, after c3, 1d
+
+    section QA & Doku
+    Tests & Bugfixing                :d1, 2025-12-03, 3d
+    Dokumentation                    :d2, 2025-12-06, 3d
+```
 
 *Abb 1\. Visualisierung der Zeitplanung mittels Gantt-Diagramm*
 
