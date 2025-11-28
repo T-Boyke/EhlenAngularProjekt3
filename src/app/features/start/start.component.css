@@ -1,37 +1,51 @@
 @reference "../../../styles.css";
 
+/* Block: Start Page */
 .start-page {
   @apply flex items-center justify-center h-screen w-full;
 }
 
+/* Element: Card */
 .start-page__card {
-  @apply glass-card w-full max-w-md text-center animate-fly-in flex flex-col items-center gap-6;
+  /* Layout & Spacing */
+  @apply flex flex-col items-center gap-6 w-full max-w-md p-8;
+
+  /* Visuals (Glass Effect via Utility) */
+  @apply glass-card text-center;
+
+  /* Animation */
+  @apply animate-fly-in;
 }
 
+/* Element: Logo Wrapper */
 .start-page__logo-wrapper {
   @apply w-32 h-32 rounded-full bg-white/50 flex items-center justify-center shadow-inner mb-2;
 }
 
+/* Element: Logo Icon */
 .start-page__logo {
   @apply text-4xl;
 }
 
+/* Element: Title */
 .start-page__title {
   @apply text-4xl font-extrabold text-blue-900 drop-shadow-sm;
 }
 
+/* Element: Fact Box */
 .start-page__fact-box {
-  @apply bg-white/30 p-4 rounded-xl w-full;
+  @apply bg-white/30 p-4 rounded-xl w-full border border-white/40;
 }
 
 .start-page__fact-label {
-  @apply text-sm font-semibold text-blue-800 mb-1;
+  @apply text-sm font-semibold text-blue-800 mb-1 block;
 }
 
 .start-page__fact-text {
   @apply text-slate-700 italic;
 }
 
+/* Element: Action Button */
 .start-page__button {
   @apply glass-btn glass-btn-primary text-xl w-full mt-4;
 }

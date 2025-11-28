@@ -1,17 +1,23 @@
 @reference "../../../styles.css";
 
+/* Block: Page */
 .ocean-facts {
   @apply min-h-screen w-full flex flex-col items-center justify-center p-4 relative;
 }
 
+/* Element: Back Button */
 .ocean-facts__back-btn {
   @apply absolute top-6 left-6 glass-btn p-3 rounded-full z-10;
 }
 
+/* Block: Content Card */
 .ocean-facts__card {
-  @apply glass-card w-full max-w-4xl flex flex-col md:flex-row gap-8 items-center min-h-[400px] animate-pop-in relative;
+  @apply glass-card w-full max-w-4xl min-h-[400px] relative;
+  @apply flex flex-col md:flex-row gap-8 items-center;
+  @apply animate-pop-in;
 }
 
+/* Element: Image Wrapper */
 .ocean-facts__image-wrapper {
   @apply w-full md:w-1/2 h-64 md:h-80 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center;
 }
@@ -20,6 +26,7 @@
   @apply w-full h-full object-cover;
 }
 
+/* Element: Text Content */
 .ocean-facts__content {
   @apply w-full md:w-1/2 flex flex-col justify-center;
 }
@@ -32,27 +39,30 @@
   @apply text-lg text-slate-800 leading-relaxed;
 }
 
+/* Element: Navigation Controls */
 .ocean-facts__nav {
   @apply absolute bottom-4 right-4 flex gap-4;
 }
 
 .ocean-facts__nav-btn {
-  @apply glass-btn px-4 py-2;
+  @apply glass-btn px-4 py-2 hover:bg-white/80 active:scale-95;
 }
 
-.ocean-facts__progress-bar-bg {
-  @apply absolute bottom-0 left-0 w-full h-2 bg-white/30;
+/* Element: Progress Indicator (Bottom Bar) */
+.ocean-facts__progress-container {
+  @apply absolute bottom-0 left-0 w-full h-2 bg-white/30 rounded-b-2xl overflow-hidden;
 }
 
-.ocean-facts__progress-bar {
-  @apply h-full bg-blue-500 transition-all duration-300;
+.ocean-facts__progress-fill {
+  @apply h-full bg-blue-500 transition-all duration-300 ease-out;
 }
 
-.ocean-facts__quiz-btn-wrapper {
+/* Element: Quiz Start Wrapper */
+.ocean-facts__quiz-wrapper {
   @apply mt-8 h-14 flex items-center justify-center transition-all duration-500;
 }
 
-.ocean-facts__quiz-btn-wrapper--hidden {
+.ocean-facts__quiz-wrapper--hidden {
   @apply opacity-0 invisible;
 }
 

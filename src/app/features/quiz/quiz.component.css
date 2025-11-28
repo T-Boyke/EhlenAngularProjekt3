@@ -1,17 +1,21 @@
 @reference "../../../styles.css";
 
+/* Block: Quiz Page */
 .quiz {
   @apply min-h-screen w-full flex flex-col items-center justify-start pt-20 md:pt-32 p-4 relative;
 }
 
+/* Element: Exit Button */
 .quiz__exit-btn {
   @apply absolute top-6 left-6 glass-btn p-3 rounded-full z-10;
 }
 
+/* Block: Quiz Card */
 .quiz__card {
   @apply glass-card w-full max-w-3xl flex flex-col items-center gap-6 animate-pop-in relative;
 }
 
+/* Element: Image Wrapper */
 .quiz__image-wrapper {
   @apply w-full h-48 md:h-64 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center;
 }
@@ -20,62 +24,74 @@
   @apply w-full h-full object-cover;
 }
 
+/* Element: Question Title */
 .quiz__question {
   @apply text-2xl font-bold text-blue-900 text-center;
 }
 
+/* Element: Options Grid */
 .quiz__options-grid {
   @apply grid grid-cols-1 md:grid-cols-2 gap-4 w-full;
 }
 
+/* Element: Option Button */
 .quiz__option-btn {
-  @apply glass-btn text-lg w-full transition-all duration-300;
+  @apply glass-btn text-lg w-full transition-all duration-300 border border-transparent;
 }
 
-.quiz__option-btn--default {
-  @apply hover:bg-white/60;
+/* --- Modifiers für Option Button (State) --- */
+/* Standard Hover (nur wenn nicht ausgewählt) */
+.quiz__option-btn:not(:disabled):hover {
+  @apply bg-white/60;
 }
 
+/* Richtige Antwort (Wird grün) */
 .quiz__option-btn--correct {
   @apply !bg-green-500 !border-green-600 text-white scale-105 shadow-xl;
 }
 
+/* Falsche Antwort / Ausgewählt (Wird rot) */
 .quiz__option-btn--wrong {
   @apply !bg-red-500 !border-red-600 text-white;
 }
 
-.quiz__option-btn--disabled {
-  @apply !bg-gray-300/50 !text-gray-500 !border-transparent opacity-50 grayscale;
+/* Andere Antworten bei getroffener Wahl (Ausgegraut) */
+.quiz__option-btn--muted {
+  @apply !bg-gray-300/50 !text-gray-500 opacity-50 grayscale;
 }
 
-.quiz__progress-bg {
+/* Element: Progress Bar Container */
+.quiz__progress-container {
   @apply w-full h-2 bg-white/30 rounded-full overflow-hidden mt-4;
 }
 
-.quiz__progress-bar {
+.quiz__progress-fill {
   @apply h-full bg-blue-500 transition-all duration-500;
 }
 
+/* Element: Timer (Master Mode) */
 .quiz__timer {
   @apply absolute top-4 right-4 text-2xl font-bold text-blue-700 bg-white/70 px-4 py-2 rounded-lg shadow-md animate-pulse;
 }
 
 .quiz__timer--critical {
-  @apply text-red-600;
+  @apply text-red-600 bg-red-100;
 }
 
+/* Block: Feedback Box */
 .quiz__feedback {
   @apply w-full p-4 rounded-xl bg-white/40 mt-4 border-l-4 transition-all duration-300 animate-slide-up;
 }
 
 .quiz__feedback--correct {
-  @apply border-green-500;
+  @apply border-green-500 bg-green-50/50;
 }
 
 .quiz__feedback--wrong {
-  @apply border-red-500;
+  @apply border-red-500 bg-red-50/50;
 }
 
+/* Element: Feedback Typography */
 .quiz__feedback-title {
   @apply font-bold text-lg mb-2;
 }

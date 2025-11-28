@@ -1,6 +1,6 @@
-import { Component, inject, signal, effect, computed, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, signal, effect, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuizService } from '../../store/quiz.store';
+import { QuizStore } from '../../store/quiz.store';
 import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
 
 @Component({
@@ -38,8 +38,8 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
             }
           </div>
 
-          <div class="quiz__progress-bg">
-            <div class="quiz__progress-bar" [style.width.%]="store.progress()"></div>
+          <div class="quiz__progress-container">
+            <div class="quiz__progress-fill" [style.width.%]="store.progress()"></div>
           </div>
 
           @if (store.masterMode() && !selectedOption()) {
@@ -67,14 +67,13 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
   `
 })
 export class QuizComponent implements OnInit, OnDestroy {
-  store = inject(QuizService);
+  store = inject(QuizStore);
   private router = inject(Router);
 
   selectedOption = signal<string | null>(null);
   isCorrect = signal<boolean | null>(null);
   showFeedback = signal(false);
 
-  // Timer for Master Mode
   timeLeft = signal(5);
   timerInterval: ReturnType<typeof setInterval> | undefined;
 
@@ -85,10 +84,8 @@ export class QuizComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Effect to reset timer when question changes
     effect(() => {
-      // Abhängigkeit herstellen
-      const idx = this.store.currentQuestionIndex();
+      const idx = this.store.currentQuestionIndex(); // Dependency tracking
       if (this.store.masterMode() && !this.store.isQuizFinished()) {
         this.startTimer();
       }
@@ -126,25 +123,32 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   handleTimeout() {
     this.stopTimer();
-    // Timeout wird wie eine falsche Antwort behandelt
     this.selectOption('__TIMEOUT__');
   }
 
+  /**
+   * Gibt die passende BEM Modifier-Klasse zurück.
+   * Kapselt die UI-Logik sauber.
+   */
   getOptionClass(option: string): string {
-    if (!this.selectedOption()) return 'hover:bg-white/60';
+    const selected = this.selectedOption();
+    if (!selected) return ''; // Standard State
 
     const currentQuestion = this.store.currentQuestion();
     if (!currentQuestion) return '';
 
+    // Fall 1: Dies ist die korrekte Antwort
     if (option === currentQuestion.answer) {
-      return '!bg-green-500 !border-green-600 text-white scale-105 shadow-xl';
+      return 'quiz__option-btn--correct';
     }
 
-    if (option === this.selectedOption()) {
-      return '!bg-red-500 !border-red-600 text-white';
+    // Fall 2: Der Nutzer hat diese (falsche) Antwort gewählt
+    if (option === selected) {
+      return 'quiz__option-btn--wrong';
     }
 
-    return '!bg-gray-300/50 !text-gray-500 !border-transparent opacity-50 grayscale';
+    // Fall 3: Weder gewählt noch korrekt (ausgrauen)
+    return 'quiz__option-btn--muted';
   }
 
   selectOption(option: string) {

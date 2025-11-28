@@ -1,0 +1,49 @@
+@reference "../../../../styles.css";
+
+/* Block: Ocean Card */
+.ocean-card {
+    /* Lokale Nutzung der globalen Variablen ist okay für Konsistenz */
+    background: var(--glass-bg, rgba(255, 255, 255, 0.25));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.3));
+    box-shadow: var(--glass-shadow, 0 8px 32px 0 rgba(31, 38, 135, 0.37));
+
+    @apply rounded-2xl p-6 cursor-pointer transform transition-all duration-300 relative w-full sm:w-80 md:w-96;
+    @apply hover:scale-105 hover:bg-white/40;
+    @apply animate-pop-in;
+}
+
+/* Element: Image Wrapper */
+.ocean-card__image-wrapper {
+    @apply w-full h-40 rounded-xl overflow-hidden mb-4 bg-white/50 shadow-inner relative;
+}
+
+/* Element: Image */
+.ocean-card__image {
+    @apply w-full h-full object-cover;
+}
+
+/* Element: Title */
+.ocean-card__title {
+    @apply text-xl font-bold text-blue-900 text-center;
+}
+
+/* Modifier via State (Parent Hover) */
+.group:hover .ocean-card__title {
+    @apply text-blue-700;
+}
+
+/* Element: Star */
+.ocean-card__star {
+    @apply absolute top-4 right-4 text-2xl transition-colors z-10;
+}
+
+/* Modifier: Active/Inactive */
+.ocean-card__star--active {
+    @apply text-yellow-400;
+}
+
+.ocean-card__star--inactive {
+    @apply text-gray-400;
+}

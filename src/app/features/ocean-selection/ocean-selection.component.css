@@ -1,40 +1,51 @@
 @reference "../../../styles.css";
 
+/* Block: Page Container */
 .ocean-selection {
   @apply min-h-screen w-full p-8 flex flex-col items-center justify-center overflow-y-auto;
 }
 
+/* Element: Title */
 .ocean-selection__title {
   @apply text-3xl font-bold text-white mb-8 drop-shadow-md animate-pop-in;
 }
 
+/* Element: Grid Layout */
 .ocean-selection__grid {
   @apply flex flex-wrap justify-center gap-8 w-full max-w-7xl;
 }
 
+/* Element: Action Area */
 .ocean-selection__actions {
-  @apply mt-12 w-full max-w-md;
+  @apply mt-12 w-full max-w-md relative z-10;
 }
 
-/* Block: Ocean Card - Moved to src/styles.css */
-
-/* Block: Master Quiz Button */
+/* --- Sub-Block: Master Quiz Button --- */
+/* BEM naming convention: .block-name */
 .master-quiz-btn {
-  @apply w-full py-4 rounded-xl text-2xl font-bold text-white transition-all duration-300 shadow-lg flex items-center justify-center gap-3 relative overflow-hidden;
+  @apply w-full py-4 rounded-xl text-2xl font-bold text-white transition-all duration-300 shadow-lg;
+  @apply flex items-center justify-center gap-3 relative overflow-hidden;
 }
 
+/* Modifiers */
 .master-quiz-btn--locked {
   @apply bg-gray-600 opacity-50 cursor-not-allowed;
 }
 
 .master-quiz-btn--unlocked {
-  @apply bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-105 hover:shadow-purple-500/50;
+  @apply bg-gradient-to-r from-purple-600 to-pink-600;
+  @apply hover:scale-105 hover:shadow-purple-500/50 cursor-pointer;
 }
 
+/* Elements inside button */
 .master-quiz-btn__icon {
   @apply animate-pulse;
 }
 
-.master-quiz-btn__progress-bar {
-  @apply absolute bottom-0 left-0 h-2 bg-yellow-400 transition-all duration-500;
+.master-quiz-btn__progress-wrapper {
+  @apply absolute bottom-0 left-0 w-full;
+}
+
+.master-quiz-btn__lock-text {
+  @apply flex items-center gap-2;
 }

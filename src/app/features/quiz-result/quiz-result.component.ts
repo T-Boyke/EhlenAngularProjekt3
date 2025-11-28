@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuizService } from '../../store/quiz.store';
+import { QuizStore } from '../../store/quiz.store';
 import { DatePipe } from '@angular/common';
 import confetti from 'canvas-confetti';
 
@@ -79,7 +79,7 @@ import confetti from 'canvas-confetti';
   `
 })
 export class QuizResultComponent implements OnInit {
-  store = inject(QuizService);
+  store = inject(QuizStore);
   private router = inject(Router);
   today = new Date();
 

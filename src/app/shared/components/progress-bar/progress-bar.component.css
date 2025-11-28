@@ -1,0 +1,11 @@
+@reference "../../../../styles.css";
+
+/* Block */
+.progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 overflow-hidden;
+}
+
+/* Element */
+.progress-bar__fill {
+    @apply h-2.5 rounded-full transition-all duration-500;
+}

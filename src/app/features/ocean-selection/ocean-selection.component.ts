@@ -1,17 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuizService } from '../../store/quiz.store';
+import { QuizStore } from '../../store/quiz.store';
 import { OceanCardComponent } from '../../shared/components/ocean-card/ocean-card.component';
 import { ProgressBarComponent } from '../../shared/components/progress-bar/progress-bar.component';
 
-/**
- * Ocean Selection Page
- * 
- * @description
- * Hauptseite zur Auswahl der Ozeane.
- * Zeigt eine Liste aller verfügbaren Ozeane als Karten an.
- * Ermöglicht den Start des Master-Quiz, wenn alle Ozeane erkundet wurden.
- */
 @Component({
   selector: 'app-ocean-selection',
   standalone: true,
@@ -45,11 +37,11 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
             <span>ULTIMATIVES QUIZ STARTEN</span>
             <span class="master-quiz-btn__icon">🏆</span>
           } @else {
-            <span>🔒 Sammle alle 5 Sterne!</span>
+            <span class="master-quiz-btn__lock-text">🔒 Sammle alle 5 Sterne!</span>
           }
           
           @if (!store.isMasterUnlocked()) {
-            <div class="absolute bottom-0 left-0 w-full">
+            <div class="master-quiz-btn__progress-wrapper">
                <app-progress-bar [progress]="(store.completedOceans().length / 5) * 100"></app-progress-bar>
             </div>
           }
@@ -59,31 +51,20 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
   `
 })
 export class OceanSelectionComponent implements OnInit {
-  store = inject(QuizService);
+  store = inject(QuizStore);
   private router = inject(Router);
 
-  /**
-   * Initialisiert die Komponente.
-   * Lädt die Ozeane, falls noch nicht vorhanden.
-   */
   ngOnInit() {
     if (this.store.oceans().length === 0) {
       this.store.loadOceans();
     }
   }
 
-  /**
-   * Wählt einen Ozean aus und navigiert zur Fakten-Seite.
-   * @param id Die ID des gewählten Ozeans.
-   */
   selectOcean(id: string) {
     this.store.selectOcean(id);
     this.router.navigate(['/facts', id]);
   }
 
-  /**
-   * Startet das Master-Quiz, wenn freigeschaltet.
-   */
   startMasterQuiz() {
     if (this.store.isMasterUnlocked()) {
       this.store.startMasterQuiz();
