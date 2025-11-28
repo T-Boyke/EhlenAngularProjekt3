@@ -14,7 +14,7 @@ const MASTER_OCEAN_TEMPLATE: Partial<Ocean> = {
 @Injectable({
   providedIn: 'root'
 })
-export class QuizStore { // <--- Hier geändert von QuizService zu QuizStore
+export class QuizStore {
   private readonly oceanDataService = inject(OceanDataService);
   private readonly STORAGE_KEY = 'eol_progress';
 
