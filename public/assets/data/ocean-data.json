@@ -140,7 +140,7 @@
                     "Nordamerika"
                 ],
                 "answer": "Europa",
-                "quizimage": "/assets/images/pacific.webp",
+                "quizimage": "/assets/images/pacific4.webp",
                 "trivia": "Europa grenzt an den Atlantik, aber nicht an den Pazifik.",
                 "prequizdescription": "Geografie-Check!"
             },
@@ -153,7 +153,7 @@
                     "Eine Stadt"
                 ],
                 "answer": "Ein Korallenriff",
-                "quizimage": "/assets/images/pacific.webp",
+                "quizimage": "/assets/images/pacific1.webp",
                 "trivia": "Es ist das größte Korallenriff der Erde und liegt vor Australien.",
                 "prequizdescription": "Bunt und lebendig."
             },
@@ -166,7 +166,7 @@
                     "Ebbe"
                 ],
                 "answer": "Tsunami",
-                "quizimage": "/assets/images/pacific.webp",
+                "quizimage": "/assets/images/pacific2.webp",
                 "trivia": "Tsunamis können riesige Schäden anrichten.",
                 "prequizdescription": "Vorsicht, Welle!"
             }
