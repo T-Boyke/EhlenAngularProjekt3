@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/T-Boyke/EhlenAngularProjekt3">
-    <img src="public/assets/images/logo.png" alt="Logo" width="80" height="80">
+    <img src="/docs/assets/logo.webp" alt="Logo" width="320" height="160">
   </a>
 
   <h3 align="center">Earth Ocean Learning (EOL)</h3>
@@ -65,7 +65,7 @@ Dieses Projekt basiert auf folgenden Technologien:
 *   [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url] **Tailwind CSS 4**
 *   [![NodeJS][Node.js]][Node-url] **Node.js**
 *   **TypeScript**
-*   **NgRx SignalStore**
+*   **Angular with Signals**
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
