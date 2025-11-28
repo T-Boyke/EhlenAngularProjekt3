@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/T-Boyke/EhlenAngularProjekt3">
-    <img src="/docs/assets/logo.webp" alt="Logo" width="80" height="80">
+    <img src="/docs/assets/logo.webp" alt="Logo" width="320" height="160">
   </a>
 
   <h3 align="center">Earth Ocean Learning (EOL)</h3>
