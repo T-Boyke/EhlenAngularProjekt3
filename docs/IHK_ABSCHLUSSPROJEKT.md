@@ -479,34 +479,41 @@ Die Daten werden in einer JSON-Struktur gehalten, um Flexibilität zu gewährlei
 
 ```mermaid
 classDiagram
-    direction TB
-    note "JSON Dokumenten-Struktur"
+    %% Styling Definitionen für ein sauberes Design
+    classDef root fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef part fill:#f1f8e9,stroke:#558b2f,stroke-width:2px;
     
-    class OceanDataRoot {
-        +String id
-        +String name
-        +String description
-        +String image
-        +String[] facts
-        +Inhabitant[] inhabitants
-        +QuizQuestion[] quizQuestions
+    %% Klassen Definitionen
+    class Ocean {
+        +string id
+        +string name
+        +string oceanimage
+        +string description
+        +string[] facts
     }
 
     class Inhabitant {
-        +String name
-        +String description
-        +String image
+        +string name
+        +string description
+        +string image
     }
 
     class QuizQuestion {
-        +String question
-        +String[] options
-        +String answer
-        +String trivia
+        +string question
+        +string[] options
+        +string answer
+        +string quizimage
+        +string trivia
     }
 
-    OceanDataRoot *-- Inhabitant : contains (nested)
-    OceanDataRoot *-- QuizQuestion : contains (nested)
+    %% Beziehungen (Komposition)
+    Ocean "1" *-- "n" Inhabitant : inhabitants
+    Ocean "1" *-- "n" QuizQuestion : quiz
+
+    %% Anwendung der Styles
+    class Ocean:::root
+    class Inhabitant:::part
+    class QuizQuestion:::part
 ```
 
 Abb. 4 *Da keine relationale Datenbank, sondern eine dokumentenorientierte Speicherung (JSON) verwendet wird, stellt die Abbildung die hierarchische Struktur des JSON-Objekts dar, nicht relationale Tabellenverknüpfungen.*
