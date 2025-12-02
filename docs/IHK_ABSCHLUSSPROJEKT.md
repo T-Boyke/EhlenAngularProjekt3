@@ -385,7 +385,76 @@ Die Struktur gliedert sich in folgende Bereiche, wie in den technischen Dokument
 - **Service with Signals:** Ein Pattern, bei dem ein Angular Service den State kapselt (`private` schreibbare Signals, `public` Read-Only Signals).
 - **Routing:** Die Navigation erfolgt über den Angular Router, wobei Parameter (z. B. Ozean-ID) über die URL gesteuert werden.
 ```mermaid
-Architekturdiagramm
+graph TD
+    %% Styling Definitionen
+    classDef view fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef store fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+    classDef service fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    classDef external fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,stroke-dasharray: 5 5;
+
+    subgraph User_Interaction [Benutzer Interaktion]
+        User((Benutzer))
+    end
+
+    subgraph Presentation_Layer [Presentation Layer / UI]
+        direction TB
+        Router[Angular Router]
+        
+        subgraph Features [Feature Components]
+            Start[StartComponent]:::view
+            Selection[OceanSelectionComponent]:::view
+            Facts[OceanFactsComponent]:::view
+            Quiz[QuizComponent]:::view
+            Result[QuizResultComponent]:::view
+        end
+        
+        subgraph Shared [Shared Components]
+            Card[OceanCardComponent]:::view
+            Progress[ProgressBarComponent]:::view
+        end
+    end
+
+    subgraph State_Layer [State Management Layer]
+        QuizStore["QuizStore\n(Signals & Logic)"]:::store
+    end
+
+    subgraph Data_Layer [Data Access Layer]
+        OceanService[OceanDataService]:::service
+    end
+
+    subgraph External [External Resources]
+        JSON[(assets/ocean-data.json)]:::external
+        LStorage[(LocalStorage)]:::external
+    end
+
+    %% Routing Flow
+    User --> Router
+    Router --> Start
+    Router --> Selection
+    Router --> Facts
+    Router --> Quiz
+    Router --> Result
+
+    %% Component Hierarchy / Usage
+    Selection --> Card
+    Selection --> Progress
+    Quiz --> Progress
+
+    %% State Injection & Interaction
+    Selection -. injects .-> QuizStore
+    Facts -. injects .-> QuizStore
+    Quiz -. injects .-> QuizStore
+    Result -. injects .-> QuizStore
+    
+    %% Data Flow
+    QuizStore -- "fetch data" --> OceanService
+    OceanService -- "HTTP GET" --> JSON
+    
+    %% Persistence
+    QuizStore -- "load/save progress" --> LStorage
+
+    %% Legende
+    linkStyle default stroke:#333,stroke-width:1px;
 ```
 *Abb. 3 Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches durch die moderne Angular-Architektur (Signals) effizient umgesetzt wird.*
 
