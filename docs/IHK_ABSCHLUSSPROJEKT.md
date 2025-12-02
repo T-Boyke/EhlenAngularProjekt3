@@ -551,9 +551,13 @@ Das Klassendiagramm verdeutlicht die Abhängigkeiten zwischen den Standalone Com
 
 ```mermaid
 classDiagram
-    class AppComponent {
-        +title: Signal~string~
-    }
+    %% --- Styling Definitionen ---
+    classDef component fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef store fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,color:#000
+    classDef service fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef model fill:#f5f5f5,stroke:#616161,stroke-width:1px,stroke-dasharray: 5 5,color:#000
+
+    %% --- Komponenten (View Layer) ---
     class OceanSelectionComponent {
         +selectOcean(id: string)
         +startMasterQuiz()
@@ -562,28 +566,64 @@ classDiagram
         +currentSlide: Signal~Slide~
         +nextSlide()
         +prevSlide()
+        +startQuiz()
     }
     class QuizComponent {
         +currentQuestion: Signal~QuizQuestion~
+        +selectedOption: Signal~string~
         +selectOption(option: string)
     }
-    class DataService {
+    class QuizResultComponent {
+        +isSuccess(): boolean
+        +restart()
+    }
+
+    %% --- State Management (ViewModel Layer) ---
+    class QuizStore {
+        +oceans: Signal~Ocean[]~
+        +currentOcean: Signal~Ocean~
+        +score: Signal~number~
+        +progress: Signal~number~
+        +isMasterUnlocked: Signal~boolean~
+        +loadOceans()
+        +selectOcean(id: string)
+        +answerQuestion(ans: string)
+    }
+
+    %% --- Data Access (Model Layer) ---
+    class OceanDataService {
+        -dataUrl: string
         +getOceans(): Observable~Ocean[]~
     }
-    class QuizService {
-        +oceans: Signal~Ocean[]~
-        +score: Signal~number~
-        +completedOceans: Signal~string[]~
-        +startMasterQuiz()
-        +answerQuestion(answer: string)
+
+    %% --- Models ---
+    class Ocean {
+        +id: string
+        +name: string
+        +facts: string[]
     }
 
-    AppComponent --> OceanSelectionComponent : routes to
-    OceanSelectionComponent ..> QuizService : injects
-    OceanFactsComponent ..> QuizService : injects
-    QuizComponent ..> QuizService : injects
+    %% --- Beziehungen ---
+    %% Components inject QuizStore
+    OceanSelectionComponent ..> QuizStore : injects
+    OceanFactsComponent ..> QuizStore : injects
+    QuizComponent ..> QuizStore : injects
+    QuizResultComponent ..> QuizStore : injects
 
-    QuizService ..> DataService : injects
+    %% Store injects DataService
+    QuizStore ..> OceanDataService : injects
+
+    %% DataService uses Model
+    OceanDataService ..> Ocean : returns
+
+    %% Zuweisung der Styles
+    class OceanSelectionComponent:::component
+    class OceanFactsComponent:::component
+    class QuizComponent:::component
+    class QuizResultComponent:::component
+    class QuizStore:::store
+    class OceanDataService:::service
+    class Ocean:::model
 ```
 *Abb. 5 Das Klassendiagramm zeigt die Architektur der Anwendung, wobei der QuizStore als zentraler State-Manager ("Service with Signals") fungiert, auf den die Komponenten zugreifen.*
 
