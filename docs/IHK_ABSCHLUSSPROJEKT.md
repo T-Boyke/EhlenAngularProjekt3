@@ -385,29 +385,7 @@ Die Struktur gliedert sich in folgende Bereiche, wie in den technischen Dokument
 - **Service with Signals:** Ein Pattern, bei dem ein Angular Service den State kapselt (`private` schreibbare Signals, `public` Read-Only Signals).
 - **Routing:** Die Navigation erfolgt über den Angular Router, wobei Parameter (z. B. Ozean-ID) über die URL gesteuert werden.
 ```mermaid
-graph TD
-    User((User)) --> View["View (Components)"]
-    View --> ViewModel["ViewModel (QuizService/Store)"]
-    ViewModel --> Model["Model (Interfaces)"]
-    ViewModel --> Service[DataService]
-    Service --> Data[JSON Data]
-    
-    subgraph "View Layer"
-        StartComponent
-        OceanSelectionComponent
-        OceanFactsComponent
-        QuizComponent
-        QuizResultComponent
-    end
-
-    subgraph "State Management"
-        ViewModel
-    end
-
-    subgraph "Data Layer"
-        Service
-        Model
-    end
+Architekturdiagramm
 ```
 *Abb. 3 Die Architektur orientiert sich am Model-View-ViewModel (MVVM) Muster, welches durch die moderne Angular-Architektur (Signals) effizient umgesetzt wird.*
 
