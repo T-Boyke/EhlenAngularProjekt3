@@ -20,39 +20,43 @@
 
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        {# Example Card (Loop through Flex Objects here) #}
-        {% for i in 1..5 %}
+
+        {% for ocean in oceans %}
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300 group">
             <div class="h-48 bg-gray-200 relative overflow-hidden">
-                <img src="https://source.unsplash.com/random/800x600?ocean,{{ i }}" alt="Ocean" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <img src="{{ ocean.image }}" alt="{{ ocean.name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-blue-800 shadow-sm">
-                    ID: pacific
+                    ID: {{ ocean.id }}
                 </div>
             </div>
             <div class="p-6">
-                <h3 class="text-2xl font-bold text-gray-800 mb-2">Pazifischer Ozean</h3>
-                <p class="text-gray-600 text-sm mb-4 line-clamp-2">Der größte und tiefste Ozean der Erde. Er bedeckt ein Drittel der Oberfläche.</p>
-                
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ ocean.name }}</h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ ocean.description }}</p>
+
                 <div class="flex gap-2 mt-4">
-                    <span class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded border border-blue-100">5 Fakten</span>
-                    <span class="text-xs bg-purple-50 text-purple-600 px-2 py-1 rounded border border-purple-100">10 Fragen</span>
+                    <span class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded border border-blue-100">{{ ocean.factCount }} Fakten</span>
+                    <span class="text-xs bg-purple-50 text-purple-600 px-2 py-1 rounded border border-purple-100">{{ ocean.quizCount }} Fragen</span>
                 </div>
 
                 <div class="mt-6 flex gap-3">
-                    <button onclick="openEditModal('pacific', 'Pazifischer Ozean', 'Der größte und tiefste Ozean der Erde...')" 
+                    <button onclick="openEditModal('{{ ocean.id }}', '{{ ocean.name }}', '{{ ocean.description|e('js') }}')"
                             class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition">
                         Bearbeiten
                     </button>
                     <form method="POST" action="/lehrer" onsubmit="return confirm('Wirklich löschen?');">
                         <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="id" value="pacific">
+                        <input type="hidden" name="id" value="{{ ocean.id }}">
                         <button type="submit" class="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg border border-red-200 transition h-full">
                             🗑️
                         </button>
                     </form>
                 </div>
             </div>
+        </div>
+        {% else %}
+        <div class="col-span-full text-center py-12 bg-gray-50 rounded-xl border-dashed border-2 border-gray-300">
+            <p class="text-gray-500 text-lg">Noch keine Ozeane angelegt.</p>
+            <button class="mt-4 text-blue-600 font-bold hover:underline">Erstelle den ersten Ozean!</button>
         </div>
         {% endfor %}
 
@@ -65,7 +69,7 @@
                 <h2 class="text-2xl font-bold text-gray-800">Ozean bearbeiten</h2>
                 <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
             </div>
-            
+
             <form method="POST" action="/lehrer" class="p-6 space-y-4">
                 <input type="hidden" name="action" value="save">
                 <input type="hidden" name="id" id="oceanId">

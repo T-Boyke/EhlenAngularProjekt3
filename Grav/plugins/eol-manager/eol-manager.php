@@ -55,27 +55,11 @@ class EolManagerPlugin extends Plugin
         $uri = $this->grav['uri'];
         $route = $uri->path();
 
-        // API Endpoint for Angular App
-        if (str_starts_with($route, '/api/oceans')) {
-            $this->handleApiRequest();
-            exit();
-        }
-
-        // Teacher Dashboard Actions (POST)
-        if ($route === '/lehrer' && isset($_POST['action'])) {
-            $this->handleTeacherAction();
-            // Redirect to avoid resubmission
-            $this->grav->redirect('/lehrer');
-        }
-    }
-
-    /**
-     * Handle Teacher Dashboard Form Submissions
      */
     protected function handleTeacherAction()
     {
         // Ensure user has permissions (Skipped for this test)
-        
+
         $action = $_POST['action'];
         $data = $_POST['data'] ?? [];
         $id = $_POST['id'] ?? ($data['id'] ?? null);
@@ -130,7 +114,7 @@ class EolManagerPlugin extends Plugin
 
         // 2. Fallback: Load from local JSON file (Simulation for Dev)
         $jsonPath = $this->grav['locator']->findResource('user://../assets/data/ocean-data.json', true);
-        
+
         // If file not found via locator, try hardcoded path relative to this plugin (for testing)
         if (!$jsonPath) {
              // Mock Data matching the structure
