@@ -1,0 +1,122 @@
+title: Ozeane
+description: Verwaltung der Ozean-Daten für die EOL App
+type: flex-objects
+
+config:
+  admin:
+    router:
+      path: "/oceans"
+    menu:
+      list:
+        route: "/oceans"
+        title: Ozeane
+        icon: fa-water
+    list:
+      title: Ozeane
+      fields:
+        name:
+          link: edit
+        id:
+          width: 10
+  site:
+    templates:
+      collection:
+        paths:
+          - "flex-objects/collection/oceans"
+      object:
+        paths:
+          - "flex-objects/object/oceans"
+
+form:
+  validation: loose
+  fields:
+    basics_tab:
+      type: tab
+      title: Basis-Daten
+      fields:
+        name:
+          type: text
+          label: Name des Ozeans
+          validate:
+            required: true
+        id:
+          type: text
+          label: ID (z.B. pacific)
+          validate:
+            required: true
+            pattern: "[a-z0-9-]+"
+        description:
+          type: textarea
+          label: Kurzbeschreibung
+        oceanimage:
+          type: file
+          label: Hauptbild
+          destination: "user/data/oceans/images"
+          multiple: false
+          accept:
+            - image/*
+        color:
+          type: text
+          label: Tailwind Farbklasse (z.B. bg-blue-500)
+
+    facts_tab:
+      type: tab
+      title: Fakten
+      fields:
+        facts:
+          type: list
+          label: Fakten
+          fields:
+            .text:
+              type: text
+              label: Fakt
+
+    inhabitants_tab:
+      type: tab
+      title: Bewohner
+      fields:
+        inhabitants:
+          type: list
+          label: Bewohner
+          fields:
+            .name:
+              type: text
+              label: Name
+            .description:
+              type: textarea
+              label: Beschreibung
+            .image:
+              type: file
+              label: Bild
+              destination: "user/data/oceans/images"
+              multiple: false
+
+    quiz_tab:
+      type: tab
+      title: Quiz-Fragen
+      fields:
+        quiz:
+          type: list
+          label: Fragen
+          fields:
+            .question:
+              type: text
+              label: Frage
+            .answer:
+              type: text
+              label: Richtige Antwort
+            .options:
+              type: list
+              label: Falsche Antworten (und richtige)
+              fields:
+                .text:
+                  type: text
+                  label: Option
+            .trivia:
+              type: textarea
+              label: Trivia / Erklärung
+            .quizimage:
+              type: file
+              label: Bild zur Frage
+              destination: "user/data/oceans/images"
+              multiple: false

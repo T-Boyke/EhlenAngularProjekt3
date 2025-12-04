@@ -1,0 +1,30 @@
+name: Eol Manager
+version: 0.1.0
+description: Manages Ocean Data and Teacher Dashboard for EOL Project
+icon: plug
+author:
+  name: EOL Team
+  email: info@example.com
+homepage: https://github.com/example/eol-manager
+keywords: grav, plugin, eol, education
+bugs: https://github.com/example/eol-manager/issues
+docs: https://github.com/example/eol-manager/blob/develop/README.md
+license: MIT
+
+dependencies:
+  - { name: grav, version: ">=1.7.0" }
+  - { name: flex-objects }
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
