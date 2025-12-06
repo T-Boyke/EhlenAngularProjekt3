@@ -10,17 +10,19 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
   styleUrl: './quiz.component.css',
   template: `
     <div class="quiz">
-      
+
       <button (click)="exitQuiz()" class="quiz__exit-btn">
         ⬅ Beenden
       </button>
 
       @if (store.currentQuestion(); as question) {
         <div class="quiz__card">
-          
+
           <div class="quiz__image-wrapper">
-             <img [src]="question.quizimage" class="quiz__image"
-                  fetchpriority="high" 
+             <img [src]="question.quizimage"
+                  [alt]="'Bild zur Frage: ' + question.question"
+                  class="quiz__image"
+                  fetchpriority="high"
                   loading="eager"
                   appImageFallback>
           </div>
@@ -29,8 +31,8 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
 
           <div class="quiz__options-grid">
             @for (option of question.options; track $index) {
-              <button (click)="selectOption(option)" 
-                      [disabled]="selectedOption() !== null" 
+              <button (click)="selectOption(option)"
+                      [disabled]="selectedOption() !== null"
                       class="quiz__option-btn"
                       [class]="getOptionClass(option)">
                 {{ option }}
@@ -53,7 +55,7 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
             <div class="quiz__feedback"
                  [class.quiz__feedback--correct]="isCorrect()"
                  [class.quiz__feedback--wrong]="!isCorrect()">
-              <h3 class="quiz__feedback-title" 
+              <h3 class="quiz__feedback-title"
                   [class.quiz__feedback-title--correct]="isCorrect()"
                   [class.quiz__feedback-title--wrong]="!isCorrect()">
                 {{ isCorrect() ? 'Richtig! 🎉' : 'Leider falsch...' }}
@@ -85,7 +87,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     });
 
     effect(() => {
-      const idx = this.store.currentQuestionIndex(); // Dependency tracking
+      this.store.currentQuestionIndex(); // Dependency tracking
       if (this.store.masterMode() && !this.store.isQuizFinished()) {
         this.startTimer();
       }

@@ -16,6 +16,6 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class ProgressBarComponent {
-  @Input({ required: true }) progress: number = 0;
-  @Input() color: string = '#FACC15';
+  @Input({ required: true }) progress = 0;
+  @Input() color = '#FACC15';
 }

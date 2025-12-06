@@ -1,12 +1,12 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, inject } from '@angular/core';
 
 /**
  * Image Fallback Directive
- * 
+ *
  * @description
- * Eine Direktive, die automatisch ein Fallback-Bild setzt, 
+ * Eine Direktive, die automatisch ein Fallback-Bild setzt,
  * wenn das ursprüngliche Bild nicht geladen werden kann (error event).
- * 
+ *
  * @example
  * <img src="invalid.jpg" appImageFallback>
  * <img src="invalid.jpg" appImageFallback="assets/fallback.png">
@@ -20,9 +20,8 @@ export class ImageFallbackDirective {
      * Der Pfad zum Fallback-Bild.
      * Standard: '/assets/images/not_found.webp'
      */
-    @Input() appImageFallback: string = '/assets/images/not_found.webp';
-
-    constructor(private el: ElementRef<HTMLImageElement>) { }
+    @Input() appImageFallback = '/assets/images/not_found.webp';
+    private el = inject(ElementRef<HTMLImageElement>);
 
     /**
      * Horcht auf das 'error' Event des Image-Elements.

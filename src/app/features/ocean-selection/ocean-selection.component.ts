@@ -12,14 +12,14 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
   template: `
     <div class="ocean-selection">
       <h2 class="ocean-selection__title">Wähle einen Ozean</h2>
-      
+
       <div class="ocean-selection__grid">
         @for (ocean of store.oceans(); track ocean.id) {
-          <app-ocean-card 
+          <app-ocean-card
             [ocean]="ocean"
             [isCompleted]="store.isOceanCompleted(ocean.id)"
             [priority]="$index < 4"
-            (select)="selectOcean($event)"
+            (oceanSelected)="selectOcean($event)"
             [style.animation-delay]="$index * 100 + 'ms'">
           </app-ocean-card>
         }
@@ -31,15 +31,15 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
                 class="master-quiz-btn group"
                 [class.master-quiz-btn--unlocked]="store.isMasterUnlocked()"
                 [class.master-quiz-btn--locked]="!store.isMasterUnlocked()">
-          
+
           @if (store.isMasterUnlocked()) {
-            <span class="master-quiz-btn__icon">🏆</span> 
+            <span class="master-quiz-btn__icon">🏆</span>
             <span>ULTIMATIVES QUIZ STARTEN</span>
             <span class="master-quiz-btn__icon">🏆</span>
           } @else {
             <span class="master-quiz-btn__lock-text">🔒 Sammle alle 5 Sterne!</span>
           }
-          
+
           @if (!store.isMasterUnlocked()) {
             <div class="master-quiz-btn__progress-wrapper">
                <app-progress-bar [progress]="(store.completedOceans().length / 5) * 100"></app-progress-bar>

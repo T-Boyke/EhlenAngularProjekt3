@@ -14,18 +14,18 @@ interface Ocean {
   imports: [CommonModule, ImageFallbackDirective, NgOptimizedImage],
   template: `
     @if (ocean) {
-    <div (click)="onSelect()" class="ocean-card group">
-      
+    <div (click)="onSelect()" (keyup.enter)="onSelect()" tabindex="0" class="ocean-card group">
+
       <div class="ocean-card__image-wrapper">
-         <img [ngSrc]="ocean.oceanimage" 
-              [alt]="ocean.name" 
-              class="ocean-card__image" 
+         <img [ngSrc]="ocean.oceanimage"
+              [alt]="ocean.name"
+              class="ocean-card__image"
               fill
               [priority]="priority"
               sizes="(max-width: 640px) 90vw, (max-width: 1024px) 40vw, 20vw"
               appImageFallback>
       </div>
-      
+
       <h3 class="ocean-card__title">{{ ocean.name }}</h3>
 
       <div class="ocean-card__star"
@@ -40,11 +40,11 @@ interface Ocean {
 })
 export class OceanCardComponent {
   @Input({ required: true }) ocean!: Ocean;
-  @Input() isCompleted: boolean = false;
-  @Input() priority: boolean = false;
-  @Output() select = new EventEmitter<string>();
+  @Input() isCompleted = false;
+  @Input() priority = false;
+  @Output() oceanSelected = new EventEmitter<string>();
 
   onSelect() {
-    this.select.emit(this.ocean.id);
+    this.oceanSelected.emit(this.ocean.id);
   }
 }
