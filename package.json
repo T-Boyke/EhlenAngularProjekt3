@@ -44,6 +44,7 @@
     "@angular/build": "^21.0.2",
     "@angular/cli": "^21.0.2",
     "@angular/compiler-cli": "^21.0.3",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^20.17.19",
     "@vitest/coverage-v8": "^4.0.15",
