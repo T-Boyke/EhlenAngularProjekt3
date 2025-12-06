@@ -1,11 +1,22 @@
 @reference "../../../../styles.css";
 
-/* Block */
+/*
+ * =================================================================
+ * Progress Bar Component Styling
+ * =================================================================
+ */
+
+/* Block: Container */
 .progress-bar {
+    /* Hintergrundleiste (grau) */
     @apply w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 overflow-hidden;
 }
 
-/* Element */
+/* Element: Fill (Füllstand) */
 .progress-bar__fill {
+    /*
+     * Breite wird dynamisch per Inline-Style gesetzt.
+     * Transition sorgt dafür, dass sich der Balken weich füllt.
+     */
     @apply h-2.5 rounded-full transition-all duration-500;
 }

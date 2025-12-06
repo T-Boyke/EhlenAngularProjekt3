@@ -1,7 +1,16 @@
 @reference "../../../styles.css";
 
+/*
+ * =================================================================
+ * Quiz Component Styling
+ * =================================================================
+ *
+ * Layout für die aktive Fragen-Ansicht.
+ */
+
 /* Block: Quiz Page */
 .quiz {
+  /* 'pt-20 md:pt-32': Mehr Padding oben auf Desktop, damit es nicht am Rand klebt */
   @apply min-h-screen w-full flex flex-col items-center justify-start pt-20 md:pt-32 p-4 relative;
 }
 
@@ -12,11 +21,16 @@
 
 /* Block: Quiz Card */
 .quiz__card {
+  /**
+   * Haupt-Container für die Frage.
+   * 'glass-card' ist eine Utility-Klasse (siehe styles.css) für den Glas-Effekt.
+   */
   @apply glass-card w-full max-w-3xl flex flex-col items-center gap-6 animate-pop-in relative;
 }
 
 /* Element: Image Wrapper */
 .quiz__image-wrapper {
+  /* Fixe Höhe verhindert Layout-Shift beim Laden des Bildes */
   @apply w-full h-48 md:h-64 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center;
 }
 
@@ -31,6 +45,11 @@
 
 /* Element: Options Grid */
 .quiz__options-grid {
+  /*
+   * Grid für Antwort-Optionen:
+   * Mobile: 1 Spalte (untereinander).
+   * Desktop (md): 2 Spalten (nebeneinander).
+   */
   @apply grid grid-cols-1 md:grid-cols-2 gap-4 w-full;
 }
 
@@ -39,23 +58,25 @@
   @apply glass-btn text-lg w-full transition-all duration-300 border border-transparent;
 }
 
-/* --- Modifiers für Option Button (State) --- */
-/* Standard Hover (nur wenn nicht ausgewählt) */
+/* --- State Modifiers --- */
+
+/* Hover State (nur wenn Button aktiv/nicht disabled) */
 .quiz__option-btn:not(:disabled):hover {
   @apply bg-white/60;
 }
 
-/* Richtige Antwort (Wird grün) */
+/* Modifier: Correct (Grün) */
 .quiz__option-btn--correct {
+  /* !important (!), um Tailwind-Klassen bei Konflikten zu erzwingen */
   @apply !bg-green-500 !border-green-600 text-white scale-105 shadow-xl;
 }
 
-/* Falsche Antwort / Ausgewählt (Wird rot) */
+/* Modifier: Wrong (Rot) */
 .quiz__option-btn--wrong {
   @apply !bg-red-500 !border-red-600 text-white;
 }
 
-/* Andere Antworten bei getroffener Wahl (Ausgegraut) */
+/* Modifier: Muted (Ausgegraut - wenn eine andere Antwort gewählt wurde) */
 .quiz__option-btn--muted {
   @apply !bg-gray-300/50 !text-gray-500 opacity-50 grayscale;
 }
@@ -71,15 +92,18 @@
 
 /* Element: Timer (Master Mode) */
 .quiz__timer {
+  /* Positioniert oben rechts innerhalb der Karte */
   @apply absolute top-4 right-4 text-2xl font-bold text-blue-700 bg-white/70 px-4 py-2 rounded-lg shadow-md animate-pulse;
 }
 
+/* Modifier: Critical Timer (wenig Zeit übrig) */
 .quiz__timer--critical {
   @apply text-red-600 bg-red-100;
 }
 
-/* Block: Feedback Box */
+/* Block: Feedback Box (Richtig/Falsch Meldung) */
 .quiz__feedback {
+  /* Blendet von unten ein (@slideUp in Angular) */
   @apply w-full p-4 rounded-xl bg-white/40 mt-4 border-l-4 transition-all duration-300 animate-slide-up;
 }
 

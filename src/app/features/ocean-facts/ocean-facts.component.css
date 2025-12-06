@@ -1,28 +1,50 @@
 @reference "../../../styles.css";
 
-/* Block: Page */
+/*
+ * =================================================================
+ * Ocean Facts Component Styling
+ * =================================================================
+ *
+ * Strategie:
+ * - Mobile-First: Basis-Styles gelten für kleine Screens, md/lg für größere.
+ * - BEM (Block-Element-Modifier): .block__element--modifier
+ */
+
+/* Block: Page Wrapper */
 .ocean-facts {
+  /*
+   * Flexbox für vertikale Zentrierung.
+   * 'min-h-screen' sorgt dafür, dass der Hintergrund den ganzen Viewport füllt.
+   */
   @apply min-h-screen w-full flex flex-col items-center justify-center p-4 relative;
 }
 
 /* Element: Back Button */
 .ocean-facts__back-btn {
+  /* Absolute Positionierung oben links, 'z-10' damit er immer klickbar bleibt */
   @apply absolute top-6 left-6 glass-btn p-3 rounded-full z-10;
 }
 
 /* Block: Content Card */
 .ocean-facts__card {
+  /*
+   * Responsive Layout:
+   * - Mobile: Flex-Column (Bild oben, Text unten)
+   * - Desktop (md:): Flex-Row (Bild links, Text rechts)
+   */
   @apply glass-card w-full max-w-4xl min-h-[400px] relative;
   @apply flex flex-col md:flex-row gap-8 items-center;
-  @apply animate-pop-in;
+  @apply animate-pop-in; /* Custom Animation aus globalen Styles */
 }
 
 /* Element: Image Wrapper */
 .ocean-facts__image-wrapper {
+  /* Container für das Bild, sorgt für feste Relationen und abgerundete Ecken */
   @apply w-full md:w-1/2 h-64 md:h-80 rounded-xl overflow-hidden bg-white/30 shadow-inner flex items-center justify-center;
 }
 
 .ocean-facts__image {
+  /* 'object-cover' verhindert Verzerrung des Bildes */
   @apply w-full h-full object-cover;
 }
 
@@ -36,15 +58,17 @@
 }
 
 .ocean-facts__text {
+  /* 'leading-relaxed' (1.625) für bessere Lesbarkeit von Fließtext */
   @apply text-lg text-slate-800 leading-relaxed;
 }
 
-/* Element: Navigation Controls */
+/* Element: Navigation Controls (Pfeiltasten) */
 .ocean-facts__nav {
   @apply absolute bottom-4 right-4 flex gap-4;
 }
 
 .ocean-facts__nav-btn {
+  /* Interaktive States: Hover und Active (Klick) */
   @apply glass-btn px-4 py-2 hover:bg-white/80 active:scale-95;
 }
 
@@ -54,15 +78,19 @@
 }
 
 .ocean-facts__progress-fill {
+  /* Animation für weichen Übergang beim Fortschritt */
   @apply h-full bg-blue-500 transition-all duration-300 ease-out;
 }
 
 /* Element: Quiz Start Wrapper */
 .ocean-facts__quiz-wrapper {
+  /* Transition erlaubt weiches Ein-/Ausblenden */
   @apply mt-8 h-14 flex items-center justify-center transition-all duration-500;
 }
 
+/* Modifier: Hidden State */
 .ocean-facts__quiz-wrapper--hidden {
+  /* 'invisible' nimmt keinen Platz weg und unterbindet Klicks */
   @apply opacity-0 invisible;
 }
 

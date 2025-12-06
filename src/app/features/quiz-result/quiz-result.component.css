@@ -1,5 +1,11 @@
 @reference "../../../styles.css";
 
+/*
+ * =================================================================
+ * Quiz Result Styling
+ * =================================================================
+ */
+
 /* Block: Page Container */
 .quiz-result {
   @apply min-h-screen w-full flex flex-col items-center justify-center p-4;
@@ -12,17 +18,19 @@
 
 /* --- Block: Certificate (Master Mode) --- */
 .quiz-result__certificate {
+  /* Ein festlicher Rahmen ('double border') für den Urkunden-Look */
   @apply border-8 border-double border-yellow-400 p-8 rounded-xl bg-white/90 shadow-2xl relative overflow-hidden w-full;
 }
 
 /* Element: Certificate Background */
 .quiz-result__certificate-bg {
-  /* Hinweis: Pfad prüfen, ob assets/images/pacific.png existiert, sonst Fallback */
+  /* Wasserzeichen im Hintergrund */
   @apply absolute top-0 left-0 w-full h-full opacity-10 bg-cover bg-center bg-no-repeat;
   background-image: url('/assets/images/pacific.png');
 }
 
 .quiz-result__certificate-title {
+  /* 'font-serif' für einen klassischeren Urkunden-Font */
   @apply text-4xl md:text-5xl font-serif font-bold text-blue-900 mb-4 relative z-10;
 }
 
@@ -31,6 +39,7 @@
 }
 
 .quiz-result__certificate-rank {
+  /* Abzeichen-Stil */
   @apply text-3xl font-bold text-blue-900 border-b-2 border-blue-900 inline-block px-8 py-2 mb-6 relative z-10;
 }
 
@@ -50,7 +59,7 @@
   @apply mt-4 text-sm text-blue-600 relative z-10 font-mono;
 }
 
-/* --- Block: Failure State (Master Mode) --- */
+/* --- Block: Failure State --- */
 .quiz-result__failure-title {
   @apply text-3xl font-bold text-red-600;
 }
@@ -72,6 +81,7 @@
   @apply text-6xl font-bold transition-all duration-500;
 }
 
+/* Score Modifiers */
 .quiz-result__score--success {
   @apply text-green-500 scale-110 drop-shadow-md;
 }
@@ -84,8 +94,9 @@
   @apply text-xl text-blue-800 max-w-md;
 }
 
-/* --- Block: Actions --- */
+/* --- Block: Actions (Buttons) --- */
 .quiz-result__actions {
+  /* Flex-Col auf Mobile, Flex-Row auf Desktop */
   @apply flex flex-col sm:flex-row gap-4 mt-8 w-full justify-center;
 }
 

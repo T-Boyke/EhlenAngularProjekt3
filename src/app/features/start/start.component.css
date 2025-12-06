@@ -1,38 +1,46 @@
 @reference "../../../styles.css";
 
-/* Block: Start Page */
+/*
+ * =================================================================
+ * Start Page Component Styling
+ * =================================================================
+ */
+
+/* Block: Start Page Overlay */
 .start-page {
+  /* Zentriert den Inhalt mittig auf dem Bildschirm */
   @apply flex items-center justify-center h-screen w-full;
 }
 
 /* Element: Card */
 .start-page__card {
-  /* Layout & Spacing */
+  /* Layout: Flex-Column für vertikales Stapeln */
   @apply flex flex-col items-center gap-6 w-full max-w-md p-8;
 
-  /* Visuals (Glass Effect via Utility) */
+  /* Visuals: Nutzt 'glass-card' Utility für Milchglas-Look */
   @apply glass-card text-center;
 
-  /* Animation */
+  /* Animation beim Laden */
   @apply animate-fly-in;
 }
 
 /* Element: Logo Wrapper */
 .start-page__logo-wrapper {
+  /* Runder Kreis mit leichtem Hintergrund */
   @apply w-32 h-32 rounded-full bg-white/50 flex items-center justify-center shadow-inner mb-2;
 }
 
-/* Element: Logo Icon */
+/* Element: Logo Icon (Emoji) */
 .start-page__logo {
   @apply text-4xl;
 }
 
-/* Element: Title */
+/* Element: Title Headline */
 .start-page__title {
   @apply text-4xl font-extrabold text-blue-900 drop-shadow-sm;
 }
 
-/* Element: Fact Box */
+/* Element: Fact Box ("Wusstest du schon?") */
 .start-page__fact-box {
   @apply bg-white/30 p-4 rounded-xl w-full border border-white/40;
 }
@@ -47,5 +55,6 @@
 
 /* Element: Action Button */
 .start-page__button {
+  /* 'glass-btn-primary' betont den Button als Hauptaktion */
   @apply glass-btn glass-btn-primary text-xl w-full mt-4;
 }
