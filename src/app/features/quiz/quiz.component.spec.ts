@@ -3,6 +3,7 @@ import { QuizComponent } from './quiz.component';
 import { QuizStore } from '../../store/quiz.store';
 import { Router } from '@angular/router';
 import { signal } from '@angular/core';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 /**
  * Unit-Tests für die QuizComponent.
@@ -74,7 +75,8 @@ describe('QuizComponent', () => {
       imports: [QuizComponent],
       providers: [
         { provide: QuizStore, useValue: mockStore },
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        provideNoopAnimations()
       ]
     }).compileComponents();
 
