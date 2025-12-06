@@ -41,6 +41,7 @@ describe('OceanDataService', () => {
 
   it('should fallback to local JSON on API failure', () => {
     // Spy on console.warn to suppress it in test output
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     vi.spyOn(console, 'warn').mockImplementation(() => {});
 
     service.getOceans().subscribe(oceans => {

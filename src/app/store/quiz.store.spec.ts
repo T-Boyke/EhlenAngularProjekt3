@@ -22,7 +22,7 @@ const mockOceans: Ocean[] = [
 
 describe('QuizStore', () => {
   let store: QuizStore;
-  let oceanServiceSpy: { getOceans: any };
+  let oceanServiceSpy: { getOceans: ReturnType<typeof vi.fn> };
 
   beforeEach(() => {
     oceanServiceSpy = {
@@ -39,6 +39,7 @@ describe('QuizStore', () => {
     store = TestBed.inject(QuizStore);
     // Mock LocalStorage
     vi.spyOn(Storage.prototype, 'getItem').mockReturnValue(null);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {});
   });
 
