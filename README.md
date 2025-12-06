@@ -12,7 +12,7 @@
   <p align="center">
     Eine interaktive Lern-App für Kinder (7-9 Jahre) zum Entdecken der Weltmeere.
     <br />
-    <a href="#-demo"><strong>Dokumentation »</strong></a>
+    <a href="#-demo"><strong>Dokumentation (Handbuch) »</strong></a>
     <br />
     <br />
     <a href="#-demo">Live Demo</a>
@@ -53,7 +53,9 @@
 
 **Earth Ocean Learning** ist eine interaktive Single Page Application (SPA), die Grundschulkindern die fünf Weltmeere spielerisch näherbringt.
 
-Das Projekt wurde als Abschlussarbeit für die **IHK Fachinformatiker für Anwendungsentwicklung** Zertifizierung entwickelt. Es bietet eine kindgerechte Benutzeroberfläche, Gamification-Elemente und legt großen Wert auf Datenschutz (lokale Speicherung).
+Das Projekt wurde als simulierte Abschlussarbeit für die **IHK Fachinformatiker für Anwendungsentwicklung** Zertifizierung entwickelt. Es bietet eine kindgerechte Benutzeroberfläche, Gamification-Elemente und legt großen Wert auf Datenschutz (lokale Speicherung).
+
+👉 **Detaillierte Dokumentation:** Siehe `IHK_HANDBUCH.md` im Hauptverzeichnis.
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
@@ -64,8 +66,10 @@ Dieses Projekt basiert auf folgenden Technologien:
 *   [![Angular][Angular.io]][Angular-url] **Angular 21**
 *   [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url] **Tailwind CSS 4**
 *   [![NodeJS][Node.js]][Node-url] **Node.js**
+*   [![Vitest][Vitest-badge]][Vitest-url] **Vitest**
+*   [![Playwright][Playwright-badge]][Playwright-url] **Playwright**
+*   **Angular Signals** (State Management)
 *   **TypeScript**
-*   **Angular with Signals**
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
@@ -77,6 +81,7 @@ Das Projekt folgt einer modularen Architektur mit Standalone Components:
 *   `src/app/models/`: TypeScript Interfaces und Typen
 *   `src/app/services/`: Services für Daten und Logik
 *   `src/app/store/`: State Management mit SignalStore
+*   `tests/`: E2E Tests (Playwright)
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
@@ -87,7 +92,7 @@ Folge diesen Schritten, um eine lokale Kopie des Projekts zum Laufen zu bringen.
 
 ### Voraussetzungen
 
-*   **Node.js**: (Empfohlen: Aktuelle LTS Version)
+*   **Node.js**: (Empfohlen: Aktuelle LTS Version - v22+)
 *   **npm**: Wird normalerweise mit Node.js installiert.
 
 ### Installation
@@ -99,6 +104,8 @@ Folge diesen Schritten, um eine lokale Kopie des Projekts zum Laufen zu bringen.
 2.  NPM Pakete installieren
     ```sh
     npm install
+    # oder für sauberen Install:
+    npm ci
     ```
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
@@ -109,6 +116,8 @@ Folge diesen Schritten, um eine lokale Kopie des Projekts zum Laufen zu bringen.
 Starte den Entwicklungsserver:
 
 ```sh
+npm start
+# oder
 ng serve
 ```
 
@@ -122,15 +131,27 @@ Navigiere zu `http://localhost:4200/`. Die Anwendung lädt automatisch neu, wenn
 **Build für Produktion:**
 
 ```sh
-ng build
+npm run build
 ```
 
 Die Artefakte werden im `dist/` Verzeichnis gespeichert.
 
-**Tests ausführen:**
+**Unit Tests (Vitest):**
 
 ```sh
-ng test
+npm test
+```
+
+**Code Coverage:**
+
+```sh
+npm run test:coverage
+```
+
+**E2E Tests (Playwright):**
+
+```sh
+npm run test:e2e
 ```
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
@@ -153,8 +174,12 @@ Projektlink: [https://github.com/T-Boyke/EhlenAngularProjekt3](https://github.co
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
+[Angular-url]: https://angular.dev/
 [TailwindCSS.com]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 [TailwindCSS-url]: https://tailwindcss.com/
 [Node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
 [Node-url]: https://nodejs.org/
+[Vitest-badge]: https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white
+[Vitest-url]: https://vitest.dev/
+[Playwright-badge]: https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white
+[Playwright-url]: https://playwright.dev/
