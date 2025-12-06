@@ -57,6 +57,8 @@ Das Projekt wurde als simulierte Abschlussarbeit für die **IHK Fachinformatiker
 
 👉 **Detaillierte Dokumentation:** Siehe `IHK_HANDBUCH.md` im Hauptverzeichnis.
 
+📋 **Projektmanagement:** [Hier geht's zum Kanban Board](https://github.com/users/T-Boyke/projects/4) (Agile Planung via GitHub Projects).
+
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
 ### 🛠 Technologie Stack
