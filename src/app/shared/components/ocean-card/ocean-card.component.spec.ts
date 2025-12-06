@@ -15,10 +15,14 @@ describe('OceanCardComponent', () => {
   let component: OceanCardComponent;
   let fixture: ComponentFixture<OceanCardComponent>;
 
-  const mockOcean: any = {
+  const mockOcean: Ocean = {
     id: '1',
     name: 'Test Ocean',
-    oceanimage: 'test.jpg'
+    oceanimage: 'test.jpg',
+    description: 'Desc',
+    facts: [],
+    inhabitants: [],
+    quiz: []
   };
 
   beforeEach(async () => {

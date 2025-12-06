@@ -11,8 +11,13 @@ import { test, expect } from '@playwright/test';
 test('quiz flow: select ocean, answer question, see feedback', async ({ page }) => {
   // 1. Start auf der Homepage
   await page.goto('/');
-  await page.waitForLoadState('networkidle'); // Warten, bis alle Netzwerkanfragen fertig sind
-  await page.waitForTimeout(2000); // Zusätzlicher Puffer für Initialisierungs-Animationen
+  await page.waitForLoadState('networkidle');
+
+  // Klick auf "Los geht's", um zur Auswahl zu kommen
+  await page.locator('.start-page__button').click();
+  await expect(page).toHaveURL(/.*selection/);
+
+  await page.waitForTimeout(1000); // Kurze Wartezeit für Animation
 
   // 2. Einen Ozean auswählen
   // Wir nehmen die erste verfügbare Karte mit der Klasse .ocean-card

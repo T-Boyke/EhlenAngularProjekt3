@@ -17,9 +17,23 @@ describe('QuizComponent', () => {
   let component: QuizComponent;
   let fixture: ComponentFixture<QuizComponent>;
 
-  // Mock für den globalen QuizStore (wir testen hier nur die Component, nicht den Store)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let mockStore: any;
+  // Mock für den globalen QuizStore
+  let mockStore: {
+    currentQuestion: ReturnType<typeof signal>;
+    currentOcean: ReturnType<typeof signal>;
+    progress: ReturnType<typeof signal>;
+    masterMode: ReturnType<typeof signal>;
+    isQuizFinished: ReturnType<typeof signal>;
+    currentQuestionIndex: ReturnType<typeof signal>;
+    answerQuestion: ReturnType<typeof vi.fn>;
+    nextQuestion: ReturnType<typeof vi.fn>;
+    exitQuiz: ReturnType<typeof vi.fn>;
+    oceans: ReturnType<typeof signal>; // Missing
+    score: ReturnType<typeof signal>; // Missing
+    isQuizActive: ReturnType<typeof signal>; // Missing
+    completedOceans: ReturnType<typeof signal>; // Missing
+    isMasterUnlocked: ReturnType<typeof signal>; // Missing
+  };
 
   // Spy für den Router, um Navigationen abzufangen
   let routerSpy: { navigate: ReturnType<typeof vi.fn> };
@@ -41,6 +55,12 @@ describe('QuizComponent', () => {
       masterMode: signal(false),
       isQuizFinished: signal(false),
       currentQuestionIndex: signal(0),
+      oceans: signal([]),
+      score: signal(0),
+      isQuizActive: signal(false),
+      completedOceans: signal([]),
+      isMasterUnlocked: signal(false),
+
       // Methoden werden als Spies gemockt
       answerQuestion: vi.fn(),
       nextQuestion: vi.fn(),
