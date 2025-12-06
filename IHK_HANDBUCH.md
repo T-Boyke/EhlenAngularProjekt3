@@ -64,7 +64,12 @@ Inhalte liegen unstrukturiert vor.
 *   Entwickler-Workstation: Windows 11 / Rocky Linux 10.
 *   Tools: VS Code, Node.js, NPM.
 
-### 2.2 Soll-Analyse
+### 2.2 Planungsmethode (Agil / Kanban)
+Das Projekt wurde agil nach der **Kanban-Methode** durchgeführt. Zur Visualisierung des Workflows und der Aufgabenverwaltung wurde **GitHub Projects** eingesetzt.
+*   **Kanban Board:** [https://github.com/users/T-Boyke/projects/4](https://github.com/users/T-Boyke/projects/4)
+*   **Workflow:** Backlog -> Todo -> In Progress -> Done
+
+### 2.3 Soll-Analyse
 **Funktionale Anforderungen:**
 *   Ozean-Auswahl & Lernmodus (Fakten/Bewohner).
 *   Quiz-System mit Feedback.
@@ -76,7 +81,7 @@ Inhalte liegen unstrukturiert vor.
 *   Tech-Stack: Angular 21 (Signals), Standalone Components.
 *   Performance & Responsivität (Tablets).
 
-### 2.3 Zeitplanung
+### 2.4 Zeitplanung
 
 ```mermaid
 gantt
@@ -126,7 +131,7 @@ gantt
 | | Projektdoku & Handbuch | 10 h |
 | **Gesamt** | | **70 h** |
 
-### 2.4 Kostenplanung
+### 2.5 Kostenplanung
 *   Personalkosten: 70h * 35,00 € = 2.450,00 €
 *   Sachmittel: 150,00 €
 *   **Gesamt (Plan): 2.600,00 €**
