@@ -41,7 +41,7 @@ jobs:
         run: npm run build -- --configuration production
 
       - name: Archive Build Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: dist
           path: dist/
