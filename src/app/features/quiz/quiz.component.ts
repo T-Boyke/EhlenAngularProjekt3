@@ -1,4 +1,5 @@
 import { Component, inject, signal, effect, OnInit, OnDestroy } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { QuizStore } from '../../store/quiz.store';
 import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
@@ -16,7 +17,7 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
       </button>
 
       @if (store.currentQuestion(); as question) {
-        <div class="quiz__card">
+        <div class="quiz__card" @fadeIn>
 
           <div class="quiz__image-wrapper">
              <img [src]="question.quizimage"
@@ -52,7 +53,7 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
           }
 
           @if (showFeedback()) {
-            <div class="quiz__feedback"
+            <div class="quiz__feedback" @slideUp
                  [class.quiz__feedback--correct]="isCorrect()"
                  [class.quiz__feedback--wrong]="!isCorrect()">
               <h3 class="quiz__feedback-title"
@@ -66,7 +67,21 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
         </div>
       }
     </div>
-  `
+  `,
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.95)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+      ])
+    ]),
+    trigger('slideUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class QuizComponent implements OnInit, OnDestroy {
   store = inject(QuizStore);
