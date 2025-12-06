@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal, effect, Signal } from '@angular/core';
 import { OceanDataService } from '../services/ocean.data.service';
-import { Ocean } from '../models/ocean.model';
+import { Ocean, QuizQuestion } from '../models/ocean.model';
 
 /**
  * Vorlage für das "Master-Quiz".
@@ -37,8 +37,15 @@ export class QuizStore {
   // --- Interner State (private signals) ---
   // Diese Signale sind privat und können nur innerhalb dieser Klasse verändert werden.
 
-  /** Liste aller verfügbaren Ozeane. */
+  /** Liste aller verfügbaren Ozeane (Katalog). */
   private readonly _oceans = signal<Ocean[]>([]);
+
+  /**
+   * Die Fragen für die aktuelle Quiz-Session.
+   * Dies trennt den Katalog (_oceans) vom Session-State.
+   */
+  private readonly _activeQuestions = signal<QuizQuestion[]>([]);
+
   /** ID des aktuell ausgewählten Ozeans (oder null, wenn keiner gewählt). */
   private readonly _currentOceanId = signal<string | null>(null);
   /** Index der aktuellen Frage im Quiz-Array des gewählten Ozeans. */
@@ -55,8 +62,6 @@ export class QuizStore {
   private readonly _masterMode = signal<boolean>(false);
 
   // --- Öffentliche Readonly Signals ---
-  // Diese Signale werden nach außen hingegeben. Komponenten können sie lesen ("reagieren"),
-  // aber nicht direkt schreiben. Das schützt den State vor inkonsistenten Änderungen.
 
   readonly oceans: Signal<Ocean[]> = this._oceans.asReadonly();
   readonly currentOceanId: Signal<string | null> = this._currentOceanId.asReadonly();
@@ -68,34 +73,35 @@ export class QuizStore {
   readonly masterMode: Signal<boolean> = this._masterMode.asReadonly();
 
   // --- Computed Signals (Abgeleiteter State) ---
-  // Diese Werte berechnen sich automatisch neu, wenn sich ihre Abhängigkeiten ändern.
 
   /**
    * Liefert das aktuelle Ozean-Objekt basierend auf der `currentOceanId`.
-   * Findet den Ozean in der `_oceans` Liste.
+   * Im Master-Modus wird ein virtuelles Template zurückgegeben.
    */
-  readonly currentOcean = computed(() =>
-    this._oceans().find(o => o.id === this._currentOceanId())
-  );
+  readonly currentOcean = computed(() => {
+    if (this._masterMode()) {
+      return MASTER_OCEAN_TEMPLATE as Ocean;
+    }
+    return this._oceans().find(o => o.id === this._currentOceanId());
+  });
 
   /**
-   * Liefert das aktuelle Frage-Objekt basierend auf dem `currentQuestionIndex`.
+   * Liefert das aktuelle Frage-Objekt aus der aktiven Session.
    */
   readonly currentQuestion = computed(() => {
-    const ocean = this.currentOcean();
-    return ocean?.quiz[this._currentQuestionIndex()] || null;
+    const questions = this._activeQuestions();
+    return questions[this._currentQuestionIndex()] || null;
   });
 
   /**
    * Berechnet die Gesamtanzahl der Fragen für das aktuelle Quiz.
    */
   readonly totalQuestions = computed(() =>
-    this.currentOcean()?.quiz.length || 0
+    this._activeQuestions().length
   );
 
   /**
    * Berechnet den Fortschritt des Quiz in Prozent (0-100).
-   * Wird für die Progress-Bar verwendet.
    */
   readonly progress = computed(() => {
     const total = this.totalQuestions();
@@ -104,18 +110,14 @@ export class QuizStore {
 
   /**
    * Prüft, ob das "Ultimative Quiz" freigeschaltet ist.
-   * Bedingung: Alle 5 normalen Ozeane müssen abgeschlossen sein.
    */
   readonly isMasterUnlocked = computed(() =>
     this._completedOceans().length >= 5
   );
 
   constructor() {
-    // Beim Start: Fortschritt laden
     this.loadProgressFromStorage();
 
-    // Effect: "Side Effect", der automatisch läuft, wenn sich _completedOceans ändert.
-    // Speichert den neuen Fortschritt sofort im LocalStorage.
     effect(() => {
       this.saveProgressToStorage(this._completedOceans());
     });
@@ -123,7 +125,6 @@ export class QuizStore {
 
   // --- Helper Methods (Private) ---
 
-  /** Lädt den gespeicherten Fortschritt aus dem Browser-LocalStorage. */
   private loadProgressFromStorage(): void {
     const savedProgress = localStorage.getItem(this.STORAGE_KEY);
     if (savedProgress) {
@@ -135,44 +136,29 @@ export class QuizStore {
     }
   }
 
-  /** Speichert den Fortschritt im Browser-LocalStorage. */
   private saveProgressToStorage(progress: string[]): void {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(progress));
   }
 
   // --- Public Logic (Actions) ---
-  // Diese Methoden werden von den Komponenten aufgerufen, um den State zu ändern.
 
-  /** Prüft, ob ein spezifischer Ozean bereits erfolgreich absolviert wurde. */
   isOceanCompleted(oceanId: string): boolean {
     return this._completedOceans().includes(oceanId);
   }
 
   /**
    * Lädt die Ozean-Daten initial vom Service.
-   * Startet den HTTP-Request und mischt die Antwortmöglichkeiten zufällig,
-   * damit das Quiz nicht immer gleich ist.
+   * Hier werden die Fragen NICHT mehr gemischt, das passiert erst beim Start eines Quiz.
    */
   loadOceans(): void {
     this.oceanDataService.getOceans().subscribe({
       next: (oceans) => {
-        // Antworten mischen (Fisher-Yates oder simples sort mit random)
-        const shuffledOceans = oceans.map(ocean => ({
-          ...ocean,
-          quiz: ocean.quiz.map(q => ({
-            ...q,
-            options: [...q.options].sort(() => Math.random() - 0.5)
-          }))
-        }));
-        this._oceans.set(shuffledOceans);
+        this._oceans.set(oceans);
       },
       error: (err) => console.error(err)
     });
   }
 
-  /**
-   * Wählt einen Ozean aus und setzt den Quiz-Status zurück für einen sauberen Start.
-   */
   selectOcean(oceanId: string): void {
     this._currentOceanId.set(oceanId);
     this.resetQuizState();
@@ -180,46 +166,52 @@ export class QuizStore {
 
   /**
    * Startet das Quiz für den aktuell gewählten Ozean.
+   * Kopiert die Fragen in _activeQuestions und mischt die Antworten.
    */
   startQuiz(): void {
-    this.resetQuizState();
-    this._isQuizActive.set(true);
+    const ocean = this._oceans().find(o => o.id === this._currentOceanId());
+    if (ocean) {
+      // Fragen kopieren und Antworten mischen
+      const sessionQuestions = ocean.quiz.map(q => ({
+        ...q,
+        options: [...q.options].sort(() => Math.random() - 0.5)
+      }));
+
+      this._activeQuestions.set(sessionQuestions);
+      this.resetQuizState();
+      this._isQuizActive.set(true);
+    }
   }
 
   /**
    * Generiert und startet das "Meister-Quiz".
-   * - Sammelt ALLE Fragen aus allen Ozeanen.
+   * - Sammelt ALLE Fragen aus dem Katalog.
    * - Mischt sie zufällig.
-   * - Erstellt einen temorären "Master"-Ozean.
+   * - Setzt sie als aktive Fragen.
    */
   startMasterQuiz(): void {
     const allQuestions = this._oceans()
-      .filter(o => o.id !== 'master')
       .flatMap(o => o.quiz);
 
+    // Fragen mischen
     const shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
 
-    const masterOcean: Ocean = {
-      ...MASTER_OCEAN_TEMPLATE as Ocean,
-      quiz: shuffledQuestions
-    };
+    // Auch die Antworten innerhalb der Fragen mischen
+    const preparedQuestions = shuffledQuestions.map(q => ({
+      ...q,
+      options: [...q.options].sort(() => Math.random() - 0.5)
+    }));
 
-    // Fügt den Master-Ozean temporär zur Liste hinzu
-    this._oceans.update(oceans => {
-      const others = oceans.filter(o => o.id !== 'master');
-      return [...others, masterOcean];
-    });
+    this._activeQuestions.set(preparedQuestions);
 
+    // Virtual ID setzen
     this._currentOceanId.set('master');
+
     this.resetQuizState();
     this._isQuizActive.set(true);
     this._masterMode.set(true);
   }
 
-  /**
-   * Verarbeitet eine gegebene Antwort.
-   * Erhöht den Score, falls die Antwort korrekt ist.
-   */
   answerQuestion(answer: string): void {
     const question = this.currentQuestion();
     if (question && answer === question.answer) {
@@ -227,10 +219,6 @@ export class QuizStore {
     }
   }
 
-  /**
-   * Schaltet zur nächsten Frage weiter.
-   * Wenn das Ende erreicht ist, wird `finishQuiz` aufgerufen.
-   */
   nextQuestion(): void {
     const nextIndex = this._currentQuestionIndex() + 1;
     if (nextIndex >= this.totalQuestions()) {
@@ -240,32 +228,22 @@ export class QuizStore {
     }
   }
 
-  /**
-   * Startet das aktuelle Quiz neu (Score 0, Frage 1).
-   */
   restartQuiz(): void {
+    // Beim Neustart behalten wir die aktuellen _activeQuestions bei
     this.resetQuizState();
     this._isQuizActive.set(true);
   }
 
-  /**
-   * Verlässt das Quiz und kehrt zur Auswahl zurück.
-   */
   exitQuiz(): void {
     this.resetQuizState();
     this._currentOceanId.set(null);
+    this._activeQuestions.set([]); // Clean up
   }
 
-  /**
-   * Interne Methode zum Beenden des Quizzes.
-   * - Setzt Status auf "Finished".
-   * - Speichert den Erfolg, wenn alle Fragen richtig beantwortet wurden (100%).
-   */
   private finishQuiz(): void {
     this._isQuizActive.set(false);
     this._isQuizFinished.set(true);
 
-    // Nur im normalen Modus speichern wir den Fortschritt (Sterne sammeln)
     if (!this._masterMode() && this._score() === this.totalQuestions()) {
       const currentId = this._currentOceanId();
       if (currentId && !this._completedOceans().includes(currentId)) {
@@ -274,14 +252,11 @@ export class QuizStore {
     }
   }
 
-  /**
-   * Setzt alle Quiz-relevanten Zähler auf Anfangswerte zurück.
-   */
   private resetQuizState(): void {
     this._currentQuestionIndex.set(0);
     this._score.set(0);
     this._isQuizActive.set(false);
-    this._isQuizFinished.set(false); // Ergebnis-Screen ausblenden
-    this._masterMode.set(false);
+    this._isQuizFinished.set(false);
+    this._masterMode.set(this._currentOceanId() === 'master');
   }
 }

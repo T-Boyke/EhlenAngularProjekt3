@@ -92,10 +92,11 @@ src/
 │   ├── store/              # QuizStore (State Management)
 │   ├── app.routes.ts       # Routing Konfiguration
 │   └── app.config.ts       # App Konfiguration
+└── styles.css              # Globale Styles & Tailwind Imports
+public/
 ├── assets/
 │   ├── data/               # ocean-data.json (Inhalte)
 │   └── images/             # Bilder für Ozeane & Tiere
-└── styles.css              # Globale Styles & Tailwind Imports
 ```
 
 ---

@@ -6,6 +6,7 @@ Willkommen bei **Earth Ocean Learning**! Diese Anwendung hilft dir, die spannend
 ## 2. Starten der Anwendung
 1.  Öffne die Webseite im Browser (z.B. Chrome, Firefox oder Edge).
 2.  Klicke auf den großen Button **"Los geht's"**, um zu starten.
+    *   *Tipp:* Auf der Startseite findest du auch schon einen spannenden Zufalls-Fakt!
 
 ## 3. Ozean auswählen
 Auf der Übersichtskarte siehst du die 5 Weltmeere.
