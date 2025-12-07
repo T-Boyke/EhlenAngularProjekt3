@@ -1,5 +1,4 @@
 import { Component, inject, signal, effect, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { QuizStore } from '../../store/quiz.store';
@@ -21,7 +20,7 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [CommonModule, ImageFallbackDirective, NgOptimizedImage],
+  imports: [ImageFallbackDirective],
   styleUrl: './quiz.component.css',
   template: `
     <div class="quiz">
@@ -34,11 +33,11 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
         <div class="quiz__card" @fadeIn>
 
           <div class="quiz__image-wrapper">
-             <img [ngSrc]="question.quizimage"
+             <img [src]="question.quizimage"
                   [alt]="'Bild zur Frage: ' + question.question"
                   class="quiz__image"
-                  priority
-                  fill
+                  fetchpriority="high"
+                  loading="eager"
                   appImageFallback>
           </div>
 
