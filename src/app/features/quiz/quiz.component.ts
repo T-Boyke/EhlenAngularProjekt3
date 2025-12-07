@@ -1,3 +1,49 @@
+import { Component, inject, signal, effect, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { Router } from '@angular/router';
+import { QuizStore } from '../../store/quiz.store';
+import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
+
+/**
+ * Die Haupt-Komponente für das Quiz-Spiel.
+ *
+ * Verantwortlichkeit:
+ * - Darstellung der aktuellen Frage und Antwortmöglichkeiten.
+ * - Visuelles Feedback (Animationen, Farben) für richtig/falsch.
+ * - Timer-Logik im "Master-Modus".
+ * - Steuerung des Spielablaufs via QuizStore.
+ *
+ * Features:
+ * - Eingebauter Countdown (5 Sekunden) im Master-Modus.
+ * - Angular Animations für weiche Übergänge (@fadeIn, @slideUp).
+ */
+@Component({
+  selector: 'app-quiz',
+  standalone: true,
+  imports: [CommonModule, ImageFallbackDirective, NgOptimizedImage],
+  styleUrl: './quiz.component.css',
+  template: `
+    <div class="quiz">
+
+      <button (click)="exitQuiz()" class="quiz__exit-btn">
+        ⬅ Beenden
+      </button>
+
+      @if (store.currentQuestion(); as question) {
+        <div class="quiz__card" @fadeIn>
+
+          <div class="quiz__image-wrapper">
+             <img [ngSrc]="question.quizimage"
+                  [alt]="'Bild zur Frage: ' + question.question"
+                  class="quiz__image"
+                  priority
+                  fill
+                  appImageFallback>
+          </div>
+
+          <h2 class="quiz__question">{{ question.question }}</h2>
+
           <div class="quiz__options-grid">
             @for (option of question.options; track $index) {
               <button (click)="selectOption(option)"
