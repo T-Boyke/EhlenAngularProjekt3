@@ -23,7 +23,7 @@ export class OceanDataService {
   private http = inject(HttpClient);
 
   // Basis-URLs für Datenquellen
-  private apiUrl = 'http://localhost/grav-admin/eol-api/data';
+  private apiUrl = 'http://127.0.0.1:8000/eol-api/data';
   private localUrl = 'assets/data/ocean-data.json';
 
   /**

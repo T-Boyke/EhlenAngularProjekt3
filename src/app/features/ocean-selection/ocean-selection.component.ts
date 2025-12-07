@@ -32,7 +32,7 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
           <app-ocean-card
             [ocean]="ocean"
             [isCompleted]="store.isOceanCompleted(ocean.id)"
-            [priority]="$index < 4"
+            [priority]="$index < 5"
             (oceanSelected)="selectOcean($event)"
             [style.animation-delay]="$index * 100 + 'ms'">
             <!-- Animation Delay sorgt für einen kaskadierenden Einblend-Effekt -->
