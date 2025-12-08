@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { QuizStore } from '../../store/quiz.store';
 import { OceanCardComponent } from '../../shared/components/ocean-card/ocean-card.component';
 import { ProgressBarComponent } from '../../shared/components/progress-bar/progress-bar.component';
+import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner/loading-spinner.component';
 
 /**
  * Die Komponente für die Auswahl eines Ozeans.
@@ -23,7 +24,7 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
 @Component({
   selector: 'app-ocean-selection',
   standalone: true,
-  imports: [OceanCardComponent, ProgressBarComponent],
+  imports: [OceanCardComponent, ProgressBarComponent, LoadingSpinnerComponent],
   styleUrl: './ocean-selection.component.css',
   template: `
     <div class="ocean-selection">
@@ -31,6 +32,11 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
 
       <!-- Grid-Layout für die Ozean-Karten -->
       <div class="ocean-selection__grid">
+        @if (store.isLoading()) {
+        <div class="ocean-selection__loading">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+        } @else {
         <!-- @for Block (Angular Control Flow Syntax) -->
         @for (ocean of store.oceans(); track ocean.id) {
         <app-ocean-card
@@ -42,7 +48,7 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
         >
           <!-- Animation Delay sorgt für einen kaskadierenden Einblend-Effekt -->
         </app-ocean-card>
-        }
+        } }
       </div>
 
       <div class="ocean-selection__actions">

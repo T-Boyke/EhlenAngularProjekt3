@@ -62,6 +62,9 @@ export class QuizStore {
   /** Flag für das spezielle "Meister-Quiz". */
   private readonly _masterMode = signal<boolean>(false);
 
+  /** Gibt an, ob Daten geladen werden. */
+  private readonly _isLoading = signal<boolean>(false);
+
   // --- Öffentliche Readonly Signals ---
 
   readonly oceans: Signal<Ocean[]> = this._oceans.asReadonly();
@@ -72,6 +75,7 @@ export class QuizStore {
   readonly isQuizFinished: Signal<boolean> = this._isQuizFinished.asReadonly();
   readonly completedOceans: Signal<string[]> = this._completedOceans.asReadonly();
   readonly masterMode: Signal<boolean> = this._masterMode.asReadonly();
+  readonly isLoading: Signal<boolean> = this._isLoading.asReadonly();
 
   // --- Computed Signals (Abgeleiteter State) ---
 
@@ -148,11 +152,16 @@ export class QuizStore {
    * Hier werden die Fragen NICHT mehr gemischt, das passiert erst beim Start eines Quiz.
    */
   loadOceans(): void {
+    this._isLoading.set(true);
     this.oceanDataService.getOceans().subscribe({
       next: (oceans) => {
         this._oceans.set(oceans);
+        this._isLoading.set(false);
       },
-      error: (err) => console.error(err),
+      error: (err) => {
+        console.error(err);
+        this._isLoading.set(false);
+      },
     });
   }
 
