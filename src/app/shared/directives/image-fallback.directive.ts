@@ -34,8 +34,10 @@ export class ImageFallbackDirective {
   @HostListener('error')
   onError() {
     const img = this.el.nativeElement;
-    if (img.src !== window.location.origin + this.appImageFallback) {
-      img.src = this.appImageFallback;
+    const fallback = this.appImageFallback || '/assets/images/not_found.webp';
+
+    if (img.src !== window.location.origin + fallback) {
+      img.src = fallback;
     }
   }
 }

@@ -54,7 +54,7 @@ describe('OceanDataService', () => {
     });
 
     // 2. Erwarteten Request definieren
-    const req = httpMock.expectOne('/api/oceans');
+    const req = httpMock.expectOne('http://127.0.0.1:8000/eol-api/data');
     expect(req.request.method).toBe('GET');
 
     // 3. Antwort simulieren (Antwort zurückgeben)
@@ -72,7 +72,7 @@ describe('OceanDataService', () => {
     });
 
     // 1. API-Request erwarten und Fehler simulieren (404)
-    const apiReq = httpMock.expectOne('/api/oceans');
+    const apiReq = httpMock.expectOne('http://127.0.0.1:8000/eol-api/data');
     apiReq.flush('Error', { status: 404, statusText: 'Not Found' });
 
     // 2. Automatischen Fallback-Request erwarten (lokales JSON)

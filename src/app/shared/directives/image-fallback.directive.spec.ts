@@ -42,7 +42,7 @@ describe('ImageFallbackDirective', () => {
     imgDebugElement.triggerEventHandler('error', null);
     fixture.detectChanges();
 
-    expect(imgElement.getAttribute('src')).toBe('/assets/fallback.png');
+    expect(imgElement.src).toContain('/assets/fallback.png');
   });
 
   it('sollte das Standard-Fallback nutzen, wenn kein Input übergeben wird', () => {
@@ -52,6 +52,6 @@ describe('ImageFallbackDirective', () => {
     imgDebugElement.triggerEventHandler('error', null);
     fixture.detectChanges();
 
-    expect(imgElement.getAttribute('src')).toBe('/assets/images/not_found.webp');
+    expect(imgElement.src).toContain('/assets/images/not_found.webp');
   });
 });
