@@ -61,7 +61,7 @@ graph TD
         OceanDataService
         OceanModel
     end
-    ```
+```
 
 ### Komponentendiagramm
 
