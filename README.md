@@ -50,11 +50,12 @@
 </details>
 
 <!-- ÜBER DAS PROJEKT -->
+
 ## ℹ️ Über das Projekt
 
 **Earth Ocean Learning** ist eine interaktive Single Page Application (SPA), die Grundschulkindern die fünf Weltmeere spielerisch näherbringt.
 
-Das Projekt wurde als simulierte Abschlussarbeit für die **IHK Fachinformatiker für Anwendungsentwicklung** Zertifizierung entwickelt. Es bietet eine kindgerechte Benutzeroberfläche, Gamification-Elemente und legt großen Wert auf Datenschutz (lokale Speicherung).
+Das Projekt wurde als simulierte Abschlussarbeit für die **IHK Fachinformatiker für Anwendungsentwicklung** Zertifizierung entwickelt. Es bietet eine kindgerechte Benutzeroberfläche (inkl. Lade-Animationen), Gamification-Elemente und legt großen Wert auf Datenschutz (lokale Speicherung).
 
 👉 **Detaillierte Dokumentation:** Siehe [Boyke-Tobias-Angular-EOL-App-20251209.pdf](docs/Boyke-Tobias-Angular-EOL-App-20251209.pdf).
 
@@ -66,13 +67,13 @@ Das Projekt wurde als simulierte Abschlussarbeit für die **IHK Fachinformatiker
 
 Dieses Projekt basiert auf folgenden Technologien:
 
-*   [![Angular][Angular.io]][Angular-url] **Angular 21**
-*   [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url] **Tailwind CSS 4**
-*   [![NodeJS][Node.js]][Node-url] **Node.js**
-*   [![Vitest][Vitest-badge]][Vitest-url] **Vitest**
-*   [![Playwright][Playwright-badge]][Playwright-url] **Playwright**
-*   **Angular Signals** (State Management)
-*   **TypeScript**
+- [![Angular][Angular.io]][Angular-url] **Angular 21**
+- [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url] **Tailwind CSS 4**
+- [![NodeJS][Node.js]][Node-url] **Node.js**
+- [![Vitest][Vitest-badge]][Vitest-url] **Vitest**
+- [![Playwright][Playwright-badge]][Playwright-url] **Playwright**
+- **Angular Signals** (State Management)
+- **TypeScript**
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
@@ -80,23 +81,25 @@ Dieses Projekt basiert auf folgenden Technologien:
 
 Das Projekt folgt einer modularen Architektur mit Standalone Components:
 
-*   `src/app/features/`: Feature-Module (Ozean-Auswahl, Quiz, etc.)
-*   `src/app/models/`: TypeScript Interfaces und Typen
-*   `src/app/services/`: Services für Daten und Logik
-*   `src/app/store/`: State Management mit SignalStore
-*   `tests/`: E2E Tests (Playwright)
+- `src/app/core/`: Singleton Services & Base Classes (z.B. API Services)
+- `src/app/features/`: Feature-Komponenten (Ozean-Auswahl, Quiz, etc.) - **Single Class per File**
+- `src/app/shared/`: Wiederverwendbare UI-Komponenten (Cards, Spinner, etc.)
+- `src/app/models/`: TypeScript Interfaces und Typen
+- `src/app/store/`: State Management mit Angular Signals (SignalStore)
+- `tests/`: E2E Tests (Playwright)
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## 🚀 Getting Started
 
 Folge diesen Schritten, um eine lokale Kopie des Projekts zum Laufen zu bringen.
 
 ### Voraussetzungen
 
-*   **Node.js**: (Empfohlen: Aktuelle LTS Version - v22+)
-*   **npm**: Wird normalerweise mit Node.js installiert.
+- **Node.js**: (Empfohlen: Aktuelle LTS Version - v22+)
+- **npm**: Wird normalerweise mit Node.js installiert.
 
 ### Installation
 
@@ -114,6 +117,7 @@ Folge diesen Schritten, um eine lokale Kopie des Projekts zum Laufen zu bringen.
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
 <!-- NUTZUNG -->
+
 ## 💻 Nutzung
 
 Starte den Entwicklungsserver:
@@ -129,6 +133,7 @@ Navigiere zu `http://localhost:4200/`. Die Anwendung lädt automatisch neu, wenn
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
 <!-- ENTWICKLUNG -->
+
 ## 👨‍💻 Entwicklung & Commands
 
 **Build für Produktion:**
@@ -162,13 +167,15 @@ npm run test:e2e
 ### 🔌 Backend (Optional)
 
 Das Projekt ist für die Anbindung an ein **Grav CMS Backend (EOL Manager)** vorbereitet, um Inhalte dynamisch zu verwalten.
-* Standardmäßig nutzt die App die lokale `assets/data/ocean-data.json` (Fallback-Strategie).
-* Ist das Backend unter `http://127.0.0.1:8000` erreichbar, werden die Daten live von der API geladen.
-* Backend-Repository: [Link zum eol-manager Repo]
+
+- Standardmäßig nutzt die App die lokale `assets/data/ocean-data.json` (Fallback-Strategie).
+- Ist das Backend unter `http://127.0.0.1:8000` erreichbar, werden die Daten live von der API geladen.
+- Backend-Repository: [Link zum eol-manager Repo]
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
 <!-- LIZENZ -->
+
 ## 📝 Lizenz
 
 Verteilt unter der MIT Lizenz. Siehe `LICENSE` für weitere Informationen.
@@ -176,6 +183,7 @@ Verteilt unter der MIT Lizenz. Siehe `LICENSE` für weitere Informationen.
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
 <!-- KONTAKT -->
+
 ## 👤 Kontakt & Support
 
 **T-Boyke** - Developer
@@ -185,6 +193,7 @@ Projektlink: [https://github.com/T-Boyke/EhlenAngularProjekt3](https://github.co
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
+
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.dev/
 [TailwindCSS.com]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
