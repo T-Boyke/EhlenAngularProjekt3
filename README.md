@@ -12,7 +12,7 @@
   <p align="center">
     Eine interaktive Lern-App für Kinder (7-9 Jahre) zum Entdecken der Weltmeere.
     <br />
-    <a href="#-demo"><strong>Dokumentation (Handbuch) »</strong></a>
+   <a href="docs/BENUTZERHANDBUCH.md"><strong>Dokumentation (Handbuch) »</strong></a>
     <br />
     <br />
     <a href="#-demo">Live Demo</a>
@@ -55,7 +55,7 @@
 
 Das Projekt wurde als simulierte Abschlussarbeit für die **IHK Fachinformatiker für Anwendungsentwicklung** Zertifizierung entwickelt. Es bietet eine kindgerechte Benutzeroberfläche, Gamification-Elemente und legt großen Wert auf Datenschutz (lokale Speicherung).
 
-👉 **Detaillierte Dokumentation:** Siehe `IHK_HANDBUCH.md` im Hauptverzeichnis.
+👉 **Detaillierte Dokumentation:** Siehe [Boyke-Tobias-Angular-EOL-App-20251209.pdf](docs/Boyke-Tobias-Angular-EOL-App-20251209.pdf).
 
 📋 **Projektmanagement:** [Hier geht's zum Kanban Board](https://github.com/users/T-Boyke/projects/4) (Agile Planung via GitHub Projects).
 
