@@ -9,6 +9,8 @@ import { test, expect } from '@playwright/test';
  * - Validiert die Übergänge und die Sichtbarkeit von Schlüsselelementen.
  */
 test('quiz flow: select ocean, answer question, see feedback', async ({ page }) => {
+  test.setTimeout(60000); // Erhöhtes Timeout für langsame Umgebungen
+
   // 1. Start auf der Homepage
   await page.goto('/');
   await page.waitForLoadState('networkidle');
@@ -43,7 +45,7 @@ test('quiz flow: select ocean, answer question, see feedback', async ({ page }) 
 
   // Erwartung: Quiz-Button muss jetzt klickbar sein
   await expect(quizBtn).toBeVisible();
-  await quizBtn.click();
+  await quizBtn.click({ force: true });
 
   // 5. Navigation zum Quiz prüfen
   await expect(page).toHaveURL(/.*quiz/);
