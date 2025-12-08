@@ -38,6 +38,7 @@ describe('OceanSelectionComponent', () => {
       loadOceans: vi.fn(),
       selectOcean: vi.fn(),
       startMasterQuiz: vi.fn(),
+      isLoading: signal(false), // Neu: Für Lade-Indikator
     };
 
     await TestBed.configureTestingModule({
