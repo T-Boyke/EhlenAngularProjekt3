@@ -34,11 +34,12 @@
         <li><a href="#-projektstruktur">Projektstruktur</a></li>
       </ul>
     </li>
-    <li>
+<li>
       <a href="#-getting-started">Getting Started</a>
       <ul>
         <li><a href="#voraussetzungen">Voraussetzungen</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#-backend-optional">Backend (Optional)</a></li>
       </ul>
     </li>
     <li><a href="#-nutzung">Nutzung</a></li>
@@ -155,6 +156,15 @@ npm run test:coverage
 ```sh
 npm run test:e2e
 ```
+
+<p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
+
+### 🔌 Backend (Optional)
+
+Das Projekt ist für die Anbindung an ein **Grav CMS Backend (EOL Manager)** vorbereitet, um Inhalte dynamisch zu verwalten.
+* Standardmäßig nutzt die App die lokale `assets/data/ocean-data.json` (Fallback-Strategie).
+* Ist das Backend unter `http://127.0.0.1:8000` erreichbar, werden die Daten live von der API geladen.
+* Backend-Repository: [Link zum eol-manager Repo]
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
