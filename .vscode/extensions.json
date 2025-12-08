@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "angular.ng-template",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "yzhang.markdown-all-in-one",
+    "vitest.explorer",
+    "github.vscode-pull-request-github"
+  ]
+}

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Ocean } from '../models/ocean.model';
+import { Ocean } from '../../models/ocean.model';
 
 /**
  * Service zum Abrufen der Ozean-Daten.
@@ -16,7 +16,7 @@ import { Ocean } from '../models/ocean.model';
  * und in der gesamten Anwendung verfügbar ist.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OceanDataService {
   // Modernes Dependency Injection via inject() Funktion
@@ -30,17 +30,19 @@ export class OceanDataService {
    * Ruft die Liste aller Ozeane ab.
    *
    * Implementiert eine Fallback-Strategie:
-   * 1. Versucht zuerst, die Daten von der API (`/api/oceans`) zu laden.
-   * 2. Wenn dies fehlschlägt (catchError), wird automatisch auf die lokale
-   *    JSON-Datei (`assets/data/ocean-data.json`) zurückgegriffen.
-   *    Dies stellt sicher, dass die App auch offline oder ohne Backend funktioniert.
+   * 1. Versucht zuerst, die Daten von der Live-API (`/api/oceans`) zu laden.
+   * 2. Tritt ein Fehler auf (z.B. API nicht erreichbar), wird der Fehler abgefangen (`catchError`).
+   * 3. Als Fallback wird automatisch auf die lokale JSON-Datei (`assets/data/ocean-data.json`) zugegriffen.
    *
-   * @returns Observable<Ocean[]> Ein Stream, der das Array der Ozeane liefert.
+   * Dies gewährleistet die grundlegende Funktionalität der Anwendung auch bei Netzwerkproblemen oder offline-Nutzung.
+   *
+   * @returns {Observable<Ocean[]>} Ein Observable, das ein Array von {@link Ocean}-Objekten emittiert.
    */
   getOceans(): Observable<Ocean[]> {
     return this.http.get<Ocean[]>(this.apiUrl).pipe(
-      catchError(() => {
-        console.warn('API unavailable, falling back to local data');
+      catchError((error: unknown) => {
+        // Logge den Fehler für Debugging-Zwecke, aber störe nicht den User-Flow
+        console.warn('API nicht verfügbar, lade lokale Fallback-Daten.', error);
         return this.http.get<Ocean[]>(this.localUrl);
       })
     );

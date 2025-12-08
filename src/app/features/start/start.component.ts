@@ -2,19 +2,22 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
- * Startseite der Anwendung.
+ * Die Startseite der Anwendung.
  *
- * Funktion:
- * - Dient als Einstiegspunkt für den Nutzer.
- * - Zeigt den Titel der App und ein motivierendes Logo.
- * - Präsentiert einen zufälligen oder statischen Fakt ("Wusstest du schon?").
- * - Weist den Benutzer per Button zur Ozean-Auswahl.
+ * Verwendungszweck:
+ * - Dient als Landing Page und erster Berührungspunkt für den Nutzer.
+ * - Vermittelt den ersten Eindruck (Look & Feel) der Anwendung.
+ *
+ * Funktionalität:
+ * - Zeigt den App-Titel und ein Logo.
+ * - Präsentiert einen zufälligen Fakt ("Wusstest du schon?"), um Interesse zu wecken.
+ * - Ermöglicht die Navigation zur Hauptanwendung (Ozean-Auswahl) via Button.
  */
 @Component({
-    selector: 'app-start',
-    standalone: true,
-    styleUrl: './start.component.css',
-    template: `
+  selector: 'app-start',
+  standalone: true,
+  styleUrl: './start.component.css',
+  template: `
     <div class="start-page">
       <div class="start-page__card">
         <!-- Logo Platzhalter: Ein einfaches Emoji repräsentiert das Thema -->
@@ -29,19 +32,21 @@ import { Router } from '@angular/router';
           <p class="start-page__fact-text">...der Ozean mehr als 70% der Erdoberfläche bedeckt?</p>
         </div>
 
-        <button (click)="start()" class="start-page__button">
-          Los geht's! 🚀
-        </button>
+        <button (click)="start()" class="start-page__button">Los geht's! 🚀</button>
       </div>
     </div>
-  `
+  `,
 })
 export class StartComponent {
-    // Einfache Navigation via Router
-    private router = inject(Router);
+  private router = inject(Router);
 
-    /** Navigiert zur Auswahlseite der Ozeane. */
-    start() {
-        this.router.navigate(['/selection']);
-    }
+  /**
+   * Startet die Anwendung und navigiert zur Ozean-Auswahl-Seite.
+   * Wird aufgerufen, wenn der Nutzer den "Los geht's!"-Button klickt.
+   *
+   * @returns {void}
+   */
+  start(): void {
+    this.router.navigate(['/selection']);
+  }
 }

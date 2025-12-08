@@ -1,41 +1,5 @@
-/**
- * Repräsentiert einen Bewohner eines Ozeans.
- * Diese Schnittstelle definiert die Struktur für Tiere oder Pflanzen,
- * die in der Detailansicht eines Ozeans angezeigt werden.
- */
-export interface Inhabitant {
-  /** Der Name des Bewohners (z.B. "Clownfisch"). */
-  name: string;
-  /** Eine kurze Beschreibung oder interessante Fakten über den Bewohner. */
-  description: string;
-  /** Pfad zum Bild des Bewohners (relativ zu assets). */
-  image: string;
-}
-
-/**
- * Repräsentiert eine einzelne Quizfrage.
- * Jede Frage gehört zu einem spezifischen Ozean und enthält
- * mehrere Antwortmöglichkeiten, von denen genau eine richtig ist.
- */
-export interface QuizQuestion {
-  /** Der Text der Frage. */
-  question: string;
-  /**
-   * Ein Array von Antwortmöglichkeiten.
-   * Sollte idealerweise 4 Optionen enthalten (Single Choice).
-   */
-  options: string[];
-  /** Die korrekte Antwort (muss exakt mit einer der Optionen übereinstimmen). */
-  answer: string;
-  /** Pfad zu einem Bild, das die Frage visualisiert. */
-  quizimage: string;
-  /**
-   * Zusatzinformation, die nach Beantwortung der Frage angezeigt wird
-   * (egal ob richtig oder falsch), um den Lerneffekt zu verstärken.
-   */
-  trivia: string;
-  // prequizdescription: string; // Veraltet/Nicht mehr genutzt
-}
+import { Inhabitant } from './inhabitant.model';
+import { QuizQuestion } from './quiz-question.model';
 
 /**
  * Hauptmodell für einen Ozean.

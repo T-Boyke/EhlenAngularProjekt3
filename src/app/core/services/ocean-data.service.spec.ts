@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { OceanDataService } from './ocean.data.service';
-import { Ocean } from '../models/ocean.model';
+import { OceanDataService } from './ocean-data.service';
+import { Ocean } from '../../models/ocean.model';
 
 /**
  * Unit-Tests für den OceanDataService.
@@ -16,14 +16,22 @@ describe('OceanDataService', () => {
 
   // Beispiel-Daten für den Test
   const mockOceans: Ocean[] = [
-    { id: '1', name: 'Pacific', oceanimage: 'img.jpg', description: 'Desc', facts: [], inhabitants: [], quiz: [] }
+    {
+      id: '1',
+      name: 'Pacific',
+      oceanimage: 'img.jpg',
+      description: 'Desc',
+      facts: [],
+      inhabitants: [],
+      quiz: [],
+    },
   ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       // HttpClientTestingModule erlaubt das Mocken von HTTP-Anfragen
       imports: [HttpClientTestingModule],
-      providers: [OceanDataService]
+      providers: [OceanDataService],
     });
     service = TestBed.inject(OceanDataService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -40,7 +48,7 @@ describe('OceanDataService', () => {
 
   it('sollte Ozeane von der API laden (Happy Path)', () => {
     // 1. Aufruf starten
-    service.getOceans().subscribe(oceans => {
+    service.getOceans().subscribe((oceans) => {
       expect(oceans.length).toBe(1);
       expect(oceans).toEqual(mockOceans);
     });
@@ -58,7 +66,7 @@ describe('OceanDataService', () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-    service.getOceans().subscribe(oceans => {
+    service.getOceans().subscribe((oceans) => {
       expect(oceans.length).toBe(1);
       expect(oceans).toEqual(mockOceans);
     });

@@ -1,6 +1,7 @@
 import { Injectable, computed, inject, signal, effect, Signal } from '@angular/core';
-import { OceanDataService } from '../services/ocean.data.service';
-import { Ocean, QuizQuestion } from '../models/ocean.model';
+import { OceanDataService } from '@core/services/ocean-data.service';
+import { Ocean } from '../models/ocean.model';
+import { QuizQuestion } from '../models/quiz-question.model';
 
 /**
  * Vorlage für das "Master-Quiz".
@@ -13,7 +14,7 @@ const MASTER_OCEAN_TEMPLATE: Partial<Ocean> = {
   oceanimage: '/assets/images/master.webp',
   description: 'Das ultimative Quiz gegen die Zeit! 🏆',
   facts: [],
-  inhabitants: []
+  inhabitants: [],
 };
 
 /**
@@ -28,7 +29,7 @@ const MASTER_OCEAN_TEMPLATE: Partial<Ocean> = {
  * Pattern: Store-Service (Datenhaltung + Logik in einer Klasse).
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuizStore {
   private readonly oceanDataService = inject(OceanDataService);
@@ -82,7 +83,7 @@ export class QuizStore {
     if (this._masterMode()) {
       return MASTER_OCEAN_TEMPLATE as Ocean;
     }
-    return this._oceans().find(o => o.id === this._currentOceanId());
+    return this._oceans().find((o) => o.id === this._currentOceanId());
   });
 
   /**
@@ -96,9 +97,7 @@ export class QuizStore {
   /**
    * Berechnet die Gesamtanzahl der Fragen für das aktuelle Quiz.
    */
-  readonly totalQuestions = computed(() =>
-    this._activeQuestions().length
-  );
+  readonly totalQuestions = computed(() => this._activeQuestions().length);
 
   /**
    * Berechnet den Fortschritt des Quiz in Prozent (0-100).
@@ -111,9 +110,7 @@ export class QuizStore {
   /**
    * Prüft, ob das "Ultimative Quiz" freigeschaltet ist.
    */
-  readonly isMasterUnlocked = computed(() =>
-    this._completedOceans().length >= 5
-  );
+  readonly isMasterUnlocked = computed(() => this._completedOceans().length >= 5);
 
   constructor() {
     this.loadProgressFromStorage();
@@ -155,7 +152,7 @@ export class QuizStore {
       next: (oceans) => {
         this._oceans.set(oceans);
       },
-      error: (err) => console.error(err)
+      error: (err) => console.error(err),
     });
   }
 
@@ -169,12 +166,12 @@ export class QuizStore {
    * Kopiert die Fragen in _activeQuestions und mischt die Antworten.
    */
   startQuiz(): void {
-    const ocean = this._oceans().find(o => o.id === this._currentOceanId());
+    const ocean = this._oceans().find((o) => o.id === this._currentOceanId());
     if (ocean) {
       // Fragen kopieren und Antworten mischen
-      const sessionQuestions = ocean.quiz.map(q => ({
+      const sessionQuestions = ocean.quiz.map((q) => ({
         ...q,
-        options: [...q.options].sort(() => Math.random() - 0.5)
+        options: [...q.options].sort(() => Math.random() - 0.5),
       }));
 
       this._activeQuestions.set(sessionQuestions);
@@ -190,16 +187,15 @@ export class QuizStore {
    * - Setzt sie als aktive Fragen.
    */
   startMasterQuiz(): void {
-    const allQuestions = this._oceans()
-      .flatMap(o => o.quiz);
+    const allQuestions = this._oceans().flatMap((o) => o.quiz);
 
     // Fragen mischen
     const shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
 
     // Auch die Antworten innerhalb der Fragen mischen
-    const preparedQuestions = shuffledQuestions.map(q => ({
+    const preparedQuestions = shuffledQuestions.map((q) => ({
       ...q,
-      options: [...q.options].sort(() => Math.random() - 0.5)
+      options: [...q.options].sort(() => Math.random() - 0.5),
     }));
 
     this._activeQuestions.set(preparedQuestions);
@@ -215,7 +211,7 @@ export class QuizStore {
   answerQuestion(answer: string): void {
     const question = this.currentQuestion();
     if (question && answer === question.answer) {
-      this._score.update(s => s + 1);
+      this._score.update((s) => s + 1);
     }
   }
 
@@ -247,7 +243,7 @@ export class QuizStore {
     if (!this._masterMode() && this._score() === this.totalQuestions()) {
       const currentId = this._currentOceanId();
       if (currentId && !this._completedOceans().includes(currentId)) {
-        this._completedOceans.update(list => [...list, currentId]);
+        this._completedOceans.update((list) => [...list, currentId]);
       }
     }
   }

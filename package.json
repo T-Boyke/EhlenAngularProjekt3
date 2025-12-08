@@ -9,7 +9,19 @@
     "lint": "ng lint",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "prepare": "husky",
+    "docs:json": "compodoc -p ./tsconfig.app.json -e json -d .",
+    "docs:serve": "compodoc -p ./tsconfig.app.json -s",
+    "storybook": "ng run EOL:storybook",
+    "build-storybook": "ng run EOL:build-storybook"
+  },
+  "lint-staged": {
+    "*.{ts,html}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,md,json}": "prettier --write"
   },
   "prettier": {
     "printWidth": 100,
@@ -45,17 +57,31 @@
     "@angular/build": "^21.0.2",
     "@angular/cli": "^21.0.2",
     "@angular/compiler-cli": "^21.0.3",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@compodoc/compodoc": "^1.1.32",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
     "@vitest/coverage-v8": "^4.0.15",
     "angular-eslint": "21.0.1",
     "eslint": "^9.39.1",
+    "husky": "^9.1.7",
     "jsdom": "^27.2.0",
+    "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.17",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.48.1",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.15",
+    "storybook": "^10.1.4",
+    "@storybook/angular": "^10.1.4",
+    "@storybook/addon-a11y": "^10.1.4",
+    "@storybook/addon-docs": "^10.1.4",
+    "@storybook/addon-onboarding": "^10.1.4",
+    "@angular-devkit/build-angular": "^21.0.3",
+    "@angular-devkit/architect": "^0.2100.3",
+    "@angular-devkit/core": "^21.0.3",
+    "eslint-plugin-storybook": "^10.1.4"
   }
 }

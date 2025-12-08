@@ -2,14 +2,14 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /**
- * Eine generische Fortschrittsleiste.
+ * Eine generische UI-Komponente zur Visualisierung von Fortschritt.
  *
- * Funktion:
- * - Visualisiert einen Prozentwert (0-100) als balken.
- * - Farbe ist konfigurierbar.
+ * Verwendungszweck:
+ * - Zeigt den Fortschritt eines Quiz oder Prozesses an.
+ * - Rein präsentationale Komponente ("Dumb Component").
  *
- * Architektur:
- * - "Dumb Component": Enthält keine Logik, nur Darstellung basierend auf Inputs.
+ * @example
+ * <app-progress-bar [progress]="50" color="red"></app-progress-bar>
  */
 @Component({
   selector: 'app-progress-bar',
@@ -19,17 +19,27 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="progress-bar">
       <!-- Die Breite wird dynamisch über Style-Binding gesetzt -->
-      <div class="progress-bar__fill"
-           [style.width.%]="progress"
-           [style.background-color]="color">
-      </div>
+      <div
+        class="progress-bar__fill"
+        [style.width.%]="progress"
+        [style.background-color]="color"
+      ></div>
     </div>
-  `
+  `,
 })
 export class ProgressBarComponent {
-  /** Der Fortschritt in Prozent (0 bis 100). */
+  /**
+   * Der aktuelle Fortschrittswert in Prozent.
+   * Muss ein Wert zwischen 0 und 100 sein.
+   * @required
+   */
   @Input({ required: true }) progress = 0;
 
-  /** Die Farbe des Balkens (CSS-Farbwert). Standard: Gelb/Gold ('#FACC15'). */
+  /**
+   * Die Farbe des Fortschrittsbalkens.
+   * Erwartet einen validen CSS-Farbwert (Hex, RGB, Name).
+   * Standardwert: '#FACC15' (Gelb/Gold).
+   * @default '#FACC15'
+   */
   @Input() color = '#FACC15';
 }

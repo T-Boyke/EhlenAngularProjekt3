@@ -1,23 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 import { QuizStore } from './quiz.store';
-import { OceanDataService } from '../services/ocean.data.service';
+import { OceanDataService } from '@core/services/ocean-data.service';
 import { of } from 'rxjs';
 import { Ocean } from '../models/ocean.model';
 
 // Test-Daten
 const mockOceans: Ocean[] = [
   {
-      id: 'pacific',
-      name: 'Pacific',
-      oceanimage: 'img.jpg',
-      description: 'Desc',
-      facts: [],
-      inhabitants: [],
-      quiz: [
-          { question: 'Q1', answer: 'A', options: ['A', 'B'], quizimage: '', trivia: '' },
-          { question: 'Q2', answer: 'B', options: ['A', 'B'], quizimage: '', trivia: '' }
-      ]
-  }
+    id: 'pacific',
+    name: 'Pacific',
+    oceanimage: 'img.jpg',
+    description: 'Desc',
+    facts: [],
+    inhabitants: [],
+    quiz: [
+      { question: 'Q1', answer: 'A', options: ['A', 'B'], quizimage: '', trivia: '' },
+      { question: 'Q2', answer: 'B', options: ['A', 'B'], quizimage: '', trivia: '' },
+    ],
+  },
 ];
 
 /**
@@ -33,14 +33,11 @@ describe('QuizStore', () => {
   beforeEach(() => {
     // Service-Mock: Liefert unsere Test-Daten sofort zurück (Observable 'of')
     oceanServiceSpy = {
-      getOceans: vi.fn().mockReturnValue(of(mockOceans))
+      getOceans: vi.fn().mockReturnValue(of(mockOceans)),
     };
 
     TestBed.configureTestingModule({
-      providers: [
-        QuizStore,
-        { provide: OceanDataService, useValue: oceanServiceSpy }
-      ]
+      providers: [QuizStore, { provide: OceanDataService, useValue: oceanServiceSpy }],
     });
 
     store = TestBed.inject(QuizStore);

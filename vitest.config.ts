@@ -2,9 +2,19 @@
 
 import { defineConfig } from 'vite';
 import angular from '@analogjs/vite-plugin-angular';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  resolve: {
+    alias: {
+      '@app': resolve(__dirname, 'src/app'),
+      '@env': resolve(__dirname, 'src/environments'),
+      '@core': resolve(__dirname, 'src/app/core'),
+      '@shared': resolve(__dirname, 'src/app/shared'),
+      '@testing': resolve(__dirname, 'src/testing'),
+    },
+  },
   plugins: [
     angular({
       vite: {

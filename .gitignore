@@ -42,3 +42,6 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 package-lock.json
+
+*storybook.log
+storybook-static

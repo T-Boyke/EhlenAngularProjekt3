@@ -7,15 +7,16 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
 /**
  * Die Haupt-Komponente für das Quiz-Spiel.
  *
- * Verantwortlichkeit:
+ * Verwendungszweck:
+ * - Kern des Spiels: Fragt Wissen ab.
+ * - Berechnet Punkte (indirekt über Store).
+ * - Bietet visuelles Feedback (Richtig/Falsch) und Gamification-Elemente.
+ *
+ * Funktionalität:
  * - Darstellung der aktuellen Frage und Antwortmöglichkeiten.
  * - Visuelles Feedback (Animationen, Farben) für richtig/falsch.
- * - Timer-Logik im "Master-Modus".
+ * - Timer-Logik im "Master-Modus" (Zeitdruck).
  * - Steuerung des Spielablaufs via QuizStore.
- *
- * Features:
- * - Eingebauter Countdown (5 Sekunden) im Master-Modus.
- * - Angular Animations für weiche Übergänge (@fadeIn, @slideUp).
  */
 @Component({
   selector: 'app-quiz',
@@ -24,64 +25,68 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
   styleUrl: './quiz.component.css',
   template: `
     <div class="quiz">
-
-      <button (click)="exitQuiz()" class="quiz__exit-btn">
-        ⬅ Beenden
-      </button>
+      <button (click)="exitQuiz()" class="quiz__exit-btn">⬅ Beenden</button>
 
       @if (store.currentQuestion(); as question) {
-        <div class="quiz__card" @fadeIn>
+      <div class="quiz__card" @fadeIn>
+        <div class="quiz__image-wrapper">
+          <img
+            [src]="question.quizimage"
+            [alt]="'Bild zur Frage: ' + question.question"
+            class="quiz__image"
+            fetchpriority="high"
+            loading="eager"
+            appImageFallback
+          />
+        </div>
 
-          <div class="quiz__image-wrapper">
-             <img [src]="question.quizimage"
-                  [alt]="'Bild zur Frage: ' + question.question"
-                  class="quiz__image"
-                  fetchpriority="high"
-                  loading="eager"
-                  appImageFallback>
-          </div>
+        <h2 class="quiz__question">{{ question.question }}</h2>
 
-          <h2 class="quiz__question">{{ question.question }}</h2>
-
-          <div class="quiz__options-grid">
-            @for (option of question.options; track $index) {
-              <button (click)="selectOption(option)"
-                      [disabled]="selectedOption() !== null"
-                      class="quiz__option-btn"
-                      [class]="getOptionClass(option)">
-                {{ option }}
-              </button>
-            }
-          </div>
-
-          <!-- Fortschrittsanzeige innerhalb des Quizzes -->
-          <div class="quiz__progress-container">
-            <div class="quiz__progress-fill" [style.width.%]="store.progress()"></div>
-          </div>
-
-          <!-- Master-Modus Timer -->
-          @if (store.masterMode() && !selectedOption()) {
-            <div class="quiz__timer"
-                 [class.quiz__timer--critical]="timeLeft() <= 2">
-              {{ timeLeft() }}s
-            </div>
-          }
-
-          <!-- Feedback-Overlay nach Antwort -->
-          @if (showFeedback()) {
-            <div class="quiz__feedback" @slideUp
-                 [class.quiz__feedback--correct]="isCorrect()"
-                 [class.quiz__feedback--wrong]="!isCorrect()">
-              <h3 class="quiz__feedback-title"
-                  [class.quiz__feedback-title--correct]="isCorrect()"
-                  [class.quiz__feedback-title--wrong]="!isCorrect()">
-                {{ isCorrect() ? 'Richtig! 🎉' : 'Leider falsch...' }}
-              </h3>
-              <!-- Trivia: Zusätzliche Lern-Info zur Auflösung -->
-              <p class="quiz__feedback-text">{{ question.trivia }}</p>
-            </div>
+        <div class="quiz__options-grid">
+          @for (option of question.options; track $index) {
+          <button
+            (click)="selectOption(option)"
+            [disabled]="selectedOption() !== null"
+            class="quiz__option-btn"
+            [class]="getOptionClass(option)"
+          >
+            {{ option }}
+          </button>
           }
         </div>
+
+        <!-- Fortschrittsanzeige innerhalb des Quizzes -->
+        <div class="quiz__progress-container">
+          <div class="quiz__progress-fill" [style.width.%]="store.progress()"></div>
+        </div>
+
+        <!-- Master-Modus Timer -->
+        @if (store.masterMode() && !selectedOption()) {
+        <div class="quiz__timer" [class.quiz__timer--critical]="timeLeft() <= 2">
+          {{ timeLeft() }}s
+        </div>
+        }
+
+        <!-- Feedback-Overlay nach Antwort -->
+        @if (showFeedback()) {
+        <div
+          class="quiz__feedback"
+          @slideUp
+          [class.quiz__feedback--correct]="isCorrect()"
+          [class.quiz__feedback--wrong]="!isCorrect()"
+        >
+          <h3
+            class="quiz__feedback-title"
+            [class.quiz__feedback-title--correct]="isCorrect()"
+            [class.quiz__feedback-title--wrong]="!isCorrect()"
+          >
+            {{ isCorrect() ? 'Richtig! 🎉' : 'Leider falsch...' }}
+          </h3>
+          <!-- Trivia: Zusätzliche Lern-Info zur Auflösung -->
+          <p class="quiz__feedback-text">{{ question.trivia }}</p>
+        </div>
+        }
+      </div>
       }
     </div>
   `,
@@ -90,29 +95,36 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
     trigger('fadeIn', [
       transition(':enter', [
         style({ opacity: 0, transform: 'scale(0.95)' }),
-        animate('300ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
-      ])
+        animate('300ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
     ]),
     trigger('slideUp', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ])
-    ])
-  ]
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class QuizComponent implements OnInit, OnDestroy {
-  store = inject(QuizStore);
-  private router = inject(Router);
+  readonly store = inject(QuizStore);
+  private readonly router = inject(Router);
 
-  // Lokaler UI-State (nicht im globalen Store, da nur für Anzeige relevant)
+  /** Die aktuell gewählte Antwortoption (null wenn noch keine Wahl getroffen). */
   selectedOption = signal<string | null>(null);
+
+  /** Status der Antwort: true=richtig, false=falsch, null=noch nicht ausgewertet. */
   isCorrect = signal<boolean | null>(null);
+
+  /** Steuert die Sichtbarkeit des Feedback-Overlays. */
   showFeedback = signal(false);
 
   // Timer State
+  /** Verbleibende Zeit in Sekunden (nur für Master-Modus). */
   timeLeft = signal(5);
-  timerInterval: ReturnType<typeof setInterval> | undefined;
+
+  /** Referenz auf den Interval-Timer. */
+  private timerInterval: ReturnType<typeof setInterval> | undefined;
 
   constructor() {
     // Effect: Überwacht das Spielende und navigiert zur Ergebnisseite
@@ -131,32 +143,45 @@ export class QuizComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Initialisiert die Komponente.
+   * Prüft, ob ein aktiver Ozean/Quiz vorhanden ist. Falls nicht, Redirect zum Start.
+   */
   ngOnInit() {
-    // Sicherheitsprüfung: Wenn kein Ozean gewählt ist (z.B. Reload), zurück zum Start
     if (!this.store.currentOcean()) {
       this.router.navigate(['/']);
     }
   }
 
+  /**
+   * Räumt auf, wenn die Komponente zerstört wird.
+   * Stoppt den Timer, um Memory Leaks zu verhindern.
+   */
   ngOnDestroy() {
-    // Wichtig: Timer aufräumen, um Memory Leaks zu vermeiden
     this.stopTimer();
   }
 
   // --- Timer Logik ---
 
+  /**
+   * Startet den Countdown-Timer für den Master-Modus.
+   * Setzt die Zeit auf 5 Sekunden zurück.
+   */
   startTimer() {
     this.stopTimer();
     this.timeLeft.set(5);
 
     this.timerInterval = setInterval(() => {
-      this.timeLeft.update(t => t - 1);
+      this.timeLeft.update((t) => t - 1);
       if (this.timeLeft() <= 0) {
         this.handleTimeout();
       }
     }, 1000);
   }
 
+  /**
+   * Stoppt den laufenden Timer.
+   */
   stopTimer() {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
@@ -176,6 +201,9 @@ export class QuizComponent implements OnInit, OnDestroy {
   /**
    * Gibt die passende BEM Modifier-Klasse zurück, um die Buttons einzufärben.
    * Kapselt die UI-Logik sauber.
+   *
+   * @param option - Die zu prüfende Antwortoption.
+   * @returns Die CSS-Klasse (String) für das Styling.
    */
   getOptionClass(option: string): string {
     const selected = this.selectedOption();
@@ -200,6 +228,9 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   /**
    * Verarbeitet die Antwort-Auswahl des Nutzers.
+   * Prüft auf Richtigkeit, setzt Feedback und leitet nach Verzögerung weiter.
+   *
+   * @param option - Die gewählte Antwort.
    */
   selectOption(option: string) {
     // Verhindert Mehrfach-Klicks
@@ -228,6 +259,7 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   /**
    * Bereitet die UI auf die nächste Frage vor.
+   * Resettet das Feedback und lädt die nächste Frage via Store.
    */
   nextQuestion() {
     this.selectedOption.set(null);
@@ -236,6 +268,9 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.store.nextQuestion();
   }
 
+  /**
+   * Beendet das Quiz vorzeitig und kehrt zur Auswahl zurück.
+   */
   exitQuiz() {
     this.store.exitQuiz();
     this.router.navigate(['/selection']);
