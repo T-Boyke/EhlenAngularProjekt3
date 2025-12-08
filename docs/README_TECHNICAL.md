@@ -27,17 +27,23 @@
 
 ## 3. Architektur (Architecture)
 
+## 3. Architektur (Architecture)
+
 Die Anwendung folgt dem **MVVM (Model-View-ViewModel)** Muster, angepasst für Angular mit SignalStore.
 
 ### Architektur-Diagramm
+
+Das System ist auf Resilienz ausgelegt: Der `OceanDataService` versucht primär, Daten dynamisch vom **EOL Manager (REST API)** zu laden. Ist dieser nicht erreichbar, greift das System nahtlos auf die lokalen **JSON-Assets** zurück.
 
 ```mermaid
 graph TD
     User[User] --> View["View (Components)"]
     View --> ViewModel["ViewModel (SignalStore)"]
     ViewModel --> Model["Model (Interfaces)"]
-    ViewModel --> Service[DataService]
-    Service --> Data[JSON Data]
+    ViewModel --> Service[OceanDataService]
+    
+    Service -- "Versuch 1: Fetch" --> API["REST API (EOL Manager)"]
+    Service -- "Fallback: Error Catch" --> Local["Lokale JSON (Assets)"]
     
     subgraph "View Layer"
         StartComponent
@@ -52,10 +58,10 @@ graph TD
     end
 
     subgraph "Data Layer"
-        DataService
+        OceanDataService
         OceanModel
     end
-```
+    ```
 
 ### Komponentendiagramm
 
