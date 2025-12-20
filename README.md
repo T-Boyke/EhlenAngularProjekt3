@@ -188,7 +188,7 @@ Verteilt unter der MIT Lizenz. Siehe `LICENSE` für weitere Informationen.
 
 **T-Boyke** - Developer
 
-Projektlink: [https://github.com/T-Boyke/EhlenAngularProjekt3](https://github.com/T-Boyke/EhlenAngularProjekt3)
+Projektlink: [github](https://github.com/T-Boyke/EhlenAngularProjekt3)
 
 <p align="right">(<a href="#readme-top">zurück nach oben</a>)</p>
 
